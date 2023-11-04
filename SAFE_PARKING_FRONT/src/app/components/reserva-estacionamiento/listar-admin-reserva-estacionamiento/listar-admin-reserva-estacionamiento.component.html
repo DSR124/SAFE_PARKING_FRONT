@@ -1,105 +1,96 @@
 <div [hidden]="route.children.length !== 0">
     <!DOCTYPE html>
     <html lang="en">
-      <head>
+
+    <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-      </head>
-  
-      <body>
-        <div class="container">
-          <br />
-          <h2 style="text-align: center">Lista de Reservas de Estacionamientos</h2>
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-  
-            <!-- Position Column -->
-            <ng-container matColumnDef="idReservaEstacionamiento">
-              <th mat-header-cell *matHeaderCellDef>ID</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.idReservaEstacionamiento }}
-              </td>
-            </ng-container>
-  
-            <!-- Name Column -->
-            <ng-container matColumnDef="estado">
-              <th mat-header-cell *matHeaderCellDef>estado</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.estado }}
-              </td>
-            </ng-container>
-  
-            <!-- Weight Column -->
-            <ng-container matColumnDef="favorito">
-              <th mat-header-cell *matHeaderCellDef>favorito</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.favorito }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="fecha">
-              <th mat-header-cell *matHeaderCellDef>fecha</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.fecha }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="users">
-              <th mat-header-cell *matHeaderCellDef>users</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.users.idUsuario }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="vehiculo">
-              <th mat-header-cell *matHeaderCellDef>vehiculo</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.vehiculo.idVehiculo }}
-              </td>
-            </ng-container>
-  
-            <ng-container matColumnDef="horarioEstacionamiento">
-              <th mat-header-cell *matHeaderCellDef>horarioEstacionamiento</th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.horarioEstacionamiento.idHorarioEstacionamiento }}
-              </td>
-            </ng-container>
+    </head>
 
-            <ng-container matColumnDef="accion01">
-                <th mat-header-cell *matHeaderCellDef>Acciones</th>
-                <td mat-cell *matCellDef="let element">
-                  <button
-                    mat-raised-button
-                    color="primary"
-                    [routerLink]="['ediciones', element.idHorario]"
-                  >
-                    <mat-icon>edit</mat-icon> Editar
-                  </button>
-                </td>
-              </ng-container>
-              <ng-container matColumnDef="accion02">
-                <th mat-header-cell *matHeaderCellDef>Acciones</th>
-                <td mat-cell *matCellDef="let element">
-                  <button
-                    mat-raised-button
-                    color="warn"
-                    (click)="eliminar(element.idReservaEstacionamiento)"
-                  >
-                    <mat-icon>delete</mat-icon> Eliminar
-                  </button>
-                </td>
-              </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-          <br />
-          <mat-paginator
-            [pageSizeOptions]="[5, 10, 25, 100]"
-            showFirstLastButtons
-          ></mat-paginator>
+    <body>
+        <div class="container">
+            <br />
+            <h2 style="text-align: center">Lista de Reservas de Estacionamientos</h2>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="idReservaEstacionamiento">
+                    <th mat-header-cell *matHeaderCellDef>ID</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.idReservaEstacionamiento }}
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="estado">
+                    <th mat-header-cell *matHeaderCellDef>estado</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.estado }}
+                    </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="favorito">
+                    <th mat-header-cell *matHeaderCellDef>favorito</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.favorito }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef>fecha</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.fecha }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="users">
+                    <th mat-header-cell *matHeaderCellDef>users</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.users.idUsuario }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="vehiculo">
+                    <th mat-header-cell *matHeaderCellDef>vehiculo</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.vehiculo.idVehiculo }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="horarioEstacionamiento">
+                    <th mat-header-cell *matHeaderCellDef>horarioEstacionamiento</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.horarioEstacionamiento.idHorarioEstacionamiento }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="accion01">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idHorario]">
+                            <mat-icon>edit</mat-icon> Editar
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="accion02">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button color="warn" (click)="eliminar(element.idReservaEstacionamiento)">
+                            <mat-icon>delete</mat-icon> Eliminar
+                        </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            <br />
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
         </div>
-      </body>
+    </body>
+
     </html>
-  </div>
+</div>

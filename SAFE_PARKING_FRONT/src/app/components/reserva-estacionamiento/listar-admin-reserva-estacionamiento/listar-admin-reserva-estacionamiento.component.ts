@@ -25,7 +25,7 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
     'accion02'
   ];
 
-  editarUsuario: ReservaEstacionamiento | null = null; // Variable para realizar un seguimiento de la fila en edición
+  editarReserva: ReservaEstacionamiento | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -39,17 +39,17 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
   }
 
   modificar(reservaestacionamiento: ReservaEstacionamiento) {
-    this.editarUsuario = reservaestacionamiento; // Establece la fila actual como editable
+    this.editarReserva = reservaestacionamiento; // Establece la fila actual como editable
   }
 
   cancelarEdicion() {
-    this.editarUsuario = null; // Cancela la edición
+    this.editarReserva = null; // Cancela la edición
   }
 
   guardarEdicion(usuario: ReservaEstacionamiento) {
     // Lógica para guardar la edición (puedes llamar a tu servicio de modificación aquí)
     this.reS.update(usuario).subscribe(() => {
-      this.editarUsuario = null; // Termina la edición
+      this.editarReserva = null; // Termina la edición
     });
   }
   eliminar(idReservaEstacionamiento: number) {

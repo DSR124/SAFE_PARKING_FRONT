@@ -6,7 +6,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
   templateUrl: './listar-admin-estacionamiento.component.html',
   styleUrls: ['./listar-admin-estacionamiento.component.css']
 })
-export class ListarAdminEstacionamientoComponent{
+export class ListarAdminEstacionamientoComponent  {
 
 }
 

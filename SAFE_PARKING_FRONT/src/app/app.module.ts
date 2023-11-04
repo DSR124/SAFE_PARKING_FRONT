@@ -87,6 +87,7 @@ import { ListarAdminHorarioEstacionamientoComponent } from './components/horario
 import { ListarUsuarioHorarioEstacionamientoComponent } from './components/horario-estacionamiento/listar-usuario-horario-estacionamiento/listar-usuario-horario-estacionamiento.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
 import { RolComponent } from './components/rol/rol.component';
+import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,7 @@ import { RolComponent } from './components/rol/rol.component';
     //Estacionamiento
     ListarUsuarioEstacionamientoComponent,
     EstacionamientoComponent,
+    ListarAdminEstacionamientoComponent,
 
 
     //Horario-Estacionamiento
