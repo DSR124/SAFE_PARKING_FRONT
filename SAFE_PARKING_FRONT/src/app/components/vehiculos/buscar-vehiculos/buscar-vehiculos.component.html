@@ -1,55 +1,53 @@
-<router-outlet></router-outlet>
-<app-navbar></app-navbar>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-    <body>
-      <hr />
+  <body>
+    <app-navbar></app-navbar>
 
-      <div class="search-form">
-        <div class="form-group">
-          <label for="vehiculoIdInput">Ingrese el ID del vehículo:</label>
-          <input id="vehiculoIdInput" type="number" [(ngModel)]="idVehiculo" />
-          <button (click)="buscar()">Buscar</button>
-        </div>
-        <hr />
-        <div class="vehiculo-details" *ngIf="vehiculo">
-          <h2 class="details-heading">Detalles del Vehículo</h2>
-          <div class="info-box">
-            <h1>Placa</h1>
-            <p>{{ vehiculo.placaVehiculo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Categoría</h1>
-            <p>{{ vehiculo.categoriaVehiculo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Color</h1>
-            <p>{{ vehiculo.colorVehiculo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Marca</h1>
-            <p>{{ vehiculo.marcaVehiculo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Tamaño</h1>
-            <p>{{ vehiculo.tamanioVehiculo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Tarjeta de Propiedad</h1>
-            <p>{{ vehiculo.tarjetaPropiedadVehiculo }}</p>
-          </div>
-          <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
-        </div>
+    <hr />
+
+    <div class="search-form">
+      <div class="form-group">
+        <label for="vehiculoIdInput">Ingrese el ID del vehículo:</label>
+        <input id="vehiculoIdInput" type="number" [(ngModel)]="idVehiculo" />
+        <button (click)="buscar()">Buscar</button>
       </div>
       <hr />
-    </body>
-  </html>
-</div>
-<app-footer></app-footer>
+      <div class="vehiculo-details" *ngIf="vehiculo">
+        <h2 class="details-heading">Detalles del Vehículo</h2>
+        <div class="info-box">
+          <h1>Placa</h1>
+          <p>{{ vehiculo.placaVehiculo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Categoría</h1>
+          <p>{{ vehiculo.categoriaVehiculo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Color</h1>
+          <p>{{ vehiculo.colorVehiculo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Marca</h1>
+          <p>{{ vehiculo.marcaVehiculo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Tamaño</h1>
+          <p>{{ vehiculo.tamanioVehiculo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Tarjeta de Propiedad</h1>
+          <p>{{ vehiculo.tarjetaPropiedadVehiculo }}</p>
+        </div>
+        <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+      </div>
+    </div>
+    <hr />
+    <app-footer></app-footer>
+  </body>
+</html>

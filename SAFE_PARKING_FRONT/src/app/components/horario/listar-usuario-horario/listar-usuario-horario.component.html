@@ -1,5 +1,3 @@
-<router-outlet></router-outlet>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,55 +6,53 @@
     <title>Document</title>
   </head>
   <body>
-    <div [hidden]="route.children.length !== 0">
-      <app-navbar></app-navbar>
-      <div class="containero">
-        <table class="calendar">
-          <thead>
+    <app-navbar></app-navbar>
+    <div class="containero">
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th></th>
+            <ng-container *ngFor="let dia of diasDeLaSemana">
+              <th>{{ dia }}</th>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let hora of horasDelDia">
             <tr>
-              <th></th>
+              <td>{{ hora }}</td>
               <ng-container *ngFor="let dia of diasDeLaSemana">
-                <th>{{ dia }}</th>
-              </ng-container>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let hora of horasDelDia">
-              <tr>
-                <td>{{ hora }}</td>
-                <ng-container *ngFor="let dia of diasDeLaSemana">
-                  <td>
-                    <ng-container *ngFor="let fechaHorario of horariosPorFecha">
+                <td>
+                  <ng-container *ngFor="let fechaHorario of horariosPorFecha">
+                    <ng-container
+                      *ngIf="obtenerNombreDia(fechaHorario.fecha) === dia"
+                    >
                       <ng-container
-                        *ngIf="obtenerNombreDia(fechaHorario.fecha) === dia"
+                        *ngFor="let horario of fechaHorario.horarios"
                       >
                         <ng-container
-                          *ngFor="let horario of fechaHorario.horarios"
+                          *ngIf="compararHorarioConHora(horario, hora)"
                         >
-                          <ng-container
-                            *ngIf="compararHorarioConHora(horario, hora)"
-                          >
-                            <div class="horario-item">
-                              <p>Fecha: {{ fechaHorario.fecha }}</p>
-                              <p>Hora inicio: {{ horario.horaApertura }}</p>
-                              <p>Hora cierre: {{ horario.horaCierre }}</p>
-                              <button
-                                (click)="obtenerIdHorario(horario.idHorario)"
-                              >
-                                Obtener ID
-                              </button>
-                            </div>
-                          </ng-container>
+                          <div class="horario-item">
+                            <p>Fecha: {{ fechaHorario.fecha }}</p>
+                            <p>Hora inicio: {{ horario.horaApertura }}</p>
+                            <p>Hora cierre: {{ horario.horaCierre }}</p>
+                            <button
+                              (click)="obtenerIdHorario(horario.idHorario)"
+                            >
+                              Obtener ID
+                            </button>
+                          </div>
                         </ng-container>
                       </ng-container>
                     </ng-container>
-                  </td>
-                </ng-container>
-              </tr>
-            </ng-container>
-          </tbody>
-        </table>
-      </div>
+                  </ng-container>
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
     <app-footer></app-footer>
   </body>

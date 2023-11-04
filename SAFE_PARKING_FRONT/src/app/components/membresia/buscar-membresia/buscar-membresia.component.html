@@ -1,49 +1,43 @@
-<app-navbar></app-navbar>
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <app-navbar></app-navbar>
 
-<body>
-
-
-  <hr />
-
-  <div class="search-form">
-    <div class="form-group">
-      <label for="membresiaIdInput">Ingrese el ID de la membresia:</label>
-      <input id="membresiaIdInput" type="number" [(ngModel)]="idMembresia" />
-      <button (click)="buscar()">Buscar</button>
+    <div class="search-form">
+      <div class="form-group">
+        <label for="membresiaIdInput">Ingrese el ID de la membresia:</label>
+        <input id="membresiaIdInput" type="number" [(ngModel)]="idMembresia" />
+        <button (click)="buscar()">Buscar</button>
+      </div>
+      <hr />
+      <div class="membresia-details" *ngIf="membresia">
+        <h2 class="details-heading">Detalles de la membresia</h2>
+        <div class="info-box">
+          <h1>Tipo de membresia</h1>
+          <p>{{ membresia.tipoMembresia }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Fecha inicio</h1>
+          <p>{{ membresia.fechaInicio }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Fecha de expiracion</h1>
+          <p>{{ membresia.fechaFin }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Precio</h1>
+          <p>{{ membresia.precio }}</p>
+        </div>
+        <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+      </div>
     </div>
     <hr />
-    <div class="membresia-details" *ngIf="membresia">
-      <h2 class="details-heading">Detalles de la membresia</h2>
-      <div class="info-box">
-        <h1>Tipo de membresia</h1>
-        <p>{{ membresia.tipoMembresia }}</p>
-      </div>
-      <div class="info-box">
-        <h1>Fecha inicio</h1>
-        <p>{{ membresia.fechaInicio }}</p>
-      </div>
-      <div class="info-box">
-        <h1>Fecha de expiracion</h1>
-        <p>{{ membresia.fechaFin }}</p>
-      </div>
-      <div class="info-box">
-        <h1>Precio</h1>
-        <p>{{ membresia.precio }}</p>
-      </div>
-      <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
-    </div>
-  </div>
-  <hr />
-</body>
-
+    <app-footer></app-footer>
+  </body>
 </html>
-<app-footer></app-footer>

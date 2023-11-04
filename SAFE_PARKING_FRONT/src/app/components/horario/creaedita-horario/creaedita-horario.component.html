@@ -7,86 +7,81 @@
   </head>
 
   <body>
-    <div [hidden]="route.children.length !== 0">
-      <app-navbar></app-navbar>
+    <app-navbar></app-navbar>
 
-      <div class="container" style="text-align: center">
-        <h1>Registro de Horario</h1>
-        <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
-          <!-- Categoria dia -->
-          <mat-form-field
-            appearance="fill"
-            class="example-full-width"
-            color="accent"
+    <div class="container" style="text-align: center">
+      <h1>Registro de Horario</h1>
+      <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
+        <!-- Categoria dia -->
+        <mat-form-field
+          appearance="fill"
+          class="example-full-width"
+          color="accent"
+        >
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="fecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="obtenerControlCampo('fecha')?.errors?.['required']">
+            La fecha de creacion es obligatoria.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora de apertura</mat-label>
+          <input
+            matInput
+            [ngxTimepicker]="apertura"
+            placeholder="Hora de apertura"
+            formControlName="horaApertura"
+            readonly
+          />
+          <ngx-material-timepicker #apertura></ngx-material-timepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('horaApertura')?.errors?.['required']"
           >
-            <input
-              matInput
-              placeholder="Ingrese fecha"
-              [matDatepicker]="picker"
-              formControlName="fecha"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error
-              *ngIf="obtenerControlCampo('fecha')?.errors?.['required']"
-            >
-              La fecha de creacion es obligatoria.
-            </mat-error>
-          </mat-form-field>
+            La hora de apertura es obligatoria.
+          </mat-error>
+        </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Hora de apertura</mat-label>
-            <input
-              matInput
-              [ngxTimepicker]="apertura"
-              placeholder="Hora de apertura"
-              formControlName="horaApertura"
-              readonly
-            />
-            <ngx-material-timepicker #apertura></ngx-material-timepicker>
-            <mat-error
-              *ngIf="obtenerControlCampo('horaApertura')?.errors?.['required']"
-            >
-              La hora de apertura es obligatoria.
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>Hora de cierre</mat-label>
-            <input
-              matInput
-              [ngxTimepicker]="cierre"
-              placeholder="Hora de cierre"
-              formControlName="horaCierre"
-              readonly
-            />
-            <ngx-material-timepicker #cierre></ngx-material-timepicker>
-            <mat-error
-              *ngIf="obtenerControlCampo('horaCierre')?.errors?.['required']"
-            >
-              La hora de cierre es obligatoria.
-            </mat-error>
-          </mat-form-field>
-
-          <br />
-          <button
-            mat-raised-button
-            color="primary"
-            routerLink="/horarios/listar_horarios"
+        <mat-form-field class="example-full-width">
+          <mat-label>Hora de cierre</mat-label>
+          <input
+            matInput
+            [ngxTimepicker]="cierre"
+            placeholder="Hora de cierre"
+            formControlName="horaCierre"
+            readonly
+          />
+          <ngx-material-timepicker #cierre></ngx-material-timepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('horaCierre')?.errors?.['required']"
           >
-            REGISTRAR
-          </button>
-          <button mat-raised-button color="warn" routerLink="/listar">
-            CANCELAR
-          </button>
-        </form>
-      </div>
-      <app-footer></app-footer>
-      <router-outlet></router-outlet>
+            La hora de cierre es obligatoria.
+          </mat-error>
+        </mat-form-field>
+
+        <br />
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/horarios/listar_horarios"
+        >
+          REGISTRAR
+        </button>
+        <button mat-raised-button color="warn" routerLink="/listar">
+          CANCELAR
+        </button>
+      </form>
     </div>
+    <app-footer></app-footer>
   </body>
 </html>

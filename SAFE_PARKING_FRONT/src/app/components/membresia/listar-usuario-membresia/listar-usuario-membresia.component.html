@@ -1,50 +1,47 @@
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      <div class="container">
-        <div class="titulo">
-          <h2>Lista de membresías</h2>
-        </div>
-
-        <ul class="membership-list">
-          <li class="membership-item" *ngFor="let membership of memberships">
-            <div class="informacion">
-              <div class="tipo_membresia">
-                <h3>{{ membership.tipoMembresia }}</h3>
-              </div>
-              <div class="precio">
-                <p>S/{{ membership.precio }}/mes</p>
-              </div>
-              <div class="contenido">
-                <p>
-                  Fecha de inicio: {{ membership.fechaInicio }}
-                  <br />
-                  Fecha de fin: {{ membership.fechaFin }}
-                </p>
-              </div>
-              <div class="botoncito">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  (click)="editMembership(membership)"
-                >
-                  Obtener
-                </button>
-              </div>
-            </div>
-          </li>
-        </ul>
+    <div class="container">
+      <div class="titulo">
+        <h2>Lista de membresías</h2>
       </div>
-    </body>
-  </html>
-  <app-footer></app-footer>
-</div>
+
+      <ul class="membership-list">
+        <li class="membership-item" *ngFor="let membership of memberships">
+          <div class="informacion">
+            <div class="tipo_membresia">
+              <h3>{{ membership.tipoMembresia }}</h3>
+            </div>
+            <div class="precio">
+              <p>S/{{ membership.precio }}/mes</p>
+            </div>
+            <div class="contenido">
+              <p>
+                Fecha de inicio: {{ membership.fechaInicio }}
+                <br />
+                Fecha de fin: {{ membership.fechaFin }}
+              </p>
+            </div>
+            <div class="botoncito">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="editMembership(membership)"
+              >
+                Obtener
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <app-footer></app-footer>
+  </body>
+</html>

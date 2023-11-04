@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar></app-navbar>
     <div class="container" style="text-align: center">
       <h2>Registro de Horarios - Estacionamientos</h2>
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
@@ -46,5 +47,6 @@
         <p>{{ mensaje }}</p>
       </form>
     </div>
+    <app-footer></app-footer>
   </body>
 </html>

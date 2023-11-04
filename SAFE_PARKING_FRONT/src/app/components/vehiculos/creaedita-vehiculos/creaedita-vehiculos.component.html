@@ -1,134 +1,140 @@
-<div [hidden]="route.children.length !== 0">
-  <app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+    <div class="container_contenido">
+      <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
+        <h1>REGISTRAR VEHICULO</h1>
 
-  <div>
-    <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
-      <h1>REGISTRAR VEHICULO</h1>
+        <mat-form-field class="example-full-width">
+          <mat-label>Placa del Vehiculo</mat-label>
+          <input
+            matInput
+            placeholder="Placa del Vehiculo"
+            formControlName="placaVehiculo"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('placaVehiculo')?.errors?.['required']"
+          >
+            La placa es obligatoria.
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Placa del Vehiculo</mat-label>
-        <input
-          matInput
-          placeholder="Placa del Vehiculo"
-          formControlName="placaVehiculo"
-        />
-        <mat-error
-          *ngIf="obtenerConntrolCampo('placaVehiculo')?.errors?.['required']"
-        >
-          La placa es obligatoria.
-        </mat-error>
-      </mat-form-field>
+        <!-- Categoria sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Categoría del vehículo</mat-label>
+          <mat-select formControlName="categoriaVehiculo">
+            <mat-option *ngFor="let t of categorias" [value]="t.value">{{
+              t.viewValue
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerConntrolCampo('categoriaVehiculo')?.errors?.['required']"
+          >
+            La categoría es obligatoria.
+          </mat-error>
+        </mat-form-field>
 
-      <!-- Categoria sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Categoría del vehículo</mat-label>
-        <mat-select formControlName="categoriaVehiculo">
-          <mat-option *ngFor="let t of categorias" [value]="t.value">{{
-            t.viewValue
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="obtenerConntrolCampo('categoriaVehiculo')?.errors?.['required']"
-        >
-          La categoría es obligatoria.
-        </mat-error>
-      </mat-form-field>
+        <!-- Color sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Color del vehículo</mat-label>
+          <input
+            matInput
+            placeholder="Color del vehículo"
+            formControlName="colorVehiculo"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('colorVehiculo')?.errors?.['required']"
+          >
+            El color es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <color-sketch
+          color="#fff"
+          (onChangeComplete)="colorcito($event)"
+        ></color-sketch>
 
-      <!-- Color sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Color del vehículo</mat-label>
-        <input
-          matInput
-          placeholder="Color del vehículo"
-          formControlName="colorVehiculo"
-        />
-        <mat-error
-          *ngIf="obtenerConntrolCampo('colorVehiculo')?.errors?.['required']"
-        >
-          El color es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <color-sketch
-        color="#fff"
-        (onChangeComplete)="colorcito($event)"
-      ></color-sketch>
+        <!-- Marca sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Marca del Vehiculo</mat-label>
+          <input
+            matInput
+            placeholder="Marca del Vehiculo"
+            formControlName="marcaVehiculo"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('marcaVehiculo')?.errors?.['required']"
+          >
+            La marca es obligatoria.
+          </mat-error>
+        </mat-form-field>
 
-      <!-- Marca sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Marca del Vehiculo</mat-label>
-        <input
-          matInput
-          placeholder="Marca del Vehiculo"
-          formControlName="marcaVehiculo"
-        />
-        <mat-error
-          *ngIf="obtenerConntrolCampo('marcaVehiculo')?.errors?.['required']"
-        >
-          La marca es obligatoria.
-        </mat-error>
-      </mat-form-field>
+        <!-- Tamaño sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Tamaño del Vehiculo</mat-label>
+          <input
+            matInput
+            placeholder="Tamaño del Vehiculo"
+            formControlName="tamanioVehiculo"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('tamanioVehiculo')?.errors?.['required']"
+          >
+            El tamaño es obligatorio.
+          </mat-error>
+        </mat-form-field>
 
-      <!-- Tamaño sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Tamaño del Vehiculo</mat-label>
-        <input
-          matInput
-          placeholder="Tamaño del Vehiculo"
-          formControlName="tamanioVehiculo"
-        />
-        <mat-error
-          *ngIf="obtenerConntrolCampo('tamanioVehiculo')?.errors?.['required']"
-        >
-          El tamaño es obligatorio.
-        </mat-error>
-      </mat-form-field>
+        <!-- Tarjeta sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Tarjeta de Propiedad</mat-label>
+          <input
+            matInput
+            placeholder="Tarjeta de Propiedad"
+            formControlName="tarjetaPropiedadVehiculo"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('tarjetaPropiedadVehiculo')?.errors?.['required']"
+          >
+            La tarjeta de propiedad es obligatoria.
+          </mat-error>
+        </mat-form-field>
 
-      <!-- Tarjeta sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Tarjeta de Propiedad</mat-label>
-        <input
-          matInput
-          placeholder="Tarjeta de Propiedad"
-          formControlName="tarjetaPropiedadVehiculo"
-        />
-        <mat-error
-          *ngIf="obtenerConntrolCampo('tarjetaPropiedadVehiculo')?.errors?.['required']"
-        >
-          La tarjeta de propiedad es obligatoria.
-        </mat-error>
-      </mat-form-field>
+        <!-- Sección para manejo de imágenes -->
+        <div class="image-upload">
+          <mat-label>SEleccione una imagen de su vehiculo</mat-label>
 
-      <!-- Sección para manejo de imágenes -->
-      <div class="image-upload">
-        <mat-label>SEleccione una imagen de su vehiculo</mat-label>
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+            formControlName="imagenVehiculo"
+          />
+          <img
+            *ngIf="imageSelected"
+            [src]="imageSelected"
+            alt="Imagen del Vehículo"
+          />
+        </div>
 
-        <input
-          type="file"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-          formControlName="imagenVehiculo"
-        />
-        <img
-          *ngIf="imageSelected"
-          [src]="imageSelected"
-          alt="Imagen del Vehículo"
-        />
-      </div>
-
-      <div class="btn-container">
-        <button
-          mat-raised-button
-          color="primary"
-          [routerLink]="['/vehiculos/listar_vehiculos']"
-        >
-          REGISTRAR
-        </button>
-        <button mat-raised-button color="warn" routerLink="/listar">
-          CANCELAR
-        </button>
-      </div>
-    </form>
-  </div>
-  <div></div>
-</div>
-<app-footer></app-footer>
+        <div class="btn-container">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/vehiculos/listar_vehiculos']"
+          >
+            REGISTRAR
+          </button>
+          <button mat-raised-button color="warn" routerLink="/listar">
+            CANCELAR
+          </button>
+        </div>
+      </form>
+    </div>
+    <app-footer></app-footer>
+  </body>
+</html>

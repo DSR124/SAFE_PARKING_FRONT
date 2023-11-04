@@ -1,18 +1,14 @@
-<router-outlet></router-outlet>
-<app-navbar></app-navbar>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buscar Localización</title>
-    <link
-      rel="stylesheet"
-      href="buscar-localizaciones.component.css" 
-    />
+    <link rel="stylesheet" href="buscar-localizaciones.component.css" />
   </head>
   <body>
+    <app-navbar></app-navbar>
+
     <div class="container">
       <h2>Buscar Localización</h2>
       <input
@@ -24,7 +20,5 @@
     </div>
     <div id="map" class="map-container"></div>
   </body>
+  <app-footer></app-footer>
 </html>
-
-</div>
-<app-footer></app-footer>

@@ -36,6 +36,9 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { listarAdminUsuarioComponent } from './components/usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { RolComponent } from './components/rol/rol.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
+import { HorarioEstacionamientoComponent } from './components/horario-estacionamiento/horario-estacionamiento.component';
+import { CreaeditaHorarioEstacionamientoComponent } from './components/horario-estacionamiento/creaedita-horario-estacionamiento/creaedita-horario-estacionamiento.component';
+import { ListarAdminHorarioEstacionamientoComponent } from './components/horario-estacionamiento/listar-admin-horario-estacionamiento/listar-admin-horario-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -68,7 +71,6 @@ const routes: Routes = [
       },
     ],
   },
-
 
   // vehiculos
   {
@@ -134,6 +136,22 @@ const routes: Routes = [
       },
     ],
   },
+  //Horarios_Estacionaiento
+
+  {
+    path: 'horarios_Estacionamiento',
+    component: HorarioEstacionamientoComponent,
+    children: [
+      {
+        path: 'registrar_horarios_Estacionamiento',
+        component: CreaeditaHorarioEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_usuario_horarios',
+        component: ListarAdminHorarioEstacionamientoComponent,
+      },
+    ],
+  },
 
   // usuarios
   {
@@ -176,7 +194,7 @@ const routes: Routes = [
       {
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
-      }
+      },
     ],
   },
 
@@ -207,4 +225,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

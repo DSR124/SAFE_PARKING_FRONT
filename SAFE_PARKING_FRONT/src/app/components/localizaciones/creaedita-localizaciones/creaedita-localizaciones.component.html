@@ -1,19 +1,18 @@
-<router-outlet></router-outlet>
-<app-navbar></app-navbar>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <title>Registrar Localización</title>
   </head>
-
   <body>
-    
+    <app-navbar></app-navbar>
+
     <div class="container">
       <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
         <h1>REGISTRAR LOCALIZACIÓN</h1>
@@ -21,7 +20,9 @@
         <mat-form-field class="example-full-width">
           <mat-label>Dirección</mat-label>
           <input matInput placeholder="Dirección" formControlName="direccion" />
-          <mat-error *ngIf="obtenerConntrolCampo('direccion')?.errors?.['required']">
+          <mat-error
+            *ngIf="obtenerConntrolCampo('direccion')?.errors?.['required']"
+          >
             El campo es obligatorio.
           </mat-error>
         </mat-form-field>
@@ -30,7 +31,9 @@
         <mat-form-field class="example-full-width">
           <mat-label>Distrito</mat-label>
           <input matInput placeholder="Distrito" formControlName="distrito" />
-          <mat-error *ngIf="obtenerConntrolCampo('distrito')?.errors?.['required']">
+          <mat-error
+            *ngIf="obtenerConntrolCampo('distrito')?.errors?.['required']"
+          >
             El campo es obligatorio.
           </mat-error>
         </mat-form-field>
@@ -39,7 +42,9 @@
         <mat-form-field class="example-full-width">
           <mat-label>Región</mat-label>
           <input matInput placeholder="Región" formControlName="region" />
-          <mat-error *ngIf="obtenerConntrolCampo('region')?.errors?.['required']">
+          <mat-error
+            *ngIf="obtenerConntrolCampo('region')?.errors?.['required']"
+          >
             El campo es obligatorio.
           </mat-error>
         </mat-form-field>
@@ -47,8 +52,14 @@
         <!-- Referencia sección -->
         <mat-form-field class="example-full-width">
           <mat-label>Referencia</mat-label>
-          <input matInput placeholder="Referencia" formControlName="referencia" />
-          <mat-error *ngIf="obtenerConntrolCampo('referencia')?.errors?.['required']">
+          <input
+            matInput
+            placeholder="Referencia"
+            formControlName="referencia"
+          />
+          <mat-error
+            *ngIf="obtenerConntrolCampo('referencia')?.errors?.['required']"
+          >
             El campo es obligatorio.
           </mat-error>
         </mat-form-field>
@@ -59,7 +70,9 @@
           <mat-form-field class="example-full-width">
             <mat-label>Latitud</mat-label>
             <input matInput placeholder="Latitud" formControlName="latitud" />
-            <mat-error *ngIf="obtenerConntrolCampo('latitud')?.errors?.['required']">
+            <mat-error
+              *ngIf="obtenerConntrolCampo('latitud')?.errors?.['required']"
+            >
               El campo es obligatorio.
             </mat-error>
           </mat-form-field>
@@ -67,20 +80,21 @@
           <mat-form-field class="example-full-width">
             <mat-label>Longitud</mat-label>
             <input matInput placeholder="Longitud" formControlName="longitud" />
-            <mat-error *ngIf="obtenerConntrolCampo('longitud')?.errors?.['required']">
+            <mat-error
+              *ngIf="obtenerConntrolCampo('longitud')?.errors?.['required']"
+            >
               El campo es obligatorio.
             </mat-error>
           </mat-form-field>
         </div>
 
-
-
         <div id="map" style="height: 400px"></div>
         <button mat-raised-button color="primary">REGISTRAR</button>
-        <button mat-raised-button color="warn" routerLink="/listar">CANCELAR</button>
+        <button mat-raised-button color="warn" routerLink="/listar">
+          CANCELAR
+        </button>
       </form>
     </div>
+    <app-footer></app-footer>
   </body>
-
-  </html>
-</div>
+</html>
