@@ -1,16 +1,29 @@
 import { ReservaEstacionamiento } from './../../../models/reservaEstacionamiento';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
 import { PagoService } from 'src/app/services/pago.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
+
+
+function precioTotalPositivo(control: FormControl) {
+  const precio = control.value;
+
+  if (isNaN(precio) || precio <= 0) {
+    return { precioNoValido: true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-creaedita-pago',
   templateUrl: './creaedita-pago.component.html',
   styleUrls: ['./creaedita-pago.component.css']
 })
+
+
 export class CreaeditaPagoComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   pago: Pago = new Pago();
@@ -36,7 +49,7 @@ export class CreaeditaPagoComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       fechaEmision: ['', Validators.required],
-      precioTotal: ['', Validators.required],
+      precioTotal: ['', [Validators.required, precioTotalPositivo]],
       tipoPago: ['', Validators.required],
       reservaEstacionamiento: ['', Validators.required],
     });
@@ -72,5 +85,16 @@ export class CreaeditaPagoComponent implements OnInit{
     }
     return control;
   }
-}
+  validatePositiveNumber(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (value === null || value === undefined || value === '') {
+      return null; // Permitir valores vacíos ya que la validación requerida ya está en su lugar
+    }
 
+    if (isNaN(value) || value <= 0) {
+      return { 'invalidPositiveNumber': true };
+    }
+
+    return null;
+  }
+}

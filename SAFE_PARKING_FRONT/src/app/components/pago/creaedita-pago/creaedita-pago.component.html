@@ -40,13 +40,18 @@
                   </mat-error>
               </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Precio tota</mat-label>
+              <mat-form-field class="example-full-width">
+                <mat-label>Precio total</mat-label>
                 <input matInput placeholder="precioTotal" formControlName="precioTotal" />
                 <mat-error *ngIf="obtenerControlCampo('precioTotal')?.errors?.['required']">
-                  El precio es obligatorio.
+                  El precio total es obligatorio.
+                </mat-error>
+                <mat-error *ngIf="obtenerControlCampo('precioTotal')?.errors?.['precioNoValido']">
+                  Por favor, ingrese un número válido mayor que cero.
                 </mat-error>
               </mat-form-field>
+              
+              
 
             <mat-form-field class="example-full-width">
                 <mat-label>Metodo de Pago</mat-label>
@@ -56,7 +61,7 @@
                         }}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="obtenerControlCampo('tipoPago')?.errors?.['required']">
-                    El tipo de rol es obligatorio.
+                    El tipo de pago es obligatorio.
                 </mat-error>
             </mat-form-field>
 
@@ -68,7 +73,7 @@
                     </mat-option>
                 </mat-select>
                 <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
-                    El postre es obligatorio.
+                    La reserva de estacionamiento es obligatoria.
                 </mat-error>
             </mat-form-field>
             <br />

@@ -2,7 +2,6 @@
 /*Pie de pagina - Footer*/
 
 footer {
-    width: 100%;
     height: 300px;
     background-color: #000000;
     margin-top: auto;
@@ -24,16 +23,20 @@ footer .seccion{
     line-height:0;
 }
 
-footer .seccion .logo img{
-    width: 80px;
-    height: 80px;
+footer .seccionLogo .logo img{
+    width: 100px;
+    height: 100px;
 }
-
+footer .seccionLogo{
+    text-align: center;
+    width: 300px;
+    margin-top: 20px;
+}
 footer H2{
 
     color: white;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     text-align: center;
 
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
