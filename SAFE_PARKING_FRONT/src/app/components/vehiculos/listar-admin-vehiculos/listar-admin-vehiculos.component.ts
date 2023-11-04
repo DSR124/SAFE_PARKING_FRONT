@@ -23,10 +23,10 @@ export class ListarAdminVehiculosComponent implements OnInit {
     'marca',
     'tamanio',
     'tarjeta de propiedad',
-    'Modificar',
+    'imagen',
+    'accion01',
+    'accion02',
   ];
-
-  editarVehiculo: Vehiculo | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -35,26 +35,14 @@ export class ListarAdminVehiculosComponent implements OnInit {
     this.vS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    });
+    this.vS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
-
-  modificar(vehiculo: Vehiculo) {
-    this.editarVehiculo = vehiculo; // Establece la fila actual como editable
-  }
-
-  cancelarEdicion() {
-    this.editarVehiculo = null; // Cancela la edición
-  }
-
-  guardarEdicion(vehiculo: Vehiculo) {
-    // Lógica para guardar la edición (puedes llamar a tu servicio de modificación aquí)
-    this.vS.update(vehiculo).subscribe(() => {
-      this.editarVehiculo = null; // Termina la edición
-    });
-  }
-  eliminar(idVehiculo: number) {
-    this.vS.delete(idVehiculo).subscribe(() => {
+  eliminar(idlocalizacion: number) {
+    this.vS.delete(idlocalizacion).subscribe(() => {
       this.vS.list().subscribe((data) => {
         this.vS.setList(data);
       });

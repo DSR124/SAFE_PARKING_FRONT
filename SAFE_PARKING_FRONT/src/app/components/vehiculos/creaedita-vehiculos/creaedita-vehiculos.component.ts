@@ -4,8 +4,9 @@ import {
   FormGroup,
   Validators,
   AbstractControl,
+  FormControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
@@ -23,12 +24,23 @@ export class CreaeditaVehiculosComponent implements OnInit {
   vehiculo: Vehiculo = new Vehiculo();
   mensaje: string = '';
   colorSeleccionado: string = '#ffffff'; // Color predeterminado
+  id: number = 0;
+  edicion: boolean = false;
 
   categorias: { value: string; viewValue: string }[] = [
     { value: 'automóvil', viewValue: 'Automovil' },
     { value: 'motocicleta', viewValue: 'Motocicleta' },
     { value: 'camioneta', viewValue: 'Camioneta' },
     { value: 'Camion', viewValue: 'camion' },
+  ];
+  marcas: { value: string; viewValue: string }[] = [
+    { value: 'toyota', viewValue: 'Toyota' },
+    { value: 'nissan', viewValue: 'Nissan' },
+    { value: 'ford', viewValue: 'Ford' },
+    { value: 'chevrolet', viewValue: 'Chevrolet' },
+    { value: 'honda', viewValue: 'Honda' },
+    { value: 'bmw', viewValue: 'BMW' },
+    { value: 'volkswagen', viewValue: 'Volkswagen' },
   ];
   imageSelected: string | ArrayBuffer | null = null;
   imagenCortada: string = '';
@@ -41,6 +53,11 @@ export class CreaeditaVehiculosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
     this.form = this.formBuilder.group({
       placaVehiculo: ['', Validators.required],
       categoriaVehiculo: ['', Validators.required],
@@ -54,6 +71,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
 
   registrar() {
     if (this.form.valid) {
+      this.vehiculo.idVehiculo = this.form.value.idVehiculo;
       this.vehiculo.placaVehiculo = this.form.value.placaVehiculo;
       this.vehiculo.categoriaVehiculo = this.form.value.categoriaVehiculo;
       this.vehiculo.colorVehiculo = this.form.value.colorVehiculo;
@@ -63,16 +81,20 @@ export class CreaeditaVehiculosComponent implements OnInit {
         this.form.value.tarjetaPropiedadVehiculo;
       this.vehiculo.imagenVehiculo = this.imagenCortada; // Guardar la imagen en el objeto vehículo
 
-      // Save vehicle and update list
-      this.vS.insert(this.vehiculo).subscribe((data) => {
-        this.vS.list().subscribe((data) => {
-          this.vS.setList(data);
+      if (this.edicion) {
+        this.vS.update(this.vehiculo).subscribe(() => {
+          this.vS.list().subscribe((data) => {
+            this.vS.setList(data);
+          });
         });
-      });
-
-      // Navigate and log success
-      this.router.navigate(['listar_vehiculos']);
-      console.log('Vehicle created successfully.');
+      } else {
+        this.vS.insert(this.vehiculo).subscribe((data) => {
+          this.vS.list().subscribe((data) => {
+            this.vS.setList(data);
+          });
+        });
+      }
+      this.router.navigate(['modificar_localizaciones']);
     } else {
       // Handle incomplete form
       this.mensaje = '¡Completa todos los campos!';
@@ -90,6 +112,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
 
           if (typeof this.imageSelected === 'string') {
             this.imagenCortada = this.imageSelected.substring(0, 50);
+            this.form.get('imagenVehiculo')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
+
             console.log('Partial image data:', this.imagenCortada);
           } else {
             console.log('Image has not loaded as a string');
@@ -112,5 +136,25 @@ export class CreaeditaVehiculosComponent implements OnInit {
   colorcito(event: any) {
     this.colorSeleccionado = event.color.hex; // Actualiza el color seleccionado
     this.form.get('colorVehiculo')?.setValue(this.colorSeleccionado); // Actualiza el valor en el formulario
+  }
+
+  init() {
+    if (this.edicion) {
+      this.vS.getById(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          idVehiculo: new FormControl(data.idVehiculo),
+          placaVehiculo: new FormControl(data.placaVehiculo),
+          categoriaVehiculo: new FormControl(data.categoriaVehiculo),
+          colorVehiculo: new FormControl(data.colorVehiculo),
+          marcaVehiculo: new FormControl(data.marcaVehiculo),
+          tamanioVehiculo: new FormControl(data.tamanioVehiculo),
+          tarjetaPropiedadVehiculo: new FormControl(
+            data.tarjetaPropiedadVehiculo
+          ),
+          imagenVehiculo: new FormControl(data.imagenVehiculo),
+        });
+        this.imageSelected = data.imagenVehiculo; // Guarda la URL de la imagen
+      });
+    }
   }
 }

@@ -15,7 +15,6 @@ const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
 import 'leaflet-control-geocoder'; // Importar el plugin de geocodificación
 
-
 declare var google: any;
 
 @Component({
@@ -35,13 +34,12 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   lugarABuscar: string = '';
   resultados: Localizacion[] = [];
 
-
   constructor(
     private lS: LocalizacionService,
     private router: Router,
     private formBuilder: FormBuilder,
     public route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -50,7 +48,6 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      idDessert: [''],
       direccion: ['', Validators.required],
       distrito: ['', Validators.required],
       region: ['', Validators.required],
@@ -105,11 +102,9 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
 
     this.map = L.map('map').setView([-12.04318, -77.02824], 13);
     L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(
-      this.map
-    );
-
+      attribution:
+        '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.map);
 
     /*Nuevo para boton de busqueda*/
 
@@ -139,8 +134,6 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
         this.map.removeLayer(this.marker);
       }
     });
-
-  
   }
 
   addMarker(latlng: L.LatLng) {
@@ -180,7 +173,4 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     }
     return control;
   }
-
-
-
 }

@@ -66,7 +66,7 @@ const routes: Routes = [
         component: ListarAdminLocalizacionesComponent,
       },
       {
-        path: 'modificar_localizaciones/ediciones/:type',
+        path: 'listar_admin_localizaciones/ediciones/:id',
         component: CreaeditaLocalizacionesComponent,
       },
     ],
@@ -86,8 +86,12 @@ const routes: Routes = [
         component: BuscarVehiculosComponent,
       },
       {
-        path: 'listar_vehiculos',
+        path: 'listar_admin_vehiculos',
         component: ListarAdminVehiculosComponent,
+      },
+      {
+        path: 'listar_admin_vehiculos/ediciones/:id',
+        component: CreaeditaVehiculosComponent,
       },
     ],
   },

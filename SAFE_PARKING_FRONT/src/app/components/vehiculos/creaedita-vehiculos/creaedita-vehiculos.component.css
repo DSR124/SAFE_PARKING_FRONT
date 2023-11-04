@@ -1,82 +1,65 @@
-/* General Styles */
-.container {
+/* Apply display: flex to the form container */
+.informacion{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4f4f4;
-  height: 100vh;
 }
 
-.form-container {
-  width: 80%;
-  max-width: 600px;
-  margin-top: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+
 
 h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 24px;
 }
 
-/* Input and Select Fields */
-mat-form-field {
+.secciones {
+  margin: 20px;
+  width: 70%; /* Expand to full width */
+  background-color: aqua;
+  align-items: center;
+
+}
+
+.paleta{
+margin: 0px 20%;
+}
+.example-full-width {
+  margin: 0 20px;
+  width: 90%;
+}
+
+.image-upload {
   width: 100%;
 }
 
-mat-label {
-  font-weight: bold;
-}
-
-mat-error {
-  color: red;
-  font-size: 14px;
-}
-
-input[type='file'] {
-  margin-bottom: 30px;
-}
-
-img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Buttons */
+/* Style the buttons */
 .btn-container {
-  display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 20px;
+  width: 100%;
 }
 
-button {
-  width: 48%;
-  font-size: 16px;
-  padding: 12px 0;
-  border-radius: 6px;
-  transition: all 0.3s;
+/* You might need to adjust specific classes for Angular Material components */
+/* For example, the form field color and size */
+
+.mat-form-field {
+  width: 100%;
 }
 
-button[color='primary'] {
-  background-color: #4CAF50;
-  color: white;
+.mat-select,
+.mat-input-element {
+  width: 100%;
 }
 
-button[color='warn'] {
-  background-color: #f44336;
-  color: white;
+/* Styles for the buttons */
+.mat-raised-button {
+  margin: 0 10px;
 }
 
-button:hover {
-  transform: translateY(-2px);
+/* Additional styling for the uploaded image */
+img {
+  max-width: 100%;
+  max-height: 50%;
+  margin-top: 10px;
+
+}
+input[type="file"] {
+  background-color: rgb(173, 173, 182);
 }
