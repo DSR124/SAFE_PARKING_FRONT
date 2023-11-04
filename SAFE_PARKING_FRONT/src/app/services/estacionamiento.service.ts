@@ -8,7 +8,7 @@ const base_url = environment.base_datos;
   providedIn: 'root',
 })
 export class EstacionamientoService {
-  private url = `${base_url}`;
+  private url = `${base_url}/estacionamientos`;
   private listaCambio = new Subject<Estacionamiento[]>();
   constructor(private http: HttpClient) {}
 

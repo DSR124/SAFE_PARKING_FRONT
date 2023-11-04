@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { Horario } from 'src/app/models/horario';
 import { HorarioEstacionamiento } from 'src/app/models/horarioEstacionamiento';
@@ -24,6 +25,8 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
   mensaje: string = '';
   listaHorario: Horario[] = [];
   listaEstacionamiento: Estacionamiento[] = [];
+  id: number = 0;
+  edicion: boolean = false;
 
   constructor(
     private hS: HorarioService,
@@ -35,6 +38,12 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
     this.form = this.formBuilder.group({
       estacionamiento: ['', Validators.required],
       horario: ['', Validators.required],
@@ -47,6 +56,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
       this.listaEstacionamiento = data;
     });
   }
+
   obtenerControlCampo(nombreCampo: string): AbstractControl {
     const control = this.form.get(nombreCampo);
     if (!control) {
@@ -61,15 +71,35 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
         this.form.value.estacionamiento;
       this.hro_est.horario.idHorario = this.form.value.horario;
 
-      this.heS.insert(this.hro_est).subscribe((data) => {
-        this.heS.list().subscribe((data) => {
-          this.heS.setList(data);
+      if (this.edicion) {
+        this.heS.update(this.hro_est).subscribe(() => {
+          this.heS.list().subscribe((data) => {
+            this.heS.setList(data);
+          });
         });
-      });
-
-      this.router.navigate(['ingredients/listar']);
+      } else {
+        this.heS.insert(this.hro_est).subscribe((data) => {
+          this.heS.list().subscribe((data) => {
+            this.heS.setList(data);
+          });
+        });
+      }
+      this.router.navigate(['modificar_localizaciones']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
+    }
+  }
+
+  init() {
+    if (this.edicion) {
+      this.heS.getById(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          estacionamiento: new FormControl(
+            data.estacionamiento.idEstacionamiento
+          ),
+          horario: new FormControl(data.horario.idHorario),
+        });
+      });
     }
   }
 }

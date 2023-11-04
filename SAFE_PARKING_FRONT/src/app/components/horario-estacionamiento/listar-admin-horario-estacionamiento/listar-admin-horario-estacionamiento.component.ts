@@ -14,7 +14,13 @@ import { HorarioEstacionamientoService } from 'src/app/services/horario-estacion
 export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<HorarioEstacionamiento> =
     new MatTableDataSource();
-  displayedColumns: string[] = ['codigo', 'horario', 'Estacionamiento'];
+  displayedColumns: string[] = [
+    'codigo',
+    'horario',
+    'Estacionamiento',
+    'accion01',
+    'accion02',
+  ];
   editarHorarioEstacionamiento: HorarioEstacionamiento | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

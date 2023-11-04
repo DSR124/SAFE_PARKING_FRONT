@@ -135,7 +135,7 @@ const routes: Routes = [
         component: ListarAdminHorarioComponent,
       },
       {
-        path: 'modificar_horarios/ediciones/:id',
+        path: 'listar_admin_horarios/ediciones/:id',
         component: CreaeditaHorarioComponent,
       },
     ],
@@ -153,6 +153,10 @@ const routes: Routes = [
       {
         path: 'listar_admin_usuario_horarios',
         component: ListarAdminHorarioEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_usuario_horarios/ediciones/:id',
+        component: CreaeditaHorarioEstacionamientoComponent,
       },
     ],
   },

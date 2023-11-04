@@ -41,4 +41,9 @@ export class HorarioEstacionamientoService {
   insert(lc: HorarioEstacionamiento) {
     return this.http.post(`${this.url}/Registrar`, lc);
   }
+  getById(id: number) {
+    return this.http.get<HorarioEstacionamiento>(
+      `${this.url}/ListarporID/${id}`
+    );
+  }
 }
