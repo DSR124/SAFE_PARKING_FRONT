@@ -15,43 +15,34 @@
         <h2>Registro de Pagos</h2>
         <form [formGroup]="form" (submit)="aceptar()" class="example-form">
 
-            <ng-container matColumnDef="idPago">
-                <th mat-header-cell *matHeaderCellDef>Id</th>
-                <td mat-cell *matCellDef="let element">
-                    {{ element.idPago }}
-                </td>
-            </ng-container>
-              
-              <mat-form-field appearance="fill" class="example-full-width">
-                <input
-                  matInput
-                  placeholder="Ingrese fecha"
-                  [matDatepicker]="picker"
-                  formControlName="fechaEmision"
-                />
+            <mat-form-field class="example-full-width" *ngIf="edicion"> <!--*ngIf="edicion" es para que se meustre en la edicion-->
+                <mat-label>idPago</mat-label>
+                <input matInput placeholder="idPago" formControlName="idPago" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Fecha de emisión</mat-label>
+                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaEmision" />
                 <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle
-                  matIconSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="obtenerControlCampo('fechaEmision')?.errors?.['required']">
                     La fecha es obligatorio.
-                  </mat-error>
-              </mat-form-field>
+                </mat-error>
+            </mat-form-field>
 
-              <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width">
                 <mat-label>Precio total</mat-label>
                 <input matInput placeholder="precioTotal" formControlName="precioTotal" />
                 <mat-error *ngIf="obtenerControlCampo('precioTotal')?.errors?.['required']">
-                  El precio total es obligatorio.
+                    El precio total es obligatorio.
                 </mat-error>
                 <mat-error *ngIf="obtenerControlCampo('precioTotal')?.errors?.['precioNoValido']">
-                  Por favor, ingrese un número válido mayor que cero.
+                    Por favor, ingrese un número válido mayor que cero.
                 </mat-error>
-              </mat-form-field>
-              
-              
+            </mat-form-field>
+
+
 
             <mat-form-field class="example-full-width">
                 <mat-label>Metodo de Pago</mat-label>
@@ -77,7 +68,7 @@
                 </mat-error>
             </mat-form-field>
             <br />
-            <button mat-raised-button color="primary">Aceptarxd</button>
+            <button mat-raised-button color="primary">Registrar</button>
 
             <p>{{ mensaje }}</p>
         </form>
@@ -85,4 +76,3 @@
 </body>
 
 </html>
-<app-footer></app-footer>

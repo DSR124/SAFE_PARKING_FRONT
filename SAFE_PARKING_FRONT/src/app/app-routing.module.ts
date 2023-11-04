@@ -158,15 +158,20 @@ const routes: Routes = [
     path: 'roles',
     component: RolComponent,
     children: [
-      { path: 'registrar_roles', 
-      component: CreaeditaRolComponent 
-    },
-    {
-      path: 'listar-admin-roles',
-      component: ListarAdminRolComponent,
-    }
-  
-  ],
+      {
+        path: 'registrar_roles',
+        component: CreaeditaRolComponent
+      },
+      {
+        path: 'listar-admin-roles',
+        component: ListarAdminRolComponent,
+      },
+      {
+        path: 'listar-admin-roles/ediciones/:id',
+        component: CreaeditaRolComponent
+      },
+
+    ],
   },
 
   //Pagos
@@ -174,15 +179,20 @@ const routes: Routes = [
     path: 'pagos',
     component: PagoComponent,
     children: [
-      { path: 'registrar_pagos', 
-      component: CreaeditaPagoComponent 
-    },
-    {
-      path: 'listar-admin-pagos',
-      component: ListarAdminPagoComponent,
-    }
-  
-  ],
+      {
+        path: 'registrar_pagos',
+        component: CreaeditaPagoComponent
+      },
+      {
+        path: 'listar-admin-pagos',
+        component: ListarAdminPagoComponent,
+      },
+      {
+        path: 'listar-admin-pagos/ediciones/:id',
+        component: CreaeditaPagoComponent
+      },
+
+    ],
   },
 
   //Reportes - Queries
@@ -236,4 +246,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
