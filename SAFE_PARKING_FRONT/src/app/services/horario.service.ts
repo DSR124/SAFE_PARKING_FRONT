@@ -30,8 +30,8 @@ export class HorarioService {
     return this.http.get<Horario>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un Horario
-  update(vehiculo: Horario) {
-    return this.http.put(`${this.url}/Modificar`, vehiculo);
+  update(horario: Horario) {
+    return this.http.put(`${this.url}/Modificar`, horario);
   }
   // Eliminar un Horario
   delete(id: number) {

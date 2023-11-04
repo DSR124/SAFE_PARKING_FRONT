@@ -1,5 +1,5 @@
 import { ReservaEstacionamiento } from './reservaEstacionamiento';
-export class pago {
+export class Pago {
   idPago: number = 0;
   fechaEmision: Date = new Date(Date.now());
   precioTotal: number = 0;

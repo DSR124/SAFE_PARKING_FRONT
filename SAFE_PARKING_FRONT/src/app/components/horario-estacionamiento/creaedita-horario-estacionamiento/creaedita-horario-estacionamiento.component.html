@@ -1,1 +1,50 @@
-<p>creaedita-horario-estacionamiento works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Horarios - Estacionamientos</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>estacionamiento</mat-label>
+          <mat-select formControlName="estacionamiento">
+            <mat-option
+              *ngFor="let p of listaEstacionamiento"
+              [value]="p.idEstacionamiento"
+            >
+              {{ p.tipoEstacionamiento }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']"
+          >
+            El postre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>horario</mat-label>
+          <mat-select formControlName="horario">
+            <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
+              {{ p.fecha }} {{ p.horaApertura }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('horario')?.errors?.['required']"
+          >
+            El postre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary">Aceptar</button>
+
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>
