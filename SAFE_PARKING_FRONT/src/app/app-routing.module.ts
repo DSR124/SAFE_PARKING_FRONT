@@ -36,6 +36,10 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { listarAdminUsuarioComponent } from './components/usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { RolComponent } from './components/rol/rol.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
+import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/listar-admin-rol.component';
+import { PagoComponent } from './components/pago/pago.component';
+import { CreaeditaPagoComponent } from './components/pago/creaedita-pago/creaedita-pago.component';
+import { ListarAdminPagoComponent } from './components/pago/listar-admin-pago/listar-admin-pago.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -153,8 +157,34 @@ const routes: Routes = [
   {
     path: 'roles',
     component: RolComponent,
-    children: [{ path: 'registrar_roles', component: CreaeditaRolComponent }],
+    children: [
+      { path: 'registrar_roles', 
+      component: CreaeditaRolComponent 
+    },
+    {
+      path: 'listar-admin-roles',
+      component: ListarAdminRolComponent,
+    }
+  
+  ],
   },
+
+  //Pagos
+  {
+    path: 'pagos',
+    component: PagoComponent,
+    children: [
+      { path: 'registrar_pagos', 
+      component: CreaeditaPagoComponent 
+    },
+    {
+      path: 'listar-admin-pagos',
+      component: ListarAdminPagoComponent,
+    }
+  
+  ],
+  },
+
   //Reportes - Queries
   {
     path: 'reportes',

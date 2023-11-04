@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,11 +16,17 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   templateUrl: './creaedita-rol.component.html',
   styleUrls: ['./creaedita-rol.component.css'],
 })
-export class CreaeditaRolComponent {
+export class CreaeditaRolComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   rol: Rol = new Rol();
   mensaje: string = '';
   listaUsuarios: Usuario[] = [];
+
+  tipoRol: { value: string; viewValue: string }[] = [
+    { value: 'administrador', viewValue: 'Administrador' },
+    { value: 'conductor', viewValue: 'Conductor' },
+    { value: 'arrendador', viewValue: 'Arrendador' }
+  ];
 
   constructor(
     private rS: RolService,
@@ -52,7 +58,7 @@ export class CreaeditaRolComponent {
         });
       });
 
-      this.router.navigate(['']); //Esta ruta la sacamos del ROUTING MODULE
+      this.router.navigate(['roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

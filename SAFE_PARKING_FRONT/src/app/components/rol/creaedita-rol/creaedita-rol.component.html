@@ -10,16 +10,20 @@
   </head>
   <body>
     <div class="container" style="text-align: center">
-      <h2>Registro de ingredientes</h2>
+      <h2>Registro de Roles</h2>
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        
         <mat-form-field class="example-full-width">
-          <mat-label>nombreRol</mat-label>
-          <input matInput placeholder="nombreRol" formControlName="nombreRol" />
-          <!-- Esto es lo que importa, debe coincidir con el TS del formBuilder-->
+          <mat-label>Tipo de Rol</mat-label>
+          <mat-select formControlName="nombreRol">
+            <mat-option *ngFor="let t of tipoRol" [value]="t.value">{{
+              t.viewValue
+            }}</mat-option>
+          </mat-select>
           <mat-error
-            *ngIf="obtenerControlCampo('nombreRol')?.errors?.['required']"
+          *ngIf="obtenerControlCampo('nombreRol')?.errors?.['required']"
           >
-            El nombre es obligatorio.
+            El tipo de rol es obligatorio.
           </mat-error>
         </mat-form-field>
 
