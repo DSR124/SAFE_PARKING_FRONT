@@ -38,6 +38,7 @@ import { RolComponent } from './components/rol/rol.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
 import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
 import { ListarAdminReservaEstacionamientoComponent } from './components/reserva-estacionamiento/listar-admin-reserva-estacionamiento/listar-admin-reserva-estacionamiento.component';
+import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -188,7 +189,10 @@ const routes: Routes = [
       {
         path: 'listar_admin_reserva_estacionamientos',
         component: ListarAdminReservaEstacionamientoComponent,
-      }
+      },
+      {
+        path:'registrar_reservas_estacionamientos',component:CreaeditaReservaEstacionamientoComponent,
+      },
 
     ],
   },
