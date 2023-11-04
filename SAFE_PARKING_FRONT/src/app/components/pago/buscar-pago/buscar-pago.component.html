@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="form">
+        <div class="generic-group">
+            <label for="inputId">Ingrese el ID:</label>
+            <input id="inputId" type="number" [(ngModel)]="id" />
+            <mat-error *ngIf="idNoEncontrado">El ID ingresado no existe. Por favor, intente con otro ID.</mat-error>
+            <br>
+            <button (click)="buscar()">Buscar</button>
+
+        </div>
+        <hr />
+        <div class="generic-details" *ngIf="pago">
+            <h2 class="generic-heading">Detalles</h2>
+            <div class="generic-box">
+                <h1>Fecha de emision</h1>
+                <p>{{ pago.fechaEmision }}</p>
+            </div>
+            <div class="generic-box">
+                <h1>Precio Total</h1>
+                <p>{{ pago.precioTotal }}</p>
+            </div>
+            <div class="generic-box">
+                <h1>Metodo de Pago</h1>
+                <p>{{ pago.tipoPago }}</p>
+            </div>
+            <div class="generic-box">
+                <h1>ID Reserva Estacionamiento</h1>
+                <p>{{ pago.reservaEstacionamiento?.idReservaEstacionamiento }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

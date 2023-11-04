@@ -116,7 +116,7 @@ export class CreaeditaPagoComponent implements OnInit {
           fechaEmision: new FormControl(data.fechaEmision),
           precioTotal: new FormControl(data.precioTotal),
           tipoPago: new FormControl(data.tipoPago),
-          reservaEstacionamiento: new FormControl(data.reservaEstacionamiento.idReservaEstacionamiento),
+          reservaEstacionamiento: new FormControl(data.reservaEstacionamiento.idReservaEstacionamiento), //Siempre es ID
         });
       });
     }

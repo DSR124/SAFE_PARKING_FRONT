@@ -40,6 +40,8 @@ import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/lista
 import { PagoComponent } from './components/pago/pago.component';
 import { CreaeditaPagoComponent } from './components/pago/creaedita-pago/creaedita-pago.component';
 import { ListarAdminPagoComponent } from './components/pago/listar-admin-pago/listar-admin-pago.component';
+import { BuscarPagoComponent } from './components/pago/buscar-pago/buscar-pago.component';
+import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -170,6 +172,10 @@ const routes: Routes = [
         path: 'listar-admin-roles/ediciones/:id',
         component: CreaeditaRolComponent
       },
+      {
+        path: 'buscar-roles',
+        component: BuscarRolComponent
+      },
 
     ],
   },
@@ -190,6 +196,10 @@ const routes: Routes = [
       {
         path: 'listar-admin-pagos/ediciones/:id',
         component: CreaeditaPagoComponent
+      },
+      {
+        path: 'buscar-pagos',
+        component: BuscarPagoComponent
       },
 
     ],

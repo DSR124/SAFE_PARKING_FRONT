@@ -90,6 +90,8 @@ import { ListarUsuarioHorarioEstacionamientoComponent } from './components/horar
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
 import { RolComponent } from './components/rol/rol.component';
 import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/listar-admin-rol.component';
+import { BuscarPagoComponent } from './components/pago/buscar-pago/buscar-pago.component';
+import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.component';
 
 @NgModule({
   declarations: [
@@ -191,6 +193,8 @@ import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/lista
     ListarAdminIncidenteComponent,
     CreaeditaIncidenteComponent,
     ListarAdminRolComponent,
+    BuscarPagoComponent,
+    BuscarRolComponent,
   ],
   imports: [
     BrowserModule,
@@ -217,6 +221,7 @@ import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/lista
     NgxMaterialTimepickerModule,
     ColorSketchModule,
     ColorMaterialModule,
+    
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
