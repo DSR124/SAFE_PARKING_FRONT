@@ -14,7 +14,7 @@ const base_url = environment.base_datos; // ruta de la base de datos
 
 export class ComentarioService {
 
-  private url = `${base_url}/vehiculos`;
+  private url = `${base_url}/comentarios`;
   private listaCambio = new Subject<Comentario[]>();
   constructor(private http: HttpClient) {}
   // Obtener todos los comentarios

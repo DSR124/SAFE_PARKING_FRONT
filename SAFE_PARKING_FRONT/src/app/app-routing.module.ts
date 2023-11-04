@@ -36,6 +36,9 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { listarAdminUsuarioComponent } from './components/usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { RolComponent } from './components/rol/rol.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { CreaeditaComentarioComponent } from './components/comentario/creaedita-comentario/creaedita-comentario.component';
+import { ListarAdminComentarioComponent } from './components/comentario/listar-admin-comentario/listar-admin-comentario.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -68,6 +71,23 @@ const routes: Routes = [
       },
     ],
   },
+
+    // comentarios
+    {
+      path: 'comentarios',
+      component: ComentarioComponent,
+      children: [
+        {
+          path: 'registrar_comentarios',
+          component: CreaeditaComentarioComponent
+        },
+
+        {
+          path: 'listar_comentarios_admin',
+          component: ListarAdminComentarioComponent,
+        },
+      ],
+    },
 
   // vehiculos
   {
