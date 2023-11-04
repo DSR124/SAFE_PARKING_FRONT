@@ -36,6 +36,8 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { listarAdminUsuarioComponent } from './components/usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { RolComponent } from './components/rol/rol.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
+import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
+import { ListarAdminReservaEstacionamientoComponent } from './components/reserva-estacionamiento/listar-admin-reserva-estacionamiento/listar-admin-reserva-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -176,6 +178,18 @@ const routes: Routes = [
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
       },
+    ],
+  },
+
+  {
+    path: 'reservaestacionamiento',
+    component: ReservaEstacionamientoComponent,
+    children: [
+      {
+        path: 'listar_admin_reserva_estacionamientos',
+        component: ListarAdminReservaEstacionamientoComponent,
+      }
+
     ],
   },
 

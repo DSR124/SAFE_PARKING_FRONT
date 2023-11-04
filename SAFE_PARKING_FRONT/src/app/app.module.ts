@@ -69,8 +69,6 @@ import { ListarAdminComentarioComponent } from './components/comentario/listar-a
 import { ListarUsuarioComentarioComponent } from './components/comentario/listar-usuario-comentario/listar-usuario-comentario.component';
 import { ListarUsuarioEstacionamientoComponent } from './components/estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
 import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
-import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
-import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
 import { HorarioEstacionamientoComponent } from './components/horario-estacionamiento/horario-estacionamiento.component';
 import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
 import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
@@ -163,8 +161,7 @@ import { RolComponent } from './components/rol/rol.component';
     //Estacionamiento
     ListarUsuarioEstacionamientoComponent,
     EstacionamientoComponent,
-    ListarAdminEstacionamientoComponent,
-    CreaeditaEstacionamientoComponent,
+
 
     //Horario-Estacionamiento
     HorarioEstacionamientoComponent,

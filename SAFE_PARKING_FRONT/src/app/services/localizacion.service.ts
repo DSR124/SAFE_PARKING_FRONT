@@ -22,8 +22,8 @@ export class LocalizacionService {
     return this.http.get<Localizacion>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un Localizacion
-  update(vehiculo: Localizacion) {
-    return this.http.put(`${this.url}/Modificar`, vehiculo);
+  update(localizacion: Localizacion) {
+    return this.http.put(`${this.url}/Modificar`, localizacion);
   }
   // Eliminar un Localizacion
   delete(id: number) {
