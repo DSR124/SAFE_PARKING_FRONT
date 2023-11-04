@@ -43,4 +43,7 @@ export class ListarAdminRolComponent implements OnInit{
       });
     });
   }
+  filter(en: any) {
+    this.dataSource.filter = en.target.value.trim();
+  }
 }

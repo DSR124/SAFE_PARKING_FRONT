@@ -44,4 +44,7 @@ export class ListarAdminPagoComponent {
       });
     });
   }
+  filter(en: any) {
+    this.dataSource.filter = en.target.value.trim();
+  }
 }

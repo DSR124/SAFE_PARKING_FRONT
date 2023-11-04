@@ -16,6 +16,11 @@
         </div>
 
         <div class="container">
+
+            <mat-form-field>
+                <input style="text-align: left" matInput (keyup)=filter($event) placeholder="buscar"/>
+              </mat-form-field>
+
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
                
                 <ng-container matColumnDef="idPago">

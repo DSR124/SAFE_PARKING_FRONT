@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
     height: 100%;
+    padding: 20px;
 }
 
 .container {
@@ -15,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Centra verticalmente */
+    margin-top: 80px;
 }
 
 

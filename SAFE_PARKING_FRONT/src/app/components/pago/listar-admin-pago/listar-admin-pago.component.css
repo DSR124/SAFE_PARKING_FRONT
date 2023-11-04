@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
-
+    
 }
 
 table {
@@ -11,16 +11,13 @@ table {
 
 .container {
     width: 50%;
-   
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Centra verticalmente */
+    /* Centra horizontalmente */
+    margin-top: 50px;
 }
 
 h2 {
