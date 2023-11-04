@@ -41,23 +41,23 @@
                 </ng-container>
 
                 <ng-container matColumnDef="fecha">
-                    <th mat-header-cell *matHeaderCellDef>fecha</th>
+                    <th mat-header-cell *matHeaderCellDef>Fecha</th>
                     <td mat-cell *matCellDef="let element">
                         {{ element.fecha }}
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="users">
-                    <th mat-header-cell *matHeaderCellDef>users</th>
+                    <th mat-header-cell *matHeaderCellDef>Usuario</th>
                     <td mat-cell *matCellDef="let element">
-                        {{ element.users.idUsuario }}
+                        {{ element.users.nombre }}
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="vehiculo">
-                    <th mat-header-cell *matHeaderCellDef>vehiculo</th>
+                    <th mat-header-cell *matHeaderCellDef>Vehiculo</th>
                     <td mat-cell *matCellDef="let element">
-                        {{ element.vehiculo.idVehiculo }}
+                        {{ element.vehiculo.placaVehiculo }}
                     </td>
                 </ng-container>
 
@@ -94,3 +94,4 @@
 
     </html>
 </div>
+<router-outlet></router-outlet>

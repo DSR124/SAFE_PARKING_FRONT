@@ -26,6 +26,19 @@
           </mat-error>
         </mat-form-field>
         <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Favorito</mat-label>
+          <mat-select formControlName="favorito">
+            <mat-option *ngFor="let p of favoritos" [value]="p.value">
+              {{p.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="obtenerControlCampo('favorito')?.errors?.['required']">
+            Este campo es obligatorio.
+          </mat-error>
+          
+        </mat-form-field>
+        <br />
         <mat-form-field appearance="fill" class="example-full-width">
           <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha"
             [max]="maxFecha" />
@@ -41,7 +54,7 @@
           <mat-label>Usuario</mat-label>
           <mat-select formControlName="users">
             <mat-option *ngFor="let p of listaUsuario" [value]="p.idUsuario">
-              {{ p.idUsuario }}
+              {{ p.nombre }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="obtenerControlCampo('users')?.errors?.['required']">
@@ -53,7 +66,7 @@
           <mat-label>Vehiculo</mat-label>
           <mat-select formControlName="vehiculo">
             <mat-option *ngFor="let p of listaVehiculo" [value]="p.idVehiculo">
-              {{ p.idVehiculo }}
+              {{ p.placaVehiculo }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="obtenerControlCampo('vehiculo')?.errors?.['required']">
@@ -74,8 +87,8 @@
         </mat-form-field>
         <br />
         <button mat-raised-button color="primary">Registrar</button>
-        <button mat-raised-button color="warn" routerLink="/listar">
-          CANCELAR
+        <button mat-raised-button color="warn" routerLink="/reservaestacionamiento/listar_admin_reserva_estacionamientos">
+          Cancelar
         </button>
       </form>
     </div>
