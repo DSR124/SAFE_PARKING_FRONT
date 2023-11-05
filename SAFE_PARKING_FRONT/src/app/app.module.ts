@@ -124,6 +124,7 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
     CreaeditaHorarioComponent,
     ListarUsuarioHorarioComponent,
     ListarAdminHorarioComponent,
+    BuscarHorarioComponent,
 
     //Localizaciones
     LocalizacionesComponent,
@@ -137,10 +138,13 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
     MembresiaComponent,
     CreaeditaMembresiaComponent,
     ListarUsuarioMembresiaComponent,
+    ListarAdminMembresiaComponent,
 
     //Rol
     RolComponent,
     CreaeditaRolComponent,
+    ListarAdminRolComponent,
+    BuscarRolComponent,
 
     //Usuarios
 
@@ -178,6 +182,7 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
     CreaeditaHorarioEstacionamientoComponent,
     ListarAdminHorarioEstacionamientoComponent,
     ListarUsuarioHorarioEstacionamientoComponent,
+    BuscarHorarioEstacionamientoComponent,
 
     //Reserva Estacionamiento
     ReservaEstacionamientoComponent,
@@ -190,19 +195,18 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
     CreaeditaPagoComponent,
     ListarAdminPagoComponent,
     ListarUsuarioPagoComponent,
+    BuscarPagoComponent,
 
     //Incidente
     IncidenteComponent,
     ListarUsuarioIncidenteComponent,
     ListarAdminIncidenteComponent,
     CreaeditaIncidenteComponent,
-    ListarAdminRolComponent,
-    BuscarPagoComponent,
-    BuscarRolComponent,
-    BuscarHorarioComponent,
-    BuscarHorarioEstacionamientoComponent,
-    ListarAdminMembresiaComponent,
     BuscarIncidenteComponent,
+
+
+    
+   
   ],
   imports: [
     BrowserModule,
