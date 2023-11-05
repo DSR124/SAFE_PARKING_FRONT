@@ -13,7 +13,8 @@ export class BuscarMembresiaComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
   membresia: Membresia = new Membresia();
-  idMembresia: number = 0;
+  id: number = 0;
+  idNoEncontrado: boolean = false; // Variable para controlar si el ID no se encuentra
 
   constructor(
     private membresiaService: MembresiaService,
@@ -24,7 +25,7 @@ export class BuscarMembresiaComponent implements OnInit {
   }
 
   buscar() {
-    this.membresiaService.getById(this.idMembresia).subscribe(
+    this.membresiaService.getById(this.id).subscribe(
       (data: Membresia) => {
         this.membresia = data;
       },

@@ -68,7 +68,7 @@ export class CreaeditaHorarioComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['listar_horario']);
+      this.router.navigate(['horarios/listar_admin_horarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

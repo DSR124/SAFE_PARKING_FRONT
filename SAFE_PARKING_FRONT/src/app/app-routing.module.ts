@@ -54,6 +54,11 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
 import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
 import { ListarAdminReservaEstacionamientoComponent } from './components/reserva-estacionamiento/listar-admin-reserva-estacionamiento/listar-admin-reserva-estacionamiento.component';
 import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
+import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
+import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
+import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
+import { BuscarEstacionamientoComponent } from './components/estacionamiento/buscar-estacionamiento/buscar-estacionamiento.component';
+import { BuscarReservaEstacionamientoComponent } from './components/reserva-estacionamiento/buscar-reserva-estacionamiento/buscar-reserva-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -319,10 +324,36 @@ const routes: Routes = [
       {
         path: 'listar_admin_reserva_estacionamientos/ediciones/:id',
         component: CreaeditaReservaEstacionamientoComponent,
+      },
+      {
+        path: 'buscar-reserva-estacionamiento',
+        component: BuscarReservaEstacionamientoComponent,
       }
     ]
   },
-
+  //Estacionamiento
+  {
+    path: 'estacionamiento',
+    component: EstacionamientoComponent,
+    children: [
+      {
+        path: 'registrar_estacionamientos',
+        component: CreaeditaEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_estacionamientos',
+        component: ListarAdminEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_estacionamientos/ediciones/:id',
+        component: CreaeditaEstacionamientoComponent,
+      },
+      {
+        path: 'buscar-estacionamiento',
+        component: BuscarEstacionamientoComponent,
+      }
+    ]
+  },
   // apartados
   { path: 'footer', component: FooterComponent },
 

@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="form">
+      <div class="generic-group">
+        <label for="inputId">Ingrese el ID de la reserva por estacionamiento:</label>
+        <input id="inputId" type="number" [(ngModel)]="idReserva_Estacionamiento" />
+        <mat-error *ngIf="idNoEncontrado"
+          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
+        >
+        <br />
+        <button (click)="buscar()">Buscar</button>
+      </div>
+      <hr />
+      
+      <div class="generic-details" *ngIf="reserva_estacionamiento">
+        <h2 class="generic-heading">Detalles de la reserva por estacionamiento</h2>
+        <div class="generic-box">
+          <h1>Estado de reserva</h1>
+          <p>{{ reserva_estacionamiento.estado }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Favorito</h1>
+          <p>{{ reserva_estacionamiento.favorito }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Fecha registrada</h1>
+          <p>{{ reserva_estacionamiento.fecha }}</p>
+        </div>
+        <div class="generic-box">
+            <h1>Usuario</h1>
+            <p>{{ reserva_estacionamiento.users.nombre }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Vehiculo [Placa]</h1>
+            <p>{{ reserva_estacionamiento.vehiculo.placaVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Horario de estacionamiento ID</h1>
+            <p>{{ reserva_estacionamiento.horarioEstacionamiento.idHorarioEstacionamiento }}</p>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -28,7 +28,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
   generos: { value: string; viewValue: string }[] = [
     { value: 'Hombre', viewValue: 'Hombre' },
     { value: 'Mujer', viewValue: 'Mujer' },
-    { value: 'No decirlo', viewValue: 'No decirlo' },
+    { value: 'Otros', viewValue: 'Otros' },
   ];
   constructor(
     private uS: UsuarioService,

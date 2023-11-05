@@ -40,7 +40,8 @@ export class CreaeditaPagoComponent implements OnInit {
     { value: 'Tarjeta de debito', viewValue: 'Tarjeta de debito' },
     { value: 'Paypal', viewValue: 'Paypal' },
     { value: 'Cuenta bancaria', viewValue: 'Cuenta bancaria' },
-    { value: 'Yape', viewValue: 'Yape' }
+    { value: 'Yape', viewValue: 'Yape' },
+    { value: 'Otros', viewValue: 'Otros' },
   ];
 
   constructor(
@@ -68,7 +69,7 @@ export class CreaeditaPagoComponent implements OnInit {
       tipoPago: ['', Validators.required],
       reservaEstacionamiento: ['', Validators.required],
     });
-
+    //Importante para cargar datos
     this.r_eS.list().subscribe((data) => {
       this.listaReservaEstacionamientos = data;
     });

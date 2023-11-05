@@ -92,6 +92,12 @@ import { BuscarHorarioComponent } from './components/horario/buscar-horario/busc
 import { BuscarHorarioEstacionamientoComponent } from './components/horario-estacionamiento/buscar-horario-estacionamiento/buscar-horario-estacionamiento.component';
 import { ListarAdminMembresiaComponent } from './components/membresia/listar-admin-membresia/listar-admin-membresia.component';
 import { BuscarIncidenteComponent } from './components/incidente/buscar-incidente/buscar-incidente.component';
+import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
+import { ListarUsuarioEstacionamientoComponent } from './components/estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
+import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
+import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
+import { BuscarEstacionamientoComponent } from './components/estacionamiento/buscar-estacionamiento/buscar-estacionamiento.component';
+import { BuscarReservaEstacionamientoComponent } from './components/reserva-estacionamiento/buscar-reserva-estacionamiento/buscar-reserva-estacionamiento.component';
 
 @NgModule({
   declarations: [
@@ -192,7 +198,15 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
     ListarUsuarioIncidenteComponent,
     ListarAdminIncidenteComponent,
     CreaeditaIncidenteComponent,
-    BuscarIncidenteComponent
+    BuscarIncidenteComponent,
+
+    //Estacionamiento
+    EstacionamientoComponent,
+    ListarUsuarioEstacionamientoComponent,
+    ListarAdminEstacionamientoComponent,
+    CreaeditaEstacionamientoComponent,
+    BuscarEstacionamientoComponent,
+    BuscarReservaEstacionamientoComponent
   ],
   imports: [
     BrowserModule,
@@ -223,4 +237,4 @@ import { BuscarIncidenteComponent } from './components/incidente/buscar-incident
   providers: [LoginService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
