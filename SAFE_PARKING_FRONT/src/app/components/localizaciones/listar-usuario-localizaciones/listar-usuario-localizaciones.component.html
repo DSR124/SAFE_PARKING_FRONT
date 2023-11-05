@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<div [hidden]="route.children.length !== 0">
+  <app-navbar></app-navbar>
+  <!DOCTYPE html>
+  <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <app-navbar></app-navbar>
 
+  <body>
     <div>
       <h2 style="text-align: center">LISTA DE LOCALIZACIONES</h2>
     </div>
@@ -26,17 +28,10 @@
             <p>Latitud: {{ element.latitud }}</p>
             <p>Longitud: {{ element.longitud }}</p>
           </div>
-          <div
-            id="map_{{ element.idLocalizacion }}"
-            style="height: 200px"
-          ></div>
+          <div id="map_{{ element.idLocalizacion }}" style="height: 200px"></div>
           <div class="card-footer">
-            <button
-              mat-icon-button
-              class="material-icons app-toolbar-menu"
-              matTooltip=""
-              color="warn"
-            >
+           
+            <button mat-icon-button class="material-icons app-toolbar-menu" matTooltip="" color="warn">
               AGREGAR
             </button>
           </div>
@@ -45,4 +40,7 @@
     </div>
     <app-footer></app-footer>
   </body>
-</html>
+
+  </html>
+  <router-outlet></router-outlet>
+</div>

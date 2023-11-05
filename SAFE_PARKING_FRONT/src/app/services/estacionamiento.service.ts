@@ -1,13 +1,14 @@
 import { Estacionamiento } from '../models/estacionamiento';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Injectable } from '@angular/core';
 const base_url = environment.base_datos;
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class EstacionamientoService {
+
   private url = `${base_url}/estacionamientos`;
   private listaCambio = new Subject<Estacionamiento[]>();
   constructor(private http: HttpClient) {}
@@ -18,8 +19,8 @@ export class EstacionamientoService {
   listId(id: number) {
     return this.http.get<Estacionamiento>(`${this.url}/ListarporID/${id}`);
   }
-  update(estacionamiento: Estacionamiento) {
-    return this.http.put(`${this.url}/Modificar`, estacionamiento);
+  update(vehiculo: Estacionamiento) {
+    return this.http.put(`${this.url}/Modificar`, vehiculo);
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/Eliminar/${id}`);
@@ -35,4 +36,6 @@ export class EstacionamientoService {
   getList() {
     return this.listaCambio.asObservable();
   }
+
+
 }

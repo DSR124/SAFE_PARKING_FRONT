@@ -17,7 +17,7 @@ export class RolService {
     return this.http.get<Rol[]>(`${this.url}/Listar`);
   }
   // Obtener un Membresia por ID
-  getById(id: number) {
+  listId(id: number) {
     return this.http.get<Rol>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un Membresia

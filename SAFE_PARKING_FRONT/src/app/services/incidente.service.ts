@@ -6,9 +6,10 @@ import { HttpClient } from '@angular/common/http';
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class IncidenteService {
+
   private url = `${base_url}/incidentes`;
   private listaCambio = new Subject<Incidente[]>();
   constructor(private http: HttpClient) {}

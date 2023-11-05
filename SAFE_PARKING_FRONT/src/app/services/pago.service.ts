@@ -6,9 +6,11 @@ import { Pago } from '../models/pago';
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PagoService {
+
+  
   private url = `${base_url}/pagos`;
   private listaCambio = new Subject<Pago[]>();
   constructor(private http: HttpClient) {}
@@ -37,5 +39,7 @@ export class PagoService {
     return this.listaCambio.asObservable();
   }
 
+
   //Falta un query
+
 }

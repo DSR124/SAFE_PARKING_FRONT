@@ -3,12 +3,16 @@ import { environment } from 'src/environments/environment';
 import { Comentario } from '../models/comentario';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+
 const base_url = environment.base_datos; // ruta de la base de datos
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
+
 export class ComentarioService {
-  private url = `${base_url}/vehiculos`;
+
+  private url = `${base_url}/comentarios`;
   private listaCambio = new Subject<Comentario[]>();
   constructor(private http: HttpClient) {}
   // Obtener todos los comentarios
