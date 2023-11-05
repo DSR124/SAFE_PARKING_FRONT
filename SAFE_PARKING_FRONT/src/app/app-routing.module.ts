@@ -114,7 +114,7 @@ const routes: Routes = [
         },
 
         {
-          path: 'modificar_comentarios/:id',
+          path: 'ediciones/:id',
           component: CreaeditaComentarioComponent,
         },
 

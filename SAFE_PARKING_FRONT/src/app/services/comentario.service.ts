@@ -19,7 +19,7 @@ export class ComentarioService {
     return this.http.get<Comentario[]>(`${this.url}/Listar`);
   }
   // Obtener un comentario por ID
-  getById(id: number) {
+  listId(id: number) {
     return this.http.get<Comentario>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un comentario

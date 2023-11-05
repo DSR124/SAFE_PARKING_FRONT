@@ -85,7 +85,7 @@ export class CreaeditaComentarioComponent implements OnInit {
 
 
 
-      this.router.navigate(['comentarios'])
+      this.router.navigate(['comentarios/listar_comentarios_admin'])
     } else {
       this.mensaje = 'Ingrese todos los campos!!'
     }
@@ -101,7 +101,7 @@ export class CreaeditaComentarioComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.cS.getById(this.id).subscribe((data) => {
+      this.cS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           idComentario: new FormControl(data.idComentario),
           contenido: new FormControl(data.contenido),

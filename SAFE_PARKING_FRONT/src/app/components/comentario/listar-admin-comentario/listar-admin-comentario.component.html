@@ -8,12 +8,9 @@
     <title>Document</title>
 </head>
 <body>
+  <h2 style="text-align: center">Lista Comentarios</h2>
     <div class="container">
-        <h2 style="text-align: center">Lista Comentarios</h2>
-        
-        <div style="text-align: right;">
-          <button mat-raised-button color="primary" routerLink="/comentarios/registrar_comentarios">Nuevo</button>
-        </div>
+
         <mat-form-field>
           <input matInput (keyup)=filter($event) placeholder="buscar"/>
         </mat-form-field>
@@ -58,7 +55,7 @@
                   <button
                     mat-raised-button
                     color="warn"
-                    [routerLink]="['/comentarios/modificar_comentarios/', element.idComentario]"
+                    [routerLink]="['/comentarios/ediciones/', element.idComentario]"
                   >
                     Actualizar
                   </button>
@@ -80,6 +77,7 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+          <br>
           <mat-paginator
           [pageSizeOptions]="[5, 10, 25, 100]"
           showFirstLastButtons

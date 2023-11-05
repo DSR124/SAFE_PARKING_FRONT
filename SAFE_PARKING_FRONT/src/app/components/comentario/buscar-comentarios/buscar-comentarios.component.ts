@@ -25,7 +25,7 @@ export class BuscarComentariosComponent implements OnInit {
   }
 
   buscar() {
-    this.cS.getById(this.idComentario).subscribe(
+    this.cS.listId(this.idComentario).subscribe(
       (data: Comentario) => {
         this.com = data;
       },

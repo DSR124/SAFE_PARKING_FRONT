@@ -10,13 +10,10 @@
     </head>
 
     <body>
+      <h2 style="text-align: center">Lista de Usuarios</h2>
       <div class="container">
         <br />
-        <h2 style="text-align: center">Lista de Usuarios</h2>
 
-        <div style="text-align: right;">
-          <button mat-raised-button color="primary" routerLink="/usuarios/registrar_usuarios">Nuevo</button>
-        </div>
         <mat-form-field>
           <input matInput (keyup)=filter($event) placeholder="buscar"/>
         </mat-form-field>
@@ -156,4 +153,3 @@
     </body>
   </html>
 </div>
-<app-footer></app-footer>
