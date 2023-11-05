@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 import { HorarioEstacionamiento } from 'src/app/models/horarioEstacionamiento';
 import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
@@ -25,6 +25,7 @@ export class CreaeditaReservaEstacionamientoComponent {
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
+
   id: number = 0;
   edicion: boolean = false;
 
@@ -47,7 +48,15 @@ export class CreaeditaReservaEstacionamientoComponent {
   ) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
     this.form = this.formBuilder.group({
+      idReservaEstacionamiento: [''],
       estado: ['', Validators.required],
       favorito: ['', Validators.required],
       fecha: ['', Validators.required],
@@ -66,9 +75,9 @@ export class CreaeditaReservaEstacionamientoComponent {
     });
   }
 
-
   aceptar(): void {
     if (this.form.valid) {
+      this.reservaestacionamiento.idReservaEstacionamiento = this.form.value.idReservaEstacionamiento;
       this.reservaestacionamiento.estado = this.form.value.estado;
       this.reservaestacionamiento.favorito = this.form.value.favorito;
       this.reservaestacionamiento.fecha = this.form.value.fecha;
@@ -87,8 +96,8 @@ export class CreaeditaReservaEstacionamientoComponent {
           this.reS.setList(data);
         });
       });
-}
-      this.router.navigate(['/reservaestacionamiento/listar_admin_reserva_estacionamientos']);
+    }
+      this.router.navigate(['reservaestacionamiento/listar_admin_reserva_estacionamientos']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

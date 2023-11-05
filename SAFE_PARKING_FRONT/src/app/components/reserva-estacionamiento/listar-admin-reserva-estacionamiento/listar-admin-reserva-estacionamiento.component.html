@@ -1,4 +1,4 @@
-<div [hidden]="route.children.length !== 0">
+    <app-navbar></app-navbar>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -71,7 +71,7 @@
                 <ng-container matColumnDef="accion01">
                     <th mat-header-cell *matHeaderCellDef>Acciones</th>
                     <td mat-cell *matCellDef="let element">
-                        <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idHorario]">
+                        <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idReservaEstacionamiento]">
                             <mat-icon>edit</mat-icon> Editar
                         </button>
                     </td>
@@ -93,5 +93,3 @@
     </body>
 
     </html>
-</div>
-<router-outlet></router-outlet>

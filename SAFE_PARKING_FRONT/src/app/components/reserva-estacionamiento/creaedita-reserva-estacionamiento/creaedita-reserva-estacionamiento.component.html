@@ -1,4 +1,4 @@
-<router-outlet></router-outlet>
+
 <app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,10 @@
     <div class="container" style="text-align: center">
       <h2>Registro de Reserva Estacionamiento</h2>
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>idReservaEstacionamiento</mat-label>
+          <input matInput placeholder="idReservaEstacionamiento" formControlName="idReservaEstacionamiento" />
+        </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Estado</mat-label>
           <mat-select formControlName="estado">
@@ -26,6 +30,7 @@
           </mat-error>
         </mat-form-field>
         <br />
+        
         <mat-form-field class="example-full-width">
           <mat-label>Favorito</mat-label>
           <mat-select formControlName="favorito">
@@ -36,8 +41,8 @@
           <mat-error *ngIf="obtenerControlCampo('favorito')?.errors?.['required']">
             Este campo es obligatorio.
           </mat-error>
-          
         </mat-form-field>
+
         <br />
         <mat-form-field appearance="fill" class="example-full-width">
           <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha"
@@ -50,11 +55,11 @@
           </mat-error>
         </mat-form-field>
         <br />
-        <mat-form-field appearance="fill" class="example-full-width">
+        <mat-form-field appearance="fill" class="example-full-width"> 
           <mat-label>Usuario</mat-label>
           <mat-select formControlName="users">
             <mat-option *ngFor="let p of listaUsuario" [value]="p.idUsuario">
-              {{ p.nombre }}
+              {{ p.nombre}} 
             </mat-option>
           </mat-select>
           <mat-error *ngIf="obtenerControlCampo('users')?.errors?.['required']">
@@ -63,8 +68,8 @@
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>Vehiculo</mat-label>
-          <mat-select formControlName="vehiculo">
+          <mat-label>Vehiculo</mat-label> 
+          <mat-select formControlName="vehiculo"> 
             <mat-option *ngFor="let p of listaVehiculo" [value]="p.idVehiculo">
               {{ p.placaVehiculo }}
             </mat-option>
@@ -96,4 +101,3 @@
 </body>
 
 </html>
-<app-footer></app-footer>

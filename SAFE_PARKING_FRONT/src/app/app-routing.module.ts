@@ -39,6 +39,9 @@ import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-
 import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
 import { ListarAdminReservaEstacionamientoComponent } from './components/reserva-estacionamiento/listar-admin-reserva-estacionamiento/listar-admin-reserva-estacionamiento.component';
 import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
+import { Estacionamiento } from './models/estacionamiento';
+import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
+import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -182,6 +185,7 @@ const routes: Routes = [
     ],
   },
 
+  //Reserva estacionamiento
   {
     path: 'reservaestacionamiento',
     component: ReservaEstacionamientoComponent,
@@ -191,9 +195,33 @@ const routes: Routes = [
         component: ListarAdminReservaEstacionamientoComponent,
       },
       {
-        path:'registrar_reservas_estacionamientos',component:CreaeditaReservaEstacionamientoComponent,
+        path: 'registrar_reservas_estacionamientos',
+        component: CreaeditaReservaEstacionamientoComponent,
       },
+      {
+        path: 'listar_admin_reserva_estacionamientos/ediciones/:id',
+        component: CreaeditaReservaEstacionamientoComponent,
+      },
+    ],
+  },
 
+  //Estacionamiento
+  {
+    path: 'estacionamiento',
+    component: Estacionamiento,
+    children: [
+      {
+        path: 'listar_admin_estacionamientos',
+        component: ListarAdminEstacionamientoComponent,
+      },
+      {
+        path: 'registrar_estacionamientos',
+        component: CreaeditaEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_estacionamientos/ediciones/:id',
+        component: ListarAdminEstacionamientoComponent,
+      }
     ],
   },
 
@@ -224,4 +252,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
