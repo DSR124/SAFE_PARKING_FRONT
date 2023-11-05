@@ -46,6 +46,11 @@ import { CreaeditaHorarioEstacionamientoComponent } from './components/horario-e
 import { ListarAdminHorarioEstacionamientoComponent } from './components/horario-estacionamiento/listar-admin-horario-estacionamiento/listar-admin-horario-estacionamiento.component';
 import { BuscarHorarioComponent } from './components/horario/buscar-horario/buscar-horario.component';
 import { BuscarHorarioEstacionamientoComponent } from './components/horario-estacionamiento/buscar-horario-estacionamiento/buscar-horario-estacionamiento.component';
+import { ListarAdminMembresiaComponent } from './components/membresia/listar-admin-membresia/listar-admin-membresia.component';
+import { IncidenteComponent } from './components/incidente/incidente.component';
+import { ListarAdminIncidenteComponent } from './components/incidente/listar-admin-incidente/listar-admin-incidente.component';
+import { CreaeditaIncidenteComponent } from './components/incidente/creaedita-incidente/creaedita-incidente.component';
+import { BuscarIncidenteComponent } from './components/incidente/buscar-incidente/buscar-incidente.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -105,7 +110,7 @@ const routes: Routes = [
 
   // membresias
   {
-    path: 'membresia',
+    path: 'membresias',
     component: MembresiaComponent,
     children: [
       {
@@ -119,6 +124,37 @@ const routes: Routes = [
       {
         path: 'buscar_membresias',
         component: BuscarMembresiaComponent,
+      },
+      {
+        path: 'listar_admin_membresias',
+        component: ListarAdminMembresiaComponent,
+      },
+      {
+        path: 'listar_admin_membresias/ediciones/:id',
+        component: CreaeditaMembresiaComponent,
+      },
+    ],
+  },
+  // Incidentes
+  {
+    path: 'incidentes',
+    component: IncidenteComponent,
+    children: [
+      {
+        path: 'listar_admin_incidentes',
+        component: ListarAdminIncidenteComponent,
+      },
+      {
+        path: 'registrar_incidentes',
+        component: CreaeditaIncidenteComponent,
+      },
+      {
+        path: 'listar_admin_incidentes/ediciones/:id',
+        component: CreaeditaIncidenteComponent,
+      },
+      {
+        path: 'buscar_incidentes',
+        component: BuscarIncidenteComponent,
       },
     ],
   },

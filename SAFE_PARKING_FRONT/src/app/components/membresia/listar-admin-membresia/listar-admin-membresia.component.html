@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="litle">
-      <h2 style="text-align: center">LISTA DE INCIDENTES</h2>
+      <h2 style="text-align: center">LISTA DE MEMBRESIAS</h2>
     </div>
 
     <div class="container">
@@ -24,35 +24,43 @@
         <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- idIncidente Column -->
-        <ng-container matColumnDef="idIncidente">
-          <th mat-header-cell *matHeaderCellDef>idIncidente</th>
+        <!-- idMembresia Column -->
+        <ng-container matColumnDef="idMembresia">
+          <th mat-header-cell *matHeaderCellDef>idMembresia</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.idIncidente }}
+            {{ element.idMembresia }}
           </td>
         </ng-container>
 
-        <!-- descripcion Column -->
-        <ng-container matColumnDef="descripcion">
-          <th mat-header-cell *matHeaderCellDef>descripcion</th>
-          <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-        </ng-container>
-
-        <!-- tipoIncidente Column -->
-        <ng-container matColumnDef="tipoIncidente">
-          <th mat-header-cell *matHeaderCellDef>tipoIncidente</th>
+        <!-- tipoMembresia Column -->
+        <ng-container matColumnDef="tipoMembresia">
+          <th mat-header-cell *matHeaderCellDef>tipoMembresia</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.tipoIncidente }}
+            {{ element.tipoMembresia }}
           </td>
         </ng-container>
 
-        <!-- usuario Column -->
-        <ng-container matColumnDef="usuario">
-          <th mat-header-cell *matHeaderCellDef>usuario</th>
+        <!-- fechaInicio Column -->
+        <ng-container matColumnDef="fechaInicio">
+          <th mat-header-cell *matHeaderCellDef>fechaInicio</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.usuario.idUsuario }}
+            {{ element.fechaInicio }}
           </td>
         </ng-container>
+
+        <!-- fechaFin Column -->
+        <ng-container matColumnDef="fechaFin">
+          <th mat-header-cell *matHeaderCellDef>fechaFin</th>
+          <td mat-cell *matCellDef="let element">{{ element.fechaFin }}</td>
+        </ng-container>
+
+        <!-- precio Column -->
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef>precio</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.precio }}
+          </td></ng-container
+        >
 
         <ng-container matColumnDef="accion01">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
@@ -60,7 +68,7 @@
             <button
               mat-raised-button
               color="warn"
-              [routerLink]="['ediciones', element.idIncidente]"
+              [routerLink]="['ediciones', element.idMembresia]"
             >
               Actualizar
             </button>
@@ -72,7 +80,7 @@
             <button
               mat-raised-button
               color="accent"
-              (click)="eliminar(element.idIncidente)"
+              (click)="eliminar(element.idMembresia)"
             >
               Eliminar
             </button>

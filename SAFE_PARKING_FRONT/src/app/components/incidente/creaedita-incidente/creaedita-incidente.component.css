@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+
+.titulo {
+  color: #000000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.container {
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 700px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px auto;
+}
+.fecha {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 500px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+}
+.example-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  margin: 10px 0;
+  width: 100%;
+}
+
+input.mat-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+mat-label {
+  font-weight: bold;
+}
+
+.seccion._fechas {
+  display: flex;
+}
+
+.mat-datepicker-toggle {
+  cursor: pointer;
+}
+
+button.boton_registro {
+  background-color: #38ecd4;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.boton_registro:hover {
+  background-color: #080808;
+   color: #fff;
+}
+
+mat-error {
+  color: #e74c3c;
+}

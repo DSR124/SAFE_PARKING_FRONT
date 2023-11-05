@@ -94,6 +94,8 @@ import { BuscarPagoComponent } from './components/pago/buscar-pago/buscar-pago.c
 import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.component';
 import { BuscarHorarioComponent } from './components/horario/buscar-horario/buscar-horario.component';
 import { BuscarHorarioEstacionamientoComponent } from './components/horario-estacionamiento/buscar-horario-estacionamiento/buscar-horario-estacionamiento.component';
+import { ListarAdminMembresiaComponent } from './components/membresia/listar-admin-membresia/listar-admin-membresia.component';
+import { BuscarIncidenteComponent } from './components/incidente/buscar-incidente/buscar-incidente.component';
 
 @NgModule({
   declarations: [
@@ -199,6 +201,8 @@ import { BuscarHorarioEstacionamientoComponent } from './components/horario-esta
     BuscarRolComponent,
     BuscarHorarioComponent,
     BuscarHorarioEstacionamientoComponent,
+    ListarAdminMembresiaComponent,
+    BuscarIncidenteComponent,
   ],
   imports: [
     BrowserModule,
