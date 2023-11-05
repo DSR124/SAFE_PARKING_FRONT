@@ -40,6 +40,7 @@ import { ComentarioComponent } from './components/comentario/comentario.componen
 import { CreaeditaComentarioComponent } from './components/comentario/creaedita-comentario/creaedita-comentario.component';
 import { ListarAdminComentarioComponent } from './components/comentario/listar-admin-comentario/listar-admin-comentario.component';
 import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
+import { BuscarUsuariosComponent } from './components/usuarios/buscar-usuarios/buscar-usuarios.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -183,6 +184,11 @@ const routes: Routes = [
       {
         path: 'modificar_usuarios/:id',
         component: CreaeditaUsuarioComponent,
+      },
+
+      {
+        path: 'buscar_usuarios',
+        component: BuscarUsuariosComponent,
       },
 
     ],

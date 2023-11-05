@@ -90,6 +90,7 @@ import { ListarUsuarioHorarioEstacionamientoComponent } from './components/horar
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
 import { RolComponent } from './components/rol/rol.component';
 import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
+import { BuscarUsuariosComponent } from './components/usuarios/buscar-usuarios/buscar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -191,6 +192,7 @@ import { BuscarComentariosComponent } from './components/comentario/buscar-comen
     ListarAdminIncidenteComponent,
     CreaeditaIncidenteComponent,
     BuscarComentariosComponent,
+    BuscarUsuariosComponent,
   ],
   imports: [
     BrowserModule,
