@@ -46,4 +46,7 @@ export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
       });
     });
   }
+  filter(en: any) {
+    this.dataSource.filter = en.target.value.trim();
+  }
 }

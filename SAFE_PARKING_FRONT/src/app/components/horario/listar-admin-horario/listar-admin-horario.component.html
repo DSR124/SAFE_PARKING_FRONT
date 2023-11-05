@@ -9,6 +9,14 @@
     <app-navbar></app-navbar>
 
     <div class="container">
+      <mat-form-field>
+        <input
+          style="text-align: left"
+          matInput
+          (keyup)="filter($event)"
+          placeholder="Bucar por.."
+        />
+      </mat-form-field>
       <br />
       <h2 style="text-align: center">Lista de Horarios</h2>
 
