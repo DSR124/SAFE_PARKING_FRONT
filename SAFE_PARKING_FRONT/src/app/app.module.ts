@@ -67,8 +67,6 @@ import { ComentarioComponent } from './components/comentario/comentario.componen
 import { CreaeditaComentarioComponent } from './components/comentario/creaedita-comentario/creaedita-comentario.component';
 import { ListarAdminComentarioComponent } from './components/comentario/listar-admin-comentario/listar-admin-comentario.component';
 import { ListarUsuarioComentarioComponent } from './components/comentario/listar-usuario-comentario/listar-usuario-comentario.component';
-import { ListarUsuarioEstacionamientoComponent } from './components/estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
-import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
 import { HorarioEstacionamientoComponent } from './components/horario-estacionamiento/horario-estacionamiento.component';
 import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
 import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
@@ -87,6 +85,8 @@ import { ListarAdminHorarioEstacionamientoComponent } from './components/horario
 import { ListarUsuarioHorarioEstacionamientoComponent } from './components/horario-estacionamiento/listar-usuario-horario-estacionamiento/listar-usuario-horario-estacionamiento.component';
 import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-rol.component';
 import { RolComponent } from './components/rol/rol.component';
+import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
+import { ListarUsuarioEstacionamientoComponent } from './components/estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
 import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
 import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
 
@@ -160,12 +160,6 @@ import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/
     ListarAdminComentarioComponent,
     ListarUsuarioComentarioComponent,
 
-    //Estacionamiento
-    ListarUsuarioEstacionamientoComponent,
-    EstacionamientoComponent,
-    ListarAdminEstacionamientoComponent,
-
-
     //Horario-Estacionamiento
     HorarioEstacionamientoComponent,
     CreaeditaHorarioEstacionamientoComponent,
@@ -192,8 +186,9 @@ import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/
 
     //Estacionamiento
     EstacionamientoComponent,
-    CreaeditaEstacionamientoComponent,
-    ListarAdminEstacionamientoComponent
+    ListarUsuarioEstacionamientoComponent,
+    ListarAdminEstacionamientoComponent,
+    CreaeditaEstacionamientoComponent
 
   ],
   imports: [

@@ -181,8 +181,8 @@ const routes: Routes = [
       {
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
-      },
-    ],
+      }
+    ]
   },
 
   //Reserva estacionamiento
@@ -201,8 +201,8 @@ const routes: Routes = [
       {
         path: 'listar_admin_reserva_estacionamientos/ediciones/:id',
         component: CreaeditaReservaEstacionamientoComponent,
-      },
-    ],
+      }
+    ]
   },
 
   //Estacionamiento
@@ -211,18 +211,18 @@ const routes: Routes = [
     component: Estacionamiento,
     children: [
       {
-        path: 'listar_admin_estacionamientos',
-        component: ListarAdminEstacionamientoComponent,
-      },
-      {
         path: 'registrar_estacionamientos',
         component: CreaeditaEstacionamientoComponent,
       },
       {
-        path: 'listar_admin_estacionamientos/ediciones/:id',
+        path: 'listar_admin_estacionamientos',
         component: ListarAdminEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_estacionamientos/ediciones/:id',
+        component: CreaeditaEstacionamientoComponent,
       }
-    ],
+    ]
   },
 
   // apartados
@@ -243,7 +243,7 @@ const routes: Routes = [
       {
         path: 'home_administrador',
         component: HomeAdministradorComponent,
-      },
+      }
     ],
   },
 ];
