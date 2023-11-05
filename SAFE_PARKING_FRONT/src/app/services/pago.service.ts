@@ -12,6 +12,7 @@ export class PagoService {
 
   
   private url = `${base_url}/pagos`;
+
   private listaCambio = new Subject<Pago[]>();
   constructor(private http: HttpClient) {}
 
@@ -38,6 +39,7 @@ export class PagoService {
   getList() {
     return this.listaCambio.asObservable();
   }
+
 
 
   //Falta un query

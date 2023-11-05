@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reserva-estacionamiento',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./reserva-estacionamiento.component.css']
 })
 export class ReservaEstacionamientoComponent {
-
+constructor(public route:ActivatedRoute){}
 }

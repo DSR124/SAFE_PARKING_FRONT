@@ -12,6 +12,13 @@
       <div class="container" style="text-align: center">
         <h2>Registro de USUARIO</h2>
         <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>id del usuario</mat-label>
+            <input matInput placeholder="Id" formControlName="idUsuario" readonly="true" />
+          </mat-form-field>
+
+          <br />
           <mat-form-field class="example-full-width">
             <mat-label>nombre</mat-label>
             <input matInput placeholder="nombre" formControlName="nombre" />
@@ -21,6 +28,8 @@
               El nombre es obligatorio.
             </mat-error>
           </mat-form-field>
+          
+          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>apellido</mat-label>
@@ -32,6 +41,8 @@
             </mat-error>
           </mat-form-field>
 
+          <br />
+
           <mat-form-field class="example-full-width">
             <mat-label>correo</mat-label>
             <input matInput placeholder="correo" formControlName="correo" />
@@ -41,6 +52,8 @@
               El correo es obligatorio.
             </mat-error>
           </mat-form-field>
+
+          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>username</mat-label>
@@ -52,6 +65,8 @@
             </mat-error>
           </mat-form-field>
 
+          <br />
+
           <mat-form-field class="example-full-width">
             <mat-label>password</mat-label>
             <input matInput placeholder="password" formControlName="password" />
@@ -61,6 +76,8 @@
               El password es obligatorio.
             </mat-error>
           </mat-form-field>
+
+          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>genero</mat-label>
@@ -76,6 +93,8 @@
             </mat-error>
           </mat-form-field>
 
+          <br />
+
           <mat-form-field class="example-full-width">
             <mat-label>dni</mat-label>
             <input matInput placeholder="dni" formControlName="dni" />
@@ -83,6 +102,8 @@
               El dni es obligatorio.
             </mat-error>
           </mat-form-field>
+
+          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>imagen</mat-label>
@@ -93,6 +114,8 @@
               El imagen es obligatorio.
             </mat-error>
           </mat-form-field>
+
+          <br />
 
           <mat-form-field appearance="fill" class="example-full-width">
             <input
@@ -115,6 +138,8 @@
             </mat-error>
           </mat-form-field>
 
+          <br />
+
           <mat-form-field class="example-full-width">
             <mat-label>telefono</mat-label>
             <input matInput placeholder="telefono" formControlName="telefono" />
@@ -124,6 +149,8 @@
               El telefono es obligatorio.
             </mat-error>
           </mat-form-field>
+
+          <br />
 
           <mat-form-field class="example-full-width">
             <mat-label>membresia</mat-label>
@@ -142,6 +169,8 @@
             </mat-error>
           </mat-form-field>
 
+          <br />
+
           <button mat-raised-button color="primary">Aceptar</button>
           <p>{{ mensaje }}</p>
         </form>
@@ -149,4 +178,3 @@
     </div>
   </body>
 </html>
-<app-footer></app-footer>

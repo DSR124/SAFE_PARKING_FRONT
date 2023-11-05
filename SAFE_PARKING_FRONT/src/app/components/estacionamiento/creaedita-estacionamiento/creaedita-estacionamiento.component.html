@@ -1,1 +1,123 @@
-<p>creaedita-estacionamiento works!</p>
+<app-navbar></app-navbar>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" style="text-align: center">
+        <h2>Registro de Estacionamiento</h2>
+        <form [formGroup]="form" (submit)="registrar()" class="example-form">
+
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>idEstacionamiento</mat-label>
+                <input matInput placeholder="idEstacionamiento" formControlName="idEstacionamiento" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="tipoEstacionamiento">
+                    <mat-option *ngFor="let p of tipos" [value]="p.value">
+                        {{p.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="obtenerControlCampo('tipoEstacionamiento')?.errors?.['required']">
+                    El tipo de Estacionamiento es obligatorio.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Disponibilidad</mat-label>
+                <mat-select formControlName="disponibilidad">
+                    <mat-option *ngFor="let p of tipo_disponibilidad" [value]="p.value">
+                        {{p.viewValue}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="obtenerControlCampo('disponibilidad')?.errors?.['required']">
+                    La disponibilidad es obligatoria.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field class="example-full-width">
+                <mat-label>Foto</mat-label>
+                <input matInput placeholder="foto" formControlName="foto" />
+                <mat-error *ngIf="obtenerControlCampo('foto')?.errors?.['required']">
+                    La foto es obligatoria.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Promedio de valoracion</mat-label>
+                <input type="number" matInput placeholder="promedioValoracion" formControlName="promedioValoracion" />
+                <mat-error *ngIf="obtenerControlCampo('promedioValoracion')?.errors?.['required']">
+                    El promedio de valoracion es obligatori.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Capacidad</mat-label>
+                <input type="number" matInput placeholder="capacidad" formControlName="capacidad" />
+                <mat-error *ngIf="obtenerControlCampo('capacidad')?.errors?.['required']">
+                    La capacidad es obligatoria.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Fecha de registro</mat-label>
+                <input matInput placeholder="Ingrese fecha de Registro" [matDatepicker]="picker"
+                    formControlName="fechaRegistro" [max]="maxFecha" />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="obtenerControlCampo('fechaRegistro')?.errors?.['required']">
+                    La fecha de registro es obligatoria.
+                </mat-error>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Precio</mat-label>
+                <input type="number" matInput placeholder="precio" formControlName="precio" />
+                <mat-error *ngIf="obtenerControlCampo('precio')?.errors?.['required']">
+                    El precio es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Usuario</mat-label>
+                <mat-select formControlName="usuario">
+                    <mat-option *ngFor="let p of listaUsuario" [value]="p.idUsuario">
+                        {{ p.nombre}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="obtenerControlCampo('usuario')?.errors?.['required']">
+                    El usuario es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Localizacion</mat-label>
+                <mat-select formControlName="localizacion">
+                    <mat-option *ngFor="let p of listaLocalizaciones" [value]="p.idLocalizacion">
+                        {{ p.idLocalizacion }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="obtenerControlCampo('localizacion')?.errors?.['required']">
+                    La localizacion es obligatoria.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="primary">Registrar</button>
+            <button mat-raised-button color="warn"
+                routerLink="/reservaestacionamiento/listar_admin_reserva_estacionamientos">
+                Cancelar
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>

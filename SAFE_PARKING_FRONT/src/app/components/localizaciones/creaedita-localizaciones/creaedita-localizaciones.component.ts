@@ -34,6 +34,69 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   lugarABuscar: string = '';
   resultados: Localizacion[] = [];
 
+  provinciasLima: { value: string; viewValue: string }[] = [
+    { value: 'Lima', viewValue: 'Lima' },
+    { value: 'Barranca', viewValue: 'Barranca' },
+    { value: 'Cajatambo', viewValue: 'Cajatambo' },
+    { value: 'Canta', viewValue: 'Canta' },
+    { value: 'Cañete', viewValue: 'Cañete' },
+    { value: 'Huaral', viewValue: 'Huaral' },
+    { value: 'Huarochirí', viewValue: 'Huarochirí' },
+    { value: 'Huaura', viewValue: 'Huaura' },
+    { value: 'Oyón', viewValue: 'Oyón' },
+    { value: 'Yauyos', viewValue: 'Yauyos' },
+    { value: 'Otros', viewValue: 'Otros' }
+    // Agrega más provincias según sea necesario
+  ];
+  
+  distritosLima: { value: string; viewValue: string }[] = [
+    { value: 'Ancón', viewValue: 'Ancón' },
+    { value: 'Ate', viewValue: 'Ate' },
+    { value: 'Barranco', viewValue: 'Barranco' },
+    { value: 'Breña', viewValue: 'Breña' },
+    { value: 'Carabayllo', viewValue: 'Carabayllo' },
+    { value: 'Cercado de Lima', viewValue: 'Cercado de Lima' },
+    { value: 'Chaclacayo', viewValue: 'Chaclacayo' },
+    { value: 'Chorrillos', viewValue: 'Chorrillos' },
+    { value: 'Cieneguilla', viewValue: 'Cieneguilla' },
+    { value: 'Comas', viewValue: 'Comas' },
+    { value: 'El Agustino', viewValue: 'El Agustino' },
+    { value: 'Independencia', viewValue: 'Independencia' },
+    { value: 'Jesus María', viewValue: 'Jesus María' },
+    { value: 'La Molina', viewValue: 'La Molina' },
+    { value: 'La Victoria', viewValue: 'La Victoria' },
+    { value: 'Lince', viewValue: 'Lince' },
+    { value: 'Los Olivos', viewValue: 'Los Olivos' },
+    { value: 'Lurigancho-Chosica', viewValue: 'Lurigancho-Chosica' },
+    { value: 'Lurín', viewValue: 'Lurín' },
+    { value: 'Magdalena del Mar', viewValue: 'Magdalena del Mar' },
+    { value: 'Miraflores', viewValue: 'Miraflores' },
+    { value: 'Pachacámac', viewValue: 'Pachacámac' },
+    { value: 'Pucusana', viewValue: 'Pucusana' },
+    { value: 'Pueblo Libre', viewValue: 'Pueblo Libre' },
+    { value: 'Puente Piedra', viewValue: 'Puente Piedra' },
+    { value: 'Punta Hermosa', viewValue: 'Punta Hermosa' },
+    { value: 'Punta Negra', viewValue: 'Punta Negra' },
+    { value: 'Rímac', viewValue: 'Rímac' },
+    { value: 'San Bartolo', viewValue: 'San Bartolo' },
+    { value: 'San Borja', viewValue: 'San Borja' },
+    { value: 'San Isidro', viewValue: 'San Isidro' },
+    { value: 'San Juan de Lurigancho', viewValue: 'San Juan de Lurigancho' },
+    { value: 'San Juan de Miraflores', viewValue: 'San Juan de Miraflores' },
+    { value: 'San Luis', viewValue: 'San Luis' },
+    { value: 'San Martín de Porres', viewValue: 'San Martín de Porres' },
+    { value: 'San Miguel', viewValue: 'San Miguel' },
+    { value: 'Santa Anita', viewValue: 'Santa Anita' },
+    { value: 'Santa María del Mar', viewValue: 'Santa María del Mar' },
+    { value: 'Santa Rosa', viewValue: 'Santa Rosa' },
+    { value: 'Santiago de Surco', viewValue: 'Santiago de Surco' },
+    { value: 'Surquillo', viewValue: 'Surquillo' },
+    { value: 'Villa El Salvador', viewValue: 'Villa El Salvador' },
+    { value: 'Villa María del Triunfo', viewValue: 'Villa María del Triunfo' },
+    { value: 'Otros', viewValue: 'Otros' }
+  ];
+  
+
   constructor(
     private lS: LocalizacionService,
     private router: Router,
@@ -81,7 +144,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['modificar_localizaciones']);
+      this.router.navigate(['localizaciones/listar_admin_localizaciones']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
@@ -165,7 +228,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       });
     }
   }
-  obtenerConntrolCampo(nombreCampo: string): AbstractControl {
+  obtenerControlCampo(nombreCampo: string): AbstractControl {
     const control = this.form.get(nombreCampo);
     if (!control) {
       throw new Error(`Control no encontrado para el campo ${nombreCampo}`);

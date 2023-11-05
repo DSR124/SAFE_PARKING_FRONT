@@ -17,13 +17,13 @@ h2{
   max-width: 1200px;
   box-shadow: 0 0 10px #ccc;
   border-radius: 5px;
+  width: 800px;
 }
 
 .container h1 {
   font-size: 24px;
   text-align: center;
   color: #222;
-  color: #30e298;
 }
 
 .example-form {
@@ -36,7 +36,6 @@ h2{
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 20px;
 }
 
 mat-input {

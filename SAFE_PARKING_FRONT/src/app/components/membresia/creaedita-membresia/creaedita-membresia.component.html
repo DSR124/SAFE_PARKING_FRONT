@@ -73,13 +73,14 @@
         </div>
         <mat-form-field class="example-full-width">
           <mat-label> <mat-icon>attach_money</mat-icon> Precio </mat-label>
-          <input matInput placeholder="Precio" formControlName="precio" />
+          <input type="number" matInput placeholder="Precio" formControlName="precio" />
           <mat-error
             *ngIf="obtenerControlCampo('precio')?.errors?.['required']"
           >
             El precio es obligatorio.
           </mat-error>
         </mat-form-field>
+        
         <br />
         <button
           class="boton_registro"

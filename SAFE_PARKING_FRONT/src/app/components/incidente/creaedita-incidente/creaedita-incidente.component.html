@@ -14,6 +14,12 @@
       <div class="container">
         <form [formGroup]="form" (submit)="registrar()" class="example-form">
           <br />
+
+          <mat-form-field class="example-full-width" *ngIf="edicion"> <!--*ngIf="edicion" es para que se meustre en la edicion-->
+            <mat-label>id Incidente</mat-label>
+            <input matInput placeholder="idIncidente" formControlName="idIncidente" />
+        </mat-form-field>
+
           <mat-form-field class="example-full-width">
             <mat-label> <mat-icon>tab</mat-icon> Descripcion </mat-label>
             <input
@@ -29,20 +35,17 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>
-              <mat-icon>attach_money</mat-icon> Tipo de Incidente
-            </mat-label>
-            <input
-              matInput
-              placeholder="Tipo de Incidente"
-              formControlName="tipoIncidente"
-            />
-            <mat-error
-              *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']"
-            >
+            <mat-label>Tipo de Incidente</mat-label>
+            <mat-select placeholder="Tipo de Incidente" formControlName="tipoIncidente">
+              <mat-option *ngFor="let t of tiposIncidentes" [value]="t.value">{{
+                t.viewValue
+                }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']">
               El tipo de incidente es obligatorio.
             </mat-error>
           </mat-form-field>
+
 
           <mat-form-field class="example-full-width">
             <mat-label>usuarios</mat-label>

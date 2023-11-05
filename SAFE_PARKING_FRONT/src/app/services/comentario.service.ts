@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { Comentario } from '../models/comentario';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
@@ -20,8 +19,8 @@ export class ComentarioService {
     return this.http.get<Comentario[]>(`${this.url}/Listar`);
   }
   // Obtener un comentario por ID
-  getById(id: number) {
-    return this.http.get<Comentario[]>(`${this.url}/ListarporID/${id}`);
+  listId(id: number) {
+    return this.http.get<Comentario>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un comentario
   update(comentario: Comentario) {

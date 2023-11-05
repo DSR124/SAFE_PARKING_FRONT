@@ -92,7 +92,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.heS.getById(this.id).subscribe((data) => {
+      this.heS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           estacionamiento: new FormControl(
             data.estacionamiento.idEstacionamiento
