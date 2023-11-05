@@ -22,8 +22,8 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.url}/ListarporID/${id}`);
   }
   // Actualizar un Membresia
-  update(vehiculo: Usuario) {
-    return this.http.put(`${this.url}/Modificar`, vehiculo);
+  update(usuario: Usuario) {
+    return this.http.put(`${this.url}/Modificar`, usuario);
   }
   // Eliminar un Membresia
   delete(id: number) {

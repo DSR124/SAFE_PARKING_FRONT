@@ -11,5 +11,5 @@ export class ReservaEstacionamiento {
     users: Usuario = new Usuario();
     vehiculo: Vehiculo = new Vehiculo();
     horarioEstacionamiento: HorarioEstacionamiento = new HorarioEstacionamiento();
-  }
+}
   

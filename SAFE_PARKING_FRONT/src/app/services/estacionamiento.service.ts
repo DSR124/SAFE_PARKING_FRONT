@@ -19,8 +19,9 @@ export class EstacionamientoService {
   listId(id: number) {
     return this.http.get<Estacionamiento>(`${this.url}/ListarporID/${id}`);
   }
-  update(vehiculo: Estacionamiento) {
-    return this.http.put(`${this.url}/Modificar`, vehiculo);
+
+  update(estacionamiento: Estacionamiento) {
+    return this.http.put(`${this.url}/Modificar`, estacionamiento);
   }
   delete(id: number) {
     return this.http.delete(`${this.url}/Eliminar/${id}`);
@@ -36,6 +37,5 @@ export class EstacionamientoService {
   getList() {
     return this.listaCambio.asObservable();
   }
-
 
 }

@@ -51,6 +51,9 @@ import { IncidenteComponent } from './components/incidente/incidente.component';
 import { ListarAdminIncidenteComponent } from './components/incidente/listar-admin-incidente/listar-admin-incidente.component';
 import { CreaeditaIncidenteComponent } from './components/incidente/creaedita-incidente/creaedita-incidente.component';
 import { BuscarIncidenteComponent } from './components/incidente/buscar-incidente/buscar-incidente.component';
+import { ReservaEstacionamientoComponent } from './components/reserva-estacionamiento/reserva-estacionamiento.component';
+import { ListarAdminReservaEstacionamientoComponent } from './components/reserva-estacionamiento/listar-admin-reserva-estacionamiento/listar-admin-reserva-estacionamiento.component';
+import { CreaeditaReservaEstacionamientoComponent } from './components/reserva-estacionamiento/creaedita-reserva-estacionamiento/creaedita-reserva-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -294,8 +297,30 @@ const routes: Routes = [
       {
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
+
       },
     ],
+
+  },
+
+  //Reserva estacionamiento
+  {
+    path: 'reservaestacionamiento',
+    component: ReservaEstacionamientoComponent,
+    children: [
+      {
+        path: 'listar_admin_reserva_estacionamientos',
+        component: ListarAdminReservaEstacionamientoComponent,
+      },
+      {
+        path: 'registrar_reservas_estacionamientos',
+        component: CreaeditaReservaEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_reserva_estacionamientos/ediciones/:id',
+        component: CreaeditaReservaEstacionamientoComponent,
+      }
+    ]
   },
 
   // apartados
@@ -316,7 +341,7 @@ const routes: Routes = [
       {
         path: 'home_administrador',
         component: HomeAdministradorComponent,
-      },
+      }
     ],
   },
 ];
@@ -325,4 +350,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

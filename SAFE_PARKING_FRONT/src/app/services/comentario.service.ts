@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { Comentario } from '../models/comentario';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
