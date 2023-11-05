@@ -5,6 +5,7 @@ import { BuscarMembresiaComponent } from './components/membresia/buscar-membresi
 import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
 import { MembresiaComponent } from './components/membresia/membresia.component';
 import { LocalizacionesComponent } from './components/localizaciones/localizaciones.component';
+
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -59,6 +60,11 @@ import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/
 import { ListarAdminEstacionamientoComponent } from './components/estacionamiento/listar-admin-estacionamiento/listar-admin-estacionamiento.component';
 import { BuscarEstacionamientoComponent } from './components/estacionamiento/buscar-estacionamiento/buscar-estacionamiento.component';
 import { BuscarReservaEstacionamientoComponent } from './components/reserva-estacionamiento/buscar-reserva-estacionamiento/buscar-reserva-estacionamiento.component';
+import { BuscarUsuariosComponent } from './components/usuarios/buscar-usuarios/buscar-usuarios.component';
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { CreaeditaComentarioComponent } from './components/comentario/creaedita-comentario/creaedita-comentario.component';
+import { ListarAdminComentarioComponent } from './components/comentario/listar-admin-comentario/listar-admin-comentario.component';
+import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -91,6 +97,33 @@ const routes: Routes = [
       },
     ],
   },
+
+    // comentarios
+    {
+      path: 'comentarios',
+      component: ComentarioComponent,
+      children: [
+        {
+          path: 'registrar_comentarios',
+          component: CreaeditaComentarioComponent,
+        },
+
+        {
+          path: 'listar_comentarios_admin',
+          component: ListarAdminComentarioComponent,
+        },
+
+        {
+          path: 'modificar_comentarios/:id',
+          component: CreaeditaComentarioComponent,
+        },
+
+        {
+          path: 'buscar_comentarios',
+          component: BuscarComentariosComponent,
+        },
+      ],
+    },
 
   // vehiculos
   {
@@ -232,6 +265,15 @@ const routes: Routes = [
         path: 'listar_admin_usuarios',
         component: listarAdminUsuarioComponent,
       },
+      {
+        path: 'modificar_usuarios/:id',
+        component: CreaeditaUsuarioComponent,
+      },
+
+      {
+        path: 'buscar_usuarios',
+        component: BuscarUsuariosComponent,
+      },
     ],
   },
   //roles
@@ -302,7 +344,6 @@ const routes: Routes = [
       {
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
-
       },
     ],
 
@@ -381,4 +422,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

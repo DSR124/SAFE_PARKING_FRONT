@@ -98,6 +98,8 @@ import { ListarAdminEstacionamientoComponent } from './components/estacionamient
 import { CreaeditaEstacionamientoComponent } from './components/estacionamiento/creaedita-estacionamiento/creaedita-estacionamiento.component';
 import { BuscarEstacionamientoComponent } from './components/estacionamiento/buscar-estacionamiento/buscar-estacionamiento.component';
 import { BuscarReservaEstacionamientoComponent } from './components/reserva-estacionamiento/buscar-reserva-estacionamiento/buscar-reserva-estacionamiento.component';
+import { BuscarUsuariosComponent } from './components/usuarios/buscar-usuarios/buscar-usuarios.component';
+import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
 
 @NgModule({
   declarations: [
@@ -149,10 +151,10 @@ import { BuscarReservaEstacionamientoComponent } from './components/reserva-esta
     BuscarRolComponent,
 
     //Usuarios
-
     UsuariosComponent,
     CreaeditaUsuarioComponent,
     listarAdminUsuarioComponent,
+    BuscarUsuariosComponent,
 
     //Vehiculos
     VehiculosComponent,
@@ -172,6 +174,7 @@ import { BuscarReservaEstacionamientoComponent } from './components/reserva-esta
     CreaeditaComentarioComponent,
     ListarAdminComentarioComponent,
     ListarUsuarioComentarioComponent,
+    BuscarComentariosComponent,
 
     //Horario-Estacionamiento
     HorarioEstacionamientoComponent,
@@ -207,6 +210,7 @@ import { BuscarReservaEstacionamientoComponent } from './components/reserva-esta
     CreaeditaEstacionamientoComponent,
     BuscarEstacionamientoComponent,
     BuscarReservaEstacionamientoComponent
+
   ],
   imports: [
     BrowserModule,
