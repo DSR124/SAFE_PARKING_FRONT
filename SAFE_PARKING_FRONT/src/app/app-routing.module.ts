@@ -5,7 +5,7 @@ import { BuscarMembresiaComponent } from './components/membresia/buscar-membresi
 import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
 import { MembresiaComponent } from './components/membresia/membresia.component';
 import { LocalizacionesComponent } from './components/localizaciones/localizaciones.component';
-import { MembresiaService } from './services/membresia.service';
+
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -177,7 +177,14 @@ const routes: Routes = [
       {
         path: 'listar_admin_usuarios',
         component: listarAdminUsuarioComponent,
+
+        
       },
+      {
+        path: 'modificar_usuarios/:id',
+        component: CreaeditaUsuarioComponent,
+      },
+
     ],
   },
   //roles

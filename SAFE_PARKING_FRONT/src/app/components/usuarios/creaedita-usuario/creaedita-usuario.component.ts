@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap, Params } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import * as moment from 'moment';
@@ -22,7 +23,11 @@ export class CreaeditaUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   estado: boolean = true;
   mensaje: string = '';
+  fechaNacimiento = new FormControl(new Date());
   maxFecha: Date = moment().add(-1, 'days').toDate();
+  id: number = 0;
+  edicion: boolean = false;
+
   listaMembresia: Membresia[] = [];
 
   generos: { value: string; viewValue: string }[] = [
@@ -39,7 +44,15 @@ export class CreaeditaUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
     this.form = this.formBuilder.group({
+      idUsuario: [''],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       correo: ['', Validators.required],
@@ -79,15 +92,47 @@ export class CreaeditaUsuarioComponent implements OnInit {
       this.usuario.membresia.idMembresia = this.form.value.membresia;
       this.usuario.enabled = this.estado;
 
-      this.uS.insert(this.usuario).subscribe((data) => {
-        this.uS.list().subscribe((data) => {
-          this.uS.setList(data);
+      if (this.edicion) {
+        this.uS.update(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
+          });
         });
-      });
+      } else {
+        this.uS.insert(this.usuario).subscribe((data) => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
+          });
+        });
+      }
 
-      this.router.navigate(['ingredients/listar']);
+      
+
+      this.router.navigate(['usuarios/listar_admin_usuarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
+    }
+  }
+
+  init() {
+    if (this.edicion) {
+      this.uS.getById(this.id).subscribe((data) => {
+        this.form = new FormGroup({
+          idUsuario: new FormControl(data.idUsuario),
+          nombre: new FormControl(data.nombre),
+          apellido: new FormControl(data.apellido),
+          correo:new FormControl(data.correo),
+          username: new FormControl(data.username),
+          password:new FormControl(data.password),
+          genero:new FormControl(data.genero),
+          dni:new FormControl(data.dni),
+          imagen:new FormControl(data.imagen),
+          fechaNacimiento:new FormControl(data.fechaNacimiento),
+          telefono:new FormControl(data.telefono),
+          membresia:new FormControl(data.membresia.idMembresia),
+          enabled:new FormControl(data.enabled),
+        });
+      });
     }
   }
 }

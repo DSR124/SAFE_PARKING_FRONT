@@ -27,6 +27,8 @@ export class listarAdminUsuarioComponent implements OnInit {
     'telefono',
     'membresia',
     'activo',
+    'modificar',
+    'eliminar'
   ];
 
   editarUsuario: Usuario | null = null; // Variable para realizar un seguimiento de la fila en edición
@@ -39,6 +41,10 @@ export class listarAdminUsuarioComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+    this.uS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -56,11 +62,16 @@ export class listarAdminUsuarioComponent implements OnInit {
       this.editarUsuario = null; // Termina la edición
     });
   }
-  eliminar(idUsuario: number) {
-    this.uS.delete(idUsuario).subscribe(() => {
+  eliminar(id: number) {
+    this.uS.delete(id).subscribe(() => {
       this.uS.list().subscribe((data) => {
         this.uS.setList(data);
       });
     });
+  }
+
+
+  filter(en: any) {
+    this.dataSource.filter = en.target.value.trim();
   }
 }
