@@ -9,6 +9,7 @@
     <app-navbar></app-navbar>
 
     <div class="container">
+      <h2 style="text-align: center">Lista de Horarios</h2>
       <mat-form-field>
         <input
           style="text-align: left"
@@ -18,7 +19,6 @@
         />
       </mat-form-field>
       <br />
-      <h2 style="text-align: center">Lista de Horarios</h2>
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- ID -->
@@ -84,6 +84,5 @@
         showFirstLastButtons
       ></mat-paginator>
     </div>
-    <app-footer></app-footer>
   </body>
 </html>

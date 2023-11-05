@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,14 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
-    <app-navbar></app-navbar>
-
     <div class="form">
       <div class="generic-group">
-        <label for="inputId">Ingrese el ID:</label>
-        <input id="inputId" type="number" [(ngModel)]="id" />
+        <label for="inputId">Ingrese el ID del Horario:</label>
+        <input id="inputId" type="number" [(ngModel)]="idHorario" />
         <mat-error *ngIf="idNoEncontrado"
           >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
         >
@@ -20,15 +18,19 @@
         <button (click)="buscar()">Buscar</button>
       </div>
       <hr />
-      <div class="generic-details" *ngIf="rol">
-        <h2 class="generic-heading">Detalles</h2>
+      <div class="generic-details" *ngIf="horario">
+        <h2 class="generic-heading">Detalles del Horario</h2>
         <div class="generic-box">
-          <h1>Tipo de Rol</h1>
-          <p>{{ rol.nombreRol }}</p>
+          <h1>hora Apertura</h1>
+          <p>{{ horario.horaApertura }}</p>
         </div>
         <div class="generic-box">
-          <h1>Usuario</h1>
-          <p>{{ rol.usuario.nombre }}</p>
+          <h1>hora Cierre</h1>
+          <p>{{ horario.horaCierre }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>fecha</h1>
+          <p>{{ horario.fecha }}</p>
         </div>
       </div>
     </div>

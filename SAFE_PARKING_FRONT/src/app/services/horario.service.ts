@@ -21,7 +21,9 @@ export class HorarioService {
   setList(listaNueva: Horario[]) {
     this.listaCambio.next(listaNueva);
   }
-
+  getById(id: number) {
+    return this.http.get<Horario>(`${this.url}/ListarporID/${id}`);
+  }
   getList() {
     return this.listaCambio.asObservable();
   }

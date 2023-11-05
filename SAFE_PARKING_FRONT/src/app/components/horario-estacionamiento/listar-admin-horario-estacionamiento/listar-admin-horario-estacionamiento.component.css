@@ -1,0 +1,26 @@
+/*Estilos del form*/
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+
+}
+
+table {
+  background-color: rgb(255, 255, 255);
+}
+
+.container_contenido {
+  width: 50%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  /* Centra horizontalmente */
+  margin-top: 50px;
+}
+
+h2 {
+  color: #333;
+  padding: 40px;
+}

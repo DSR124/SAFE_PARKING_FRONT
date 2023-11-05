@@ -1,149 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <p class="logo">Portal Administrador</p>
+      <input type="checkbox" class="menu-toggle" id="menu1" />
+      <label for="menu1" class="menu">
+        <i class="material-icons">dashboard</i> Dashboard
+      </label>
+      <input type="checkbox" class="menu-toggle" id="menu2" />
+      <label for="menu2" class="menu">
+        <i class="material-icons">attach_money</i> Membresias
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="membresia/registrar_membresias">Registrar membresias</a>
+        </li>
+        <li>
+          <a href="membresia/listar_usuario_membresias"
+            >Listar membresias (user)</a
+          >
+        </li>
+        <li><a href="membresia/buscar_membresias">Buscar membresias</a></li>
+      </ul>
+      <input type="checkbox" class="menu-toggle" id="menu3" />
+      <label for="menu3" class="menu">
+        <i class="material-icons">directions_car</i> Vehiculos
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="vehiculos/registrar_vehiculos">Registrar vehiculos</a></li>
+        <li>
+          <a href="vehiculos/listar_admin_vehiculos">Listar vehiculos(admin)</a>
+        </li>
+        <li><a href="vehiculos/buscar_vehiculos">Buscar vehiculos</a></li>
+      </ul>
+      <input type="checkbox" class="menu-toggle" id="menu4" />
+      <label for="menu4" class="menu">
+        <i class="material-icons">people</i> Roles
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="roles/registrar_roles">Registrar roles</a></li>
+        <li><a href="roles/listar-admin-roles">Listar roles (admin)</a></li>
+        <li><a href="roles/buscar-roles">Bucar roles</a></li>
+      </ul>
+      <input type="checkbox" class="menu-toggle" id="menu5" />
+      <label for="menu5" class="menu">
+        <i class="material-icons">person</i> Usuarios
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="usuarios/registrar_usuarios">Registrar usuarios</a></li>
+        <li>
+          <a href="usuarios/listar_admin_usuarios">Listar usuarios (admin)</a>
+        </li>
+      </ul>
+      <input type="checkbox" class="menu-toggle" id="menu6" />
+      <label for="menu6" class="menu">
+        <i class="material-icons">notification_important</i> Incidentes
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="vehiculos/X">Registrar incidentes</a></li>
+        <li><a href="vehiculos/X">Listar incidentes</a></li>
+        <li><a href="vehiculos/X">Buscar incidentes</a></li>
+      </ul>
 
-<body>
+      <input type="checkbox" class="menu-toggle" id="menu7" />
+      <label for="menu7" class="menu">
+        <i class="material-icons">calendar_today</i> Horarios
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="horarios/registrar_horarios">Registrar horarios</a></li>
+        <li></li>
+        <li><a href="horarios/buscar_horarios">Buscar horarios</a></li>
+        <li>
+          <a href="horarios/listar_usuario_horarios">Listar horarios (user)</a>
+        </li>
+        <li>
+          <a href="horarios/listar_admin_horarios">Listar horarios (adim)</a>
+        </li>
+      </ul>
 
-  <div id="mySidenav" class="sidenav">
-    <p class="logo">Portal Administrador</p>
-    <input type="checkbox" class="menu-toggle" id="menu1">
-    <label for="menu1" class="menu">
-      <i class="material-icons">dashboard</i> Dashboard
-    </label>
-    <input type="checkbox" class="menu-toggle" id="menu2">
-    <label for="menu2" class="menu">
-      <i class="material-icons">attach_money</i> Membresias
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="membresia/registrar_membresias">Registrar membresias</a></li>
-      <li><a href="membresia/listar_usuario_membresias">Listar membresias (user)</a></li>
-      <li><a href="membresia/buscar_membresias">Buscar membresias</a></li>
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu3">
-    <label for="menu3" class="menu">
-      <i class="material-icons">directions_car</i> Vehiculos
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="vehiculos/registrar_vehiculos">Registrar vehiculos</a></li>
-      <li><a href="vehiculos/listar_vehiculos">Listar vehiculos</a></li>
-      <li><a href="vehiculos/buscar_vehiculos">Buscar vehiculos</a></li>
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu4">
-    <label for="menu4" class="menu">
-      <i class="material-icons">people</i> Roles
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="roles/registrar_roles">Registrar roles</a></li>
-      <li><a href="roles/listar-admin-roles">Listar roles (admin)</a></li>    
-      <li><a href="roles/buscar-roles">Bucar roles</a></li>   
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu5">
-    <label for="menu5" class="menu">
-      <i class="material-icons">person</i> Usuarios
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="usuarios/registrar_usuarios">Registrar usuarios</a></li>
-      <li><a href="usuarios/listar_admin_usuarios">Listar usuarios (admin) </a></li>
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu6">
-    <label for="menu6" class="menu">
-      <i class="material-icons">notification_important</i> Incidentes
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="vehiculos/X">Registrar incidentes</a></li>
-      <li><a href="vehiculos/X">Listar incidentes</a></li>
-      <li><a href="vehiculos/X">Buscar incidentes</a></li>
-    </ul>
+      <input type="checkbox" class="menu-toggle" id="menu13" />
+      <label for="menu13" class="menu">
+        <i class="material-icons">calendar_today</i> Hrs.Estacionamiento
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="horarios_estacionamiento/registrar_horarios_estacionamiento"
+            >Registrar hrs.Estacionamiento</a
+          >
+        </li>
+        <li>
+          <a href="horarios_estacionamiento/buscar_horarios_estacionamiento"
+            >Buscar hrs.Estacionamiento</a
+          >
+        </li>
+        <li>
+          <a
+            href="horarios_estacionamiento/listar_admin_horarios_estacionamiento"
+            >Listar hrs.Estacionamiento (admin)</a
+          >
+        </li>
+      </ul>
 
-    <input type="checkbox" class="menu-toggle" id="menu7">
-    <label for="menu7" class="menu">
-      <i class="material-icons">calendar_today</i> Horarios
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="horarios/registrar_horarios">Registrar horarios</a></li>
-      <li><a href="horarios/listar_usuario_horarios">Listar horarios (admin)</a></li>
-      <li><a href="horarios/listar_admin_horarios">Listar horarios (user)</a></li>
-    </ul>
+      <input type="checkbox" class="menu-toggle" id="menu8" />
+      <label for="menu8" class="menu">
+        <i class="material-icons">comment</i> Comentarios
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="listar_horario/registrar_vehiculos">Registrar comentarios</a>
+        </li>
+        <li><a href="listar_horario">Listar comentarios</a></li>
+      </ul>
 
-    <input type="checkbox" class="menu-toggle" id="menu8">
-    <label for="menu8" class="menu">
-      <i class="material-icons">comment</i> Comentarios
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="listar_horario/registrar_vehiculos">Registrar comentarios</a></li>
-      <li><a href="listar_horario">Listar comentarios</a></li>
-    </ul>
+      <input type="checkbox" class="menu-toggle" id="menu9" />
+      <label for="menu9" class="menu">
+        <i class="material-icons">monetization_on</i> Pagos
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li><a href="pagos/registrar_pagos">Registrar pagos</a></li>
+        <li><a href="pagos/listar-admin-pagos">Listar pagos (admin)</a></li>
+        <li><a href="pagos/buscar-pagos">Buscar pagos</a></li>
+      </ul>
+      <input type="checkbox" class="menu-toggle" id="menu10" />
+      <label for="menu10" class="menu">
+        <i class="material-icons">assignment_turned_in</i> Reservas
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="listar_horario/registrar_vehiculos">Registrar reservas</a>
+        </li>
+        <li><a href="listar_horario">Listar reservas</a></li>
+      </ul>
 
-    <input type="checkbox" class="menu-toggle" id="menu9">
-    <label for="menu9" class="menu">
-      <i class="material-icons">monetization_on</i> Pagos
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="pagos/registrar_pagos">Registrar pagos</a></li>
-      <li><a href="pagos/listar-admin-pagos">Listar pagos (admin)</a></li>
-      <li><a href="pagos/buscar-pagos">Buscar pagos</a></li>
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu10">
-    <label for="menu10" class="menu">
-      <i class="material-icons">assignment_turned_in</i> Reservas
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="listar_horario/registrar_vehiculos">Registrar reservas</a></li>
-      <li><a href="listar_horario">Listar reservas</a></li>
-    </ul>
+      <input type="checkbox" class="menu-toggle" id="menu11" />
+      <label for="menu11" class="menu">
+        <i class="material-icons">add_location</i> Localizaciones
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="localizaciones/registrar_localizaciones"
+            >Registrar localizaciones</a
+          >
+        </li>
+        <li>
+          <a href="localizaciones/listar_usuario_localizaciones"
+            >Listar localizaciones (user)</a
+          >
+        </li>
+        <li>
+          <a href="localizaciones/buscar_localizaciones"
+            >Buscar localizaciones</a
+          >
+        </li>
+        <li>
+          <a href="localizaciones/listar_admin_localizaciones"
+            >Listar localizaciones (admin)</a
+          >
+        </li>
+      </ul>
 
-    <input type="checkbox" class="menu-toggle" id="menu11">
-    <label for="menu11" class="menu">
-      <i class="material-icons">add_location</i> Localizaciones
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="localizaciones/registrar_localizaciones">Registrar localizaciones</a></li>
-      <li><a href="localizaciones/listar_localizaciones">Listar localizaciones</a></li>
-      <li><a href="localizaciones/buscar_localizaciones">Buscar localizaciones</a></li>
-      <li><a href="localizaciones/modificar_localizaciones">Modificar localizaciones</a></li>
-    </ul>
-
-    <input type="checkbox" class="menu-toggle" id="menu12">
-    <label for="menu12" class="menu">
-      <i class="material-icons">list_alt</i> Reportes
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="reportes/cant-incidentes-por-rol">Cantidad de incidentes por rol</a></li>
-      <li><a href="reportes/cant-reservas-por-fecha">Cantidad de reservas por fecha</a></li>
-      <li><a href="reportes/cant-reservas-por-tipoPago">Cantidad de reservas por tipo de pago</a></li>
-      <li><a href="reportes/cant-reservas-por-usuario">Cantidad de reservas por usuario</a></li>
-    </ul>
-  </div>
-  
-
-
-</body>
-
+      <input type="checkbox" class="menu-toggle" id="menu12" />
+      <label for="menu12" class="menu">
+        <i class="material-icons">list_alt</i> Reportes
+        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+      </label>
+      <ul class="sub-menu">
+        <li>
+          <a href="reportes/cant-incidentes-por-rol"
+            >Cantidad de incidentes por rol</a
+          >
+        </li>
+        <li>
+          <a href="reportes/cant-reservas-por-fecha"
+            >Cantidad de reservas por fecha</a
+          >
+        </li>
+        <li>
+          <a href="reportes/cant-reservas-por-tipoPago"
+            >Cantidad de reservas por tipo de pago</a
+          >
+        </li>
+        <li>
+          <a href="reportes/cant-reservas-por-usuario"
+            >Cantidad de reservas por usuario</a
+          >
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

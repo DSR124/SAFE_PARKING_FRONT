@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
-    <app-navbar></app-navbar>
-
     <div class="container" style="text-align: center">
       <h1>Registro de Horario</h1>
       <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
@@ -73,15 +71,18 @@
         <button
           mat-raised-button
           color="primary"
-          routerLink="/horarios/listar_horarios"
+          routerLink="/horarios/listar_admin_horarios"
         >
           REGISTRAR
         </button>
-        <button mat-raised-button color="warn" routerLink="/listar">
+        <button
+          mat-raised-button
+          color="warn"
+          routerLink="/horarios/listar_admin_horarios"
+        >
           CANCELAR
         </button>
       </form>
     </div>
-    <app-footer></app-footer>
   </body>
 </html>

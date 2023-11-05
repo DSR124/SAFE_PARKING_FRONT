@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
   <body>
-    <app-navbar></app-navbar>
-
     <div class="form">
       <div class="generic-group">
         <label for="inputId">Ingrese el ID:</label>
@@ -20,15 +18,15 @@
         <button (click)="buscar()">Buscar</button>
       </div>
       <hr />
-      <div class="generic-details" *ngIf="rol">
-        <h2 class="generic-heading">Detalles</h2>
+      <div class="generic-details" *ngIf="hrs_estacionamiento">
+        <h2 class="generic-heading">Detalles del Horario Estacionamiento</h2>
         <div class="generic-box">
-          <h1>Tipo de Rol</h1>
-          <p>{{ rol.nombreRol }}</p>
+          <h1>Id de estacionamiento</h1>
+          <p>{{ hrs_estacionamiento.estacionamiento.idEstacionamiento }}</p>
         </div>
         <div class="generic-box">
-          <h1>Usuario</h1>
-          <p>{{ rol.usuario.nombre }}</p>
+          <h1>Id de horario</h1>
+          <p>{{ hrs_estacionamiento.horario.idHorario }}</p>
         </div>
       </div>
     </div>

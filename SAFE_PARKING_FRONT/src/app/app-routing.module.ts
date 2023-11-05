@@ -5,7 +5,6 @@ import { BuscarMembresiaComponent } from './components/membresia/buscar-membresi
 import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
 import { MembresiaComponent } from './components/membresia/membresia.component';
 import { LocalizacionesComponent } from './components/localizaciones/localizaciones.component';
-import { MembresiaService } from './services/membresia.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -42,6 +41,11 @@ import { CreaeditaPagoComponent } from './components/pago/creaedita-pago/creaedi
 import { ListarAdminPagoComponent } from './components/pago/listar-admin-pago/listar-admin-pago.component';
 import { BuscarPagoComponent } from './components/pago/buscar-pago/buscar-pago.component';
 import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.component';
+import { HorarioEstacionamientoComponent } from './components/horario-estacionamiento/horario-estacionamiento.component';
+import { CreaeditaHorarioEstacionamientoComponent } from './components/horario-estacionamiento/creaedita-horario-estacionamiento/creaedita-horario-estacionamiento.component';
+import { ListarAdminHorarioEstacionamientoComponent } from './components/horario-estacionamiento/listar-admin-horario-estacionamiento/listar-admin-horario-estacionamiento.component';
+import { BuscarHorarioComponent } from './components/horario/buscar-horario/buscar-horario.component';
+import { BuscarHorarioEstacionamientoComponent } from './components/horario-estacionamiento/buscar-horario-estacionamiento/buscar-horario-estacionamiento.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -69,7 +73,7 @@ const routes: Routes = [
         component: ListarAdminLocalizacionesComponent,
       },
       {
-        path: 'modificar_localizaciones/ediciones/:type',
+        path: 'listar_admin_localizaciones/ediciones/:id',
         component: CreaeditaLocalizacionesComponent,
       },
     ],
@@ -89,8 +93,12 @@ const routes: Routes = [
         component: BuscarVehiculosComponent,
       },
       {
-        path: 'listar_vehiculos',
+        path: 'listar_admin_vehiculos',
         component: ListarAdminVehiculosComponent,
+      },
+      {
+        path: 'listar_admin_vehiculos/ediciones/:id',
+        component: CreaeditaVehiculosComponent,
       },
     ],
   },
@@ -128,14 +136,41 @@ const routes: Routes = [
         path: 'listar_usuario_horarios',
         component: ListarUsuarioHorarioComponent,
       },
-
+      {
+        path: 'buscar_horarios',
+        component: BuscarHorarioComponent,
+      },
       {
         path: 'listar_admin_horarios',
         component: ListarAdminHorarioComponent,
       },
       {
-        path: 'modificar_horarios/ediciones/:id',
+        path: 'listar_admin_horarios/ediciones/:id',
         component: CreaeditaHorarioComponent,
+      },
+    ],
+  },
+  //Horarios
+
+  {
+    path: 'horarios_estacionamiento',
+    component: HorarioEstacionamientoComponent,
+    children: [
+      {
+        path: 'registrar_horarios_estacionamiento',
+        component: CreaeditaHorarioEstacionamientoComponent,
+      },
+      {
+        path: 'buscar_horarios_estacionamiento',
+        component: BuscarHorarioEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_horarios_estacionamiento',
+        component: ListarAdminHorarioEstacionamientoComponent,
+      },
+      {
+        path: 'listar_admin_horarios_estacionamiento/ediciones/:id',
+        component: CreaeditaHorarioEstacionamientoComponent,
       },
     ],
   },
@@ -162,7 +197,7 @@ const routes: Routes = [
     children: [
       {
         path: 'registrar_roles',
-        component: CreaeditaRolComponent
+        component: CreaeditaRolComponent,
       },
       {
         path: 'listar-admin-roles',
@@ -170,13 +205,12 @@ const routes: Routes = [
       },
       {
         path: 'listar-admin-roles/ediciones/:id',
-        component: CreaeditaRolComponent
+        component: CreaeditaRolComponent,
       },
       {
         path: 'buscar-roles',
-        component: BuscarRolComponent
+        component: BuscarRolComponent,
       },
-
     ],
   },
 
@@ -187,7 +221,7 @@ const routes: Routes = [
     children: [
       {
         path: 'registrar_pagos',
-        component: CreaeditaPagoComponent
+        component: CreaeditaPagoComponent,
       },
       {
         path: 'listar-admin-pagos',
@@ -195,13 +229,12 @@ const routes: Routes = [
       },
       {
         path: 'listar-admin-pagos/ediciones/:id',
-        component: CreaeditaPagoComponent
+        component: CreaeditaPagoComponent,
       },
       {
         path: 'buscar-pagos',
-        component: BuscarPagoComponent
+        component: BuscarPagoComponent,
       },
-
     ],
   },
 
@@ -256,4 +289,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

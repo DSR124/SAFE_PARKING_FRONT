@@ -92,6 +92,8 @@ import { RolComponent } from './components/rol/rol.component';
 import { ListarAdminRolComponent } from './components/rol/listar-admin-rol/listar-admin-rol.component';
 import { BuscarPagoComponent } from './components/pago/buscar-pago/buscar-pago.component';
 import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.component';
+import { BuscarHorarioComponent } from './components/horario/buscar-horario/buscar-horario.component';
+import { BuscarHorarioEstacionamientoComponent } from './components/horario-estacionamiento/buscar-horario-estacionamiento/buscar-horario-estacionamiento.component';
 
 @NgModule({
   declarations: [
@@ -195,6 +197,8 @@ import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.compo
     ListarAdminRolComponent,
     BuscarPagoComponent,
     BuscarRolComponent,
+    BuscarHorarioComponent,
+    BuscarHorarioEstacionamientoComponent,
   ],
   imports: [
     BrowserModule,
@@ -221,7 +225,6 @@ import { BuscarRolComponent } from './components/rol/buscar-rol/buscar-rol.compo
     NgxMaterialTimepickerModule,
     ColorSketchModule,
     ColorMaterialModule,
-    
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],

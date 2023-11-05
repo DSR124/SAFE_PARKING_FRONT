@@ -155,7 +155,6 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     if (this.edicion) {
       this.lS.getById(this.id).subscribe((data) => {
         this.form = new FormGroup({
-          idLocalizacion: new FormControl(data.idLocalizacion),
           direccion: new FormControl(data.direccion),
           distrito: new FormControl(data.distrito),
           region: new FormControl(data.region),
