@@ -39,6 +39,7 @@ import { CreaeditaRolComponent } from './components/rol/creaedita-rol/creaedita-
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { CreaeditaComentarioComponent } from './components/comentario/creaedita-comentario/creaedita-comentario.component';
 import { ListarAdminComentarioComponent } from './components/comentario/listar-admin-comentario/listar-admin-comentario.component';
+import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
 
 const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -90,6 +91,11 @@ const routes: Routes = [
         {
           path: 'modificar_comentarios/:id',
           component: CreaeditaComentarioComponent,
+        },
+
+        {
+          path: 'buscar_comentarios',
+          component: BuscarComentariosComponent,
         },
       ],
     },
