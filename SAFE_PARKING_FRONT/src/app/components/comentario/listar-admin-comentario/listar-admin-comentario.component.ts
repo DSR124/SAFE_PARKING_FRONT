@@ -13,7 +13,7 @@ export class ListarAdminComentarioComponent implements OnInit {
 
   dataSource: MatTableDataSource<Comentario> = new MatTableDataSource();
   displayedColumns: string[] =
-    ['codigo', 'contenido', 'valoracion', 'fechacreacion', 'idUsuario'];
+    ['codigo', 'contenido', 'valoracion', 'fechacreacion', 'idUsuario','modificar','eliminar'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private cS: ComentarioService) {
 
@@ -30,5 +30,14 @@ export class ListarAdminComentarioComponent implements OnInit {
     });
   }
 
-  
+  eliminar(id: number) {
+    this.cS.delete(id).subscribe((data) => {
+      this.cS.list().subscribe((data) => {
+        this.cS.setList(data);
+      });
+    });
+  }
+  filter(en: any) {
+    this.dataSource.filter = en.target.value.trim();
+  }
 }

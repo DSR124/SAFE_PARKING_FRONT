@@ -79,12 +79,17 @@ const routes: Routes = [
       children: [
         {
           path: 'registrar_comentarios',
-          component: CreaeditaComentarioComponent
+          component: CreaeditaComentarioComponent,
         },
 
         {
           path: 'listar_comentarios_admin',
           component: ListarAdminComentarioComponent,
+        },
+
+        {
+          path: 'modificar_comentarios/:id',
+          component: CreaeditaComentarioComponent,
         },
       ],
     },
