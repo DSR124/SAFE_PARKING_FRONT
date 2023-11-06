@@ -9,10 +9,11 @@ import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacion
 @Component({
   selector: 'app-listar-admin-reserva-estacionamiento',
   templateUrl: './listar-admin-reserva-estacionamiento.component.html',
-  styleUrls: ['./listar-admin-reserva-estacionamiento.component.css']
+  styleUrls: ['./listar-admin-reserva-estacionamiento.component.css'],
 })
 export class ListarAdminReservaEstacionamientoComponent implements OnInit {
-  dataSource: MatTableDataSource<ReservaEstacionamiento> = new MatTableDataSource();
+  dataSource: MatTableDataSource<ReservaEstacionamiento> =
+    new MatTableDataSource();
   displayedColumns: string[] = [
     'idReservaEstacionamiento',
     'estado',
@@ -22,19 +23,26 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
     'vehiculo',
     'horarioEstacionamiento',
     'accion01',
-    'accion02'
+    'accion02',
   ];
 
   editarReserva: ReservaEstacionamiento | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private reS: ReservaEstacionamientoService, public route: ActivatedRoute) {}
+  constructor(
+    private reS: ReservaEstacionamientoService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.reS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
+    this.reS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -63,4 +71,3 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
     this.dataSource.filter = en.target.value.trim();
   }
 }
-
