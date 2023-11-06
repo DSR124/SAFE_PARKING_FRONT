@@ -27,7 +27,8 @@ export class CreaeditaUsuarioComponent implements OnInit {
   maxFecha: Date = moment().add(-1, 'days').toDate();
   id: number = 0;
   edicion: boolean = false;
-
+  imageSelected: string | ArrayBuffer | null = null;
+  imagenCortada: string = '';
   listaMembresia: Membresia[] = [];
 
   generos: { value: string; viewValue: string }[] = [
@@ -44,7 +45,6 @@ export class CreaeditaUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
@@ -106,11 +106,33 @@ export class CreaeditaUsuarioComponent implements OnInit {
         });
       }
 
-      
-
       this.router.navigate(['usuarios/listar_admin_usuarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
+    }
+  }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      if (file.type.startsWith('image')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageSelected = reader.result;
+
+          if (typeof this.imageSelected === 'string') {
+            this.imagenCortada = this.imageSelected.substring(0, 50);
+            this.form.get('imagen')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
+
+            console.log('Partial image data:', this.imagenCortada);
+          } else {
+            console.log('Image has not loaded as a string');
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        console.log('The selected file is not an image.');
+      }
     }
   }
 
@@ -121,16 +143,16 @@ export class CreaeditaUsuarioComponent implements OnInit {
           idUsuario: new FormControl(data.idUsuario),
           nombre: new FormControl(data.nombre),
           apellido: new FormControl(data.apellido),
-          correo:new FormControl(data.correo),
+          correo: new FormControl(data.correo),
           username: new FormControl(data.username),
-          password:new FormControl(data.password),
-          genero:new FormControl(data.genero),
-          dni:new FormControl(data.dni),
-          imagen:new FormControl(data.imagen),
-          fechaNacimiento:new FormControl(data.fechaNacimiento),
-          telefono:new FormControl(data.telefono),
-          membresia:new FormControl(data.membresia.idMembresia),
-          enabled:new FormControl(data.enabled),
+          password: new FormControl(data.password),
+          genero: new FormControl(data.genero),
+          dni: new FormControl(data.dni),
+          imagen: new FormControl(data.imagen),
+          fechaNacimiento: new FormControl(data.fechaNacimiento),
+          telefono: new FormControl(data.telefono),
+          membresia: new FormControl(data.membresia.idMembresia),
+          enabled: new FormControl(data.enabled),
         });
       });
     }
