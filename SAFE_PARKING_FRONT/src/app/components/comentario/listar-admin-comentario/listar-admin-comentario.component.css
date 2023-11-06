@@ -1,26 +1,57 @@
-/*Estilos del form*/
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    
-}
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
 
-table {
-    background-color: rgb(255, 255, 255);
-}
-
-.container {
-    width: 50%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    /* Centra horizontalmente */
-    margin-top: 50px;
 }
 
 h2 {
-    color: #333;
-    padding: 40px;
+  color: #333;
+  padding-top:30px;
 }
+.container {
+  width: 90%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  /* Centra horizontalmente */
+  margin-top: 50px;
+
+  overflow: auto;
+}
+
+table {
+  width: 800px;
+}
+.example-container {
+  height: 400px;
+  width: 90%;
+  overflow: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  /* Centra horizontalmente */
+  margin-top: 50px;
+
+  overflow: auto;
+}
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-table-sticky:first-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky:last-child {
+  border-left: 1px solid #696969;
+}
+

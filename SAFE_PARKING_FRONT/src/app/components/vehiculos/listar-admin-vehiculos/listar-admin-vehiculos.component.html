@@ -2,110 +2,123 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
-
-<body>
-  <div class="litle">
-    <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
-  </div>
-  <div class="container">
-    <mat-form-field>
-      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!--- Note that these columns can be defined in any order.
+  <body>
+    <div class="litle">
+      <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
+    </div>
+    <div class="example-container mat-elevation-z8">
+      <mat-form-field>
+        <input
+          style="text-align: left"
+          matInput
+          (keyup)="filter($event)"
+          placeholder="Bucar por.."
+        />
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- idVehiculo Column -->
-      <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef>codigo</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.idVehiculo }}
-        </td>
-      </ng-container>
+        <!-- idVehiculo Column -->
 
-      <!-- placa Column -->
-      <ng-container matColumnDef="placa">
-        <th mat-header-cell *matHeaderCellDef>placa</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.placaVehiculo }}
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="codigo" sticky>
+          <th mat-header-cell *matHeaderCellDef>codigo</th>
+          <td mat-cell *matCellDef="let element">{{ element.idVehiculo }}</td>
+        </ng-container>
 
-      <!-- categoriaVehiculo Column -->
-      <ng-container matColumnDef="categoria">
-        <th mat-header-cell *matHeaderCellDef>categoria</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.categoriaVehiculo }}
-        </td>
-      </ng-container>
+        <!-- placa Column -->
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef>placa</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.placaVehiculo }}
+          </td>
+        </ng-container>
 
-      <!-- colorVehiculo Column -->
-      <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef>color</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.colorVehiculo }}
-        </td>
-      </ng-container>
-      <!-- marca Column -->
-      <ng-container matColumnDef="marca">
-        <th mat-header-cell *matHeaderCellDef>marca</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.marcaVehiculo }}
-        </td>
-      </ng-container>
+        <!-- categoriaVehiculo Column -->
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef>categoria</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.categoriaVehiculo }}
+          </td>
+        </ng-container>
 
-      <!-- tamanio Column -->
-      <ng-container matColumnDef="tamanio">
-        <th mat-header-cell *matHeaderCellDef>tamanio</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.tamanioVehiculo }}
-        </td>
-      </ng-container>
+        <!-- colorVehiculo Column -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef>color</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.colorVehiculo }}
+          </td>
+        </ng-container>
+        <!-- marca Column -->
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef>marca</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.marcaVehiculo }}
+          </td>
+        </ng-container>
 
-      <!-- tarjetaPropiedadVehiculo Column -->
-      <ng-container matColumnDef="tarjeta de propiedad">
-        <th mat-header-cell *matHeaderCellDef>tarjeta de propiedad</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.tarjetaPropiedadVehiculo }}
-        </td>
-      </ng-container>
+        <!-- tamanio Column -->
+        <ng-container matColumnDef="tamanio">
+          <th mat-header-cell *matHeaderCellDef>tamanio</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.tamanioVehiculo }}
+          </td>
+        </ng-container>
 
-      <!-- imagenVehiculo Column -->
-      <ng-container matColumnDef="imagen">
-        <th mat-header-cell *matHeaderCellDef>imagen</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.imagenVehiculo }}
-        </td>
-      </ng-container>
+        <!-- tarjetaPropiedadVehiculo Column -->
+        <ng-container matColumnDef="tarjeta de propiedad">
+          <th mat-header-cell *matHeaderCellDef>tarjeta de propiedad</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.tarjetaPropiedadVehiculo }}
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef>Acciones</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="warn" [routerLink]="['ediciones', element.idVehiculo]">
-            Actualizar
-          </button>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="accion02">
-        <th mat-header-cell *matHeaderCellDef>Acciones</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="accent" (click)="eliminar(element.idVehiculo)">
-            Eliminar
-          </button>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <br>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-  </div>
-</body>
+        <!-- imagenVehiculo Column -->
+        <ng-container matColumnDef="imagen">
+          <th mat-header-cell *matHeaderCellDef>imagen</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.imagenVehiculo }}
+          </td>
+        </ng-container>
 
+        <ng-container matColumnDef="accion01" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="primary"
+              [routerLink]="['ediciones', element.idVehiculo]"
+            >
+              <mat-icon>edit</mat-icon> Editar
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion02" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="eliminar(element.idVehiculo)"
+            >
+              <mat-icon>delete</mat-icon> Eliminar
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <br />
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
 </html>
