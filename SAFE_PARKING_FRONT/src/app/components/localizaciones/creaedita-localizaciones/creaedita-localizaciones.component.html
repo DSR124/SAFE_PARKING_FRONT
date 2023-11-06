@@ -8,58 +8,67 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
     />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <title>Registrar Localización</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Registrar Localizacion</h1>
+    <div class="container" style="text-align: center">
+      <h1>REGISTRO DE LOCALIZACION</h1>
       <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
         <!-- Región sección -->
-       
+
         <mat-form-field class="example-full-width">
           <mat-label>Región</mat-label>
-          <mat-select  matInput placeholder="Región" formControlName="region">
-              <mat-option *ngFor="let p of provinciasLima" [value]="p.value">
-                  {{p.viewValue}}
-              </mat-option>
+          <mat-select matInput placeholder="Región" formControlName="region">
+            <mat-option *ngFor="let p of provinciasLima" [value]="p.value">
+              {{ p.viewValue }}
+            </mat-option>
           </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('region')?.errors?.['required']">
-              La region/provincia es obligatoria.
+          <mat-error
+            *ngIf="obtenerControlCampo('region')?.errors?.['required']"
+          >
+            La region/provincia es obligatoria.
           </mat-error>
-      </mat-form-field>
-        
+        </mat-form-field>
 
         <!-- Distrito sección -->
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Distrito</mat-label>
-        <mat-select  matInput placeholder="Distrito" formControlName="distrito">
+        <mat-form-field class="example-full-width">
+          <mat-label>Distrito</mat-label>
+          <mat-select
+            matInput
+            placeholder="Distrito"
+            formControlName="distrito"
+          >
             <mat-option *ngFor="let p of distritosLima" [value]="p.value">
-                {{p.viewValue}}
+              {{ p.viewValue }}
             </mat-option>
-        </mat-select>
-        <mat-error *ngIf="obtenerControlCampo('distrito')?.errors?.['required']">
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('distrito')?.errors?.['required']"
+          >
             La disponibilidad es obligatoria.
-        </mat-error>
-    </mat-form-field>
-      <!-- Dirección sección -->
-      <mat-form-field class="example-full-width">
-        <mat-label>Dirección</mat-label>
-        <input matInput placeholder="Dirección" formControlName="direccion" />
-        <mat-error
-          *ngIf="obtenerControlCampo('direccion')?.errors?.['required']"
-        >
-          El campo es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      
-    
-      <!-- Referencia sección -->
-      <mat-form-field class="example-full-width">
+          </mat-error>
+        </mat-form-field>
+        <!-- Dirección sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Dirección</mat-label>
+          <input matInput placeholder="Dirección" formControlName="direccion" />
+          <mat-error
+            *ngIf="obtenerControlCampo('direccion')?.errors?.['required']"
+          >
+            El campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Referencia sección -->
+        <mat-form-field class="example-full-width">
           <mat-label>Referencia</mat-label>
           <input
             matInput
@@ -72,36 +81,43 @@
             El campo es obligatorio.
           </mat-error>
         </mat-form-field>
+        <h2>SELECCIONE TU HUBICACION EN EL MAPA</h2>
 
-        <div>
+        <div class="longitudes">
           <!-- Latitud sección -->
           <mat-form-field class="example-full-width">
             <mat-label>Latitud</mat-label>
-            <input matInput placeholder="Latitud" formControlName="latitud" readonly />
+            <input
+              matInput
+              placeholder="Latitud"
+              formControlName="latitud"
+              readonly
+            />
             <mat-error
-            *ngIf="obtenerControlCampo('latitud')?.errors?.['required']"
+              *ngIf="obtenerControlCampo('latitud')?.errors?.['required']"
             >
-            El campo es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <!-- Longitud sección -->
-        <mat-form-field class="example-full-width">
-          <mat-label>Longitud</mat-label>
-          <input matInput placeholder="Longitud" formControlName="longitud" readonly />
-          <mat-error
-          *ngIf="obtenerControlCampo('longitud')?.errors?.['required']"
-          >
-          El campo es obligatorio.
-        </mat-error>
-      </mat-form-field>
-    </div>
-    
-    <h2>Selecciona tu ubicacion en el mapa</h2>
+              El campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <!-- Longitud sección -->
+          <mat-form-field class="example-full-width">
+            <mat-label>Longitud</mat-label>
+            <input
+              matInput
+              placeholder="Longitud"
+              formControlName="longitud"
+              readonly
+            />
+            <mat-error
+              *ngIf="obtenerControlCampo('longitud')?.errors?.['required']"
+            >
+              El campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
         <div id="map" style="height: 400px"></div>
         <button mat-raised-button color="primary">REGISTRAR</button>
-        <button mat-raised-button color="warn" routerLink="/listar">
-          CANCELAR
-        </button>
       </form>
     </div>
   </body>

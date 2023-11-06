@@ -15,13 +15,12 @@ import { EstacionamientoService } from 'src/app/services/estacionamiento.service
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { LocalizacionService } from 'src/app/services/localizacion.service';
 
-
 @Component({
   selector: 'app-creaedita-estacionamiento',
   templateUrl: './creaedita-estacionamiento.component.html',
-  styleUrls: ['./creaedita-estacionamiento.component.css']
+  styleUrls: ['./creaedita-estacionamiento.component.css'],
 })
-export class CreaeditaEstacionamientoComponent implements OnInit{
+export class CreaeditaEstacionamientoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   estacionamiento: Estacionamiento = new Estacionamiento();
   mensaje: string = '';
@@ -33,12 +32,18 @@ export class CreaeditaEstacionamientoComponent implements OnInit{
   tipos: { value: string; viewValue: string }[] = [
     { value: 'Publico', viewValue: 'Estacionamiento Público Tradicional' },
     { value: 'Privado', viewValue: 'Estacionamiento Privado Compartido' },
-    { value: 'Privado-Domicilio', viewValue: 'Estacionamiento Privado Domicilio' },
+    {
+      value: 'Privado-Domicilio',
+      viewValue: 'Estacionamiento Privado Domicilio',
+    },
     { value: 'Temporal', viewValue: 'Estacionamiento Temporal' },
     { value: 'Comunitario', viewValue: 'Estacionamiento Comunitario' },
     { value: 'Accesible', viewValue: 'Estacionamiento Accesible' },
     { value: 'Inteligente', viewValue: 'Estacionamiento Inteligente' },
-    { value: 'Almacenamiento', viewValue: 'Estacionamiento para Almacenamiento a Largo Plazo' },
+    {
+      value: 'Almacenamiento',
+      viewValue: 'Estacionamiento para Almacenamiento a Largo Plazo',
+    },
   ];
 
   tipo_disponibilidad: { value: string; viewValue: string }[] = [
@@ -47,7 +52,8 @@ export class CreaeditaEstacionamientoComponent implements OnInit{
   ];
   listaLocalizaciones: Localizacion[] = [];
   listaUsuario: Usuario[] = [];
-
+  imageSelected: string | ArrayBuffer | null = null;
+  imagenCortada: string = '';
   constructor(
     private eS: EstacionamientoService,
     private uS: UsuarioService, //Servides dependientes - añadir
@@ -88,16 +94,20 @@ export class CreaeditaEstacionamientoComponent implements OnInit{
 
   registrar(): void {
     if (this.form.valid) {
-      this.estacionamiento.idEstacionamiento = this.form.value.idEstacionamiento;
-      this.estacionamiento.tipoEstacionamiento = this.form.value.tipoEstacionamiento;
+      this.estacionamiento.idEstacionamiento =
+        this.form.value.idEstacionamiento;
+      this.estacionamiento.tipoEstacionamiento =
+        this.form.value.tipoEstacionamiento;
       this.estacionamiento.disponibilidad = this.form.value.disponibilidad;
       this.estacionamiento.foto = this.form.value.foto;
-      this.estacionamiento.promedioValoracion = this.form.value.promedioValoracion;
+      this.estacionamiento.promedioValoracion =
+        this.form.value.promedioValoracion;
       this.estacionamiento.capacidad = this.form.value.capacidad;
       this.estacionamiento.fechaRegistro = this.form.value.fechaRegistro;
       this.estacionamiento.precio = this.form.value.precio;
       this.estacionamiento.usuario.idUsuario = this.form.value.usuario;
-      this.estacionamiento.localizacion.idLocalizacion = this.form.value.localizacion;
+      this.estacionamiento.localizacion.idLocalizacion =
+        this.form.value.localizacion;
 
       if (this.edicion) {
         this.eS.update(this.estacionamiento).subscribe(() => {
@@ -142,6 +152,31 @@ export class CreaeditaEstacionamientoComponent implements OnInit{
           localizacion: new FormControl(data.localizacion.idLocalizacion), //Tienes que referenciar al ID (en el segundo)
         });
       });
+    }
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      if (file.type.startsWith('image')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageSelected = reader.result;
+
+          if (typeof this.imageSelected === 'string') {
+            this.imagenCortada = this.imageSelected.substring(0, 50);
+            this.form.get('foto')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
+
+            console.log('Partial image data:', this.imagenCortada);
+          } else {
+            console.log('Image has not loaded as a string');
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        console.log('The selected file is not an image.');
+      }
     }
   }
 }

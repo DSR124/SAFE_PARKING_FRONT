@@ -1,4 +1,5 @@
 
+
 .container {
   max-width: 600px;
   padding: 20px;
@@ -6,16 +7,20 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Centra verticalmente */
-  margin-top: 80px;
+  /* Centra horizontalmente */
+  margin-top: 50px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  height: 100%;
+  padding: 20px;
 }
 
 
 h1 {
   color: #333;
+  text-align: center;
 }
 
 /* Estilos para los campos de formulario */

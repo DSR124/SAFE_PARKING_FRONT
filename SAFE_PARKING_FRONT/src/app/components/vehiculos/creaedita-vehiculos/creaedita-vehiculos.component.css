@@ -1,22 +1,45 @@
 /* Apply display: flex to the form container */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  height: 101%;
+  padding: 20px;
+}
+.container {
+  margin-bottom: 50px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  /* Centra horizontalmente */
+  margin-top: 50px;
+  max-width: 98%;
+}
+
+.example-form{
+  max-height: 600px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 .informacion{
   display: flex;
 }
 
 h1 {
   text-align: center;
-  padding: 20px;
 }
 h2 {
   text-align: center;
-  padding: 15px;
 }
 
 .secciones {
-  margin: 20px;
+  margin: 5px;
   width: 70%; /* Expand to full width */
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(221, 221, 221);
   align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 
 }
 
@@ -41,8 +64,6 @@ h2 {
 /* Style the buttons */
 .btn-container {
   justify-content: center;
-  margin-top: 20px;
-  width: 100%;
   text-align: center;
 }
 button{

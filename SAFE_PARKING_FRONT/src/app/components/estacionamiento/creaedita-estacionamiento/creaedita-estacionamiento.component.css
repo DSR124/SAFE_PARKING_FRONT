@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 90%;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -20,18 +20,47 @@ body {
 }
 
 
-h1 {
-    color: #333;
+.example-form{
+  max-height: 600px;
+  border-radius: 8px;
+
+
+}
+.formularios{
+  display: flex;
+  border-radius: 8px;
+  height: 90%;
+
+}
+.example-full-width{
+  margin: 5px;
+  width: 90%;
+
+}
+.secciones{
+  margin: 5px;
+  width: 70%; /* Expand to full width */
+  background-color: rgb(221, 221, 221);
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+
+}
+.image-upload {
+  max-width: 90%;
+  max-height: 90%;
+  margin: 0 20px;
 }
 
-/* Estilos para los campos de formulario */
-mat-form-field {
-    width: 100%;
-    margin-bottom: 15px;
+/* Additional styling for the uploaded image */
+img {
+  max-width: 40%;
+  max-height: 40%;
+  margin-top: 10px;
+
+}
+input[type="file"] {
+  background-color: rgb(173, 173, 182);
 }
 
-/*Estilos para los botones*/
-
-button {
-    margin: 10px;
-}
