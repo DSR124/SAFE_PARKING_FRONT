@@ -3,427 +3,307 @@
 <div [hidden]="route.children.length !== 0">
   <!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="home.component.css" />
-      <link rel="Icon" href="/assets/image/Logo_verde.png" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <script
-        src="https://kit.fontawesome.com/41bcea2ae3.js"
-        crossorigin="anonymous"
-      ></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.component.css" />
+    <link rel="Icon" href="/assets/image/Logo_verde.png" />
+    <link rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" />
+    <title>Document</title>
+  </head>
 
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        rel="shortcut icon"
-        href="favicon.ico"
-        mce_href="favicon.ico"
-        type="image/x-icon"
-      />
-      <title>Document</title>
-    </head>
-
-    <body>
-      <!--Logo inicial y eslogan-->
-      <section id="Slogan-Inicial">
-        <div class="container">
-          <div class="capa"></div>
-          <div class="presentation">
-            <h2>SAFE PARKING</h2>
-            <p>¡Donde aparcar nunca fue tan fácil!</p>
-          </div>
-          <div class="download-app">
-            <a href="">
-              <button>
-                <strong>Descárgalo gratis</strong>
-              </button>
-            </a>
-            <p>Disponible en:</p>
-            <div class="/assets/image-download">
-              <a
-                title="Play Store"
-                href="https://play.google.com/store/games?hl=es&pli=1"
-                target="_blank"
-              >
-                <img class="img-1" src="/assets/image/1_Playstore.png" alt=""
-              /></a>
-              <a
-                title="Apple Store"
-                href="https://www.apple.com/la/app-store/"
-                target="_blank"
-                ><img class="img-2" src="/assets/image/2_Applestore.png" alt=""
-              /></a>
-            </div>
+  <body>
+    <!--Logo inicial y eslogan-->
+    <section id="Slogan-Inicial">
+      <div class="container">
+        <div class="capa"></div>
+        <div class="presentation">
+          <h1>SAFE PARKING</h1>
+          <p>¡Donde aparcar nunca fue tan fácil!</p>
+        </div>
+        <div class="download-app">
+          <a href="">
+            <button>
+              <strong>Descárgalo gratis</strong>
+            </button>
+          </a>
+          <p>Disponible en:</p>
+          <div class="/assets/image-download">
+            <a title="Play Store" href="https://play.google.com/store/games?hl=es&pli=1" target="_blank">
+              <img class="img-1" src="/assets/image/1_Playstore.png" alt="" /></a>
+            <a title="Apple Store" href="https://www.apple.com/la/app-store/" target="_blank"><img class="img-2"
+                src="/assets/image/2_Applestore.png" alt="" /></a>
           </div>
         </div>
+      </div>
 
-        <div>
-          <svg
-            class="waves"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
-              <path
-                id="gentle-wave"
-                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-              ></path>
-            </defs>
-            <g class="parallax">
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="0"
-                fill="rgba(0,214,125,0.2)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="3"
-                fill="rgba(0,214,125,0.5)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="5"
-                fill="rgba(0,214,125,0.3)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="7"
-                fill="rgba(0,214,125)"
-              ></use>
-            </g>
-          </svg>
+      <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,214,125,0.2)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,214,125,0.5)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0,214,125,0.3)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,214,125)"></use>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!--Caracteristicas-->
+    <section id="Caracteristicas">
+      <div class="container">
+        <div class="titulo">
+          <h2>CARACTERÍSTICAS</h2>
+          <p>¿Por qué elegir Safe Parking?</p>
         </div>
-      </section>
-
-      <!--Caracteristicas-->
-      <section id="Caracteristicas">
-        <div class="container">
-          <div class="titulo">
-            <h1>Características</h1>
-            <p>¿Por qué elegir Safe Parking?</p>
+        <div class="contenido">
+          <div class="imagenPrincipal">
+            <img class="img-1-principal" src="/assets/image/iPhoneFondo.png" alt="" />
           </div>
-          <div class="contenido">
-            <div class="imagenPrincipal">
-              <img
-                class="img-1-principal"
-                src="/assets/image/iPhoneFondo.png"
-                alt=""
-              />
-            </div>
 
-            <div class="Cuadrados">
-              <div class="Seccion">
-                <div class="Cuadros">
-                  <h2>Seguridad</h2>
-                  <p>
-                    Estacionamientos verificados a detalle y cámaras de
-                    vigilancia en todo momento.
-                  </p>
-                </div>
-                <div class="Cuadros">
-                  <h2>Accesible</h2>
-                  <p>
-                    Con los precios más accesibles en el mercado reserva el
-                    estacionamiento de tu preferencia
-                  </p>
-                </div>
-                <div class="Cuadros">
-                  <h2>Calidad</h2>
-                  <p>
-                    Estacionamientos de gran calidad, modernos y posibilidad de
-                    elegir tus preferencias de reserva
-                  </p>
-                </div>
+          <div class="Cuadrados">
+            <div class="Seccion">
+              <div class="Cuadros">
+                <h3>Seguridad</h3>
+                <p>
+                  Estacionamientos verificados a detalle y cámaras de
+                  vigilancia en todo momento.
+                </p>
               </div>
+              <div class="Cuadros">
+                <h3>Accesible</h3>
+                <p>
+                  Con los precios más accesibles en el mercado reserva el
+                  estacionamiento de tu preferencia
+                </p>
+              </div>
+              <div class="Cuadros">
+                <h3>Calidad</h3>
+                <p>
+                  Estacionamientos de gran calidad, modernos y posibilidad de
+                  elegir tus preferencias de reserva
+                </p>
+              </div>
+            </div>
 
-              <div class="Seccion">
-                <div class="Cuadros">
-                  <h2>Claridad</h2>
-                  <p>
-                    Siempre te mostramos el precio antes de reservar el
-                    estacionamiento para que tú decidas donde aparcar tu
-                    vehículo. Sin sorpresas.
-                  </p>
-                </div>
-                <div class="Cuadros">
-                  <h2>Premium</h2>
-                  <p>
-                    Estacionamientos premium, lugares con estilo, eleva tu
-                    experiencia de reserva con establecimientos modernos y
-                    comodos
-                  </p>
-                </div>
-                <div class="Cuadros">
-                  <h2>Comodidad</h2>
-                  <p>
-                    Los estacionamientos más cómodos para tu vehiculo, reserva
-                    lo mejor para tu vehículo
-                  </p>
-                </div>
+            <div class="Seccion">
+              <div class="Cuadros">
+                <h3>Claridad</h3>
+                <p>
+                  Siempre te mostramos el precio antes de reservar el
+                  estacionamiento para que tú decidas donde aparcar tu
+                  vehículo. Sin sorpresas.
+                </p>
+              </div>
+              <div class="Cuadros">
+                <h3>Premium</h3>
+                <p>
+                  Estacionamientos premium, lugares con estilo, eleva tu
+                  experiencia de reserva con establecimientos modernos y
+                  comodos
+                </p>
+              </div>
+              <div class="Cuadros">
+                <h3>Comodidad</h3>
+                <p>
+                  Los estacionamientos más cómodos para tu vehiculo, reserva
+                  lo mejor para tu vehículo
+                </p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div>
-          <svg
-            class="waves"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
-              <path
-                id="gentle-wave"
-                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-              ></path>
-            </defs>
-            <g class="parallax">
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="0"
-                fill="rgba(0,0,0,0.2)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="3"
-                fill="rgba(0,0,0,0,0.5)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="5"
-                fill="rgba(0,0,0,0,0.3)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="7"
-                fill="rgba(0,0,0)"
-              ></use>
-            </g>
-          </svg>
-        </div>
-      </section>
+      <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,0,0.2)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,0,0,0.5)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0,0,0,0,0.3)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,0,0)"></use>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-      <!-- <section id="Ola_caracteristicas">
+    <!-- <section id="Ola_caracteristicas">
 
             <div class = "Olas" style ="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-71.95,-1.45 C286.96,318.27 438.20,-56.72 559.53,80.44 L574.77,213.66 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 0, 0);"></path></svg></div>
 
 
         </section> -->
-      <!--nuestros segmentos-->
+    <!--nuestros segmentos-->
 
-      <section id="Segmentos">
-        <div class="container">
-          <div class="titulo">
-            <h1>NUESTROS SEGMENTOS</h1>
-            <p>Tú decides dónde formar parte</p>
-          </div>
-          <div class="contenido">
-            <div class="Conductor">
-              <div class="slider">
-                <ul>
-                  <li>
-                    <img src="/assets/image/ConductorInicio.jpg" alt="" />
-                  </li>
-                  <li>
-                    <img src="/assets/image/ConductorInicio2.jpg" alt="" />
-                  </li>
-                  <li>
-                    <img src="/assets/image/ConductorInicio4.jpg" alt="" />
-                  </li>
-                  <li>
-                    <img src="/assets/image/ConductorInicio3.jpg" alt="" />
-                  </li>
-                </ul>
-              </div>
-              <div class="texto">
-                <h2>CONDUCTOR</h2>
-                <p>
-                  ¿Buscas estacionamientos? Encuentra los mejores
-                  estacionamientos para tu vehiculo accediendo como conductor.
-                  Accede a los beneficios de formar parte de esta familia.
-                </p>
-                <button mat-button routerLink="/home-condutor">
-                  Saber más
-                </button>
-              </div>
+    <section id="Segmentos">
+      <div class="container">
+        <div class="titulo">
+          <h2>NUESTROS SEGMENTOS</h2>
+          <p>Tú decides dónde formar parte</p>
+        </div>
+        <div class="contenido">
+          <div class="Conductor">
+            <div class="slider">
+              <ul>
+                <li>
+                  <img src="/assets/image/ConductorInicio.jpg" alt="" />
+                </li>
+                <li>
+                  <img src="/assets/image/ConductorInicio2.jpg" alt="" />
+                </li>
+                <li>
+                  <img src="/assets/image/ConductorInicio4.jpg" alt="" />
+                </li>
+                <li>
+                  <img src="/assets/image/ConductorInicio3.jpg" alt="" />
+                </li>
+              </ul>
             </div>
+            <div class="texto">
+              <h3>CONDUCTOR</h3>
+              <p>
+                ¿Buscas estacionamientos? Encuentra los mejores
+                estacionamientos para tu vehiculo accediendo como conductor.
+                Accede a los beneficios de formar parte de esta familia.
+              </p>
+              <button mat-button routerLink="/home-condutor">
+                Saber más
+              </button>
+            </div>
+          </div>
 
-            <div class="arredandor">
-              <div class="texto">
-                <h2>ARRENDADOR</h2>
-                <p>
-                  Unete ahora a nuestro equipo, siendo socio gana dinero extra
-                  arrendando un establecimiento que tengas disponible para
-                  convertirlo en un estacionamiento.
-                </p>
-                <button mat-button routerLink="/home-arrendador">
-                  Saber más
-                </button>
-              </div>
-              <div class="slider">
-                <ul>
-                  <li><img src="/assets/image/Arrendador.jpg" alt="" /></li>
-                  <li><img src="/assets/image/Arrendador2.jpg" alt="" /></li>
-                  <li><img src="/assets/image/Arrendador3.jpg" alt="" /></li>
-                  <li><img src="/assets/image/Arrendador4.jpg" alt="" /></li>
-                </ul>
-              </div>
+          <div class="arredandor">
+            <div class="texto">
+              <h3>ARRENDADOR</h3>
+              <p>
+                Unete ahora a nuestro equipo, siendo socio gana dinero extra
+                arrendando un establecimiento que tengas disponible para
+                convertirlo en un estacionamiento.
+              </p>
+              <button mat-button routerLink="/home-arrendador">
+                Saber más
+              </button>
+            </div>
+            <div class="slider">
+              <ul>
+                <li><img src="/assets/image/Arrendador.jpg" alt="" /></li>
+                <li><img src="/assets/image/Arrendador2.jpg" alt="" /></li>
+                <li><img src="/assets/image/Arrendador3.jpg" alt="" /></li>
+                <li><img src="/assets/image/Arrendador4.jpg" alt="" /></li>
+              </ul>
             </div>
           </div>
         </div>
-        <!-- <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+      </div>
+      <!-- <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
             <path d="M-69.13,-5.41 C193.28,193.92 204.00,-18.23 500.00,49.98 L527.93,176.16 L0.00,150.00 Z" style="stroke: none; fill: rgb(0, 214, 125);"></path></svg></div> -->
 
-        <div>
-          <svg
-            class="waves"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
-              <path
-                id="gentle-wave"
-                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-              ></path>
-            </defs>
-            <g class="parallax">
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="0"
-                fill="rgba(0,214,125,0.2)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="3"
-                fill="rgba(0,214,125,0.5)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="5"
-                fill="rgba(0,214,125,0.3)"
-              ></use>
-              <use
-                xlink:href="#gentle-wave"
-                x="48"
-                y="7"
-                fill="rgba(0,214,125)"
-              ></use>
-            </g>
-          </svg>
-        </div>
-      </section>
+      <div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,214,125,0.2)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,214,125,0.5)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0,214,125,0.3)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(0,214,125)"></use>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-      <!--Testimonios-->
+    <!--Testimonios-->
 
-      <section id="thirdsection-1">
-        <div class="Testimonios_texto">
-          <h1>TESTIMONIOS</h1>
-          <p>Comentarios que nos avalan</p>
-        </div>
+    <section id="thirdsection-1">
+      <div class="Testimonios_texto">
+        <h2>TESTIMONIOS</h2>
+        <p>Comentarios que nos avalan</p>
+      </div>
 
-        <div class="container">
-          <div class="testimonio">
-            <div class="foto-perfil1"></div>
-            <p>
-              Excelente aplicación de búsqueda de estacionamientos que te salva
-              en horas dónde no puedes encontrar la forma de volver a tu casa.
-              ¡Una maravilla!.
-            </p>
-            <h3>Naydeline Duran</h3>
-            <h4>Systems engineer</h4>
-            <div class="icons">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div class="testimonio">
-            <div class="foto-perfil2"></div>
-            <p>
-              Hasta ahora siempre he tenido buena experiencia con Safe Parking.
-              Precios cómodos, tiempos adecuados de búsqueda y sin problemas.
-            </p>
-            <h3>Zuly Adelsone</h3>
-            <h4>Founder of Travel It!</h4>
-            <div class="icons">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div class="testimonio">
-            <div class="foto-perfil3"></div>
-            <p>
-              La mejor app de busqueda de estacionamientos que he encontrado.
-              ¡Ha solcuionado mi vida de la mejor manera! ¡Muchas gracias Safe
-              Parking!
-            </p>
-            <h3>Arturo Harrison</h3>
-            <h4>Cabify business manager</h4>
-            <div class="icons">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-          <div class="testimonio">
-            <div class="foto-perfil4"></div>
-            <p>
-              Nunca habia visto una aplicación tan completa que ayude a
-              solucionar mis problemas de tiempo al buscar un estacionamiento.
-            </p>
-            <h3>Joseph Smith</h3>
-            <h4>CEO of Ubar</h4>
-            <div class="icons">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
+      <div class="container">
+        <div class="testimonio">
+          <div class="foto-perfil1"></div>
+          <p>
+            Excelente aplicación de búsqueda de estacionamientos que te salva
+            en horas dónde no puedes encontrar la forma de volver a tu casa.
+            ¡Una maravilla!.
+          </p>
+          <h3>Naydeline Duran</h3>
+          <h4>Systems engineer</h4>
+          <div class="icons">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
           </div>
         </div>
-      </section>
-      <!--Chat box-->
+        <div class="testimonio">
+          <div class="foto-perfil2"></div>
+          <p>
+            Hasta ahora siempre he tenido buena experiencia con Safe Parking.
+            Precios cómodos, tiempos adecuados de búsqueda y sin problemas.
+          </p>
+          <h3>Zuly Adelsone</h3>
+          <h4>Founder of Travel It!</h4>
+          <div class="icons">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="testimonio">
+          <div class="foto-perfil3"></div>
+          <p>
+            La mejor app de busqueda de estacionamientos que he encontrado.
+            ¡Ha solcuionado mi vida de la mejor manera! ¡Muchas gracias Safe
+            Parking!
+          </p>
+          <h3>Arturo Harrison</h3>
+          <h4>Cabify business manager</h4>
+          <div class="icons">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        <div class="testimonio">
+          <div class="foto-perfil4"></div>
+          <p>
+            Nunca habia visto una aplicación tan completa que ayude a
+            solucionar mis problemas de tiempo al buscar un estacionamiento.
+          </p>
+          <h3>Joseph Smith</h3>
+          <h4>CEO of Ubar</h4>
+          <div class="icons">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Chat box-->
 
-    </body>
+  </body>
+
   </html>
 
 

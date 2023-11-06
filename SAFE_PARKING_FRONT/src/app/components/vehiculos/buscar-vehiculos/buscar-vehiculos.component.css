@@ -1,6 +1,5 @@
-
-/* Estilos para la sección del formulario de búsqueda */
-.search-form {
+/* Estilos para la sección del formulario genérico */
+.form {
   background-color: #f0f0f0;
   border: 2px solid #000000;
   border-radius: 10px;
@@ -12,14 +11,17 @@
   justify-content: center; /* Centrar verticalmente */
   align-items: center; /* Centrar horizontalmente */
 }
+body{
+  background: linear-gradient(to right, #11998e, #38ef7d);
+}
 
-.form-group label {
+.generic-group label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #333;
 }
 
-.form-group input[type="number"] {
+.generic-group input[type="number"] {
   width: 95%;
   padding: 10px;
   border: 2px solid #30e298;
@@ -28,7 +30,7 @@
   margin-bottom: 10px;
 }
 
-.form-group button {
+.generic-group button {
   padding: 10px 20px;
   background-color: #30e298;
   color: #000000;
@@ -38,7 +40,7 @@
   font-size: 1em;
 }
 
-.vehiculo-details {
+.generic-details {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -48,8 +50,8 @@
   margin: 0 auto; /* Centrar horizontalmente */
 }
 
-/* Estilos para los contenedores de información */
-.info-box {
+/* Estilos para los contenedores de información genérica */
+.generic-box {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -59,14 +61,14 @@
 }
 
 /* Estilos para los títulos y contenido dentro de los contenedores */
-.info-box h1 {
+.generic-box h1 {
   font-size: 1.2em;
   font-weight: bold;
   color: #30e298;
   margin-bottom: 2px;
 }
 
-.info-box p {
+.generic-box p {
   font-size: 1em;
   color: #000000;
 }

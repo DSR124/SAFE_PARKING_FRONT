@@ -12,7 +12,9 @@
   align-items: center; /* Centrar horizontalmente */
 }
 
-
+body{
+  background: linear-gradient(to right, #11998e, #38ef7d);
+}
 .generic-group label {
   font-weight: bold;
   margin-bottom: 5px;

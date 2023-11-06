@@ -1,7 +1,33 @@
 body {
-  font-family: Arial, sans-serif;
   background-color: #f2f2f2;
-  margin-left: 300px; /*Tomar en cuenta esto*/
+  margin-left: 300px;
+  /*Tomar en cuenta esto*/
+}
+
+/*Estilos de la fuente - Titulos y textos*/
+h1 {
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  padding-top: 30px;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
 }
 
 /*Contenido principal*/
@@ -11,12 +37,13 @@ body {
   margin: 0;
   text-align: center;
   height: 100%;
+  padding: 20px;
+
 }
 
 .container {
   max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
