@@ -34,7 +34,7 @@ h2 {
 }
 
 .secciones {
-  margin: 5px;
+  margin: 15px;
   width: 70%; /* Expand to full width */
   background-color: rgb(221, 221, 221);
   align-items: center;
@@ -65,9 +65,14 @@ h2 {
 .btn-container {
   justify-content: center;
   text-align: center;
+  
 }
 button{
   margin: 10px;
+}
+.botonRegistro{
+  background-color: #11998e;
+  color: #fff;
 }
 
 /* You might need to adjust specific classes for Angular Material components */

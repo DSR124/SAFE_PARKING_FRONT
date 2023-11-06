@@ -34,4 +34,10 @@ mat-form-field {
 
 button {
     margin: 10px;
+    
 }
+
+.botonRegistro{
+    background-color: #11998e;
+    color: #fff;
+  }

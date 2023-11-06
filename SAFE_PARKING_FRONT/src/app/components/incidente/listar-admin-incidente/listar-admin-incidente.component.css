@@ -1,8 +1,7 @@
 /*Estilos del form*/
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-}
+  background: linear-gradient(to right, #11998e, #38ef7d); }
 
 table {
   background-color: rgb(255, 255, 255);

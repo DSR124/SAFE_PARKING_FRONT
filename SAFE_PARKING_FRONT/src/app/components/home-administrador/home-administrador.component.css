@@ -1,7 +1,8 @@
 body {
-  background-color: #f2f2f2;
-  margin-left: 300px;
+  margin-left: 280px;
   /*Tomar en cuenta esto*/
+  background: linear-gradient(to right, #11998e, #38ef7d); 
+
 }
 
 /*Estilos de la fuente - Titulos y textos*/
@@ -38,7 +39,6 @@ p {
   text-align: center;
   height: 100%;
   padding: 20px;
-
 }
 
 .container {

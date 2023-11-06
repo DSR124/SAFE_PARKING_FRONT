@@ -1,6 +1,7 @@
-body{
-  background-color: #f2f2f2;
-  margin-left: 300px; /*Tomar en cuenta esto*/
+body {
+  margin-left: 250px;
+  /*Tomar en cuenta esto*/
+  background: linear-gradient(to right, #11998e, #38ef7d);
 }
 
 /*Estilos de la fuente - Titulos y textos*/
@@ -36,12 +37,14 @@ p {
 .contenido-principal {
   margin: 0;
   text-align: center;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 20px;
+
 }
 
 .container {
   max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

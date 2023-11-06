@@ -35,3 +35,8 @@ mat-form-field {
 button {
     margin: 10px;
 }
+
+.btn-container button {
+    background-color: #11998e;
+    color: #fff;
+  }

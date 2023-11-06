@@ -77,3 +77,8 @@ button.boton_registro:hover {
 mat-error {
   color: #e74c3c;
 }
+
+.botonRegistro{
+  background-color: #11998e;
+  color: #fff;
+}
