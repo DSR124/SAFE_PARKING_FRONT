@@ -11,9 +11,11 @@
     justify-content: center; /* Centrar verticalmente */
     align-items: center; /* Centrar horizontalmente */
   }
-  
+
 body{
     background: linear-gradient(to right, #11998e, #38ef7d);
+    height: 115%;
+
 }
 .generic-group label {
     font-weight: bold;

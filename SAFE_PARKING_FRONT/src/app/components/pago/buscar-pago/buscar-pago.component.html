@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +7,8 @@
   </head>
 
   <body>
+    <app-navbar></app-navbar>
+
     <div class="form">
       <div class="generic-group">
         <label for="inputId">Ingrese el ID:</label>
@@ -20,7 +21,7 @@
       </div>
       <hr />
       <div class="generic-details" *ngIf="pago">
-        <h2 class="generic-heading">Detalles</h2>
+        <h2 class="generic-heading">Detalles de Pago</h2>
         <div class="generic-box">
           <h1>Fecha de emision</h1>
           <p>{{ pago.fechaEmision }}</p>

@@ -13,6 +13,8 @@
 }
 body{
   background: linear-gradient(to right, #11998e, #38ef7d);
+  height: 105%;
+
 }
 
 .generic-group label {

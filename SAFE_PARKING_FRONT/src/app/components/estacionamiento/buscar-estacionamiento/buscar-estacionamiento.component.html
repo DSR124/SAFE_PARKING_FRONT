@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,6 +6,8 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar></app-navbar>
+
     <div class="form">
       <div class="generic-group">
         <label for="inputId">Ingrese el ID del Estacionamiento:</label>
@@ -33,29 +34,29 @@
           <p>{{ estacionamiento.foto }}</p>
         </div>
         <div class="generic-box">
-            <h1>Promedio de valoracion</h1>
-            <p>{{ estacionamiento.promedioValoracion }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>Capacidad</h1>
-            <p>{{ estacionamiento.capacidad }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>Fecha de registro</h1>
-            <p>{{ estacionamiento.fechaRegistro }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>Precio</h1>
-            <p>{{ estacionamiento.precio }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>Usuario</h1>
-            <p>{{ estacionamiento.usuario.nombre }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>Localizacion</h1>
-            <p>{{ estacionamiento.localizacion.idLocalizacion }}</p>
-          </div>
+          <h1>Promedio de valoracion</h1>
+          <p>{{ estacionamiento.promedioValoracion }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Capacidad</h1>
+          <p>{{ estacionamiento.capacidad }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Fecha de registro</h1>
+          <p>{{ estacionamiento.fechaRegistro }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Precio</h1>
+          <p>{{ estacionamiento.precio }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Usuario</h1>
+          <p>{{ estacionamiento.usuario.nombre }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>Localizacion</h1>
+          <p>{{ estacionamiento.localizacion.idLocalizacion }}</p>
+        </div>
       </div>
     </div>
   </body>
