@@ -11,11 +11,41 @@ import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+
+function precioPositivo(control: AbstractControl): Promise<{ [key: string]: any } | null> {
+  return new Promise((resolve) => {
+    const precio = control.value;
+    if (precio < 0) {
+      resolve({ 'precioMenorOIgualACero': true });
+    } else {
+      resolve(null);
+    }
+  });
+}
+
+
+/*function FechaMayor(control: AbstractControl): { [key: string]: any } | null {
+  const fechaInicio = control.get('fechaInicio')?.value;
+  const fechaFin = control.get('fechaFin')?.value;
+
+  if (fechaInicio && fechaFin && fechaFin < fechaInicio) {
+    return { 'fechaFinMenorQueFechaInicio': true };
+  }
+
+  return null;
+}*/
+
+
+
+
 @Component({
   selector: 'app-creaedita-membresia',
   templateUrl: './creaedita-membresia.component.html',
   styleUrls: ['./creaedita-membresia.component.css'],
 })
+
+
+
 export class CreaeditaMembresiaComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   membresia: Membresia = new Membresia();
@@ -42,8 +72,12 @@ export class CreaeditaMembresiaComponent implements OnInit {
       tipoMembresia: ['', Validators.required],
       fechaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
-      precio: ['', Validators.required],
+      precio: ['', Validators.required, precioPositivo],
+      
     });
+
+  
+  
   }
   registrar() {
     if (this.form.valid) {
@@ -69,6 +103,10 @@ export class CreaeditaMembresiaComponent implements OnInit {
     } else {
       this.mensaje = 'Complete todos los campos!!!';
     }
+
+    /*if (!this.form.get("precio").valid) {
+      alert("El precio debe ser un número entero entre 1 y 5");
+    }*/
   }
 
   obtenerControlCampo(nombreCampo: string): AbstractControl {
@@ -77,6 +115,8 @@ export class CreaeditaMembresiaComponent implements OnInit {
       throw new Error(`Control no encontrado para el campo ${nombreCampo}`);
     }
     return control;
+
+    
   }
   init() {
     if (this.edicion) {
@@ -90,5 +130,11 @@ export class CreaeditaMembresiaComponent implements OnInit {
         });
       });
     }
+
+    
   }
+
+
+   
+  
 }

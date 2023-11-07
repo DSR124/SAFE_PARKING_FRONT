@@ -55,7 +55,7 @@
             <br />
             <mat-form-field appearance="fill" class="example-full-width">
                 <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaCreacion"
-                    [min]="minFecha" />
+                    [min]="minFecha" readonly="true"/>
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
