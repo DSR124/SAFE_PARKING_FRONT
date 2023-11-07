@@ -1,9 +1,9 @@
 /* Styles for the card container */
 body {
-  background: linear-gradient(to bottom, #22ffda, #080808),
+  background: linear-gradient(to right, #11998e, #38ef7d),
               url('https://img.freepik.com/fotos-premium/central-park-hermoso-contraste-rascacielos-edificios-manhattan-nueva-york-ee-uu_71337-684.jpg?w=360');
   background-size: cover;
-  color: #757575;
+  color: #080808;
 }
 #container{
   background-color: #080808;
@@ -48,7 +48,7 @@ body {
 /* Styles for the card footer */
 /* Style the "Agregar" button */
 .card-footer button {
-  background-color: #22ffda; /* Change the background color as desired */
+  background-color: #11998e; /* Change the background color as desired */
   color: rgb(17, 16, 16); /* Text color */
   border: none;
   width: 90%;
