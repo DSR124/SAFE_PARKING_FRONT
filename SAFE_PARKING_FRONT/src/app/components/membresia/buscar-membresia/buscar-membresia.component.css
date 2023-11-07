@@ -1,4 +1,7 @@
 /* Estilos para la sección del formulario genérico */
+body{
+  background: linear-gradient(to right, #11998e, #38ef7d); 
+}
 .form {
   background-color: #f0f0f0;
   border: 2px solid #000000;

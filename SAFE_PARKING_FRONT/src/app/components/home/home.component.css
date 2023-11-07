@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Ubuntu:wght@300&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300;1,700&display=swap');
 
 *{
      margin: 0;
@@ -9,18 +5,34 @@
      border: 0;
      vertical-align: baseline;
      box-sizing: border-box;
+
 }
 body{
     text-align: center;
+
 }
 html{
     scroll-behavior: smooth;
 }
 
-h1{font-size: 56px;}
-h2{font-size: 2.7em;}
-h3{font-size: 2em;}
-p{font-size: 1.25em;}
+h1{font-size: 96px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+  
+  }
+  h2{font-size: 48px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  h3{font-size: 23px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+  p{font-size: 1.25em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
 ul{list-style: none;}
 
 
@@ -52,7 +64,7 @@ ul{list-style: none;}
 a{
     color: white;
     text-decoration: none;
-    font-size: 10px;
+    
 }
 nav a{
     color: white;
@@ -61,7 +73,6 @@ nav a{
     padding: 12px;
     margin: 12px;
     line-height: normal;
-    font-size: 16px;
     transition: all 500ms ease;
     border-bottom: 4px solid transparent;
 }
@@ -103,7 +114,6 @@ nav li:hover > ul{
 
 
 .checkbtn{
-    font-size: 30px;
     color: rgb(255, 255, 255);
     float: right;
     line-height: 80px;
@@ -116,12 +126,9 @@ nav li:hover > ul{
     display: none;
 }
 
-
-
 /*Index - Slogan inicial*/
 
 button{
-    font-size: 15px;
     font-weight: bold;
     padding:10px 20px;
     border-radius: 10px;
@@ -169,9 +176,8 @@ button{
     
 }
 
-#Slogan-Inicial .presentation h2{
+#Slogan-Inicial .presentation h1{
     padding: 25px;
-    font-size: 96px;
     color: #30e298;
     
 }
@@ -227,7 +233,6 @@ button{
     justify-content: center;
     text-align: center;
     background-position:  center;
-    min-width: 475px;
 }
 
 
@@ -240,6 +245,7 @@ button{
 #Caracteristicas .container .imagenPrincipal img{
    width: 640px;
    height: 740px;
+   margin-top: 130px;
 }
 
 #Caracteristicas .Cuadros:hover{
@@ -261,29 +267,10 @@ button{
 
     background-color: rgb(30, 209, 155)
 }
-
-#Caracteristicas .container .Cuadrados .Seccion .Cuadros h2{
-    font-size: 25px;
-    margin-top: 50px;
-    color: rgb(0, 0, 0);
-
-}
-
-
-#Caracteristicas .container .Cuadrados .Seccion .Cuadros p{
-
-    font-size: 15px;
-    margin-top: 25px;
-    width: 160px;
-    justify-content: center;
-    color: rgb(0, 0, 0);
-    text-align: center;
-
-}
 #Caracteristicas .container .Cuadrados .Seccion .Cuadros{
-    width: 200px;
-    height: 260px;
-    margin: 20px;
+    width: 300px;
+    height: 320px;
+    margin: 25px;
     text-align: center;
     background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
     border-radius: 25px;
@@ -293,7 +280,23 @@ button{
     justify-content: center;
     text-align: center;
     background-position: center ;
+}
 
+#Caracteristicas .container .Cuadrados .Seccion .Cuadros h3{
+    font-size: 25px;
+    margin-top: 50px;
+    color: rgb(0, 0, 0);
+
+}
+
+
+#Caracteristicas .container .Cuadrados .Seccion .Cuadros p{
+
+    margin-top: 25px;
+    width: 160px;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    text-align: center;
 
 }
 
@@ -312,11 +315,10 @@ button{
     margin: auto;
 }
 
-#Caracteristicas h1{
+#Caracteristicas h2{
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 56px;
 }
 
 #Caracteristicas p{
@@ -324,7 +326,6 @@ button{
     justify-content: center;
     align-items: center;
     color: rgb(0, 0, 0);
-    font-size: 25px;
 }
 
 /*Segmentos de Usuarios--------------*/
@@ -342,35 +343,31 @@ button{
 }
 
 
-#Segmentos  .titulo h1{
+#Segmentos  .titulo h2{
 
     text-align: center;
     color: #2ef190;;
-    font-size: 56px;
     padding: 15px;
 }
 #Segmentos  .titulo p{
 
     text-align: center;
     color: #ffffff;;
-    font-size: 23px;
     padding: 15px;
 }
 
 
-#Segmentos .Conductor h2{
+#Segmentos .Conductor h3{
 
     text-align: center;
     color: #2ef190;;
-    font-size: 23px;
     padding: 15 px;
 }
 
-#Segmentos .arredandor h2{
+#Segmentos .arredandor h3{
 
     text-align: center;
     color: #2ef190;;
-    font-size: 23px;
 }
 
 
@@ -497,7 +494,7 @@ button{
     flex-wrap: wrap;
 }
 
-#thirdsection-1 .Testimonios_texto .h1{
+#thirdsection-1 .Testimonios_texto .h2{
     margin: auto;
     margin-top: 0;
     justify-content: center;
@@ -538,24 +535,20 @@ button{
 
 #thirdsection-1 .container .testimonio h3{
     margin-top: 25px;
-    font-size: 2rem;
     color: #30e298;
 }
 
 #thirdsection-1 .container .testimonio h4{
-    font-size: 1.0rem;
     margin-top: 25px;
 }
 
 #thirdsection-1 .container .testimonio h1{
-    font-size: 80px;
     margin-top: 25px;
 }
 
 #thirdsection-1 .container .testimonio .icons{
     padding: 10px;
     color: #30e298;
-    font-size: 1.2rem;
     margin-top: 25px;
 }
 
@@ -589,13 +582,10 @@ button{
 }
 .testimonio h1{
     margin-top: -20px;
-    font-size: 80px;
 }
 
 #thirdsection-1 .testimonio p{
     margin-top: 10px;
-    font-size: 15px;
-    font-weight: bold;
     margin-top: 40px;
 
 }
@@ -725,13 +715,13 @@ body {
   }
   
   /* Estilo base del h2 */
-  .presentation h2 {
+  .presentation h3 {
     animation: fadeInUp  1.5s forwards;
   }
   #Slogan-Inicial p{
     animation: fadeInUp  1.5s forwards;
   }
-   h1 {
+   h2 {
     animation: fadeInUp  1.5s forwards;
   }
   #Caracteristicas .titulo p{
@@ -762,92 +752,4 @@ body {
   }
   
 
-  
-/*Pie de pagina - Footer*/
 
-footer {
-    width: 100%;
-    height: 300px;
-    background-color: #000000;
-    margin-top: auto;
-    padding: 20px;
-    min-width: 475px;
-}
-footer .container{
-    display: flex; /*Columnas una de otras*/
-    flex-wrap: wrap; /*Columnas debajo de otras*/
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: auto;
-}
-
-footer .seccion{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    line-height:0;
-}
-
-footer .seccion .logo img{
-    width: 80px;
-    height: 80px;
-}
-
-footer H2{
-
-    color: white;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-}
-footer .seccion a{
-
-    color: rgb(184, 184, 184);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: auto;
-    margin-right: auto;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-}
-footer .seccion a:hover{
-    opacity: 0.8;
-}
-footer .seccion a .fab{
-    font-size: 12px;
-
-}
-
-footer H3{
-
-    color: white;
-    text-align: center;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 12px;
-}
-
-footer .Copyright{
-    max-width: 1400px;
-    margin: auto;
-    text-align: center;
-    padding: 0px 50px;
-}
-
-footer .Copyright p{
-
-    margin-top: 20px;
-    color: #ffffff;
-    font-size: 15px;
-}
-
-footer .Copyright hr{
-
-    border: none;
-    height: 1px;
-    background-color: #7a7a7a;
-}

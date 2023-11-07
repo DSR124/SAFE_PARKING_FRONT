@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d); 
 }
 
 
@@ -76,4 +76,9 @@ button.boton_registro:hover {
 
 mat-error {
   color: #e74c3c;
+}
+
+.botonRegistro{
+  background-color: #11998e;
+  color: #fff;
 }

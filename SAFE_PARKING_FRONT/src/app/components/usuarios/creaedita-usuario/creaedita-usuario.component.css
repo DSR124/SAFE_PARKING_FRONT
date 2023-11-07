@@ -12,7 +12,7 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d); 
   height: 100%;
   padding: 20px;
 }
@@ -21,7 +21,10 @@ body {
 button {
     margin: 10px;
 }
-
+.botonRegistro{
+    background-color: #11998e;
+    color: #fff;
+  }
 .example-form{
   max-height: 600px;
   background-color: white;
@@ -42,8 +45,8 @@ button {
 
 }
 .secciones{
-  margin: 5px;
-  width: 70%; /* Expand to full width */
+    margin: 15px;
+    width: 70%; /* Expand to full width */
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

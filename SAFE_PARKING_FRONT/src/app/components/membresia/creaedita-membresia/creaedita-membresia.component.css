@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   height: 100%;
   padding: 20px;
 
@@ -49,4 +50,9 @@ mat-label {
 
 mat-error {
   color: #e74c3c;
+}
+
+.boton{
+  background-color: #11998e;
+  color: aliceblue;
 }

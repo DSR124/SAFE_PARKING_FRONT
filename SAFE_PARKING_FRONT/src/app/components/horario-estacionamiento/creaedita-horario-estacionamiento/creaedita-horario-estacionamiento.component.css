@@ -12,7 +12,7 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d); 
   height: 100%;
   padding: 20px;
 }
@@ -33,4 +33,8 @@ mat-form-field {
 
 button {
   margin: 10px;
+}
+.btn-container button {
+  background-color: #11998e;
+  color: #fff;
 }
