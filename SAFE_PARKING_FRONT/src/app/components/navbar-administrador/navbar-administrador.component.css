@@ -122,3 +122,12 @@
 }
 
 /*Fin de Flechas de despliegue en el menu*/
+
+
+/* Agrega un borde al lado derecho para indicar que es redimensionable */
+.sidenav {
+  /* Estilos existentes de tu menú */
+  border-right: 5px solid #333; /* Borde para redimensionar */
+  cursor: col-resize; /* Cambio de cursor al colocar el mouse en el borde derecho */
+  /* ... Otros estilos ... */
+}

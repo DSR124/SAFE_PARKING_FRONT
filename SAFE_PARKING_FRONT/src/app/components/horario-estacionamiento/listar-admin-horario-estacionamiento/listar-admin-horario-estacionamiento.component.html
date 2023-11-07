@@ -1,85 +1,73 @@
 <app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="litle">
-      <h2 style="text-align: center">LISTA DE HORARIO - ESTACIONAMIENTO</h2>
-    </div>
 
-    <div class="example-container">
-      <mat-form-field>
-        <input
-          style="text-align: left"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="Bucar por.."
-        />
-      </mat-form-field>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!--- Note that these columns can be defined in any order.
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="litle">
+    <h2 style="text-align: center">LISTA DE HORARIO - ESTACIONAMIENTO</h2>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field>
+      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- idLocalizacion Column -->
-        <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef>codigo</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.idHorarioEstacionamiento }}
-          </td>
-        </ng-container>
+      <!-- idLocalizacion Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef>codigo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idHorarioEstacionamiento }}
+        </td>
+      </ng-container>
 
-        <!-- direccion Column -->
-        <ng-container matColumnDef="Estacionamiento">
-          <th mat-header-cell *matHeaderCellDef>codigo-Estacionamiento</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.estacionamiento.idEstacionamiento }}
-          </td>
-        </ng-container>
+      <!-- direccion Column -->
+      <ng-container matColumnDef="Estacionamiento">
+        <th mat-header-cell *matHeaderCellDef>codigo-Estacionamiento</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.estacionamiento.idEstacionamiento }}
+        </td>
+      </ng-container>
 
-        <!-- distrito Column -->
-        <ng-container matColumnDef="horario">
-          <th mat-header-cell *matHeaderCellDef>codigo-Horario</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.horario.idHorario }}
-          </td>
-        </ng-container>
+      <!-- distrito Column -->
+      <ng-container matColumnDef="horario">
+        <th mat-header-cell *matHeaderCellDef>codigo-Horario</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.horario.idHorario }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              mat-raised-button
-              color="primary"
-              [routerLink]="['ediciones', element.idHorarioEstacionamiento]"
-            >
-              <mat-icon>edit</mat-icon> Editar
-            </button>
-          </td></ng-container
-        >
-        <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              mat-raised-button
-              color="warn"
-              (click)="eliminar(element.idHorarioEstacionamiento)"
-            >
-              <mat-icon>delete</mat-icon> Eliminar
-            </button>
-          </td></ng-container
-        >
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idHorarioEstacionamiento]">
+            <mat-icon>edit</mat-icon> Editar
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="warn" (click)="eliminar(element.idHorarioEstacionamiento)">
+            <mat-icon>delete</mat-icon> Eliminar
+          </button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </body>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
 </html>
