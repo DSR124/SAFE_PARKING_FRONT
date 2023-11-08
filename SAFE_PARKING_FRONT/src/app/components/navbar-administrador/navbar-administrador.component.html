@@ -8,10 +8,51 @@
 
   <body>
     <div id="mySidenav" class="sidenav" *ngIf="verificar()">
-      <p class="logo">Portal Administrador</p>
-      <input type="checkbox" class="menu-toggle" id="menu1" />
-      <label for="menu1" class="menu">
-        <i class="material-icons">dashboard</i> Dashboard
+      <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
+
+      <p class="logo" *ngIf="role === 'administrador'">Portal Administrador</p>
+      <p class="logo" *ngIf="role === 'conductor'">Portal Conductor</p>
+      <p class="logo" *ngIf="role === 'arrendador'">Portal Arrendador</p>
+
+      <input
+        type="checkbox"
+        class="menu-toggle"
+        *ngIf="role === 'administrador'"
+      />
+      <label
+        for="menu16"
+        class="menu"
+        routerLink="/components/home_administrador"
+        *ngIf="role === 'administrador'"
+      >
+        <i class="material-icons">dashboard</i>
+        HOME
+      </label>
+
+      <input type="checkbox" class="menu-toggle" *ngIf="role === 'conductor'" />
+      <label
+        for="menu16"
+        class="menu"
+        routerLink="/components/home_conductor"
+        *ngIf="role === 'conductor'"
+      >
+        <i class="material-icons">dashboard</i>
+        HOME
+      </label>
+
+      <input
+        type="checkbox"
+        class="menu-toggle"
+        *ngIf="role === 'arrendador'"
+      />
+      <label
+        for="menu16"
+        class="menu"
+        routerLink="/components/home_arrendador"
+        *ngIf="role === 'arrendador'"
+      >
+        <i class="material-icons">dashboard</i>
+        HOME
       </label>
 
       <input type="checkbox" class="menu-toggle" id="menu2" />
@@ -21,17 +62,29 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador'">
           <a href="components/membresias/registrar_membresias"
             >Registrar membresias</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/membresias/listar_usuario_membresias"
             >Listar membresias (user)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/membresias/buscar_membresias"
             >Buscar membresias</a
           >
@@ -50,17 +103,17 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
           <a href="components/vehiculos/registrar_vehiculos"
             >Registrar vehiculos</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
           <a href="components/vehiculos/listar_admin_vehiculos"
             >Listar vehiculos(admin)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
           <a href="components/vehiculos/buscar_vehiculos">Buscar vehiculos</a>
         </li>
       </ul>
@@ -77,7 +130,13 @@
         <li *ngIf="role == 'administrador'">
           <a href="components/roles/listar-admin-roles">Listar roles (admin)</a>
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/roles/buscar-roles">Buscar roles</a>
         </li>
       </ul>
@@ -98,7 +157,13 @@
             >Listar usuarios (admin)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/usuarios/buscar_usuarios">Buscar usuarios </a>
         </li>
       </ul>
@@ -109,7 +174,13 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/incidentes/registrar_incidentes"
             >Registrar incidentes</a
           >
@@ -133,20 +204,26 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/horarios/registrar_horarios"
             >Registrar horarios</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/horarios/buscar_horarios">Buscar horarios</a>
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/horarios/listar_usuario_horarios"
             >Listar horarios (user)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/horarios/listar_admin_horarios"
             >Listar horarios (adim)</a
           >
@@ -160,19 +237,31 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a
             href="components/horarios_estacionamiento/registrar_horarios_estacionamiento"
             >Registrar hrs.Estacionamiento</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a
             href="components/horarios_estacionamiento/buscar_horarios_estacionamiento"
             >Buscar hrs.Estacionamiento</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a
             href="components/horarios_estacionamiento/listar_admin_horarios_estacionamiento"
             >Listar hrs.Estacionamiento (admin)</a
@@ -187,17 +276,35 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/comentarios/registrar_comentarios"
             >Registrar comentarios</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/comentarios/listar_comentarios_admin"
             >Listar comentarios (admin)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/comentarios/buscar_comentarios"
             >Buscar comentarios</a
           >
@@ -211,13 +318,25 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
           <a href="components/pagos/registrar_pagos">Registrar pagos</a>
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/pagos/listar-admin-pagos">Listar pagos (admin)</a>
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/pagos/buscar-pagos">Buscar pagos</a>
         </li>
       </ul>
@@ -234,17 +353,17 @@
             >Registrar localizaciones</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/localizaciones/listar_usuario_localizaciones"
             >Listar localizaciones (user)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/localizaciones/buscar_localizaciones"
             >Buscar localizaciones</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/localizaciones/listar_admin_localizaciones"
             >Listar localizaciones (admin)</a
           >
@@ -258,12 +377,18 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'arrendador'">
           <a href="components/estacionamiento/registrar_estacionamientos"
             >Registrar estacionamientos</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a href="components/estacionamiento/listar_admin_estacionamientos"
             >Listar estacionamientos (admin)</a
           >
@@ -282,19 +407,31 @@
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
-        <li *ngIf="role == 'administrador'">
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
           <a
             href="components/reservaestacionamiento/registrar_reservas_estacionamientos"
             >Registrar reservas</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a
             href="components/reservaestacionamiento/listar_admin_reserva_estacionamientos"
             >Listar reservas (admin)</a
           >
         </li>
-        <li *ngIf="role == 'administrador'">
+        <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <a
             href="components/reservaestacionamiento/buscar-reserva-estacionamiento"
             >Buscar reservas</a

@@ -19,7 +19,11 @@ export class NavbarAdministradorComponent {
     return this.loginService.verificar();
   }
   validarRol() {
-    if (this.role == 'administrador') {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
       return true;
     } else {
       return false;

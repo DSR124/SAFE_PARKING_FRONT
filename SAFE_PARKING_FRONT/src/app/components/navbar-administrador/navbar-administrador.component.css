@@ -1,14 +1,16 @@
 /*Barra de navegacion Lateral-----------------*/
 .logo {
-  margin: 0px;
   font-weight: bold;
   color: white;
   font-size: large;
   /* Utilizamos display: flex */
   text-align: center;
-  margin: 15px;
 }
 
+img {
+  max-width: 100px;
+  margin-left: 50px;
+}
 /* Estilos del sidenav */
 .sidenav {
   width: 250px;
