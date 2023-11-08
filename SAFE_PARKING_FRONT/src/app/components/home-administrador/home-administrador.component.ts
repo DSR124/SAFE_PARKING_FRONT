@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-home-administrador',
@@ -7,5 +8,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home-administrador.component.css'],
 })
 export class HomeAdministradorComponent {
-  constructor(public route: ActivatedRoute) {}
+  constructor(
+    public route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
+  title = 'demoFrontendSI63';
+  role: string = '';
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (this.role == 'administrador') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

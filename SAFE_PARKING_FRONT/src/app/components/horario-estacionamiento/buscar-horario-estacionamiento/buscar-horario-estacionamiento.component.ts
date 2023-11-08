@@ -25,7 +25,7 @@ export class BuscarHorarioEstacionamientoComponent {
   buscar() {
     this.idNoEncontrado = false; // Reiniciamos la variable de validación
 
-    this.hrsEstacS.listId(this.id).subscribe(
+    this.hrsEstacS.getById(this.id).subscribe(
       (data: HorarioEstacionamiento) => {
         this.hrs_estacionamiento = data;
       },

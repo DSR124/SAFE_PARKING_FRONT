@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -100,117 +99,34 @@ import { BuscarEstacionamientoComponent } from './components/estacionamiento/bus
 import { BuscarReservaEstacionamientoComponent } from './components/reserva-estacionamiento/buscar-reserva-estacionamiento/buscar-reserva-estacionamiento.component';
 import { BuscarUsuariosComponent } from './components/usuarios/buscar-usuarios/buscar-usuarios.component';
 import { BuscarComentariosComponent } from './components/comentario/buscar-comentarios/buscar-comentarios.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
     //Nav Bars
     NavbarComponent,
-    NavbarAdministradorComponent,
-    NavbarArrendadorComponent,
-    NavbarConductorComponent,
-
     //Sign UP & Sign IN
     SignUpComponent,
     SignInComponent,
 
     //Homes
-    HomeConductorComponent,
-    HomeAdministradorComponent,
-    HomeArrendadorComponent,
     HomeComponent,
 
     //Footer
     FooterComponent,
-
-    //Horario
-    HorarioComponent,
-    CreaeditaHorarioComponent,
-    ListarUsuarioHorarioComponent,
-    ListarAdminHorarioComponent,
-    BuscarHorarioComponent,
-
-    //Localizaciones
-    LocalizacionesComponent,
-    BuscarLocalizacionesComponent,
-    CreaeditaLocalizacionesComponent,
-    ListarAdminLocalizacionesComponent,
-    ListarusuarioLocalizacionesComponent,
-
     //Membresia
-    BuscarMembresiaComponent,
-    MembresiaComponent,
-    CreaeditaMembresiaComponent,
     ListarUsuarioMembresiaComponent,
-    ListarAdminMembresiaComponent,
 
     //Rol
-    RolComponent,
     CreaeditaRolComponent,
-    ListarAdminRolComponent,
-    BuscarRolComponent,
 
     //Usuarios
-    UsuariosComponent,
     CreaeditaUsuarioComponent,
-    listarAdminUsuarioComponent,
-    BuscarUsuariosComponent,
-
-    //Vehiculos
-    VehiculosComponent,
-    BuscarVehiculosComponent,
-    CreaeditaVehiculosComponent,
-    ListarAdminVehiculosComponent,
-
-    //Reportes
-    ReportesComponent,
-    CantReservasPorFechaComponent,
-    CantReservasPorTipoPagoComponent,
-    CantReservasPorUsuarioComponent,
-    CantIncidentesPorRolComponent,
-
-    //Comentario
-    ComentarioComponent,
-    CreaeditaComentarioComponent,
-    ListarAdminComentarioComponent,
-    ListarUsuarioComentarioComponent,
-    BuscarComentariosComponent,
-
-    //Horario-Estacionamiento
-    HorarioEstacionamientoComponent,
-    CreaeditaHorarioEstacionamientoComponent,
-    ListarAdminHorarioEstacionamientoComponent,
-    ListarUsuarioHorarioEstacionamientoComponent,
-    BuscarHorarioEstacionamientoComponent,
-
-    //Reserva Estacionamiento
-    ReservaEstacionamientoComponent,
-    CreaeditaReservaEstacionamientoComponent,
-    ListarAdminReservaEstacionamientoComponent,
-    ListarUsuarioReservaEstacionamientoComponent,
-
-    //Pago
-    PagoComponent,
-    CreaeditaPagoComponent,
-    ListarAdminPagoComponent,
-    ListarUsuarioPagoComponent,
-    BuscarPagoComponent,
-
-    //Incidente
-    IncidenteComponent,
-    ListarUsuarioIncidenteComponent,
-    ListarAdminIncidenteComponent,
-    CreaeditaIncidenteComponent,
-    BuscarIncidenteComponent,
-
-    //Estacionamiento
-    EstacionamientoComponent,
-    ListarUsuarioEstacionamientoComponent,
-    ListarAdminEstacionamientoComponent,
-    CreaeditaEstacionamientoComponent,
-    BuscarEstacionamientoComponent,
-    BuscarReservaEstacionamientoComponent
-
+    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -219,6 +135,7 @@ import { BuscarComentariosComponent } from './components/comentario/buscar-comen
     MatTableModule,
     MatInputModule,
     MatSelectModule,
+    MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
@@ -230,15 +147,15 @@ import { BuscarComentariosComponent } from './components/comentario/buscar-comen
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
-    CommonModule,
-    JwtModule,
+
     HttpClientModule,
     RouterModule,
     NgxMaterialTimepickerModule,
     ColorSketchModule,
     ColorMaterialModule,
+    MatSnackBarModule,
   ],
-  providers: [LoginService],
+  providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

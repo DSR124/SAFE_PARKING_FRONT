@@ -1,68 +1,78 @@
 <router-outlet></router-outlet>
-<app-navbar></app-navbar>
 <div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+      <link
+        rel="stylesheet"
+        href="home-administrador.component.css"
+        type="text/css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+    </head>
 
-<!Doctype HTML>
-<html>
+    <body>
+      <div class="contenido-principal">
+        <div class="textoPrincipal">
+          <h1>Panel de Administración de Estacionamientos</h1>
+          <p>
+            Aquí podrás gestionar y supervisar todos los aspectos de tus
+            estacionamientos.
+          </p>
+        </div>
 
-<head>
-  <title></title>
-  <link rel="stylesheet" href="home-administrador.component.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+        <div class="container">
+          <div class="intro">
+            <h2>
+              ¡Bienvenido, administrador! Aquí tienes acceso a una variedad de
+              acciones:
+            </h2>
+          </div>
+          <div class="features">
+            <div class="feature">
+              <img
+                src="https://img.freepik.com/foto-gratis/empresarios-que-trabajan-finanzas-contabilidad-analizan-financi_74952-1411.jpg?w=1380&t=st=1699310416~exp=1699311016~hmac=508109768eb96d397b10094ab3345852da6b490cb1d08b51e0a821a581e50204"
+                alt="Imagen 1"
+              />
+              <h3>Administrar Estacionamientos</h3>
+              <p>
+                Agrega, modifica y elimina estacionamientos públicos y privados
+                en tu inventario. Controla su disponibilidad y tarifas.
+              </p>
+            </div>
 
+            <div class="feature">
+              <img
+                src="https://img.freepik.com/foto-gratis/mujer-tiro-medio-trabajando-computadora-portatil_23-2149300643.jpg?w=1380&t=st=1699310436~exp=1699311036~hmac=fc321d75dde73df6c2c80d5b9fa6e877eb21d681c9ea3a2c1d119c59890fded3"
+                alt="Imagen 2"
+              />
+              <h3>Gestionar Reservas</h3>
+              <p>
+                Visualiza y gestiona las reservas de estacionamientos realizadas
+                por los usuarios. Confirma, cancela o reprograma reservas según
+                sea necesario.
+              </p>
+            </div>
 
-<body>
-  <app-navbar-administrador></app-navbar-administrador>
-
-  <div class="contenido-principal">
-    <div class="textoPrincipal">
-      <h1>Panel de Administración de Estacionamientos</h1>
-      <p>Aquí podrás gestionar y supervisar todos los aspectos de tus estacionamientos.</p>
-    </div>
-
-    <div class="container">
-      <div class="intro">
-        <h2>
-          ¡Bienvenido, administrador! Aquí tienes acceso a una variedad de acciones:
-        </h2>
+            <div class="feature">
+              <img
+                src="https://img.freepik.com/foto-gratis/gente-negocios-trabajando-equipo-oficina_1303-22863.jpg?w=1380&t=st=1699310386~exp=1699310986~hmac=2ed87c60df110d683585525bfa8e8fe18ed27e4ec4133de429345b4c8e8a39ab"
+                alt="Imagen 3"
+              />
+              <h3>Atención al Cliente</h3>
+              <p>
+                Mantén un canal de comunicación abierto con los usuarios.
+                Responde preguntas, resuelve problemas y proporciona asistencia
+                en línea.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="features">
-        <div class="feature">
-          <img
-            src="https://img.freepik.com/foto-gratis/empresarios-que-trabajan-finanzas-contabilidad-analizan-financi_74952-1411.jpg?w=1380&t=st=1699310416~exp=1699311016~hmac=508109768eb96d397b10094ab3345852da6b490cb1d08b51e0a821a581e50204"
-            alt="Imagen 1" />
-          <h3>Administrar Estacionamientos</h3>
-          <p>
-            Agrega, modifica y elimina estacionamientos públicos y privados en tu inventario. Controla su disponibilidad y tarifas.
-          </p>
-        </div>
-
-        <div class="feature">
-          <img
-            src="https://img.freepik.com/foto-gratis/mujer-tiro-medio-trabajando-computadora-portatil_23-2149300643.jpg?w=1380&t=st=1699310436~exp=1699311036~hmac=fc321d75dde73df6c2c80d5b9fa6e877eb21d681c9ea3a2c1d119c59890fded3"
-            alt="Imagen 2" />
-          <h3>Gestionar Reservas</h3>
-          <p>
-            Visualiza y gestiona las reservas de estacionamientos realizadas por los usuarios. Confirma, cancela o reprograma reservas según sea necesario.
-          </p>
-        </div>
-
-        <div class="feature">
-          <img
-            src="https://img.freepik.com/foto-gratis/gente-negocios-trabajando-equipo-oficina_1303-22863.jpg?w=1380&t=st=1699310386~exp=1699310986~hmac=2ed87c60df110d683585525bfa8e8fe18ed27e4ec4133de429345b4c8e8a39ab"
-            alt="Imagen 3" />
-          <h3>Atención al Cliente</h3>
-          <p>
-            Mantén un canal de comunicación abierto con los usuarios. Responde preguntas, resuelve problemas y proporciona asistencia en línea.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
-
-
-</html>
+    </body>
+  </html>
 </div>

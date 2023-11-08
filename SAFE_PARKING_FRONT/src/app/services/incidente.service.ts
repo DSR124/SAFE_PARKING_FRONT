@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Incidente } from '../models/incidente';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
@@ -12,25 +12,55 @@ export class IncidenteService {
   private url = `${base_url}/incidentes`;
   private listaCambio = new Subject<Incidente[]>();
   constructor(private http: HttpClient) {}
-  // Obtener todos los incidentes
+  // Obtener todos los Incidente
   list() {
-    return this.http.get<Incidente[]>(`${this.url}/Listar`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Incidente[]>(`${this.url}/Listar`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Obtener una incidencia por ID
+  // Obtener un Incidente por ID
   getById(id: number) {
-    return this.http.get<Incidente>(`${this.url}/ListarporID/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Incidente>(`${this.url}/ListarporID/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Actualizar Incidente
-  update(incidente: Incidente) {
-    return this.http.put(`${this.url}/Modificar`, incidente);
+  // Actualizar un Incidente
+  update(est: Incidente) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.put(`${this.url}/Modificar`, est, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Eliminar incidente
+  // Eliminar un Incidente
   delete(id: number) {
-    return this.http.delete(`${this.url}/Eliminar/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.delete(`${this.url}/Eliminar/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
   // Crear un nuevo Incidente
-  insert(i: Incidente) {
-    return this.http.post(`${this.url}/Registrar`, i);
+  insert(inc: Incidente) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(`${this.url}/Registrar`, inc, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   setList(listaNueva: Incidente[]) {
