@@ -1,11 +1,16 @@
 import { ReservaEstacionamiento } from './../../../models/reservaEstacionamiento';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
 import { PagoService } from 'src/app/services/pago.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
-
 
 function precioTotalPositivo(control: FormControl) {
   const precio = control.value;
@@ -20,10 +25,8 @@ function precioTotalPositivo(control: FormControl) {
 @Component({
   selector: 'app-creaedita-pago',
   templateUrl: './creaedita-pago.component.html',
-  styleUrls: ['./creaedita-pago.component.css']
+  styleUrls: ['./creaedita-pago.component.css'],
 })
-
-
 export class CreaeditaPagoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   pago: Pago = new Pago();
@@ -49,12 +52,10 @@ export class CreaeditaPagoComponent implements OnInit {
     private r_eS: ReservaEstacionamientoService,
     private router: Router, //Para Navegar
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
-    private route: ActivatedRoute //Para editar
-
-  ) { }
+    public route: ActivatedRoute //Para editar
+  ) {}
 
   ngOnInit(): void {
-
     //Nuevo Para Editar
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -81,7 +82,8 @@ export class CreaeditaPagoComponent implements OnInit {
       this.pago.fechaEmision = this.form.value.fechaEmision;
       this.pago.precioTotal = this.form.value.precioTotal;
       this.pago.tipoPago = this.form.value.tipoPago;
-      this.pago.reservaEstacionamiento.idReservaEstacionamiento = this.form.value.reservaEstacionamiento; //dessert.idDessert -> Se utiliza el ID por que desde la BD se maneja con ello
+      this.pago.reservaEstacionamiento.idReservaEstacionamiento =
+        this.form.value.reservaEstacionamiento; //dessert.idDessert -> Se utiliza el ID por que desde la BD se maneja con ello
       if (this.edicion) {
         this.pS.update(this.pago).subscribe(() => {
           this.pS.list().subscribe((data) => {
@@ -117,7 +119,9 @@ export class CreaeditaPagoComponent implements OnInit {
           fechaEmision: new FormControl(data.fechaEmision),
           precioTotal: new FormControl(data.precioTotal),
           tipoPago: new FormControl(data.tipoPago),
-          reservaEstacionamiento: new FormControl(data.reservaEstacionamiento.idReservaEstacionamiento), //Siempre es ID
+          reservaEstacionamiento: new FormControl(
+            data.reservaEstacionamiento.idReservaEstacionamiento
+          ), //Siempre es ID
         });
       });
     }

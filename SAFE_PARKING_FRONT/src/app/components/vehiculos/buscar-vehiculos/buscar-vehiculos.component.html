@@ -1,49 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID del vehículo:</label>
-        <input id="inputId" type="number" [(ngModel)]="idVehiculo" />
-        <button (click)="buscar()">Buscar</button>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
+
+      <div class="form">
+        <div class="generic-group">
+          <label for="inputId">Ingrese el ID del vehículo:</label>
+          <input id="inputId" type="number" [(ngModel)]="idVehiculo" />
+          <button (click)="buscar()">Buscar</button>
+        </div>
+        <hr />
+        <div class="generic-details" *ngIf="vehiculo">
+          <h2 class="generic-heading">Detalles del Vehículo</h2>
+          <div class="generic-box">
+            <h1>Placa</h1>
+            <p>{{ vehiculo.placaVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Categoría</h1>
+            <p>{{ vehiculo.categoriaVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Color</h1>
+            <p>{{ vehiculo.colorVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Marca</h1>
+            <p>{{ vehiculo.marcaVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Tamaño</h1>
+            <p>{{ vehiculo.tamanioVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Tarjeta de Propiedad</h1>
+            <p>{{ vehiculo.tarjetaPropiedadVehiculo }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Imagen</h1>
+            <p>{{ vehiculo.imagenVehiculo }}</p>
+          </div>
+        </div>
       </div>
-      <hr />
-      <div class="generic-details" *ngIf="vehiculo">
-        <h2 class="generic-heading">Detalles del Vehículo</h2>
-        <div class="generic-box">
-          <h1>Placa</h1>
-          <p>{{ vehiculo.placaVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Categoría</h1>
-          <p>{{ vehiculo.categoriaVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Color</h1>
-          <p>{{ vehiculo.colorVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Marca</h1>
-          <p>{{ vehiculo.marcaVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Tamaño</h1>
-          <p>{{ vehiculo.tamanioVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Tarjeta de Propiedad</h1>
-          <p>{{ vehiculo.tarjetaPropiedadVehiculo }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Imagen</h1>
-          <p>{{ vehiculo.imagenVehiculo }}</p>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
+</div>

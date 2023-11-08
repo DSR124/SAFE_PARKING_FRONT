@@ -35,7 +35,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {

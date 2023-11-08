@@ -1,22 +1,26 @@
 import { ReservaEstacionamiento } from './../../../models/reservaEstacionamiento';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Comentario } from 'src/app/models/comentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
-
 @Component({
   selector: 'app-creaedita-comentario',
   templateUrl: './creaedita-comentario.component.html',
-  styleUrls: ['./creaedita-comentario.component.css']
+  styleUrls: ['./creaedita-comentario.component.css'],
 })
 export class CreaeditaComentarioComponent implements OnInit {
-
   form: FormGroup = new FormGroup({});
-  com:Comentario = new Comentario()
+  com: Comentario = new Comentario();
   mensaje: string = '';
   minFecha: Date = moment().add(-0, 'days').toDate();
   fechaCreacion = new FormControl(new Date());
@@ -27,47 +31,42 @@ export class CreaeditaComentarioComponent implements OnInit {
     { value: 'Proteina', viewValue: 'Proteina' },
   ];
 
-  listaReservaEstacionamiento: ReservaEstacionamiento[] = []
+  listaReservaEstacionamiento: ReservaEstacionamiento[] = [];
 
   constructor(
     private reS: ReservaEstacionamientoService,
     private router: Router,
     private formBuilder: FormBuilder,
     private cS: ComentarioService,
-    private route: ActivatedRoute,
-  ) { }
+    public route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
       this.init();
     });
     this.form = this.formBuilder.group({
-      idComentario:[''],
+      idComentario: [''],
       contenido: ['', Validators.required],
       valoracion: ['', Validators.required],
       fechaCreacion: ['', Validators.required],
-      reservaEstacionamiento: ['', Validators.required]
+      reservaEstacionamiento: ['', Validators.required],
     });
-    this.reS.list().subscribe(data => {
+    this.reS.list().subscribe((data) => {
       this.listaReservaEstacionamiento = data;
-    })
-
+    });
   }
 
   aceptar(): void {
     if (this.form.valid) {
-      this.com.idComentario= this.form.value.idComentario;
+      this.com.idComentario = this.form.value.idComentario;
       this.com.contenido = this.form.value.contenido;
       this.com.valoracion = this.form.value.valoracion;
       this.com.fechaCreacion = this.form.value.fechaCreacion;
-      this.com.reservaEstacionamiento.idReservaEstacionamiento=this.form.value.reservaEstacionamiento;
-      
-
-      
-
+      this.com.reservaEstacionamiento.idReservaEstacionamiento =
+        this.form.value.reservaEstacionamiento;
 
       if (this.edicion) {
         this.cS.update(this.com).subscribe(() => {
@@ -76,18 +75,16 @@ export class CreaeditaComentarioComponent implements OnInit {
           });
         });
       } else {
-        this.cS.insert(this.com).subscribe(data => {
-          this.cS.list().subscribe(data => {
-            this.cS.setList(data)
-          })
-        })
+        this.cS.insert(this.com).subscribe((data) => {
+          this.cS.list().subscribe((data) => {
+            this.cS.setList(data);
+          });
+        });
       }
 
-
-
-      this.router.navigate(['comentarios/listar_comentarios_admin'])
+      this.router.navigate(['comentarios/listar_comentarios_admin']);
     } else {
-      this.mensaje = 'Ingrese todos los campos!!'
+      this.mensaje = 'Ingrese todos los campos!!';
     }
   }
   obtenerControlCampo(nombreCampo: string): AbstractControl {
@@ -96,7 +93,6 @@ export class CreaeditaComentarioComponent implements OnInit {
       throw new Error(`Control no encontrado para el campo ${nombreCampo}`);
     }
     return control;
-
   }
 
   init() {
@@ -106,11 +102,12 @@ export class CreaeditaComentarioComponent implements OnInit {
           idComentario: new FormControl(data.idComentario),
           contenido: new FormControl(data.contenido),
           valoracion: new FormControl(data.valoracion),
-          fechaCreacion:new FormControl(data.fechaCreacion),
-          reservaEstacionamiento: new FormControl(data.reservaEstacionamiento.idReservaEstacionamiento),
+          fechaCreacion: new FormControl(data.fechaCreacion),
+          reservaEstacionamiento: new FormControl(
+            data.reservaEstacionamiento.idReservaEstacionamiento
+          ),
         });
       });
     }
   }
-  
 }

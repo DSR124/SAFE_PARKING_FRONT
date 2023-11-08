@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID:</label>
-        <input id="inputId" type="number" [(ngModel)]="id" />
-        <mat-error *ngIf="idNoEncontrado"
-          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
-        >
-        <br />
-        <button (click)="buscar()">Buscar</button>
-      </div>
-      <hr />
-      <div class="generic-details" *ngIf="rol">
-        <h2 class="generic-heading">Detalles de Rol</h2>
-        <div class="generic-box">
-          <h1>Tipo de Rol</h1>
-          <p>{{ rol.nombreRol }}</p>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
+
+      <div class="form">
+        <div class="generic-group">
+          <label for="inputId">Ingrese el ID:</label>
+          <input id="inputId" type="number" [(ngModel)]="id" />
+          <mat-error *ngIf="idNoEncontrado"
+            >El ID ingresado no existe. Por favor, intente con otro
+            ID.</mat-error
+          >
+          <br />
+          <button (click)="buscar()">Buscar</button>
         </div>
-        <div class="generic-box">
-          <h1>Usuario</h1>
-          <p>{{ rol.usuario.nombre }}</p>
+        <hr />
+        <div class="generic-details" *ngIf="rol">
+          <h2 class="generic-heading">Detalles de Rol</h2>
+          <div class="generic-box">
+            <h1>Tipo de Rol</h1>
+            <p>{{ rol.nombreRol }}</p>
+          </div>
+          <div class="generic-box">
+            <h1>Usuario</h1>
+            <p>{{ rol.usuario.nombre }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
+</div>

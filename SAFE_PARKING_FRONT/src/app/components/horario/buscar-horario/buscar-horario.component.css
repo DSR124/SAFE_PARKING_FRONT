@@ -6,7 +6,7 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 800px;
-  margin: 100px auto; /* Centrar horizontalmente */
+  margin:  auto; /* Centrar horizontalmente */
   flex-direction: column;
   justify-content: center; /* Centrar verticalmente */
   align-items: center; /* Centrar horizontalmente */
@@ -14,7 +14,7 @@
 
 body{
   background: linear-gradient(to right, #11998e, #38ef7d);
-  padding: 30px;
+  padding: 100px;
   margin-left: 250px;
 
 }

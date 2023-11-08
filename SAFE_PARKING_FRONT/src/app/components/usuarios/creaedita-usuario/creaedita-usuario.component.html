@@ -167,19 +167,18 @@
                   El imagen es obligatorio.
                 </mat-error>
               </mat-form-field>
-              <div class="image-upload">
-                <input
-                  type="file"
-                  (change)="onFileSelected($event)"
-                  accept="image/*"
-                  formControlName="imagenVehiculo"
-                />
-                <img
-                  *ngIf="imageSelected"
-                  [src]="imageSelected"
-                  alt="Imagen del Vehículo"
-                />
-              </div>
+              <input
+                class="example-full-width"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+                formControlName="imagenVehiculo"
+              />
+              <img
+                *ngIf="imageSelected"
+                [src]="imageSelected"
+                alt="Imagen del Vehículo"
+              />
             </div>
           </div>
           <div class="botones">

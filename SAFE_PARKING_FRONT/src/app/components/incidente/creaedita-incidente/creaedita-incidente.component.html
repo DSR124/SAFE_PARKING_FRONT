@@ -1,80 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <form [formGroup]="form" (submit)="registrar()" class="example-form">
-        <div class="titulo">
-          <h2>Registrar Incidente</h2>
-        </div>
-        <br />
-
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <!--*ngIf="edicion" es para que se meustre en la edicion-->
-          <mat-label>id Incidente</mat-label>
-          <input
-            matInput
-            placeholder="idIncidente"
-            formControlName="idIncidente"
-          />
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label> <mat-icon>tab</mat-icon> Descripcion </mat-label>
-          <input
-            matInput
-            placeholder="Descripcion"
-            formControlName="descripcion"
-          />
-          <mat-error
-            *ngIf="obtenerControlCampo('descripcion')?.errors?.['required']"
-          >
-            El nombre es obligatorio.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo de Incidente</mat-label>
-          <mat-select
-            placeholder="Tipo de Incidente"
-            formControlName="tipoIncidente"
-          >
-            <mat-option *ngFor="let t of tiposIncidentes" [value]="t.value">{{
-              t.viewValue
-            }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']"
-          >
-            El tipo de incidente es obligatorio.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>usuarios</mat-label>
-          <mat-select formControlName="usuario">
-            <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
-              {{ p.nombre }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('usuario')?.errors?.['required']"
-          >
-            El nombre de usuario es obligatorio.
-          </mat-error>
-        </mat-form-field>
-
-        <br />
-        <button class="botonRegistro" mat-raised-button color="primary">
-          Registrar
-        </button>
-      </form>
-    </div>
-  </body>
-</html>
-
 <router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
+
+      <div class="container">
+        <form [formGroup]="form" (submit)="registrar()" class="example-form">
+          <div class="titulo">
+            <h2>Registrar Incidente</h2>
+          </div>
+          <br />
+
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <!--*ngIf="edicion" es para que se meustre en la edicion-->
+            <mat-label>id Incidente</mat-label>
+            <input
+              matInput
+              placeholder="idIncidente"
+              formControlName="idIncidente"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label> <mat-icon>tab</mat-icon> Descripcion </mat-label>
+            <input
+              matInput
+              placeholder="Descripcion"
+              formControlName="descripcion"
+            />
+            <mat-error
+              *ngIf="obtenerControlCampo('descripcion')?.errors?.['required']"
+            >
+              El nombre es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Tipo de Incidente</mat-label>
+            <mat-select
+              placeholder="Tipo de Incidente"
+              formControlName="tipoIncidente"
+            >
+              <mat-option *ngFor="let t of tiposIncidentes" [value]="t.value">{{
+                t.viewValue
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']"
+            >
+              El tipo de incidente es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>usuarios</mat-label>
+            <mat-select formControlName="usuario">
+              <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
+                {{ p.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('usuario')?.errors?.['required']"
+            >
+              El nombre de usuario es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <br />
+          <button class="botonRegistro" mat-raised-button color="primary">
+            Registrar
+          </button>
+        </form>
+      </div>
+    </body>
+  </html>
+
+  <router-outlet></router-outlet>
+</div>

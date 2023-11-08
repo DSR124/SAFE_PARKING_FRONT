@@ -117,7 +117,6 @@ import { ComponentsRoutingModule } from './components-routing.module';
 
     //Membresia
     MembresiaComponent,
-
     BuscarMembresiaComponent,
     CreaeditaMembresiaComponent,
     ListarAdminMembresiaComponent,

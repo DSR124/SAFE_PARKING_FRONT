@@ -1,34 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div>
-      <h2 style="text-align: center">LISTA DE LOCALIZACIONES</h2>
-    </div>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
 
-    <div class="container">
-      <div class="card-container">
-        <div class="card" *ngFor="let element of dataSource.data">
-          <div class="card-header">
-            {{ element.idLocalizacion }}
-          </div>
-          <div class="card-body">
-            <p>Dirección: {{ element.direccion }}</p>
-            <p>Distrito: {{ element.distrito }}</p>
-            <p>Región: {{ element.region }}</p>
-            <p>Referencia: {{ element.referencia }}</p>
-            <p>Latitud: {{ element.latitud }}</p>
-            <p>Longitud: {{ element.longitud }}</p>
-          </div>
-          <div id="map{{ element.idLocalizacion }}" style="height: 200px"></div>
-          <div class="card-footer">
+      <div>
+        <h2 style="text-align: center">LISTA DE LOCALIZACIONES</h2>
+      </div>
+
+      <div class="container">
+        <div class="card-container">
+          <div class="card" *ngFor="let element of dataSource.data">
+            <div class="card-header">
+              {{ element.idLocalizacion }}
+            </div>
+            <div class="card-body">
+              <p>Dirección: {{ element.direccion }}</p>
+              <p>Distrito: {{ element.distrito }}</p>
+              <p>Región: {{ element.region }}</p>
+              <p>Referencia: {{ element.referencia }}</p>
+              <p>Latitud: {{ element.latitud }}</p>
+              <p>Longitud: {{ element.longitud }}</p>
+            </div>
+            <div
+              id="map{{ element.idLocalizacion }}"
+              style="height: 200px"
+            ></div>
+            <div class="card-footer"></div>
           </div>
         </div>
       </div>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
+</div>

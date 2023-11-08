@@ -3,8 +3,8 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   height: 101%;
-  padding: 20px;
-  margin-left: 250px;
+  padding: 30px;
+  margin-left: 260px;
 
 }
 .container {
@@ -12,14 +12,17 @@ body {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  margin: 60px ;
   /* Centra horizontalmente */
   margin-top: 50px;
-  max-width: 98%;
+  max-width: 100%;
+  padding: 20px;
 }
 
 .example-form{
   max-height: 600px;
+  max-width: 100%;
+
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -96,9 +99,10 @@ button{
 
 /* Additional styling for the uploaded image */
 img {
-  max-width: 100%;
+  max-width: 90%;
   max-height: 50%;
   margin-top: 10px;
+  margin: 10px;
 
 }
 input[type="file"] {

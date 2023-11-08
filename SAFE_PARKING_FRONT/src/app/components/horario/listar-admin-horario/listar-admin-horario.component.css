@@ -2,12 +2,12 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
+  padding: 90px;
 
 }
 
 h2 {
   color: #333;
-  padding-top:30px;
 }
 .container {
   width: 90%;

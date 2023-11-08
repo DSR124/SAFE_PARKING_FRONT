@@ -1,98 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
 
-  <body>
-    <div class="container">
-      <form [formGroup]="form" (submit)="registrar()" class="example-form">
-        <div class="titulo">
-          <h2>REGISTRO DE MEMBRESIAS</h2>
-        </div>
-        <br />
-        <mat-form-field class="example-full-width">
-          <mat-label> <mat-icon>tab</mat-icon> Tipo de membresia </mat-label>
-          <input
-            matInput
-            placeholder="Tipo de membresia"
-            formControlName="tipoMembresia"
-          />
-          <mat-error
-            *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']"
-          >
-            El nombre es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <div class="seccion _fechas">
-          <mat-form-field class="fecha">
-            <mat-label>Fecha de Inicio</mat-label>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
+      <div class="container">
+        <form [formGroup]="form" (submit)="registrar()" class="example-form">
+          <div class="titulo">
+            <h2>REGISTRO DE MEMBRESIAS</h2>
+          </div>
+          <br />
+          <mat-form-field class="example-full-width">
+            <mat-label> <mat-icon>tab</mat-icon> Tipo de membresia </mat-label>
             <input
               matInput
-              [matDatepicker]="pickerInicio"
-              placeholder="Fecha de inicio"
-              formControlName="fechaInicio"
-              [min]="minFecha"
+              placeholder="Tipo de membresia"
+              formControlName="tipoMembresia"
             />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerInicio"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerInicio></mat-datepicker>
             <mat-error
-              *ngIf="obtenerControlCampo('fechaInicio')?.errors?.['required']"
+              *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']"
             >
-              La fecha de inicio es obligatoria.
+              El nombre es obligatorio.
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="fecha">
-            <mat-label>Fecha de expiración</mat-label>
+          <div class="seccion _fechas">
+            <mat-form-field class="fecha">
+              <mat-label>Fecha de Inicio</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerInicio"
+                placeholder="Fecha de inicio"
+                formControlName="fechaInicio"
+                [min]="minFecha"
+              />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="pickerInicio"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerInicio></mat-datepicker>
+              <mat-error
+                *ngIf="obtenerControlCampo('fechaInicio')?.errors?.['required']"
+              >
+                La fecha de inicio es obligatoria.
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="fecha">
+              <mat-label>Fecha de expiración</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerExpiracion"
+                placeholder="Fecha de expiración"
+                formControlName="fechaFin"
+                [min]="minFecha"
+              />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="pickerExpiracion"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerExpiracion></mat-datepicker>
+              <mat-error
+                *ngIf="obtenerControlCampo('fechaFin')?.errors?.['required']"
+              >
+                La fecha de expiración es obligatoria.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <mat-form-field class="example-full-width">
+            <mat-label> <mat-icon>attach_money</mat-icon> Precio </mat-label>
             <input
+              type="number"
               matInput
-              [matDatepicker]="pickerExpiracion"
-              placeholder="Fecha de expiración"
-              formControlName="fechaFin"
-              [min]="minFecha"
+              placeholder="Precio"
+              formControlName="precio"
             />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerExpiracion"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerExpiracion></mat-datepicker>
             <mat-error
-              *ngIf="obtenerControlCampo('fechaFin')?.errors?.['required']"
+              *ngIf="obtenerControlCampo('precio')?.errors?.['required']"
             >
-              La fecha de expiración es obligatoria.
+              El precio es obligatorio.
             </mat-error>
           </mat-form-field>
-        </div>
-        <mat-form-field class="example-full-width">
-          <mat-label> <mat-icon>attach_money</mat-icon> Precio </mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Precio"
-            formControlName="precio"
-          />
-          <mat-error
-            *ngIf="obtenerControlCampo('precio')?.errors?.['required']"
-          >
-            El precio es obligatorio.
-          </mat-error>
-        </mat-form-field>
 
-        <button
-          class="boton"
-          mat-raised-button
-          [routerLink]="['/membresia/listar_membresias']"
-        >
-          Registrar
-        </button>
-      </form>
-    </div>
-  </body>
-</html>
+          <button
+            class="boton"
+            mat-raised-button
+            [routerLink]="['/membresia/listar_membresias']"
+          >
+            Registrar
+          </button>
+        </form>
+      </div>
+    </body>
+  </html>
+</div>

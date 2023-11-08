@@ -1,35 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="search-form">
-      <div class="form-group">
-        <label for="incidenteIdInput">Ingrese el ID del comentario:</label>
-        <input id="incidenteIdInput" type="number" [(ngModel)]="idComentario" />
-        <button (click)="buscar()">Buscar</button>
-      </div>
-      <hr />
-      <div class="incidente-details" *ngIf="com">
-        <h2 class="details-heading">Detalles del Comentario</h2>
-        <div class="info-box">
-          <h1>Contenido del comentario</h1>
-          <p>{{ com.contenido }}</p>
-        </div>
-        <div class="info-box">
-          <h1>Valoración del comentario</h1>
-          <p>{{ com.valoracion }}</p>
-        </div>
-        <div class="info-box">
-          <h1>Fecha de creación</h1>
-          <p>{{ com.fechaCreacion }}</p>
-        </div>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+    <body>
+      <app-navbar-administrador></app-navbar-administrador>
 
-        <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+      <div class="search-form">
+        <div class="form-group">
+          <label for="incidenteIdInput">Ingrese el ID del comentario:</label>
+          <input
+            id="incidenteIdInput"
+            type="number"
+            [(ngModel)]="idComentario"
+          />
+          <button (click)="buscar()">Buscar</button>
+        </div>
+        <hr />
+        <div class="incidente-details" *ngIf="com">
+          <h2 class="details-heading">Detalles del Comentario</h2>
+          <div class="info-box">
+            <h1>Contenido del comentario</h1>
+            <p>{{ com.contenido }}</p>
+          </div>
+          <div class="info-box">
+            <h1>Valoración del comentario</h1>
+            <p>{{ com.valoracion }}</p>
+          </div>
+          <div class="info-box">
+            <h1>Fecha de creación</h1>
+            <p>{{ com.fechaCreacion }}</p>
+          </div>
+
+          <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
+</div>

@@ -25,4 +25,7 @@ export class NavbarAdministradorComponent {
       return false;
     }
   }
+  cerrar() {
+    sessionStorage.clear();
+  }
 }
