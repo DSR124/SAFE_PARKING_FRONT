@@ -2,6 +2,8 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   height: 850px;
+  margin-left: 250px;
+
 }
 
 h2 {

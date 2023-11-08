@@ -1,6 +1,8 @@
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); 
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  margin-left: 250px;
+
 }
 
 h2 {

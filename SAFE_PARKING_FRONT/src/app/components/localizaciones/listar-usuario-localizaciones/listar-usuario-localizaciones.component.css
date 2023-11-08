@@ -5,6 +5,8 @@ body {
   background-size: cover;
   color: #080808;
   height: 300%;
+  margin-left: 250px;
+
 }
 
 /* Styles for the individual card */

@@ -1,6 +1,9 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #11998e, #38ef7d);
+    padding: 30px;
+    margin-left: 250px;
+
   }
 
   .search-form {

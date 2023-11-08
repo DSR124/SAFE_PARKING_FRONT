@@ -1,9 +1,11 @@
 /* Apply display: flex to the form container */
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); 
+  background: linear-gradient(to right, #11998e, #38ef7d);
   height: 101%;
   padding: 20px;
+  margin-left: 250px;
+
 }
 .container {
   margin-bottom: 50px;
@@ -65,7 +67,7 @@ h2 {
 .btn-container {
   justify-content: center;
   text-align: center;
-  
+
 }
 button{
   margin: 10px;

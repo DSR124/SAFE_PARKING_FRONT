@@ -14,7 +14,10 @@
 
 body{
     background: linear-gradient(to right, #11998e, #38ef7d);
-    height: 115%;
+    height: 145%;
+    padding: 30px;
+    margin-left: 250px;
+
 
 }
 .generic-group label {
