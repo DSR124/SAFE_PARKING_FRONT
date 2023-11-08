@@ -53,9 +53,18 @@ export class CreaeditaMembresiaComponent implements OnInit {
   minFecha: Date = moment().add(-0, 'days').toDate();
   id: number = 0;
   edicion: boolean = false;
+  
 
   /*tipos: { value: string, viewValue: string }[] = [{ value: 'dulce', viewValue: 'Dulce' }
     , { value: 'salado', viewValue: 'Salado' }]*/ //PARA USAR UN SELECT
+
+  tiposMembresia: { value: string; viewValue: string }[] = [
+      { value: 'freeconductor', viewValue: 'Free Conductor' },
+      { value: 'freearendador', viewValue: 'Free Arrendador' },
+      { value: 'vipconductor', viewValue: 'VIP Conductor' },
+      { value: 'viparrendador', viewValue: 'VIP Arrendador' },
+      
+  ];
   constructor(
     private mS: MembresiaService,
     private router: Router,
@@ -79,6 +88,8 @@ export class CreaeditaMembresiaComponent implements OnInit {
   
   
   }
+
+  
   registrar() {
     if (this.form.valid) {
       this.membresia.idMembresia = this.form.value.idMembresia;
@@ -133,8 +144,25 @@ export class CreaeditaMembresiaComponent implements OnInit {
 
     
   }
-
-
-   
   
+
+  
+  validateDates(formControl: FormControl): { [key: string]: any } | null {
+    const startDate = formControl.get('fechaInicio')?.value;
+    const endDate = formControl.value;
+
+    if (startDate && endDate && endDate < startDate) {
+      return { 'fechaFinMenorQueFechaInicio': true };
+    }
+
+    return null;
+  }
+  
+  filterDates = (date: Date | null): boolean => {
+    const startDate = this.form.get('fechaInicio')?.value;
+    if (startDate && date) {
+      return date > startDate;
+    }
+    return true;
+  }
 }

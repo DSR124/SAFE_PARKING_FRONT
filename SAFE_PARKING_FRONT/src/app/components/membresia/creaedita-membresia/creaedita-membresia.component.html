@@ -16,13 +16,29 @@
         <h2>REGISTRO DE MEMBRESIAS</h2>
       </div>
       <br />
+      <!-- Categoria sección -->
       <mat-form-field class="example-full-width">
+        <mat-label>Tipo de membresía</mat-label>
+        <mat-select formControlName="tipoMembresia">
+          <mat-option *ngFor="let t of tiposMembresia" [value]="t.value">{{
+            t.viewValue
+            }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']">
+          El tipo es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <!-- Categoria sección -->
+
+      <!--<mat-form-field class="example-full-width">
         <mat-label> <mat-icon>tab</mat-icon> Tipo de membresia </mat-label>
         <input matInput placeholder="Tipo de membresia" formControlName="tipoMembresia" />
         <mat-error *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']">
           El nombre es obligatorio.
         </mat-error>
-      </mat-form-field>
+      </mat-form-field>-->
+
+
       <div class="seccion _fechas">
         <mat-form-field class="fecha">
           <mat-label>Fecha de Inicio</mat-label>
@@ -38,7 +54,7 @@
         <mat-form-field class="fecha">
           <mat-label>Fecha de expiración</mat-label>
           <input matInput [matDatepicker]="pickerExpiracion" placeholder="Fecha de expiración"
-            formControlName="fechaFin" [min]="minFecha" />
+            formControlName="fechaFin" [min]="minFecha" [matDatepickerFilter]="filterDates"/>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="pickerExpiracion"></mat-datepicker-toggle>
           <mat-datepicker #pickerExpiracion></mat-datepicker>
