@@ -18,6 +18,7 @@ body {
   background: linear-gradient(to right, #11998e, #38ef7d);
   padding: 20px;
   margin-left: 250px;
+  height: auto;
 
 }
 .longitudes{

@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
-  padding: 90px;
+  padding: 30px;
 
 }
 
@@ -10,25 +10,30 @@ h2 {
   color: #333;
 }
 
+<<<<<<< HEAD
 .container {
   width: 90%;
   padding: 20px;
   background-color: #fff;
+=======
+.botoncito1{
+  background-color: #11998e;
+  color: #fff;
+>>>>>>> origin/Branch-Diego
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  /* Centra horizontalmente */
-  margin-top: 50px;
-
-  overflow: auto;
+  padding-right: 5px;
 }
-
+.botoncito2{
+  background-color: #000000;
+  color: #fff;
+  border-radius: 8px;
+  padding-right: 5px;
+}
 table {
   width: 800px;
 }
 
 .example-container {
-  height: 400px;
   width: 90%;
   overflow: auto;
   padding: 20px;

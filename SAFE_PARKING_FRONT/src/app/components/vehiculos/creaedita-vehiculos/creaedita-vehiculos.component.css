@@ -2,9 +2,8 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
-  height: 101%;
-  padding: 30px;
   margin-left: 260px;
+  padding: 60px;
 
 }
 .container {
@@ -12,11 +11,11 @@ body {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 60px ;
   /* Centra horizontalmente */
   margin-top: 50px;
   max-width: 100%;
   padding: 20px;
+  margin: 30px;
 }
 
 .example-form{

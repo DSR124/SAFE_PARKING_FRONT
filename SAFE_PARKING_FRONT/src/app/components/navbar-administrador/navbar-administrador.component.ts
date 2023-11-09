@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterEvent } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+
 @Component({
   selector: 'app-navbar-administrador',
   templateUrl: './navbar-administrador.component.html',
@@ -11,7 +13,8 @@ export class NavbarAdministradorComponent {
   constructor(
     public route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public dialog: MatDialog
   ) {}
 
   verificar() {
@@ -29,7 +32,14 @@ export class NavbarAdministradorComponent {
       return false;
     }
   }
+  confirmarSalir(): void {
+    const confirmacion = window.confirm('¿Estás seguro de que deseas salir?');
+    if (confirmacion) {
+      this.cerrar(); // Llama a la función cerrar() cuando se confirma la salida
+    }
+  }
   cerrar() {
-    sessionStorage.clear();
+    // Redirigir al componente de inicio de sesión
+    this.router.navigate(['/login']);
   }
 }

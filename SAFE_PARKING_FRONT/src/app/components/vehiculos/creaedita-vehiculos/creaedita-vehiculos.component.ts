@@ -48,7 +48,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
     { value: 'Pequeño', viewValue: 'Pequeño' },
     { value: 'Mediano', viewValue: 'Mediano' },
     { value: 'Grande', viewValue: 'Grande' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
   ];
 
   imageSelected: string | ArrayBuffer | null = null;
@@ -59,7 +59,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     public route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -86,7 +86,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.vehiculo.colorVehiculo = this.form.value.colorVehiculo;
       this.vehiculo.marcaVehiculo = this.form.value.marcaVehiculo;
       this.vehiculo.tamanioVehiculo = this.form.value.tamanioVehiculo;
-      this.vehiculo.tarjetaPropiedadVehiculo = this.form.value.tarjetaPropiedadVehiculo;
+      this.vehiculo.tarjetaPropiedadVehiculo =
+        this.form.value.tarjetaPropiedadVehiculo;
       this.vehiculo.imagenVehiculo = this.imagenCortada; // Guardar la imagen en el objeto vehículo
 
       if (this.edicion) {
@@ -102,7 +103,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['vehiculos/listar_admin_vehiculos']);
+      this.router.navigate(['components/vehiculos/listar_admin_vehiculos']);
     } else {
       // Handle incomplete form
       this.mensaje = '¡Completa todos los campos!';
@@ -156,7 +157,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
           colorVehiculo: new FormControl(data.colorVehiculo),
           marcaVehiculo: new FormControl(data.marcaVehiculo),
           tamanioVehiculo: new FormControl(data.tamanioVehiculo),
-          tarjetaPropiedadVehiculo: new FormControl(data.tarjetaPropiedadVehiculo
+          tarjetaPropiedadVehiculo: new FormControl(
+            data.tarjetaPropiedadVehiculo
           ),
           imagenVehiculo: new FormControl(data.imagenVehiculo),
         });

@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
-  padding: 140px;
+  padding: 30px;
 
 }
 
@@ -17,7 +17,6 @@ h2 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   /* Centra horizontalmente */
-
   overflow: auto;
 }
 
@@ -52,7 +51,10 @@ th.mat-column-position, td.mat-column-position {
 .mat-table-sticky:last-child {
   border-left: 1px solid #696969;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Branch-Diego
 .botoncito1{
   background-color: #11998e;
   color: #fff;
@@ -64,4 +66,8 @@ th.mat-column-position, td.mat-column-position {
   color: #fff;
   border-radius: 8px;
   padding-right: 5px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Branch-Diego

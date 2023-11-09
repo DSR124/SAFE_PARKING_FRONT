@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <router-outlet></router-outlet>
 <div [hidden]="route.children.length !== 0">
   <!DOCTYPE html>
@@ -19,6 +20,30 @@
     <div class="container">
       <mat-form-field>
         <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
+
+    <div class="litle">
+      <h2 style="text-align: center">LISTA DE LOCALIZACIONES</h2>
+    </div>
+
+    <div class="container">
+      <mat-form-field>
+        <input
+          style="text-align: left"
+          matInput
+          (keyup)="filter($event)"
+          placeholder="Bucar por.."
+        />
+>>>>>>> origin/Branch-Diego
       </mat-form-field>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!--- Note that these columns can be defined in any order.
@@ -56,22 +81,33 @@
           <th mat-header-cell *matHeaderCellDef>referencia</th>
           <td mat-cell *matCellDef="let element">
             {{ element.referencia }}
+<<<<<<< HEAD
           </td>
         </ng-container>
+=======
+          </td></ng-container
+        >
+>>>>>>> origin/Branch-Diego
 
         <!-- referencia Column -->
         <ng-container matColumnDef="latitud">
           <th mat-header-cell *matHeaderCellDef>latitud</th>
           <td mat-cell *matCellDef="let element">
             {{ element.latitud }}
+<<<<<<< HEAD
           </td>
         </ng-container>
+=======
+          </td></ng-container
+        >
+>>>>>>> origin/Branch-Diego
 
         <!-- referencia Column -->
         <ng-container matColumnDef="longitud">
           <th mat-header-cell *matHeaderCellDef>longitud</th>
           <td mat-cell *matCellDef="let element">
             {{ element.longitud }}
+<<<<<<< HEAD
           </td>
         </ng-container>
 
@@ -101,3 +137,43 @@
 
   </html>
 </div>
+=======
+          </td></ng-container
+        >
+
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="botoncito1"
+              mat-raised-button
+              [routerLink]="['ediciones', element.idLocalizacion]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="botoncito2"
+              mat-raised-button
+              (click)="eliminar(element.idLocalizacion)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <br />
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>
+>>>>>>> origin/Branch-Diego

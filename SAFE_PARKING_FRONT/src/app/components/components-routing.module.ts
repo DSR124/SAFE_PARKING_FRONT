@@ -60,6 +60,7 @@ import { HomeArrendadorComponent } from './home-arrendador/home-arrendador.compo
 import { HomeConductorComponent } from './home-conductor/home-conductor.component';
 import { HomeAdministradorComponent } from './home-administrador/home-administrador.component';
 import { NgModule } from '@angular/core';
+import { NavbarAdministradorComponent } from './navbar-administrador/navbar-administrador.component';
 
 const routes: Routes = [
   // localizaciones
@@ -398,6 +399,10 @@ const routes: Routes = [
   {
     path: 'home_administrador',
     component: HomeAdministradorComponent,
+  },
+  {
+    path: 'navbar_admin',
+    component: NavbarAdministradorComponent,
   },
 ];
 @NgModule({

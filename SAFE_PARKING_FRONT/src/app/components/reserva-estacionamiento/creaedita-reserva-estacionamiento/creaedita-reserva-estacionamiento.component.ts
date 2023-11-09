@@ -105,7 +105,7 @@ export class CreaeditaReservaEstacionamientoComponent {
         });
       }
       this.router.navigate([
-        'reservaestacionamiento/listar_admin_reserva_estacionamientos',
+        'components/reservaestacionamiento/listar_admin_reserva_estacionamientos',
       ]);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
