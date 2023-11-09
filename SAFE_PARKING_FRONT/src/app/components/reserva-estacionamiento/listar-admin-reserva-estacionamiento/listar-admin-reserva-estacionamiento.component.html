@@ -79,45 +79,6 @@
             {{ element.horarioEstacionamiento.idHorarioEstacionamiento }}
           </td>
         </ng-container>
-
-<<<<<<< HEAD
-          <ng-container matColumnDef="accion01">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let element">
-              <button class = "botoncito1"
-                mat-raised-button
-                color="primary"
-                [routerLink]="['ediciones', element.idReservaEstacionamiento]"
-              >
-                <mat-icon>edit</mat-icon> 
-              </button>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="accion02">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let element">
-              <button class = "botoncito2"
-                mat-raised-button
-                color="warn"
-                (click)="eliminar(element.idReservaEstacionamiento)"
-              >
-                <mat-icon>delete</mat-icon> 
-              </button>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-        <br />
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          showFirstLastButtons
-        ></mat-paginator>
-      </div>
-    </body>
-  </html>
-</div>
-=======
         <ng-container matColumnDef="accion01">
           <th mat-header-cell *matHeaderCellDef>editar</th>
           <td mat-cell *matCellDef="let element">
@@ -153,4 +114,3 @@
     </div>
   </body>
 </html>
->>>>>>> origin/Branch-Diego

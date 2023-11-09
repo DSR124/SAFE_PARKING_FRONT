@@ -1,19 +1,4 @@
-<<<<<<< HEAD
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
-
-=======
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,22 +10,18 @@
   <body>
     <app-navbar-administrador></app-navbar-administrador>
 
->>>>>>> origin/Branch-Diego
     <div class="litle">
       <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
     </div>
     <div class="example-container mat-elevation-z8">
       <mat-form-field>
-<<<<<<< HEAD
-        <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
-=======
+
         <input
           style="text-align: left"
           matInput
           (keyup)="filter($event)"
           placeholder="Bucar por.."
         />
->>>>>>> origin/Branch-Diego
       </mat-form-field>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!--- Note that these columns can be defined in any order.
@@ -107,35 +88,6 @@
             {{ element.imagenVehiculo }}
           </td>
         </ng-container>
-<<<<<<< HEAD
-
-        <ng-container matColumnDef="accion01" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button class="botoncito1" mat-raised-button [routerLink]="['ediciones', element.idVehiculo]">
-              <mat-icon>edit</mat-icon> 
-            </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="accion02" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button class="botoncito2" mat-raised-button (click)="eliminar(element.idVehiculo)">
-              <mat-icon>delete</mat-icon> 
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <br />
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </div>
-  </body>
-
-  </html>
-</div>
-=======
 
         <ng-container matColumnDef="accion01" stickyEnd>
           <th mat-header-cell *matHeaderCellDef>editar</th>
@@ -172,4 +124,3 @@
     </div>
   </body>
 </html>
->>>>>>> origin/Branch-Diego
