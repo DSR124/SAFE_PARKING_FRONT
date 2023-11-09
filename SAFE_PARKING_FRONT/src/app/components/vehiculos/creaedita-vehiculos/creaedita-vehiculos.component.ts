@@ -167,8 +167,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
           colorVehiculo: new FormControl(data.colorVehiculo),
           marcaVehiculo: new FormControl(data.marcaVehiculo),
           tamanioVehiculo: new FormControl(data.tamanioVehiculo),
-          tarjetaPropiedadVehiculo: new FormControl(data.tarjetaPropiedadVehiculo
-          ),
+          tarjetaPropiedadVehiculo: new FormControl(data.tarjetaPropiedadVehiculo),
           imagenVehiculo: new FormControl(data.imagenVehiculo),
         });
         this.imageSelected = data.imagenVehiculo; // Guarda la URL de la imagen
