@@ -6,8 +6,8 @@ table {
 
 body{
   background: linear-gradient(to right, #11998e, #38ef7d);
-  padding: 110px;
   margin-left: 250px;
+  padding: 30px;
 
 }
 .container {
@@ -16,12 +16,11 @@ body{
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  margin: 100px auto;
   /* Centra horizontalmente */
   margin-top: 50px;
 }
 
 h2 {
   color: #333;
-  padding-top:30px;
 }

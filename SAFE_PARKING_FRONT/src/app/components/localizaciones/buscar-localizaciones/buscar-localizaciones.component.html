@@ -1,26 +1,23 @@
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Buscar Localización</title>
-      <link rel="stylesheet" href="buscar-localizaciones.component.css" />
-    </head>
-    <body>
-      <app-navbar-administrador></app-navbar-administrador>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscar Localización</title>
+    <link rel="stylesheet" href="buscar-localizaciones.component.css" />
+  </head>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
 
-      <div class="container">
-        <h2>Buscar Localización</h2>
-        <input
-          type="text"
-          [(ngModel)]="idLocalizacion"
-          placeholder="Ingrese el ID de la localización"
-        />
-        <button (click)="buscar()">Buscar</button>
-      </div>
-      <div id="map" class="map-container"></div>
-    </body>
-  </html>
-</div>
+    <div class="container">
+      <h2>Buscar Localización</h2>
+      <input
+        type="text"
+        [(ngModel)]="idLocalizacion"
+        placeholder="Ingrese el ID de la localización"
+      />
+      <button (click)="buscar()">Buscar</button>
+    </div>
+    <div id="map" class="map-container"></div>
+  </body>
+</html>

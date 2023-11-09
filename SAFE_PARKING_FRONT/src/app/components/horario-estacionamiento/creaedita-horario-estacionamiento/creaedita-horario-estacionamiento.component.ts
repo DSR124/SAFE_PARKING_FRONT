@@ -85,7 +85,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
         });
       }
       this.router.navigate([
-        'horarios_estacionamiento/listar_admin_horarios_estacionamiento',
+        'components/horarios_estacionamiento/listar_admin_horarios_estacionamiento',
       ]); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';

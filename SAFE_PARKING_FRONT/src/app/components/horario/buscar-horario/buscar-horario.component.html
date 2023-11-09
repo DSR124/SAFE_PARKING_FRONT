@@ -1,43 +1,39 @@
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      <app-navbar-administrador></app-navbar-administrador>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
 
-      <div class="form">
-        <div class="generic-group">
-          <label for="inputId">Ingrese el ID del Horario:</label>
-          <input id="inputId" type="number" [(ngModel)]="idHorario" />
-          <mat-error *ngIf="idNoEncontrado"
-            >El ID ingresado no existe. Por favor, intente con otro
-            ID.</mat-error
-          >
-          <br />
-          <button (click)="buscar()">Buscar</button>
+    <div class="form">
+      <div class="generic-group">
+        <label for="inputId">Ingrese el ID del Horario:</label>
+        <input id="inputId" type="number" [(ngModel)]="idHorario" />
+        <mat-error *ngIf="idNoEncontrado"
+          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
+        >
+        <br />
+        <button (click)="buscar()">Buscar</button>
+      </div>
+      <hr />
+      <div class="generic-details" *ngIf="horario">
+        <h2 class="generic-heading">Detalles del Horario</h2>
+        <div class="generic-box">
+          <h1>hora Apertura</h1>
+          <p>{{ horario.horaApertura }}</p>
         </div>
-        <hr />
-        <div class="generic-details" *ngIf="horario">
-          <h2 class="generic-heading">Detalles del Horario</h2>
-          <div class="generic-box">
-            <h1>hora Apertura</h1>
-            <p>{{ horario.horaApertura }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>hora Cierre</h1>
-            <p>{{ horario.horaCierre }}</p>
-          </div>
-          <div class="generic-box">
-            <h1>fecha</h1>
-            <p>{{ horario.fecha }}</p>
-          </div>
+        <div class="generic-box">
+          <h1>hora Cierre</h1>
+          <p>{{ horario.horaCierre }}</p>
+        </div>
+        <div class="generic-box">
+          <h1>fecha</h1>
+          <p>{{ horario.fecha }}</p>
         </div>
       </div>
-    </body>
-  </html>
-</div>
+    </div>
+  </body>
+</html>

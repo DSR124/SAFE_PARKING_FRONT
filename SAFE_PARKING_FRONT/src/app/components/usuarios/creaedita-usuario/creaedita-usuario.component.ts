@@ -106,7 +106,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
         });
       }
 
-      this.router.navigate(['usuarios/listar_admin_usuarios']);
+      this.router.navigate(['components/usuarios/listar_admin_usuarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
