@@ -10,16 +10,10 @@ h2 {
   color: #333;
 }
 
-<<<<<<< HEAD
 .container {
   width: 90%;
   padding: 20px;
   background-color: #fff;
-=======
-.botoncito1{
-  background-color: #11998e;
-  color: #fff;
->>>>>>> origin/Branch-Diego
   border-radius: 8px;
   padding-right: 5px;
 }
