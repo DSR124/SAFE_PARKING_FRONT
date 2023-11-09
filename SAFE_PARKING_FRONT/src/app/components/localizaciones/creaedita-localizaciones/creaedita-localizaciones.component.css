@@ -15,9 +15,11 @@ h2{
 }
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); 
-  height: 1200px;
+  background: linear-gradient(to right, #11998e, #38ef7d);
   padding: 20px;
+  margin-left: 250px;
+  height: auto;
+
 }
 .longitudes{
   display: flex;

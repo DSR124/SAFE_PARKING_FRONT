@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HorarioEstacionamiento } from '../models/horarioEstacionamiento';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
@@ -14,31 +14,63 @@ export class HorarioEstacionamientoService {
   constructor(private http: HttpClient) {}
   // Obtener todos los Horarios
   list() {
-    return this.http.get<HorarioEstacionamiento[]>(`${this.url}/Listar`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<HorarioEstacionamiento[]>(`${this.url}/Listar`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
+  // Obtener un hrsEst por ID
+  getById(id: number) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<HorarioEstacionamiento>(
+      `${this.url}/ListarporID/${id}`,
+      {
+        headers: new HttpHeaders()
+          .set('Authorization', `Bearer ${token}`)
+          .set('Content-Type', 'application/json'),
+      }
+    );
+  }
+  // Actualizar un hrsEst
+  update(est: HorarioEstacionamiento) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.put(`${this.url}/Modificar`, est, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+  // Eliminar un hrsEst
+  delete(id: number) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.delete(`${this.url}/Eliminar/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+  // Crear un nuevo hrsEst
+  insert(hrsEst: HorarioEstacionamiento) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(`${this.url}/Registrar`, hrsEst, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
+
   setList(listaNueva: HorarioEstacionamiento[]) {
     this.listaCambio.next(listaNueva);
   }
 
   getList() {
     return this.listaCambio.asObservable();
-  }
-  // Obtener un Horario por ID
-  listId(id: number) {
-    return this.http.get<HorarioEstacionamiento>(
-      `${this.url}/ListarporID/${id}`
-    );
-  }
-  // Actualizar un Horario
-  update(hE: HorarioEstacionamiento) {
-    return this.http.put(`${this.url}/Modificar`, hE);
-  }
-  // Eliminar un Horario
-  delete(id: number) {
-    return this.http.delete(`${this.url}/Eliminar/${id}`);
-  }
-  // Crear un nuevo Horario
-  insert(lc: HorarioEstacionamiento) {
-    return this.http.post(`${this.url}/Registrar`, lc);
   }
 }

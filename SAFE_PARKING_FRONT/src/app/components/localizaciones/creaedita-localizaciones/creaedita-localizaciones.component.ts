@@ -45,10 +45,10 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     { value: 'Huaura', viewValue: 'Huaura' },
     { value: 'Oyón', viewValue: 'Oyón' },
     { value: 'Yauyos', viewValue: 'Yauyos' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
     // Agrega más provincias según sea necesario
   ];
-  
+
   distritosLima: { value: string; viewValue: string }[] = [
     { value: 'Ancón', viewValue: 'Ancón' },
     { value: 'Ate', viewValue: 'Ate' },
@@ -93,9 +93,8 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     { value: 'Surquillo', viewValue: 'Surquillo' },
     { value: 'Villa El Salvador', viewValue: 'Villa El Salvador' },
     { value: 'Villa María del Triunfo', viewValue: 'Villa María del Triunfo' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
   ];
-  
 
   constructor(
     private lS: LocalizacionService,
@@ -144,7 +143,9 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['localizaciones/listar_admin_localizaciones']);
+      this.router.navigate([
+        'components/localizaciones/listar_admin_localizaciones',
+      ]);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

@@ -1,102 +1,130 @@
-
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
 
-<body>
-  <div class="container_contenido">
-    <div class="container" style="text-align: center">
-      <h2>Registro de Reserva Estacionamiento</h2>
-      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>idReservaEstacionamiento</mat-label>
-          <input matInput placeholder="idReservaEstacionamiento" formControlName="idReservaEstacionamiento" />
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="estado">
-            <mat-option *ngFor="let p of estado" [value]="p.value">
-              {{p.viewValue}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('estado')?.errors?.['required']">
-            El estado es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        
-        <mat-form-field class="example-full-width">
-          <mat-label>Favorito</mat-label>
-          <mat-select formControlName="favorito">
-            <mat-option *ngFor="let p of favoritos" [value]="p.value">
-              {{p.viewValue}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('favorito')?.errors?.['required']">
-            Este campo es obligatorio.
-          </mat-error>
-        </mat-form-field>
+    <div class="container_contenido">
+      <div class="container" style="text-align: center">
+        <h2>Registro de Reserva Estacionamiento</h2>
+        <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+          <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>idReservaEstacionamiento</mat-label>
+            <input
+              matInput
+              placeholder="idReservaEstacionamiento"
+              formControlName="idReservaEstacionamiento"
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado">
+              <mat-option *ngFor="let p of estado" [value]="p.value">
+                {{ p.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('estado')?.errors?.['required']"
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <br />
 
-        <br />
-        <mat-form-field appearance="fill" class="example-full-width">
-          <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha"
-            [max]="maxFecha" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="obtenerControlCampo('fecha')?.errors?.['required']">
-            La fecha es obligatoria.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="example-full-width"> 
-          <mat-label>Usuario</mat-label>
-          <mat-select formControlName="users">
-            <mat-option *ngFor="let p of listaUsuario" [value]="p.idUsuario">
-              {{ p.nombre}} 
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('users')?.errors?.['required']">
-            El usuario es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>Vehiculo</mat-label> 
-          <mat-select formControlName="vehiculo"> 
-            <mat-option *ngFor="let p of listaVehiculo" [value]="p.idVehiculo">
-              {{ p.placaVehiculo }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('vehiculo')?.errors?.['required']">
-            El vehiculo es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>Horario Estacionamiento</mat-label>
-          <mat-select formControlName="horarioEstacionamiento">
-            <mat-option *ngFor="let p of listaHorarioEst" [value]="p.idHorarioEstacionamiento">
-              {{ p.idHorarioEstacionamiento }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="obtenerControlCampo('horarioEstacionamiento')?.errors?.['required']">
-            El horario es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
-        </div>
-      </form>
+          <mat-form-field class="example-full-width">
+            <mat-label>Favorito</mat-label>
+            <mat-select formControlName="favorito">
+              <mat-option *ngFor="let p of favoritos" [value]="p.value">
+                {{ p.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('favorito')?.errors?.['required']"
+            >
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <br />
+          <mat-form-field appearance="fill" class="example-full-width">
+            <input
+              matInput
+              placeholder="Ingrese fecha"
+              [matDatepicker]="picker"
+              formControlName="fecha"
+              [max]="maxFecha"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              *ngIf="obtenerControlCampo('fecha')?.errors?.['required']"
+            >
+              La fecha es obligatoria.
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Usuario</mat-label>
+            <mat-select formControlName="users">
+              <mat-option *ngFor="let p of listaUsuario" [value]="p.idUsuario">
+                {{ p.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('users')?.errors?.['required']"
+            >
+              El usuario es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Vehiculo</mat-label>
+            <mat-select formControlName="vehiculo">
+              <mat-option
+                *ngFor="let p of listaVehiculo"
+                [value]="p.idVehiculo"
+              >
+                {{ p.placaVehiculo }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('vehiculo')?.errors?.['required']"
+            >
+              El vehiculo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Horario Estacionamiento</mat-label>
+            <mat-select formControlName="horarioEstacionamiento">
+              <mat-option
+                *ngFor="let p of listaHorarioEst"
+                [value]="p.idHorarioEstacionamiento"
+              >
+                {{ p.idHorarioEstacionamiento }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="obtenerControlCampo('horarioEstacionamiento')?.errors?.['required']"
+            >
+              El horario es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <div class="btn-container">
+            <button mat-raised-button color="primary">Registrar</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>

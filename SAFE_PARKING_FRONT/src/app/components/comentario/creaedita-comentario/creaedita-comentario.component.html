@@ -1,81 +1,102 @@
-<app-navbar></app-navbar>
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
 
     <div class="container" style="text-align: center">
-        <h2>Registro de Comentario</h2>
-        <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      <h2>Registro de Comentario</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>codigo</mat-label>
+          <input
+            matInput
+            placeholder="Id"
+            formControlName="idComentario"
+            readonly="true"
+          />
+        </mat-form-field>
+        <br />
 
-            <mat-form-field class="example-full-width" *ngIf="edicion">
-                <mat-label>codigo</mat-label>
-                <input matInput placeholder="Id" formControlName="idComentario" readonly="true" />
-            </mat-form-field>
-            <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Comentario</mat-label>
+          <input matInput placeholder="contenido" formControlName="contenido" />
+          <mat-error
+            *ngIf="obtenerControlCampo('contenido')?.errors?.['required']"
+          >
+            El contenido del comentario es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Valoracion</mat-label>
+          <input
+            matInput
+            placeholder="valoracion del comentario"
+            formControlName="valoracion"
+          />
+          <mat-error
+            *ngIf="obtenerControlCampo('valoracion')?.errors?.['required']"
+          >
+            El tipo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
 
+        <mat-form-field class="example-full-width">
+          <mat-label>codigo de la reserva</mat-label>
+          <mat-select formControlName="reservaEstacionamiento">
+            <mat-option
+              *ngFor="let p of listaReservaEstacionamiento"
+              [value]="p.idReservaEstacionamiento"
+            >
+              {{ p.idReservaEstacionamiento }}
+            </mat-option>
+            <mat-error
+              *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']"
+            >
+              El codigo es obligatorio.
+            </mat-error>
+          </mat-select>
+        </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-                <mat-label>Comentario</mat-label>
-                <input matInput placeholder="contenido" formControlName="contenido" />
-                <mat-error *ngIf="obtenerControlCampo('contenido')?.errors?.['required']">
-                    El contenido del comentario es obligatorio.
-                </mat-error>
-            </mat-form-field>
-            <br />
-            <mat-form-field class="example-full-width">
-                <mat-label>Valoracion</mat-label>
-                <input matInput placeholder="valoracion del comentario" formControlName="valoracion" />
-                <mat-error *ngIf="obtenerControlCampo('valoracion')?.errors?.['required']">
-                    El tipo es obligatorio.
-                </mat-error>
-            </mat-form-field>
-            <br />
+        <br />
+        <mat-form-field appearance="fill" class="example-full-width">
+          <input
+            matInput
+            placeholder="Ingrese fecha"
+            [matDatepicker]="picker"
+            formControlName="fechaCreacion"
+            [min]="minFecha"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="obtenerControlCampo('fechaCreacion')?.errors?.['required']"
+          >
+            La fecha de creación es obligatoria.
+          </mat-error>
+        </mat-form-field>
+        <br />
 
-            <mat-form-field class="example-full-width">
-                <mat-label>codigo de la reserva</mat-label>
-                <mat-select formControlName="reservaEstacionamiento">
-                    <mat-option *ngFor="let p of listaReservaEstacionamiento" [value]="p.idReservaEstacionamiento">
-                        {{p.idReservaEstacionamiento}}
-                    </mat-option>
-                    <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
-                        El codigo es obligatorio.
-                    </mat-error>
-                </mat-select>
-
-            </mat-form-field>
-
-            <br />
-            <mat-form-field appearance="fill" class="example-full-width">
-                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaCreacion"
-                    [min]="minFecha" />
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="obtenerControlCampo('fechaCreacion')?.errors?.['required']">
-                    La fecha de creación es obligatoria.
-                </mat-error>
-            </mat-form-field>
-            <br />
-
-            <br />
-            <div class="btn-container">
-                <button mat-raised-button color="primary">Registrar</button>
-              </div>
-            <!--<button mat-raised-button color="warn" routerLink="/comentarios">
+        <br />
+        <div class="btn-container">
+          <button mat-raised-button color="primary">Registrar</button>
+        </div>
+        <!--<button mat-raised-button color="warn" routerLink="/comentarios">
                 Cancelar
             </button>-->
-            <p>{{ mensaje }}</p>
-        </form>
+        <p>{{ mensaje }}</p>
+      </form>
     </div>
-
-</body>
-
+  </body>
 </html>

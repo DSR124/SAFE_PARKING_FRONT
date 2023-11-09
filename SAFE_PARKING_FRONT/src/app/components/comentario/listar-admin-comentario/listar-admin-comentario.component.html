@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +6,8 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar-administrador></app-navbar-administrador>
+
     <h2 style="text-align: center">LISTA DE COMENTARIOS</h2>
     <div class="example-container">
       <mat-form-field>
@@ -21,7 +21,9 @@
         <!-- Position Column -->
         <ng-container matColumnDef="codigo">
           <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{ element.idComentario }}</td>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idComentario }}
+          </td>
         </ng-container>
 
         <!-- Name Column -->
@@ -52,27 +54,27 @@
         </ng-container>
 
         <ng-container matColumnDef="modificar">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
           <td mat-cell *matCellDef="let element">
             <button
+              class="botoncito1"
               mat-raised-button
-              color="primary"
               [routerLink]="['/comentarios/ediciones/', element.idComentario]"
             >
-              <mat-icon>edit</mat-icon> Editar
+              <mat-icon>edit</mat-icon>
             </button>
-          </td></ng-container
-        >
+          </td>
+        </ng-container>
 
         <ng-container matColumnDef="eliminar">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
           <td mat-cell *matCellDef="let element">
             <button
+              class="botoncito2"
               mat-raised-button
-              color="warn"
               (click)="eliminar(element.idComentario)"
             >
-              <mat-icon>delete</mat-icon> Eliminar
+              <mat-icon>delete</mat-icon>
             </button>
           </td>
         </ng-container>

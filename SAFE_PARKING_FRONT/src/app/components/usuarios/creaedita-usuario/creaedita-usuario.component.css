@@ -12,9 +12,10 @@
 }
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); 
+  background: linear-gradient(to right, #11998e, #38ef7d);
   height: 100%;
   padding: 20px;
+
 }
 /*Estilos para los botones*/
 

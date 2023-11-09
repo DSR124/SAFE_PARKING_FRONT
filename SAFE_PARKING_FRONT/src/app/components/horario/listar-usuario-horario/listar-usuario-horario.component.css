@@ -8,6 +8,14 @@
     margin-top: 10px;
 
   }
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    height:auto;
+    padding: 20px;
+    margin-left: 250px;
+
+  }
 
   .calendar th,
   .calendar td {

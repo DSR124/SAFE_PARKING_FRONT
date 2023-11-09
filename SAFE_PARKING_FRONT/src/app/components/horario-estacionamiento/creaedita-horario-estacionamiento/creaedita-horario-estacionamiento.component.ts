@@ -35,7 +35,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -85,7 +85,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
         });
       }
       this.router.navigate([
-        'horarios_estacionamiento/listar_admin_horarios_estacionamiento',
+        'components/horarios_estacionamiento/listar_admin_horarios_estacionamiento',
       ]); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
@@ -94,7 +94,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.heS.listId(this.id).subscribe((data) => {
+      this.heS.getById(this.id).subscribe((data) => {
         this.form = new FormGroup({
           estacionamiento: new FormControl(
             data.estacionamiento.idEstacionamiento

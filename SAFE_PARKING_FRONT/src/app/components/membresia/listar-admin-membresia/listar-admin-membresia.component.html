@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +6,11 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar-administrador></app-navbar-administrador>
+
     <div class="litle">
       <h2 style="text-align: center">LISTA DE MEMBRESIAS</h2>
     </div>
-
     <div class="container">
       <mat-form-field>
         <input
@@ -63,26 +63,26 @@
         >
 
         <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
           <td mat-cell *matCellDef="let element">
             <button
+              class="botoncito1"
               mat-raised-button
-              color="primary"
               [routerLink]="['ediciones', element.idMembresia]"
             >
-              <mat-icon>edit</mat-icon> Editar
+              <mat-icon>edit</mat-icon>
             </button>
           </td></ng-container
         >
         <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
           <td mat-cell *matCellDef="let element">
             <button
+              class="botoncito2"
               mat-raised-button
-              color="warn"
               (click)="eliminar(element.idMembresia)"
             >
-              <mat-icon>delete</mat-icon> Eliminar
+              <mat-icon>delete</mat-icon>
             </button>
           </td></ng-container
         >

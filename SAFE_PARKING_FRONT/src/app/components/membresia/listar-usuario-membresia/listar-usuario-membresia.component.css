@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+
 }
 
 .titulo {
   text-align: center; /* Center the text horizontally */
-  background-color: #56ffcc; /* Change the background color to your preference */
   color: #050505; /* Text color */
   padding: 10px;
   font-size: 24px; /* Adjust the font size as needed */

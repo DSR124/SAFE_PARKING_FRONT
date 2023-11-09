@@ -68,7 +68,7 @@ export class CreaeditaHorarioComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['horarios/listar_admin_horarios']);
+      this.router.navigate(['components/horarios/listar_admin_horarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
@@ -84,7 +84,7 @@ export class CreaeditaHorarioComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.hS.listId(this.id).subscribe((data) => {
+      this.hS.getById(this.id).subscribe((data) => {
         this.form = new FormGroup({
           idHorario: new FormControl(data.idHorario),
           horaApertura: new FormControl(data.horaApertura),

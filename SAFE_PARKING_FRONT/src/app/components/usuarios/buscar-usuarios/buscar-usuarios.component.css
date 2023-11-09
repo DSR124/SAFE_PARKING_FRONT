@@ -1,6 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 30px;
+  margin-left: 250px;
 }
 
 
@@ -11,7 +13,7 @@ body {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 800px;
-  margin: 100px auto;
+  margin:  auto;
   /* Centrar horizontalmente */
   flex-direction: column;
   justify-content: center;

@@ -65,7 +65,7 @@ export class CreaeditaMembresiaComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['membresias/listar_admin_membresias']);
+      this.router.navigate(['components/membresias/listar_admin_membresias']);
     } else {
       this.mensaje = 'Complete todos los campos!!!';
     }

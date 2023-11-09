@@ -1,55 +1,58 @@
 <router-outlet></router-outlet>
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
+  <body>
+    <div class="container" style="text-align: center">
+      <h2>Registro de Roles</h2>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion"
+          ><!--*ngIf="edicion" es para que se meustre en la edicion-->
 
-<body>
-  <div class="container" style="text-align: center">
-    <h2>Registro de Roles</h2>
-    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+          <mat-label>Rol</mat-label>
+          <input matInput placeholder="idRol" formControlName="idRol" />
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width" *ngIf="edicion"><!--*ngIf="edicion" es para que se meustre en la edicion-->
-
-        <mat-label>Rol</mat-label>
-        <input matInput placeholder="idRol" formControlName="idRol" />
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <mat-label>Tipo de Rol</mat-label>
-        <mat-select formControlName="nombreRol">
-          <mat-option *ngFor="let t of tipoRol" [value]="t.value">{{
-            t.viewValue
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo de Rol</mat-label>
+          <mat-select formControlName="nombreRol">
+            <mat-option *ngFor="let t of tipoRol" [value]="t.value">{{
+              t.viewValue
             }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="obtenerControlCampo('nombreRol')?.errors?.['required']">
-          El tipo de rol es obligatorio.
-        </mat-error>
-      </mat-form-field>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('nombreRol')?.errors?.['required']"
+          >
+            El tipo de rol es obligatorio.
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>usuario</mat-label>
-        <mat-select formControlName="usuario">
-          <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
-            {{ p.nombre }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="obtenerControlCampo('usuario')?.errors?.['required']">
-          El postre es obligatorio.
-        </mat-error>
-      </mat-form-field>
-      <br />
-      <button class = "botonRegistro" mat-raised-button color="primary">Registrar</button>
+        <mat-form-field class="example-full-width">
+          <mat-label>usuario</mat-label>
+          <mat-select formControlName="usuario">
+            <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
+              {{ p.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('usuario')?.errors?.['required']"
+          >
+            El postre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <button class="botonRegistro" mat-raised-button color="primary">
+          Registrar
+        </button>
 
-      <p>{{ mensaje }}</p>
-    </form>
-  </div>
-</body>
-
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
 </html>

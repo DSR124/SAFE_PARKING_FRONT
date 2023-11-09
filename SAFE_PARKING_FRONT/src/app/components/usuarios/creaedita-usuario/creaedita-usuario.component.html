@@ -1,5 +1,4 @@
 <router-outlet></router-outlet>
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -168,23 +167,24 @@
                   El imagen es obligatorio.
                 </mat-error>
               </mat-form-field>
-              <div class="image-upload">
-                <input
-                  type="file"
-                  (change)="onFileSelected($event)"
-                  accept="image/*"
-                  formControlName="imagenVehiculo"
-                />
-                <img
-                  *ngIf="imageSelected"
-                  [src]="imageSelected"
-                  alt="Imagen del Vehículo"
-                />
-              </div>
+              <input
+                class="example-full-width"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+                formControlName="imagenVehiculo"
+              />
+              <img
+                *ngIf="imageSelected"
+                [src]="imageSelected"
+                alt="Imagen del Vehículo"
+              />
             </div>
           </div>
           <div class="botones">
-            <button class = "botonRegistro" mat-raised-button color="primary">Registrar</button>
+            <button class="botonRegistro" mat-raised-button color="primary">
+              Registrar
+            </button>
             <p>{{ mensaje }}</p>
           </div>
         </form>
