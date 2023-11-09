@@ -391,8 +391,8 @@
       <title>Document</title>
     </head>
 
-    <body>
-      <div id="mySidenav" class="sidenav" *ngIf="verificar()">
+    <body *ngIf="verificar()">
+      <div id="mySidenav" class="sidenav" *ngIf="validarRol()">
         <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
 
         <p class="logo" *ngIf="role === 'administrador'">
@@ -452,7 +452,7 @@
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
         </label>
-        <ul class="sub-menu" *ngIf="validarRol()">
+        <ul class="sub-menu">
           <li *ngIf="role === 'administrador'">
             <a href="components/membresias/registrar_membresias"
               >Registrar membresias</a
