@@ -116,29 +116,29 @@
         </ng-container>
 
         <ng-container matColumnDef="modificar" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
           <td mat-cell *matCellDef="let element">
             <button
+              class="botoncito1"
               mat-raised-button
-              color="primary"
               [routerLink]="[
                 '/usuarios/modificar_usuarios/',
                 element.idUsuario
               ]"
             >
-              <mat-icon>edit</mat-icon> Editar
+              <mat-icon>edit</mat-icon>
             </button>
           </td></ng-container
         >
         <ng-container matColumnDef="eliminar" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
           <td mat-cell *matCellDef="let element">
             <button
               mat-raised-button
-              color="warn"
+              class="botoncito2"
               (click)="eliminar(element.idUsuario)"
             >
-              <mat-icon>delete</mat-icon> Eliminar
+              <mat-icon>delete</mat-icon>
             </button>
           </td></ng-container
         >
