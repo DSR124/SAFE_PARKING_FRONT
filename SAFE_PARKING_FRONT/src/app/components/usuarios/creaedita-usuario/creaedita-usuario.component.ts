@@ -76,6 +76,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
     }
     return control;
   }
+  passwords: string = ''; // Supongamos que aquí tienes la contraseña del usuario
 
   aceptar(): void {
     if (this.form.valid) {
@@ -106,11 +107,12 @@ export class CreaeditaUsuarioComponent implements OnInit {
         });
       }
 
-      this.router.navigate(['components/usuarios/listar_admin_usuarios']);
+      this.router.navigate(['/usuarios/listar_admin_usuarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
   }
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {

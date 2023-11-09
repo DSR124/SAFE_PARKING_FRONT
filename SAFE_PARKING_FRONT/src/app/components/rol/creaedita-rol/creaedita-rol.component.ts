@@ -80,7 +80,7 @@ export class CreaeditaRolComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['components/roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
+      this.router.navigate(['roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

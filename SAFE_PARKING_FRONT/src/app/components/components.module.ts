@@ -89,6 +89,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorMaterialModule } from 'ngx-color/material';
 import { ComponentsRoutingModule } from './components-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -208,6 +209,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
     NgxMaterialTimepickerModule,
     ColorSketchModule,
     ColorMaterialModule,
+    MatDialogModule,
   ],
 })
 export class ComponentsModule {}
