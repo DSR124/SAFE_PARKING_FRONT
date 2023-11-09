@@ -55,3 +55,15 @@ th.mat-column-position, td.mat-column-position {
   border-left: 1px solid #696969;
 }
 
+.botoncito1{
+  background-color: #11998e;
+  color: #fff;
+  border-radius: 8px;
+  padding-right: 5px;
+}
+.botoncito2{
+  background-color: #000000;
+  color: #fff;
+  border-radius: 8px;
+  padding-right: 5px;
+}

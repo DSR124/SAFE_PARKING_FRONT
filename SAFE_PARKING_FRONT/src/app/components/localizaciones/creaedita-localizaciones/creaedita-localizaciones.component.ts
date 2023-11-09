@@ -144,7 +144,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['localizaciones/listar_admin_localizaciones']);
+      this.router.navigate(['components/localizaciones/listar_admin_localizaciones']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
