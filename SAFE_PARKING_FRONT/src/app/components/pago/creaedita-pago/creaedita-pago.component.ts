@@ -98,7 +98,7 @@ export class CreaeditaPagoComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['pagos/listar-admin-pagos']); //Esta ruta la sacamos del ROUTING MODULE
+      this.router.navigate(['components/pagos/listar-admin-pagos']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

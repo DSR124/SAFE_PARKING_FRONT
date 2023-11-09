@@ -2,8 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
-  padding: 90px;
-
+  padding: 30px;
 }
 
 h2 {
@@ -66,4 +65,8 @@ th.mat-column-position, td.mat-column-position {
   color: #fff;
   border-radius: 8px;
   padding-right: 5px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/Branch-Diego

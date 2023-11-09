@@ -122,7 +122,9 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['estacionamiento/listar_admin_estacionamientos']);
+      this.router.navigate([
+        'components/estacionamiento/listar_admin_estacionamientos',
+      ]);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

@@ -1,120 +1,116 @@
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-    <body>
-      <app-navbar-administrador></app-navbar-administrador>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
 
-      <div class="litle">
-        <h2 style="text-align: center">LISTA DE RESERVAS - ESTACIONAMIENTO</h2>
-      </div>
-      <div class="example-container">
-        <mat-form-field>
-          <input
-            style="text-align: left"
-            matInput
-            (keyup)="filter($event)"
-            placeholder="buscar"
-          />
-        </mat-form-field>
+    <div class="litle">
+      <h2 style="text-align: center">LISTA DE RESERVAS - ESTACIONAMIENTO</h2>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input
+          style="text-align: left"
+          matInput
+          (keyup)="filter($event)"
+          placeholder="buscar"
+        />
+      </mat-form-field>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <!--- Note that these columns can be defined in any order.
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
 
-          <!-- Position Column -->
-          <ng-container matColumnDef="idReservaEstacionamiento">
-            <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.idReservaEstacionamiento }}
-            </td>
-          </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="idReservaEstacionamiento">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idReservaEstacionamiento }}
+          </td>
+        </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef>estado</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.estado }}
-            </td>
-          </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef>estado</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.estado }}
+          </td>
+        </ng-container>
 
-          <!-- Weight Column -->
-          <ng-container matColumnDef="favorito">
-            <th mat-header-cell *matHeaderCellDef>favorito</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.favorito }}
-            </td>
-          </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="favorito">
+          <th mat-header-cell *matHeaderCellDef>favorito</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.favorito }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef>Fecha</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.fecha }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fecha }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="users">
-            <th mat-header-cell *matHeaderCellDef>codigo-Usuario</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.users.nombre }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="users">
+          <th mat-header-cell *matHeaderCellDef>codigo-Usuario</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.users.nombre }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="vehiculo">
-            <th mat-header-cell *matHeaderCellDef>codigo-Vehiculo</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.vehiculo.placaVehiculo }}
-            </td>
-          </ng-container>
+        <ng-container matColumnDef="vehiculo">
+          <th mat-header-cell *matHeaderCellDef>codigo-Vehiculo</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.vehiculo.placaVehiculo }}
+          </td>
+        </ng-container>
 
-          <ng-container matColumnDef="horarioEstacionamiento">
-            <th mat-header-cell *matHeaderCellDef>
-              codigo-horarioEstacionamiento
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.horarioEstacionamiento.idHorarioEstacionamiento }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="accion01">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let element">
-              <button class = "botoncito1"
-                mat-raised-button
-                color="primary"
-                [routerLink]="['ediciones', element.idReservaEstacionamiento]"
-              >
-                <mat-icon>edit</mat-icon> 
-              </button>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="accion02">
-            <th mat-header-cell *matHeaderCellDef>Acciones</th>
-            <td mat-cell *matCellDef="let element">
-              <button class = "botoncito2"
-                mat-raised-button
-                color="warn"
-                (click)="eliminar(element.idReservaEstacionamiento)"
-              >
-                <mat-icon>delete</mat-icon> 
-              </button>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-        <br />
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          showFirstLastButtons
-        ></mat-paginator>
-      </div>
-    </body>
-  </html>
-</div>
+        <ng-container matColumnDef="horarioEstacionamiento">
+          <th mat-header-cell *matHeaderCellDef>
+            codigo-horarioEstacionamiento
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.horarioEstacionamiento.idHorarioEstacionamiento }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>editar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="botoncito1"
+              mat-raised-button
+              [routerLink]="['ediciones', element.idReservaEstacionamiento]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="botoncito2"
+              mat-raised-button
+              (click)="eliminar(element.idReservaEstacionamiento)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <br />
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </body>
+</html>

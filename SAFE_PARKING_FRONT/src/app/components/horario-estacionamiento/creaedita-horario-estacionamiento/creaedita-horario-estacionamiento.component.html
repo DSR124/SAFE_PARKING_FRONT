@@ -1,57 +1,53 @@
-<router-outlet></router-outlet>
-<div [hidden]="route.children.length !== 0">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      <app-navbar-administrador></app-navbar-administrador>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
+    <div class="container" style="text-align: center">
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <h2>Registro de Horarios - Estacionamientos</h2>
 
-      <div class="container" style="text-align: center">
-        <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-          <h2>Registro de Horarios - Estacionamientos</h2>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>estacionamiento</mat-label>
-            <mat-select formControlName="estacionamiento">
-              <mat-option
-                *ngFor="let p of listaEstacionamiento"
-                [value]="p.idEstacionamiento"
-              >
-                {{ p.tipoEstacionamiento }}
-              </mat-option>
-            </mat-select>
-            <mat-error
-              *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']"
+        <mat-form-field class="example-full-width">
+          <mat-label>estacionamiento</mat-label>
+          <mat-select formControlName="estacionamiento">
+            <mat-option
+              *ngFor="let p of listaEstacionamiento"
+              [value]="p.idEstacionamiento"
             >
-              El postre es obligatorio.
-            </mat-error>
-          </mat-form-field>
-          <br />
+              {{ p.tipoEstacionamiento }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']"
+          >
+            El postre es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <br />
 
-          <mat-form-field class="example-full-width">
-            <mat-label>horario</mat-label>
-            <mat-select formControlName="horario">
-              <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
-                {{ p.fecha }} {{ p.horaApertura }}
-              </mat-option>
-            </mat-select>
-            <mat-error
-              *ngIf="obtenerControlCampo('horario')?.errors?.['required']"
-            >
-              El postre es obligatorio.
-            </mat-error>
-          </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>horario</mat-label>
+          <mat-select formControlName="horario">
+            <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
+              {{ p.fecha }} {{ p.horaApertura }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="obtenerControlCampo('horario')?.errors?.['required']"
+          >
+            El postre es obligatorio.
+          </mat-error>
+        </mat-form-field>
 
-          <div class="btn-container">
-            <button mat-raised-button color="primary">Registrar</button>
-          </div>
-          <p>{{ mensaje }}</p>
-        </form>
-      </div>
-    </body>
-  </html>
-</div>
+        <div class="btn-container">
+          <button mat-raised-button color="primary">Registrar</button>
+        </div>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </body>
+</html>

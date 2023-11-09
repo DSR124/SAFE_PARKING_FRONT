@@ -82,7 +82,7 @@ export class CreaeditaComentarioComponent implements OnInit {
         });
       }
 
-      this.router.navigate(['comentarios/listar_comentarios_admin']);
+      this.router.navigate(['components/comentarios/listar_comentarios_admin']);
     } else {
       this.mensaje = 'Ingrese todos los campos!!';
     }

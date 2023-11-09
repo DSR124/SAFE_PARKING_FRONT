@@ -3,18 +3,23 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
+
 @Component({
   selector: 'app-buscar-reserva-estacionamiento',
   templateUrl: './buscar-reserva-estacionamiento.component.html',
-  styleUrls: ['./buscar-reserva-estacionamiento.component.css']
+  styleUrls: ['./buscar-reserva-estacionamiento.component.css'],
 })
 export class BuscarReservaEstacionamientoComponent {
   form: FormGroup = new FormGroup({});
-  reserva_estacionamiento: ReservaEstacionamiento = new ReservaEstacionamiento();
+  reserva_estacionamiento: ReservaEstacionamiento =
+    new ReservaEstacionamiento();
   idReserva_Estacionamiento: number = 0;
   idNoEncontrado: boolean = false; // Variable para controlar si el ID no se encuentra
 
-  constructor(private r_eS: ReservaEstacionamientoService, public route: ActivatedRoute) {}
+  constructor(
+    private r_eS: ReservaEstacionamientoService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.buscar();
   }
