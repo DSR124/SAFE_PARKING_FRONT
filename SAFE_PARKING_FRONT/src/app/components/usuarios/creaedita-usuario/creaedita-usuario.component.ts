@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import * as moment from 'moment';
 import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-creaedita-usuario',
@@ -84,35 +85,49 @@ export class CreaeditaUsuarioComponent implements OnInit {
       this.usuario.apellido = this.form.value.apellido;
       this.usuario.correo = this.form.value.correo;
       this.usuario.username = this.form.value.username;
-      this.usuario.password = this.form.value.password;
-      this.usuario.genero = this.form.value.genero;
-      this.usuario.dni = this.form.value.dni;
-      this.usuario.imagen = this.form.value.imagen;
-      this.usuario.fechaNacimiento = this.form.value.fechaNacimiento;
-      this.usuario.telefono = this.form.value.telefono;
-      this.usuario.membresia.idMembresia = this.form.value.membresia;
-      this.usuario.enabled = this.estado;
 
-      if (this.edicion) {
-        this.uS.update(this.usuario).subscribe(() => {
-          this.uS.list().subscribe((data) => {
-            this.uS.setList(data);
-          });
-        });
-      } else {
-        this.uS.insert(this.usuario).subscribe((data) => {
-          this.uS.list().subscribe((data) => {
-            this.uS.setList(data);
-          });
-        });
-      }
+      const plainPassword = this.form.value.password; // Obtén la contraseña ingresada por el usuario desde el formulario
 
-      this.router.navigate(['/usuarios/listar_admin_usuarios']);
+      // Hash de la contraseña
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(plainPassword, salt, (err, hash) => {
+          if (!err) {
+            // Aquí 'hash' contendrá la contraseña hasheada, guárdala en tu objeto 'usuario'
+            this.usuario.password = hash;
+
+            this.usuario.genero = this.form.value.genero;
+            this.usuario.dni = this.form.value.dni;
+            this.usuario.imagen = this.form.value.imagen;
+            this.usuario.fechaNacimiento = this.form.value.fechaNacimiento;
+            this.usuario.telefono = this.form.value.telefono;
+            this.usuario.membresia.idMembresia = this.form.value.membresia;
+            this.usuario.enabled = this.estado;
+
+            if (this.edicion) {
+              this.uS.update(this.usuario).subscribe(() => {
+                this.uS.list().subscribe((data) => {
+                  this.uS.setList(data);
+                });
+              });
+            } else {
+              this.uS.insert(this.usuario).subscribe((data) => {
+                this.uS.list().subscribe((data) => {
+                  this.uS.setList(data);
+                });
+              });
+            }
+
+            this.router.navigate(['/usuarios/listar_admin_usuarios']);
+          } else {
+            // Manejo de error
+            console.error(err);
+          }
+        });
+      });
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
   }
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
