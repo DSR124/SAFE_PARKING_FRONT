@@ -143,13 +143,9 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
           });
         });
       }
-<<<<<<< HEAD
-      this.router.navigate(['components/localizaciones/listar_admin_localizaciones']);
-=======
       this.router.navigate([
         'components/localizaciones/listar_admin_localizaciones',
       ]);
->>>>>>> origin/Branch-Diego
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
