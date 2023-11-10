@@ -30,14 +30,19 @@ export class CreaeditaIncidenteComponent {
     { value: 'Daño al vehículo', viewValue: 'Daño al vehículo' },
     { value: 'Robo o vandalismo', viewValue: 'Robo o vandalismo' },
     { value: 'Problemas de pago', viewValue: 'Problemas de pago' },
-    { value: 'Accidente en el aparcamiento', viewValue: 'Accidente en el aparcamiento' },
+    {
+      value: 'Accidente en el aparcamiento',
+      viewValue: 'Accidente en el aparcamiento',
+    },
     { value: 'Problemas de seguridad', viewValue: 'Problemas de seguridad' },
     { value: 'Vehículo bloqueado', viewValue: 'Vehículo bloqueado' },
-    { value: 'Problemas con la reserva', viewValue: 'Problemas con la reserva' },
+    {
+      value: 'Problemas con la reserva',
+      viewValue: 'Problemas con la reserva',
+    },
     { value: 'Infracción de tráfico', viewValue: 'Infracción de tráfico' },
     { value: 'Otros', viewValue: 'Otros' },
   ];
-  
 
   constructor(
     private iS: IncidenteService,
@@ -54,7 +59,7 @@ export class CreaeditaIncidenteComponent {
       this.init();
     });
     this.form = this.formBuilder.group({
-      descripcion: ['', Validators.required],
+      descripcion: ['', [Validators.required, Validators.maxLength(100)]],
       tipoIncidente: ['', Validators.required],
       usuario: ['', Validators.required],
     });

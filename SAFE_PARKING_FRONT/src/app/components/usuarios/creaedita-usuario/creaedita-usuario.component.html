@@ -26,7 +26,7 @@
                 </mat-error>
                 <mat-error *ngIf="form.get('nombre')?.invalid">
                   {{
-                    form.get('nombre')!.errors?.['pattern'] ? 'El campo no debe tener números' : 
+                    form.get('nombre')!.errors?.['pattern'] ? 'El campo no debe tener números' :
                     (form.get('nombre')!.errors?.['maxlength'] ? 'El campo no puede tener más de 50 caracteres' : '')
                   }}
                 </mat-error>
@@ -53,7 +53,6 @@
                       (form.get('correo')!.errors?.['maxlength'] ? 'El correo no puede tener más de 100 caracteres' : '')))
                     }}
                   </mat-error>
-                  
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                   <mat-label>telefono</mat-label>
@@ -62,7 +61,7 @@
                     placeholder="telefono"
                     formControlName="telefono"
                   />
-              
+
                   <mat-error *ngIf="form.get('telefono')?.invalid">
                     {{
                       form.get('telefono')!.errors?.['required'] ? 'El telefono es obligatorio' :
@@ -95,7 +94,7 @@
                   placeholder="username"
                   formControlName="username"
                 />
-                
+
                 <mat-error *ngIf="form.get('username')?.invalid">
                   {{
                     form.get('username')!.errors?.['required'] ? 'El username es obligatorio' :
@@ -116,8 +115,8 @@
                 <mat-error *ngIf="form.get('apellido')?.invalid">
                   {{
                     form.get('apellido')!.errors?.['required'] ? 'El apellido es obligatorio' :
-                    (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' : 
-                    
+                    (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' :
+
                     (form.get('apellido')!.errors?.['maxlength'] ? 'El apellido no puede tener más de 50 caracteres' : ''))
                   }}
                 </mat-error>
@@ -129,7 +128,7 @@
                   <mat-error *ngIf="form.get('dni')?.invalid">
                     {{
                       form.get('dni')!.errors?.['required'] ? 'El dni es obligatorio' :
-                      (form.get('dni')!.errors?.['pattern'] ? 'El dni ser un número de 8 dígitos' :'')
+                      (form.get('dni')!.errors?.['pattern'] ? 'Debe ser un número de 8 dígitos' :'')
                     }}
                   </mat-error>
                 </mat-form-field>
@@ -165,7 +164,7 @@
                 <mat-error
                   *ngIf="obtenerControlCampo('fechaNacimiento')?.errors?.['required']"
                 >
-                  La fecha de creación es obligatoria.
+                  La fecha de nacimiento es obligatoria.
                 </mat-error>
               </mat-form-field>
               <!--<mat-form-field class="example-full-width">
@@ -182,22 +181,36 @@
                 </mat-error>
               </mat-form-field>-->
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-hint *ngIf="!passwordInput?.value">La contraseña es obligatoria</mat-hint>
+                <input
+                  matInput
+                  placeholder="Password"
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password"
+                  required
+                />
+                <mat-icon matSuffix (click)="hide = !hide">{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+                <mat-hint *ngIf="!passwordInput?.value"
+                  >La contraseña es obligatoria</mat-hint
+                >
                 <mat-error *ngIf="form.get('password')?.invalid">
                   {{
                     form.get('password')!.errors?.['required'] ? 'El password es obligatorio' :
                     (form.get('password')!.errors?.['maxlength'] ? 'El password debe ser menos de 200 dígitos' : '')
                   }}
-                </mat-error>                
-                </mat-form-field>
-                
+                </mat-error>
+              </mat-form-field>
             </div>
             <div class="secciones">
               <mat-form-field class="example-full-width">
                 <mat-label>imagen</mat-label>
-                <input matInput placeholder="imagen" formControlName="imagen" readonly="true"/>
+                <input
+                  matInput
+                  placeholder="imagen"
+                  formControlName="imagen"
+                  readonly="true"
+                />
                 <mat-error
                   *ngIf="obtenerControlCampo('imagen')?.errors?.['required']"
                 >
@@ -220,7 +233,9 @@
             </div>
           </div>
           <div class="botones">
-            <button class = "botonRegistro" mat-raised-button color="primary">Registrar</button>
+            <button class="botonRegistro" mat-raised-button color="primary">
+              Registrar
+            </button>
             <p>{{ mensaje }}</p>
           </div>
         </form>
