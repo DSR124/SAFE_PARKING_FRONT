@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
 
-  <body>
+  <body *ngIf="verificar()">
     <app-navbar-administrador></app-navbar-administrador>
 
     <div class="litle">
@@ -22,7 +22,12 @@
         />
       </mat-form-field>
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        *ngIf="validarRol()"
+      >
         <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
 
@@ -85,6 +90,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito1"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               [routerLink]="['ediciones', element.idReservaEstacionamiento]"
             >
@@ -97,6 +103,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito2"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               (click)="eliminar(element.idReservaEstacionamiento)"
             >

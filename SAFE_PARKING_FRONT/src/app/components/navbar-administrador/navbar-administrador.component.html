@@ -64,7 +64,7 @@
         </label>
 
         <input type="checkbox" class="menu-toggle" id="menu2" />
-        <label for="menu2" class="menu">
+        <label for="menu2" class="menu" *ngIf="role == 'administrador'">
           <i class="material-icons">attach_money</i> Membresias
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
@@ -75,24 +75,12 @@
               >Registrar membresias</a
             >
           </li>
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador'">
             <a href="components/membresias/listar_usuario_membresias"
               >Listar membresias (user)</a
             >
           </li>
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador'">
             <a href="components/membresias/buscar_membresias"
               >Buscar membresias</a
             >
@@ -105,7 +93,11 @@
         </ul>
 
         <input type="checkbox" class="menu-toggle" id="menu3" />
-        <label for="menu3" class="menu">
+        <label
+          for="menu3"
+          class="menu"
+          *ngIf="role === 'administrador' || role === 'conductor'"
+        >
           <i class="material-icons">directions_car</i> Vehiculos
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
@@ -121,12 +113,13 @@
               >Listar vehiculos(admin)</a
             >
           </li>
-          <li *ngIf="role === 'administrador' || role === 'conductor'">
+          <li *ngIf="role === 'administrador'">
             <a href="components/vehiculos/buscar_vehiculos">Buscar vehiculos</a>
           </li>
         </ul>
+
         <input type="checkbox" class="menu-toggle" id="menu4" />
-        <label for="menu4" class="menu">
+        <label for="menu4" class="menu" *ngIf="role == 'administrador'">
           <i class="material-icons">people</i> Roles
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
@@ -140,23 +133,17 @@
               >Listar roles (admin)</a
             >
           </li>
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador'">
             <a href="components/roles/buscar-roles">Buscar roles</a>
           </li>
         </ul>
         <input type="checkbox" class="menu-toggle" id="menu5" />
-        <label for="menu5" class="menu">
+        <label for="menu5" class="menu" *ngIf="role == 'administrador'">
           <i class="material-icons">person</i> Usuarios
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
         </label>
-        <ul class="sub-menu" *ngIf="validarRol()">
+        <ul class="sub-menu">
           <li *ngIf="role == 'administrador'">
             <a href="components/usuarios/registrar_usuarios"
               >Registrar usuarios</a
@@ -167,13 +154,7 @@
               >Listar usuarios (admin)</a
             >
           </li>
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador'">
             <a href="components/usuarios/buscar_usuarios">Buscar usuarios </a>
           </li>
         </ul>
@@ -208,7 +189,11 @@
         </ul>
 
         <input type="checkbox" class="menu-toggle" id="menu7" />
-        <label for="menu7" class="menu">
+        <label
+          for="menu7"
+          class="menu"
+          *ngIf="role === 'administrador' || role === 'arrendador'"
+        >
           <i class="material-icons">calendar_today</i> Horarios
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
@@ -242,7 +227,7 @@
 
         <input type="checkbox" class="menu-toggle" id="menu8" />
         <label for="menu8" class="menu" *ngIf="validarRol()">
-          <i class="material-icons">calendar_today</i> Hrs.Estacionamiento
+          <i class="material-icons">calendar_today</i> Hrs. Estacionamientos
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
         </label>
@@ -286,13 +271,7 @@
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
         </label>
         <ul class="sub-menu" *ngIf="validarRol()">
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador' || role === 'conductor'">
             <a href="components/comentarios/registrar_comentarios"
               >Registrar comentarios</a
             >
@@ -308,13 +287,7 @@
               >Listar comentarios (admin)</a
             >
           </li>
-          <li
-            *ngIf="
-              role === 'administrador' ||
-              role === 'conductor' ||
-              role === 'arrendador'
-            "
-          >
+          <li *ngIf="role === 'administrador'">
             <a href="components/comentarios/buscar_comentarios"
               >Buscar comentarios</a
             >
@@ -354,13 +327,17 @@
         </ul>
 
         <input type="checkbox" class="menu-toggle" id="menu11" />
-        <label for="menu11" class="menu">
+        <label
+          for="menu11"
+          class="menu"
+          *ngIf="role === 'administrador' || role === 'arrendador'"
+        >
           <i class="material-icons">add_location</i> Localizaciones
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
         </label>
         <ul class="sub-menu" *ngIf="validarRol()">
-          <li *ngIf="role == 'administrador'">
+          <li *ngIf="role == 'administrador' || role === 'arrendador'">
             <a href="components/localizaciones/registrar_localizaciones"
               >Registrar localizaciones</a
             >
@@ -370,12 +347,12 @@
               >Listar localizaciones (user)</a
             >
           </li>
-          <li *ngIf="role === 'administrador' || role === 'arrendador'">
+          <li *ngIf="role === 'administrador'">
             <a href="components/localizaciones/buscar_localizaciones"
               >Buscar localizaciones</a
             >
           </li>
-          <li *ngIf="role === 'administrador' || role === 'arrendador'">
+          <li *ngIf="role === 'administrador'">
             <a href="components/localizaciones/listar_admin_localizaciones"
               >Listar localizaciones (admin)</a
             >
@@ -383,7 +360,11 @@
         </ul>
 
         <input type="checkbox" class="menu-toggle" id="menu12" />
-        <label for="menu12" class="menu">
+        <label
+          for="menu12"
+          class="menu"
+          *ngIf="role === 'administrador' || role === 'arrendador'"
+        >
           <i class="material-icons">local_parking</i> Estacionamiento
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>
@@ -405,14 +386,22 @@
               >Listar estacionamientos (admin)</a
             >
           </li>
-          <li *ngIf="role == 'administrador'">
+          <li *ngIf="role == 'administrador' || role === 'conductor'">
             <a href="components/estacionamiento/buscar-estacionamiento"
               >Buscar estacionamiento</a
             >
           </li>
         </ul>
         <input type="checkbox" class="menu-toggle" id="menu13" />
-        <label for="menu13" class="menu">
+        <label
+          for="menu13"
+          class="menu"
+          *ngIf="
+            role == 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
           <i class="material-icons">assignment_turned_in</i> Reserva de
           Estacionamientos
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
@@ -452,7 +441,7 @@
         </ul>
 
         <input type="checkbox" class="menu-toggle" id="menu14" />
-        <label for="menu14" class="menu">
+        <label for="menu14" class="menu" *ngIf="role == 'administrador'">
           <i class="material-icons">list_alt</i> Reportes
           <mat-icon class="icon-down">arrow_drop_down</mat-icon>
           <mat-icon class="icon-up">arrow_drop_up</mat-icon>

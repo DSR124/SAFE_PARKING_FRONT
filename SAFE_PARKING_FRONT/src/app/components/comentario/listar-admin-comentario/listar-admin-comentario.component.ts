@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Comentario } from 'src/app/models/comentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-comentario',
@@ -12,6 +13,8 @@ import { ComentarioService } from 'src/app/services/comentario.service';
 })
 export class ListarAdminComentarioComponent implements OnInit {
   dataSource: MatTableDataSource<Comentario> = new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'codigo',
     'contenido',
@@ -22,7 +25,11 @@ export class ListarAdminComentarioComponent implements OnInit {
     'eliminar',
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private cS: ComentarioService, public route: ActivatedRoute) {}
+  constructor(
+    private cS: ComentarioService,
+    public route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
   ngOnInit(): void {
     this.cS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -43,5 +50,21 @@ export class ListarAdminComentarioComponent implements OnInit {
   }
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
+  }
+
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
