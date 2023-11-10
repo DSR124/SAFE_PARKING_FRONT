@@ -45,10 +45,10 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     { value: 'Huaura', viewValue: 'Huaura' },
     { value: 'Oyón', viewValue: 'Oyón' },
     { value: 'Yauyos', viewValue: 'Yauyos' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
     // Agrega más provincias según sea necesario
   ];
-  
+
   distritosLima: { value: string; viewValue: string }[] = [
     { value: 'Ancón', viewValue: 'Ancón' },
     { value: 'Ate', viewValue: 'Ate' },
@@ -93,9 +93,8 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     { value: 'Surquillo', viewValue: 'Surquillo' },
     { value: 'Villa El Salvador', viewValue: 'Villa El Salvador' },
     { value: 'Villa María del Triunfo', viewValue: 'Villa María del Triunfo' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
   ];
-  
 
   constructor(
     private lS: LocalizacionService,
@@ -111,10 +110,10 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      direccion: ['', Validators.required],
+      direccion: ['', [Validators.required, Validators.maxLength(50)]],
       distrito: ['', Validators.required],
       region: ['', Validators.required],
-      referencia: ['', Validators.required],
+      referencia: ['', [Validators.required, Validators.maxLength(50)]],
       latitud: ['', Validators.required],
       longitud: ['', Validators.required],
     });
