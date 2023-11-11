@@ -63,7 +63,7 @@ export class CreaeditaReservaEstacionamientoComponent {
       idReservaEstacionamiento: [''],
       estado: ['', Validators.required],
       favorito: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
       vehiculo: ['', Validators.required],
       horarioEstacionamiento: ['', Validators.required],
