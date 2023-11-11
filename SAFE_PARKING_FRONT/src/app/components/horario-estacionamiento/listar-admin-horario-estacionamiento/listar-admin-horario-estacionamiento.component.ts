@@ -21,6 +21,7 @@ export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
     'codigo',
     'horario',
     'Estacionamiento',
+    'duenio',
     'accion01',
     'accion02',
   ];

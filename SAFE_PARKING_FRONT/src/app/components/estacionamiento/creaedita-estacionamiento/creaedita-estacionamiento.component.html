@@ -83,7 +83,7 @@
           </div>
           <div class="secciones">
             <h2>ESTADO</h2>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
               <mat-label>Disponibilidad</mat-label>
               <mat-select formControlName="disponibilidad">
                 <mat-option

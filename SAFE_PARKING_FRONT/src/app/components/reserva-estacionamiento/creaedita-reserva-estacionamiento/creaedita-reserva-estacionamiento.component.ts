@@ -30,6 +30,7 @@ export class CreaeditaReservaEstacionamientoComponent {
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
+  estadoregistro: string = 'En Proceso';
 
   id: number = 0;
   edicion: boolean = false;
@@ -61,7 +62,7 @@ export class CreaeditaReservaEstacionamientoComponent {
 
     this.form = this.formBuilder.group({
       idReservaEstacionamiento: [''],
-      estado: ['', Validators.required],
+      estado: [this.estadoregistro, Validators.required],
       favorito: ['', Validators.required],
       fecha: ['', Validators.required],
       users: ['', Validators.required],
@@ -91,6 +92,7 @@ export class CreaeditaReservaEstacionamientoComponent {
         this.form.value.vehiculo;
       this.reservaestacionamiento.horarioEstacionamiento.idHorarioEstacionamiento =
         this.form.value.horarioEstacionamiento;
+
       if (this.edicion) {
         this.reS.update(this.reservaestacionamiento).subscribe(() => {
           this.reS.list().subscribe((data) => {

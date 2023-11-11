@@ -33,25 +33,36 @@
 
         <!-- idLocalizacion Column -->
         <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef>codigo</th>
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
           <td mat-cell *matCellDef="let element">
             {{ element.idHorarioEstacionamiento }}
           </td>
         </ng-container>
 
-        <!-- direccion Column -->
+        <!-- direccion del estacionamiento Column -->
         <ng-container matColumnDef="Estacionamiento">
-          <th mat-header-cell *matHeaderCellDef>codigo-Estacionamiento</th>
+          <th mat-header-cell *matHeaderCellDef>
+            Direccion de Estacionamiento
+          </th>
           <td mat-cell *matCellDef="let element">
-            {{ element.estacionamiento.idEstacionamiento }}
+            {{ element.estacionamiento.localizacion.direccion }}
           </td>
         </ng-container>
 
         <!-- distrito Column -->
         <ng-container matColumnDef="horario">
-          <th mat-header-cell *matHeaderCellDef>codigo-Horario</th>
+          <th mat-header-cell *matHeaderCellDef>Horario</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.horario.idHorario }}
+            {{ element.horario.horaApertura }} {{ "-" }}
+            {{ element.horario.horaCierre }}
+          </td>
+        </ng-container>
+
+        <!-- dueño  -->
+        <ng-container matColumnDef="duenio">
+          <th mat-header-cell *matHeaderCellDef>Dueño</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.estacionamiento.usuario.nombre }}
           </td>
         </ng-container>
 
