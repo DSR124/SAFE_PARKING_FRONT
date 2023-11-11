@@ -54,6 +54,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   listaUsuario: Usuario[] = [];
   imageSelected: string | ArrayBuffer | null = null;
   imagenCortada: string = '';
+  disponibilidad: string = 'Disponible';
   constructor(
     private eS: EstacionamientoService,
     private uS: UsuarioService, //Servides dependientes - añadir
@@ -73,7 +74,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
     this.form = this.formBuilder.group({
       idEstacionamiento: [''],
       tipoEstacionamiento: ['', Validators.required],
-      disponibilidad: ['', Validators.required],
+      disponibilidad: [this.disponibilidad, Validators.required],
       foto: ['', Validators.required],
       promedioValoracion: ['', Validators.required],
       capacidad: ['', Validators.required],

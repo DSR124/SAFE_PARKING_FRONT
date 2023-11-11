@@ -15,8 +15,8 @@ export class ListarAdminIncidenteComponent {
   dataSource: MatTableDataSource<Incidente> = new MatTableDataSource();
   displayedColumns: string[] = [
     'idIncidente',
-    'descripcion',
     'tipoIncidente',
+    'descripcion',
     'usuario',
     'accion01',
     'accion02',

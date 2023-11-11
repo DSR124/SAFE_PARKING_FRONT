@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
+  <body *ngIf="verificar()">
     <app-navbar-administrador></app-navbar-administrador>
 
     <h2 style="text-align: center">LISTA DE COMENTARIOS</h2>
@@ -14,13 +14,18 @@
         <input matInput (keyup)="filter($event)" placeholder="buscar" />
       </mat-form-field>
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        *ngIf="validarRol()"
+      >
         <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
         <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
           <td mat-cell *matCellDef="let element">
             {{ element.idComentario }}
           </td>
@@ -40,16 +45,23 @@
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="fechacreacion">
-          <th mat-header-cell *matHeaderCellDef>Fecha de creacion</th>
+          <th mat-header-cell *matHeaderCellDef>Fecha de Publicacion</th>
           <td mat-cell *matCellDef="let element">
             {{ element.fechaCreacion }}
           </td>
         </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="idUsuario">
-          <th mat-header-cell *matHeaderCellDef>id de la reserva</th>
+          <th mat-header-cell *matHeaderCellDef>
+            Codigo y Direccion de la reserva
+          </th>
           <td mat-cell *matCellDef="let element">
-            {{ element.reservaEstacionamiento.idReservaEstacionamiento }}
+            {{ element.reservaEstacionamiento.idReservaEstacionamiento
+            }}{{ " - " }}
+            {{
+              element.reservaEstacionamiento.horarioEstacionamiento
+                .estacionamiento.localizacion.direccion
+            }}
           </td>
         </ng-container>
 
@@ -58,6 +70,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito1"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               [routerLink]="['/comentarios/ediciones/', element.idComentario]"
             >
@@ -71,6 +84,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito2"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               (click)="eliminar(element.idComentario)"
             >
