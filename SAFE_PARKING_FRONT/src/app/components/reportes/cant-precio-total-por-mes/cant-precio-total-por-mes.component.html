@@ -9,9 +9,7 @@
     <app-navbar-administrador></app-navbar-administrador>
 
     <div class="litle">
-      <h2 style="text-align: center">
-        LISTA DE CANTIDAD DE RESERVAS POR TIPO DE PAGO
-      </h2>
+      <h2 style="text-align: center">LISTA DE PRECIO POR MES</h2>
     </div>
     <div class="container">
       <mat-form-field>
@@ -20,22 +18,23 @@
           class="custom-search-input"
           matInput
           (keyup)="filter($event)"
-          placeholder="Bucar por tipo de pago"
+          placeholder="Bucar por Mes"
         />
       </mat-form-field>
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="tipoPgo">
-          <th mat-header-cell *matHeaderCellDef>Tipo de Pago</th>
-          <td mat-cell *matCellDef="let element">{{ element.tipoPgo }}</td>
+        <!-- Columna Precio Total -->
+        <ng-container matColumnDef="precioTotal">
+          <th mat-header-cell *matHeaderCellDef>Precio Total</th>
+          <td mat-cell *matCellDef="let element">{{ element.precioTotal }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="reservation_quantity">
-          <th mat-header-cell *matHeaderCellDef>Cantidad de Reservas</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.reservation_quantity }}
-          </td>
+        <!-- Columna Mes -->
+        <ng-container matColumnDef="mes">
+          <th mat-header-cell *matHeaderCellDef>Mes</th>
+          <td mat-cell *matCellDef="let element">{{ element.mes }}</td>
         </ng-container>
 
+        <!-- Definir las columnas -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>

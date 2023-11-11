@@ -61,6 +61,7 @@ import { HomeConductorComponent } from './home-conductor/home-conductor.componen
 import { HomeAdministradorComponent } from './home-administrador/home-administrador.component';
 import { NgModule } from '@angular/core';
 import { NavbarAdministradorComponent } from './navbar-administrador/navbar-administrador.component';
+import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
 
 const routes: Routes = [
   // localizaciones
@@ -337,6 +338,10 @@ const routes: Routes = [
       {
         path: 'cant-reservas-por-usuario',
         component: CantReservasPorUsuarioComponent,
+      },
+      {
+        path: 'cant-precio-por-mes',
+        component: CantPrecioTotalPorMesComponent,
       },
     ],
   },

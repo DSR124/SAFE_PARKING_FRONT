@@ -467,6 +467,11 @@
               >Cantidad de reservas por usuario</a
             >
           </li>
+          <li *ngIf="role == 'administrador'">
+            <a href="components/reportes/cant-precio-por-mes"
+              >Cantidad de precio por mes</a
+            >
+          </li>
         </ul>
 
         <input type="checkbox" class="menu-toggle" />
