@@ -62,6 +62,7 @@ import { HomeAdministradorComponent } from './home-administrador/home-administra
 import { NgModule } from '@angular/core';
 import { NavbarAdministradorComponent } from './navbar-administrador/navbar-administrador.component';
 import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
+import { ListarUsuarioEstacionamientoComponent } from './estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
 
 const routes: Routes = [
   // localizaciones
@@ -381,6 +382,10 @@ const routes: Routes = [
       {
         path: 'listar_admin_estacionamientos',
         component: ListarAdminEstacionamientoComponent,
+      },
+      {
+        path: 'listar_usuario_estacionamientos',
+        component: ListarUsuarioEstacionamientoComponent,
       },
       {
         path: 'listar_admin_estacionamientos/ediciones/:id',
