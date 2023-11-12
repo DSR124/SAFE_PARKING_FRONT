@@ -98,6 +98,11 @@ export class ListarUsuarioEstacionamientoComponent implements OnInit {
       return false;
     }
   }
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  
 /*
   // Agrega este método para manejar el botón de favoritos
   toggleFavorito(estacionamiento: Estacionamiento) {

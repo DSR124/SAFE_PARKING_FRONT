@@ -2,31 +2,36 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #11998e, #38ef7d);
-    padding: 30px;
     margin-left: 270px;
 
 }
 
-.search-container {
-    margin-bottom: 16px;
+h2 {
+    text-align: center;
 }
 
 .estacionamientos-container {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 155px;
 }
 
 .estacionamiento-card {
     width: 300px;
-    height: 300px;
-    /* Ajusta la altura según tus preferencias */
+    height: auto;
     margin: 16px;
     background-size: cover;
     background-position: center;
     position: relative;
     border-radius: 13px;
+    overflow: hidden; /* Para evitar que los bordes redondeados afecten la imagen */
+    transition: transform 0.3s; /* Agrega transición al efecto hover */
+    
 }
-
+.estacionamiento-card:hover {
+    transform: scale(1.05); /* Ajusta el tamaño en el hover según tus preferencias */
+    cursor:pointer;
+}
 /* Agrega estilos para posicionar el botón en la esquina derecha superior */
 .favorite-button {
     position: absolute;
@@ -34,5 +39,31 @@ body {
     right: 5px;
     color: rgb(253, 1, 1);
     border-color: gray;
-  }
-  
+    z-index: 2;
+
+}
+
+.imagen-por-defecto {
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+}
+
+/* Aplica bordes redondeados y ancho del 50% al contenedor de búsqueda */
+.search-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.rounded-input {
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 35px;
+    text-align: center;
+    border-color: #ededed;
+}
+
+.encabezado {
+    background-color: white;
+}

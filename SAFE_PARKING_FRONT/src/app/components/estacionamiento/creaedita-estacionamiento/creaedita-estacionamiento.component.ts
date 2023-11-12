@@ -158,28 +158,26 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      if (file.type.startsWith('image')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imageSelected = reader.result;
-
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('foto')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
-          } else {
-            console.log('Image has not loaded as a string');
-          }
-        };
-        reader.readAsDataURL(file);
-      } else {
-        console.log('The selected file is not an image.');
-      }
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Data = (e.target?.result as string)?.split(',')[1];
+        this.imageSelected = base64Data;
+        this.form.patchValue({
+          foto: this.imageSelected,
+        });
+      };
+  
+      reader.readAsDataURL(file);
+    } else {
+      this.imageSelected = null;
+      this.form.patchValue({
+        foto: null,
+      });
     }
   }
+  
 }
