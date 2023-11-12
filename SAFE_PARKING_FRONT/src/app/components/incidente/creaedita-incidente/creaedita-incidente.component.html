@@ -26,16 +26,17 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label> <mat-icon>tab</mat-icon> Descripcion </mat-label>
+          <mat-label>Descripcion </mat-label>
           <input
             matInput
             placeholder="Descripcion"
             formControlName="descripcion"
           />
-          <mat-error
-            *ngIf="obtenerControlCampo('descripcion')?.errors?.['required']"
-          >
-            El nombre es obligatorio.
+          <mat-error *ngIf="form.get('descripcion')?.invalid">
+            {{
+                form.get('descripcion')!.errors?.['required'] ? 'La descripcion es obligatorio' :
+                (form.get('descripcion')!.errors?.['maxlength'] ? 'No puede tener más de 100 caracteres' :'')
+            }}
           </mat-error>
         </mat-form-field>
 

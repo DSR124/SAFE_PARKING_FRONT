@@ -18,19 +18,30 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar></app-navbar>
+
     <div>
-      <app-navbar></app-navbar>
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-        <mat-tab label="MIRA TU MEMBRESIA"
-          ><app-listar-usuario-membresia></app-listar-usuario-membresia
-        ></mat-tab>
-        <mat-tab label="REGISTRATE"
-          ><app-creaedita-usuario></app-creaedita-usuario
-        ></mat-tab>
-        <mat-tab label="SELECCIONA TU ROL"
-          ><app-creaedita-rol></app-creaedita-rol
-        ></mat-tab>
+        <mat-tab label="MIRA TU MEMBRESIA">
+          <app-listar-usuario-membresia></app-listar-usuario-membresia>
+        </mat-tab>
+        <mat-tab label="REGISTRATE">
+          <app-creaedita-usuario></app-creaedita-usuario>
+        </mat-tab>
+        <mat-tab label="SELECCIONA TU ROL">
+          <app-creaedita-rol></app-creaedita-rol>
+        </mat-tab>
       </mat-tab-group>
+
+      <!-- Agrega el botón "Siguiente" aquí -->
+      <div class="botones">
+        <button (click)="navegarAtras()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+        </button>
+        <button (click)="navegarSiguiente()">
+          Siguiente <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
     </div>
   </body>
 </html>

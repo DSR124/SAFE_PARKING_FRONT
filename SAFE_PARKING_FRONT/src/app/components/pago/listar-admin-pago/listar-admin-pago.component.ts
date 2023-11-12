@@ -10,7 +10,7 @@ import { PagoService } from 'src/app/services/pago.service';
 @Component({
   selector: 'app-listar-admin-pago',
   templateUrl: './listar-admin-pago.component.html',
-  styleUrls: ['./listar-admin-pago.component.css']
+  styleUrls: ['./listar-admin-pago.component.css'],
 })
 export class ListarAdminPagoComponent {
   dataSource: MatTableDataSource<Pago> = new MatTableDataSource();
@@ -19,7 +19,10 @@ export class ListarAdminPagoComponent {
     'fechaEmision',
     'precioTotal',
     'tipoPago',
-    'reservaEstacionamiento', 'accion01','accion02'
+    'reservaEstacionamiento',
+    'conductor',
+    'accion01',
+    'accion02',
   ];
 
   editarPago: Pago | null = null; // Variable para realizar un seguimiento de la fila en edición

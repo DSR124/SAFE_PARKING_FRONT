@@ -21,7 +21,7 @@ import {
 })
 export class CreaeditaHorarioComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  minFecha: Date = moment().add(-0, 'days').toDate();
   horario: Horario = new Horario();
   mensaje: string = '';
   //minFecha: Date = moment().add(-0, 'days').toDate();
@@ -60,13 +60,16 @@ export class CreaeditaHorarioComponent implements OnInit {
           this.hS.list().subscribe((data) => {
             this.hS.setList(data);
           });
+
         });
+        alert("La modificación se hizo correctamente");
       } else {
         this.hS.insert(this.horario).subscribe((data) => {
           this.hS.list().subscribe((data) => {
             this.hS.setList(data);
           });
         });
+        alert("El registro se hizo correctamente");
       }
       this.router.navigate(['components/horarios/listar_admin_horarios']);
     } else {

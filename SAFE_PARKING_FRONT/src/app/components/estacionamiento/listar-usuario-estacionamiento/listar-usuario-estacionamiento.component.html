@@ -1,1 +1,40 @@
-<p>listar-usuario-estacionamiento works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<app-navbar-administrador></app-navbar-administrador>
+<div *ngIf="verificar() && validarRol()">
+    <div class="search-container">
+      <!-- Agrega un campo de búsqueda si es necesario -->
+      <input matInput (keyup)="filter($event)" placeholder="Buscar estacionamiento" />
+    </div>
+  
+    <div class="estacionamientos-container">
+      <!-- Itera sobre los estacionamientos y muestra cada uno como una tarjeta -->
+      <mat-card *ngFor="let estacionamiento of dataSource.data" class="estacionamiento-card">
+        <button mat-icon-button class="favorite-button">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        
+        <img mat-card-image src="{{ estacionamiento.foto }}" alt="Foto del estacionamiento" />
+
+        <mat-card-header>
+        <mat-card-title> <p>{{ estacionamiento.localizacion.distrito}}, {{ estacionamiento.localizacion.region}}</p></mat-card-title>
+          <mat-card-subtitle>{{ estacionamiento.tipoEstacionamiento }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ estacionamiento.disponibilidad ? 'Disponible' : 'No disponible' }}</mat-card-subtitle>
+        </mat-card-header>
+  
+        <mat-card-content>
+          <p>S/. {{ estacionamiento.precio }} /hora</p>
+          
+        </mat-card-content>
+
+      </mat-card>
+    </div>
+  </div>
+</body>
+</html>

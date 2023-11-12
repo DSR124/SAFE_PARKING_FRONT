@@ -6,6 +6,7 @@ import {
   AbstractControl,
   FormControl,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Rol } from 'src/app/models/rol';
 import { Usuario } from 'src/app/models/usuario';
@@ -28,7 +29,6 @@ export class CreaeditaRolComponent implements OnInit {
   id: number = 0;
 
   tipoRol: { value: string; viewValue: string }[] = [
-    { value: 'administrador', viewValue: 'Administrador' },
     { value: 'conductor', viewValue: 'Conductor' },
     { value: 'arrendador', viewValue: 'Arrendador' },
   ];
@@ -37,6 +37,7 @@ export class CreaeditaRolComponent implements OnInit {
     private rS: RolService,
     private uS: UsuarioService,
     private router: Router, //Para Navegar
+    private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
     private route: ActivatedRoute //Para editar
   ) {}
@@ -79,8 +80,13 @@ export class CreaeditaRolComponent implements OnInit {
             this.rS.setList(data);
           });
         });
+        this._snackBar.open('Registro exitoso', 'Cerrar', {
+          duration: 3000, // Duración en milisegundos
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+        this.router.navigate(['login']); //Esta ruta la sacamos del ROUTING MODULE
       }
-      this.router.navigate(['roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

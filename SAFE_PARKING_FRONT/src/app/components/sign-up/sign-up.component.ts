@@ -1,18 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { LoginService } from 'src/app/services/login.service';
-import { Usuario } from 'src/app/models/usuario';
+import { Component, ViewChild } from '@angular/core';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 import { Observable, Observer } from 'rxjs';
-import { MatTabsModule } from '@angular/material/tabs';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 export interface ExampleTab {
   label: string;
   content: string;
 }
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -20,6 +14,8 @@ export interface ExampleTab {
 })
 export class SignUpComponent {
   asyncTabs: Observable<ExampleTab[]>;
+  tabIndex = 0;
+  @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
 
   constructor() {
     this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
@@ -29,7 +25,29 @@ export class SignUpComponent {
           { label: 'Second', content: 'Content 2' },
           { label: 'Third', content: 'Content 3' },
         ]);
+        observer.complete();
       }, 1000);
     });
+  }
+
+  onTabChange(event: MatTabChangeEvent): void {
+    // Puedes agregar lógica aquí si es necesario
+    console.log('Cambio de pestaña', event.index);
+  }
+
+  navegarSiguiente(): void {
+    if (this.tabGroup) {
+      this.tabIndex = (this.tabIndex + 1) % this.tabGroup._tabs.length;
+      this.tabGroup.selectedIndex = this.tabIndex;
+    }
+  }
+
+  navegarAtras(): void {
+    if (this.tabGroup) {
+      this.tabIndex =
+        (this.tabIndex - 1 + this.tabGroup._tabs.length) %
+        this.tabGroup._tabs.length;
+      this.tabGroup.selectedIndex = this.tabIndex;
+    }
   }
 }

@@ -8,7 +8,6 @@
 
   <body>
     <app-navbar-administrador></app-navbar-administrador>
-
     <div class="container">
       <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
         <h2>REGISTRO DE VEHICULOS</h2>
@@ -27,7 +26,12 @@
               <mat-error
                 *ngIf="obtenerControlCampo('placaVehiculo')?.errors?.['required']"
               >
-                La placa es obligatoria.
+                La categoría es obligatoria.
+              </mat-error>
+              <mat-error *ngIf="form.get('placaVehiculo')?.invalid">
+                {{ form.get('placaVehiculo')!.errors?.['minlength'] ? 'El campo debe tener 6 caracteres' :
+                   (form.get('placaVehiculo')!.errors?.['maxlength'] ? 'El campo no puede tener más de 6 caracteres' :
+                   (form.get('placaVehiculo')!.errors?.['pattern'] ? 'El campo debe tener el formato AA0000' : '')) }}
               </mat-error>
             </mat-form-field>
             <!-- Categoria sección -->
@@ -73,7 +77,7 @@
               <mat-error
                 *ngIf="obtenerControlCampo('tamanioVehiculo')?.errors?.['required']"
               >
-                La marca es obligatoria.
+                El tamaño del vehículo es obligatorio.
               </mat-error>
             </mat-form-field>
 
@@ -86,12 +90,15 @@
                 formControlName="tarjetaPropiedadVehiculo"
               />
               <mat-error
-                *ngIf="obtenerControlCampo('tarjetaPropiedadVehiculo')?.errors?.['required']"
+                *ngIf="obtenerControlCampo('tarjetaPropiedadVehiculo')?.errors?.['required'] ||
+                  obtenerControlCampo('tarjetaPropiedadVehiculo')?.errors?.['invalidTarjetaPropiedad']"
               >
-                La tarjeta de propiedad es obligatoria.
+                {{ obtenerControlCampo('tarjetaPropiedadVehiculo')!.errors?.['required'] ? 'La tarjeta de propiedad es obligatoria.' :
+                   obtenerControlCampo('tarjetaPropiedadVehiculo')!.errors?.['invalidTarjetaPropiedad'] ? 'La tarjeta de propiedad debe tener 12 dígitos y ser numérica.' : '' }}
               </mat-error>
             </mat-form-field>
           </div>
+
           <div class="secciones">
             <h2>COLOR</h2>
 
@@ -102,6 +109,7 @@
                 matInput
                 placeholder="Color del vehículo"
                 formControlName="colorVehiculo"
+                readonly="true"
               />
               <mat-error
                 *ngIf="obtenerControlCampo('colorVehiculo')?.errors?.['required']"
@@ -125,6 +133,7 @@
                 matInput
                 placeholder="Imagen del vehículo"
                 formControlName="imagenVehiculo"
+                readonly="true"
               />
               <mat-error
                 *ngIf="obtenerControlCampo('imagenVehiculo')?.errors?.['required']"
@@ -134,18 +143,20 @@
             </mat-form-field>
             <!-- Sección para manejo de imágenes -->
 
-            <input
-              type="file"
-              (change)="onFileSelected($event)"
-              accept="image/*"
-              formControlName="imagenVehiculo"
-              class="example-full-width"
-            />
-            <img
-              *ngIf="imageSelected"
-              [src]="imageSelected"
-              alt="Imagen del Vehículo"
-            />
+            <div class="image-upload">
+              <input
+                class="example-full-width"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+                formControlName="imagenVehiculo"
+              />
+              <img
+                *ngIf="imageSelected"
+                [src]="imageSelected"
+                alt="Imagen del Vehículo"
+              />
+            </div>
           </div>
         </div>
 

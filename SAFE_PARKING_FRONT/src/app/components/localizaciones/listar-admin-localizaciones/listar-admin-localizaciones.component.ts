@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { LocalizacionService } from '../../../services/localizacion.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-localizaciones',
@@ -13,6 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListarAdminLocalizacionesComponent {
   dataSource: MatTableDataSource<Localizacion> = new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'idLocalizacion',
     'direccion',
@@ -29,7 +32,11 @@ export class ListarAdminLocalizacionesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private lS: LocalizacionService, public route: ActivatedRoute) {}
+  constructor(
+    private lS: LocalizacionService,
+    public route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
   ngOnInit(): void {
     this.lS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -49,5 +56,20 @@ export class ListarAdminLocalizacionesComponent {
   }
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

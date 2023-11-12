@@ -61,10 +61,11 @@
         <mat-form-field class="example-full-width">
           <mat-label>Dirección</mat-label>
           <input matInput placeholder="Dirección" formControlName="direccion" />
-          <mat-error
-            *ngIf="obtenerControlCampo('direccion')?.errors?.['required']"
-          >
-            El campo es obligatorio.
+          <mat-error *ngIf="form.get('direccion')?.invalid">
+            {{
+              form.get('direccion')!.errors?.['required'] ? 'La dirección es obligatorio' :
+              (form.get('direccion')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
+            }}
           </mat-error>
         </mat-form-field>
 
@@ -76,13 +77,14 @@
             placeholder="Referencia"
             formControlName="referencia"
           />
-          <mat-error
-            *ngIf="obtenerControlCampo('referencia')?.errors?.['required']"
-          >
-            El campo es obligatorio.
+          <mat-error *ngIf="form.get('referencia')?.invalid">
+            {{
+              form.get('referencia')!.errors?.['required'] ? 'La referencia es obligatorio' :
+              (form.get('referencia')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
+            }}
           </mat-error>
         </mat-form-field>
-        <h2>SELECCIONE TU HUBICACION EN EL MAPA</h2>
+        <h2>SELECCIONE TU UBICACION EN EL MAPA</h2>
 
         <div class="longitudes">
           <!-- Latitud sección -->
@@ -92,7 +94,7 @@
               matInput
               placeholder="Latitud"
               formControlName="latitud"
-              readonly
+              readonly="true"
             />
             <mat-error
               *ngIf="obtenerControlCampo('latitud')?.errors?.['required']"
@@ -107,7 +109,7 @@
               matInput
               placeholder="Longitud"
               formControlName="longitud"
-              readonly
+              readonly="true"
             />
             <mat-error
               *ngIf="obtenerControlCampo('longitud')?.errors?.['required']"

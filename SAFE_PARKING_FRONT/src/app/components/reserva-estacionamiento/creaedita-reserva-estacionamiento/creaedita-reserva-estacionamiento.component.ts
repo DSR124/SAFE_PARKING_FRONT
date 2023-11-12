@@ -26,10 +26,11 @@ export class CreaeditaReservaEstacionamientoComponent {
   form: FormGroup = new FormGroup({});
   reservaestacionamiento: ReservaEstacionamiento = new ReservaEstacionamiento();
   mensaje: string = '';
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  minFecha: Date = moment().add(-0, 'days').toDate();
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
+  estadoregistro: string = 'En Proceso';
 
   id: number = 0;
   edicion: boolean = false;
@@ -61,9 +62,9 @@ export class CreaeditaReservaEstacionamientoComponent {
 
     this.form = this.formBuilder.group({
       idReservaEstacionamiento: [''],
-      estado: ['', Validators.required],
+      estado: [this.estadoregistro, Validators.required],
       favorito: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
       vehiculo: ['', Validators.required],
       horarioEstacionamiento: ['', Validators.required],

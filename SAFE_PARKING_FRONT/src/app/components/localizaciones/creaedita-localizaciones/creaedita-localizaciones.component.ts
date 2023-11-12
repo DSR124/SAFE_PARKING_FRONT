@@ -110,10 +110,10 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      direccion: ['', Validators.required],
+      direccion: ['', [Validators.required, Validators.maxLength(50)]],
       distrito: ['', Validators.required],
       region: ['', Validators.required],
-      referencia: ['', Validators.required],
+      referencia: ['', [Validators.required, Validators.maxLength(50)]],
       latitud: ['', Validators.required],
       longitud: ['', Validators.required],
     });

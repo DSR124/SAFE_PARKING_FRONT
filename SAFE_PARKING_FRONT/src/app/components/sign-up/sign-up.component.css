@@ -1,5 +1,69 @@
 body {
-  background-color: #f2f2f2;
-  /*Tomar en cuenta esto*/
   background: linear-gradient(to right, #11998e, #38ef7d);
+  font-family: 'Arial', sans-serif;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+div {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 30px;
+}
+
+mat-tab-group {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #17dde4;
+}
+
+button:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+/* Estilo para el ícono */
+mat-icon {
+  margin-left: 8px; /* Ajusta el espacio entre el texto y el ícono según sea necesario */
+}
+
+/* Estilo para el efecto de desplazamiento al pasar el ratón */
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.botones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Ajusta el margen según sea necesario */
+}
+
+.botones button {
+  background-color: #0c0c0c; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.botones button:hover {
+  background-color: rgb(23, 224, 181); /* Color de fondo al pasar el ratón */
 }

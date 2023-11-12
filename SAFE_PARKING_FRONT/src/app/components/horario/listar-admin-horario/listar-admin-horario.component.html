@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
 
-  <body>
+  <body *ngIf="verificar()">
     <app-navbar-administrador></app-navbar-administrador>
 
     <h2 style="text-align: center">LISTA DE HORARIOS</h2>
@@ -22,16 +22,21 @@
       </mat-form-field>
       <br />
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        *ngIf="validarRol()"
+      >
         <!-- ID -->
         <ng-container matColumnDef="idHorario">
-          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
           <td mat-cell *matCellDef="let element">{{ element.idHorario }}</td>
         </ng-container>
 
         <!-- fecha -->
         <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef>fecha</th>
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
           <td mat-cell *matCellDef="let element">
             {{ element.fecha }}
           </td>
@@ -56,6 +61,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito1"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               [routerLink]="['ediciones', element.idHorario]"
             >
@@ -69,6 +75,7 @@
           <td mat-cell *matCellDef="let element">
             <button
               class="botoncito2"
+              *ngIf="role === 'administrador'"
               mat-raised-button
               (click)="eliminar(element.idHorario)"
             >

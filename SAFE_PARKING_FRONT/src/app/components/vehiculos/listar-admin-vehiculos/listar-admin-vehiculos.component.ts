@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-vehiculos',
@@ -15,6 +16,8 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ListarAdminVehiculosComponent implements OnInit {
   dataSource: MatTableDataSource<Vehiculo> = new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'codigo',
     'placa',
@@ -30,7 +33,11 @@ export class ListarAdminVehiculosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private vS: VehiculoService, public route: ActivatedRoute) {}
+  constructor(
+    private vS: VehiculoService,
+    public route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
   ngOnInit(): void {
     this.vS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -50,5 +57,20 @@ export class ListarAdminVehiculosComponent implements OnInit {
   }
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

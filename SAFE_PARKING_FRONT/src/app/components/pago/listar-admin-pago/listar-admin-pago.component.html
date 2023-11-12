@@ -25,7 +25,7 @@
 
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="idPago">
-          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <th mat-header-cell *matHeaderCellDef>Codigo</th>
           <td mat-cell *matCellDef="let element">
             {{ element.idPago }}
           </td>
@@ -53,9 +53,16 @@
         </ng-container>
 
         <ng-container matColumnDef="reservaEstacionamiento">
-          <th mat-header-cell *matHeaderCellDef>Usuario</th>
+          <th mat-header-cell *matHeaderCellDef>Codigo de Reserva</th>
           <td mat-cell *matCellDef="let element">
             {{ element.reservaEstacionamiento.idReservaEstacionamiento }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="conductor">
+          <th mat-header-cell *matHeaderCellDef>Conductor</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.reservaEstacionamiento.usuario.username }}
           </td>
         </ng-container>
 
@@ -83,12 +90,10 @@
             </button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
       <br />
-
       <mat-paginator
         [pageSizeOptions]="[5, 10, 25]"
         showFirstLastButtons

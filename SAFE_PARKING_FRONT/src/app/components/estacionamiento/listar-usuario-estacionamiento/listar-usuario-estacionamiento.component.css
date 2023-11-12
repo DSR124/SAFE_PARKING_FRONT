@@ -1,0 +1,38 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    padding: 30px;
+    margin-left: 270px;
+
+}
+
+.search-container {
+    margin-bottom: 16px;
+}
+
+.estacionamientos-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.estacionamiento-card {
+    width: 300px;
+    height: 300px;
+    /* Ajusta la altura según tus preferencias */
+    margin: 16px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 13px;
+}
+
+/* Agrega estilos para posicionar el botón en la esquina derecha superior */
+.favorite-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: rgb(253, 1, 1);
+    border-color: gray;
+  }
+  
