@@ -386,6 +386,17 @@
               >Listar estacionamientos (admin)</a
             >
           </li>
+          <li
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
+        >
+          <a href="components/estacionamiento/listar_usuario_estacionamientos"
+            >Listar estacionamientos (usuario)</a
+          >
+        </li>
           <li *ngIf="role == 'administrador' || role === 'conductor'">
             <a href="components/estacionamiento/buscar-estacionamiento"
               >Buscar estacionamiento</a
