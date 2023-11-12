@@ -5,12 +5,24 @@ import {
   Validators,
   AbstractControl,
   FormControl,
+  ValidatorFn,
 } from '@angular/forms';
 import { Params, Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ColorEvent } from 'ngx-color';
+
+export function tarjetaPropiedadValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value;
+    const isValid = /^[0-9]{12}$/.test(value);
+
+    return isValid
+      ? null
+      : { invalidTarjetaPropiedad: { value: control.value } };
+  };
+}
 
 @Component({
   selector: 'app-creaedita-vehiculos',
@@ -68,12 +80,23 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      placaVehiculo: ['', Validators.required],
+      placaVehiculo: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          Validators.pattern(/^[A-Z]{2}[0-9]{4}$/),
+        ],
+      ],
       categoriaVehiculo: ['', Validators.required],
       colorVehiculo: [this.colorSeleccionado, Validators.required],
       marcaVehiculo: ['', Validators.required],
       tamanioVehiculo: ['', Validators.required],
-      tarjetaPropiedadVehiculo: ['', Validators.required],
+      tarjetaPropiedadVehiculo: [
+        '',
+        [Validators.required, tarjetaPropiedadValidator()],
+      ],
       imagenVehiculo: ['', Validators.required],
     });
   }
@@ -102,6 +125,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
             this.vS.setList(data);
           });
         });
+        alert('Se registro correctamente');
       }
       this.router.navigate(['components/vehiculos/listar_admin_vehiculos']);
     } else {

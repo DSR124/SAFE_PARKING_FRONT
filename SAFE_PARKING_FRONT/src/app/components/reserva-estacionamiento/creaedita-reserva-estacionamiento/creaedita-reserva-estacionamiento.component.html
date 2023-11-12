@@ -57,13 +57,14 @@
               placeholder="Ingrese fecha"
               [matDatepicker]="picker"
               formControlName="fecha"
-              [max]="maxFecha"
+              [min]="minFecha"
+              readonly="true"
             />
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
+            <!--<mat-datepicker-toggle
               matIconSuffix
               [for]="picker"
-            ></mat-datepicker-toggle>
+            ></mat-datepicker-toggle>-->
             <mat-datepicker #picker></mat-datepicker>
             <mat-error
               *ngIf="obtenerControlCampo('fecha')?.errors?.['required']"

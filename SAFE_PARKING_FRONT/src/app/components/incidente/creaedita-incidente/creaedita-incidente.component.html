@@ -34,8 +34,8 @@
           />
           <mat-error *ngIf="form.get('descripcion')?.invalid">
             {{
-              form.get('descripcion')!.errors?.['required'] ? 'La descripcion es obligatorio' :
-              (form.get('descripcion')!.errors?.['maxlength'] ? 'No puede tener más de 100 caracteres' :'')
+                form.get('descripcion')!.errors?.['required'] ? 'La descripcion es obligatorio' :
+                (form.get('descripcion')!.errors?.['maxlength'] ? 'No puede tener más de 100 caracteres' :'')
             }}
           </mat-error>
         </mat-form-field>

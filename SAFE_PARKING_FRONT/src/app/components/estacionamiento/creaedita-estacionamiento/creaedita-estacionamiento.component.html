@@ -37,10 +37,11 @@
                 placeholder="capacidad"
                 formControlName="capacidad"
               />
-              <mat-error
-                *ngIf="obtenerControlCampo('capacidad')?.errors?.['required']"
-              >
-                La capacidad es obligatoria.
+              <mat-error *ngIf="form.get('capacidad')?.invalid">
+                {{
+                  form.get('capacidad')!.errors?.['required'] ? 'La capacidad es obligatorio' :
+                  (form.get('capacidad')!.errors?.['pattern'] ? 'No puede ser decimal' :'')
+                }}
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill" class="example-full-width">
@@ -51,12 +52,13 @@
                 [matDatepicker]="picker"
                 formControlName="fechaRegistro"
                 [max]="maxFecha"
+                readonly="true"
               />
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle
+              <!--<mat-datepicker-toggle
                 matIconSuffix
                 [for]="picker"
-              ></mat-datepicker-toggle>
+              ></mat-datepicker-toggle>-->
               <mat-datepicker #picker></mat-datepicker>
               <mat-error
                 *ngIf="obtenerControlCampo('fechaRegistro')?.errors?.['required']"
@@ -106,6 +108,7 @@
                 matInput
                 placeholder="promedioValoracion"
                 formControlName="promedioValoracion"
+                readonly="true"
               />
               <mat-error
                 *ngIf="obtenerControlCampo('promedioValoracion')?.errors?.['required']"
@@ -150,7 +153,12 @@
 
             <mat-form-field class="example-full-width">
               <mat-label>Foto</mat-label>
-              <input matInput placeholder="foto" formControlName="foto" />
+              <input
+                matInput
+                placeholder="foto"
+                formControlName="foto"
+                readonly="true"
+              />
               <mat-error
                 *ngIf="obtenerControlCampo('foto')?.errors?.['required']"
               >

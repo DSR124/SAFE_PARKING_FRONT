@@ -26,7 +26,7 @@ export class CreaeditaReservaEstacionamientoComponent {
   form: FormGroup = new FormGroup({});
   reservaestacionamiento: ReservaEstacionamiento = new ReservaEstacionamiento();
   mensaje: string = '';
-  maxFecha: Date = moment().add(-1, 'days').toDate();
+  minFecha: Date = moment().add(-0, 'days').toDate();
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
@@ -64,7 +64,7 @@ export class CreaeditaReservaEstacionamientoComponent {
       idReservaEstacionamiento: [''],
       estado: [this.estadoregistro, Validators.required],
       favorito: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
       vehiculo: ['', Validators.required],
       horarioEstacionamiento: ['', Validators.required],
@@ -92,7 +92,6 @@ export class CreaeditaReservaEstacionamientoComponent {
         this.form.value.vehiculo;
       this.reservaestacionamiento.horarioEstacionamiento.idHorarioEstacionamiento =
         this.form.value.horarioEstacionamiento;
-
       if (this.edicion) {
         this.reS.update(this.reservaestacionamiento).subscribe(() => {
           this.reS.list().subscribe((data) => {

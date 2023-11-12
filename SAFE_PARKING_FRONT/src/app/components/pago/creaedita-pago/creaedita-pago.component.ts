@@ -65,7 +65,7 @@ export class CreaeditaPagoComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       idPago: [''], //Para editar debe ser asi
-      fechaEmision: ['', Validators.required],
+      fechaEmision: [new Date(), Validators.required],
       precioTotal: ['', [Validators.required, precioTotalPositivo]],
       tipoPago: ['', Validators.required],
       reservaEstacionamiento: ['', Validators.required],

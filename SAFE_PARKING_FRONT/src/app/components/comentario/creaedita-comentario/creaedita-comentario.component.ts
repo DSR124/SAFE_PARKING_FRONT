@@ -49,9 +49,9 @@ export class CreaeditaComentarioComponent implements OnInit {
     });
     this.form = this.formBuilder.group({
       idComentario: [''],
-      contenido: ['', Validators.required],
-      valoracion: ['', Validators.required],
-      fechaCreacion: ['', Validators.required],
+      contenido: ['', [Validators.required, Validators.maxLength(50)]],
+      valoracion: ['', [Validators.required, Validators.pattern('^[1-5]$')]],
+      fechaCreacion: [new Date(), Validators.required],
       reservaEstacionamiento: ['', Validators.required],
     });
     this.reS.list().subscribe((data) => {

@@ -26,12 +26,10 @@
             placeholder="Ingrese fecha"
             [matDatepicker]="picker"
             formControlName="fechaEmision"
+            readonly="true"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
+          <!--<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
           <mat-datepicker #picker></mat-datepicker>
           <mat-error
             *ngIf="obtenerControlCampo('fechaEmision')?.errors?.['required']"
@@ -48,15 +46,11 @@
             placeholder="precioTotal"
             formControlName="precioTotal"
           />
-          <mat-error
-            *ngIf="obtenerControlCampo('precioTotal')?.errors?.['required']"
-          >
-            El precio total es obligatorio.
-          </mat-error>
-          <mat-error
-            *ngIf="obtenerControlCampo('precioTotal')?.errors?.['precioNoValido']"
-          >
-            Por favor, ingrese un número válido mayor que cero.
+          <mat-error *ngIf="form.get('precioTotal')?.invalid">
+            {{
+              form.get('precioTotal')!.errors?.['required'] ? 'El precio es obligatorio' :
+              (form.get('precioTotal')!.errors?.['precioNoValido'] ? 'No puede ser negativo' : '')
+            }}
           </mat-error>
         </mat-form-field>
 
