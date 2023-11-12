@@ -13,6 +13,7 @@ import * as moment from 'moment';
 import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
 import * as bcrypt from 'bcryptjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creaedita-usuario',
@@ -24,6 +25,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   estado: boolean = true;
   mensaje: string = '';
+
   fechaNacimiento = new FormControl(new Date());
   maxFecha: Date = moment().add(-1, 'days').toDate();
   id: number = 0;
@@ -31,6 +33,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
   imageSelected: string | ArrayBuffer | null = null;
   imagenCortada: string = '';
   listaMembresia: Membresia[] = [];
+  hide: boolean = true; // or initialize it as per your requirement
 
   generos: { value: string; viewValue: string }[] = [
     { value: 'Hombre', viewValue: 'Hombre' },
@@ -42,7 +45,8 @@ export class CreaeditaUsuarioComponent implements OnInit {
     private mS: MembresiaService, // Asumiendo que tienes un servicio para Membresia
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +81,6 @@ export class CreaeditaUsuarioComponent implements OnInit {
     }
     return control;
   }
-  passwords: string = ''; // Supongamos que aquí tienes la contraseña del usuario
 
   aceptar(): void {
     if (this.form.valid) {
@@ -85,7 +88,6 @@ export class CreaeditaUsuarioComponent implements OnInit {
       this.usuario.apellido = this.form.value.apellido;
       this.usuario.correo = this.form.value.correo;
       this.usuario.username = this.form.value.username;
-
       const plainPassword = this.form.value.password; // Obtén la contraseña ingresada por el usuario desde el formulario
 
       // Hash de la contraseña
@@ -109,15 +111,22 @@ export class CreaeditaUsuarioComponent implements OnInit {
                   this.uS.setList(data);
                 });
               });
+              this.router.navigate([
+                'components/usuarios/listar_admin_usuarios',
+              ]);
             } else {
               this.uS.insert(this.usuario).subscribe((data) => {
                 this.uS.list().subscribe((data) => {
                   this.uS.setList(data);
                 });
               });
+              this._snackBar.open('Registro exitoso', 'Cerrar', {
+                duration: 3000, // Duración en milisegundos
+                horizontalPosition: 'center',
+                verticalPosition: 'top',
+              });
+              this.ngOnInit();
             }
-
-            this.router.navigate(['/usuarios/listar_admin_usuarios']);
           } else {
             // Manejo de error
             console.error(err);

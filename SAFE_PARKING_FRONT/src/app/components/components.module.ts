@@ -90,6 +90,7 @@ import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorMaterialModule } from 'ngx-color/material';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CantReservasPorTipoPagoComponent,
     CantReservasPorUsuarioComponent,
     CantIncidentesPorRolComponent,
+    CantPrecioTotalPorMesComponent,
 
     //Comentario
     ComentarioComponent,
@@ -187,6 +189,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CreaeditaEstacionamientoComponent,
     BuscarEstacionamientoComponent,
     BuscarReservaEstacionamientoComponent,
+    CantPrecioTotalPorMesComponent,
   ],
   imports: [
     CommonModule,
