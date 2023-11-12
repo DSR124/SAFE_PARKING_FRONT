@@ -84,7 +84,7 @@
             }}
           </mat-error>
         </mat-form-field>
-        <h2>SELECCIONE TU HUBICACION EN EL MAPA</h2>
+        <h2>SELECCIONE TU UBICACION EN EL MAPA</h2>
 
         <div class="longitudes">
           <!-- Latitud sección -->
@@ -94,7 +94,7 @@
               matInput
               placeholder="Latitud"
               formControlName="latitud"
-              readonly
+              readonly="true"
             />
             <mat-error
               *ngIf="obtenerControlCampo('latitud')?.errors?.['required']"
@@ -109,7 +109,7 @@
               matInput
               placeholder="Longitud"
               formControlName="longitud"
-              readonly
+              readonly="true"
             />
             <mat-error
               *ngIf="obtenerControlCampo('longitud')?.errors?.['required']"

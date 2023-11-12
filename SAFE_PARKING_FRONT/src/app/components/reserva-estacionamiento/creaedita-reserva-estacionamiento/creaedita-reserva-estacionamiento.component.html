@@ -111,7 +111,9 @@
                 *ngFor="let p of listaHorarioEst"
                 [value]="p.idHorarioEstacionamiento"
               >
-                {{ p.idHorarioEstacionamiento }}
+                {{ p.estacionamiento.localizacion.direccion }} {{ " - " }}
+                {{ p.horario.fecha }}{{ " ( " }} {{ p.horario.horaApertura }}
+                {{ " - " }}{{ p.horario.horaCierre }}{{ " ) " }}
               </mat-option>
             </mat-select>
             <mat-error

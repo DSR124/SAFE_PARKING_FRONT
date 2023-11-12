@@ -138,7 +138,7 @@
                   *ngFor="let p of listaLocalizaciones"
                   [value]="p.idLocalizacion"
                 >
-                  {{ p.idLocalizacion }}
+                  {{ p.direccion }}
                 </mat-option>
               </mat-select>
               <mat-error
@@ -171,7 +171,7 @@
                 type="file"
                 (change)="onFileSelected($event)"
                 accept="image/*"
-                formControlName="imagenVehiculo"
+                formControlName="foto"
               />
               <img
                 *ngIf="imageSelected"
