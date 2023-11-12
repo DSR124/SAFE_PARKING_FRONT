@@ -58,16 +58,38 @@ export class CreaeditaUsuarioComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       idUsuario: [''],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      correo: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]+$/),
+          Validators.maxLength(50),
+        ],
+      ],
+      apellido: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]+$/),
+          Validators.maxLength(50),
+        ],
+      ],
+      correo: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(100),
+          Validators.email,
+          Validators.pattern(/\..*/),
+        ],
+      ],
+      username: ['', [Validators.required, Validators.maxLength(50)]],
+      password: ['', [Validators.required, Validators.maxLength(200)]],
       genero: ['', Validators.required],
-      dni: ['', Validators.required],
+      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
       imagen: ['', Validators.required],
       fechaNacimiento: ['', [Validators.required]],
-      telefono: ['', Validators.required],
+      telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       membresia: ['', Validators.required],
     });
     this.mS.list().subscribe((data) => {
@@ -121,7 +143,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
                 });
               });
               this._snackBar.open('Registro exitoso', 'Cerrar', {
-                duration: 3000, // Duración en milisegundos
+                duration: 5000, // Duración en milisegundos
                 horizontalPosition: 'center',
                 verticalPosition: 'top',
               });
