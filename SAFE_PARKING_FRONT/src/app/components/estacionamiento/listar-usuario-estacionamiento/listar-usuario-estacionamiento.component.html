@@ -22,7 +22,7 @@
     <div class="estacionamientos-container">
       <!-- Itera sobre los estacionamientos y muestra cada uno como una tarjeta -->
       <mat-card *ngFor="let estacionamiento of dataSource.data" class="estacionamiento-card"
-        [routerLink]="['/detalle-estacionamiento', estacionamiento.idEstacionamiento]">
+        [routerLink]="['/components/estacionamiento/detalle_estacionamiento', estacionamiento.idEstacionamiento]">
         <button mat-icon-button class="favorite-button">
           <mat-icon>favorite</mat-icon>
         </button>
@@ -33,7 +33,7 @@
 
         <mat-card-header>
           <mat-card-title>
-            <p>{{ estacionamiento.localizacion.distrito}}, {{ estacionamiento.localizacion.region}}</p>
+            <p>{{ estacionamiento.localizacion.distrito}}, Lima</p>
           </mat-card-title>
           <mat-card-subtitle>{{ estacionamiento.tipoEstacionamiento }}</mat-card-subtitle>
           <mat-card-subtitle>{{ estacionamiento.disponibilidad ? 'Disponible' : 'No disponible' }}</mat-card-subtitle>

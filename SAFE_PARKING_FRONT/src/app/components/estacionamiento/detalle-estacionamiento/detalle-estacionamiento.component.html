@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <app-navbar-administrador></app-navbar-administrador>
+
+    <div class="detalle-estacionamiento-container">
+        <h1 class = "titulo">Detalle del Estacionamiento</h1>
+        <div class="imagen-container">
+            <img [src]="getImagenUrl(estacionamiento)" alt="Imagen del estacionamiento"
+                class="imagen-estacionamiento" />
+        </div>
+        <div class="info-container">
+            <div class="izq-der">
+                <!-- Div a la izquierda -->
+                <div class="info-izquierda">
+                    <p><strong>ID del Estacionamiento:</strong> {{ estacionamiento?.idEstacionamiento }}</p>
+                    <p><strong>Tipo de Estacionamiento:</strong> {{ estacionamiento?.tipoEstacionamiento }}</p>
+                    <p><strong>Disponibilidad:</strong> {{ estacionamiento?.disponibilidad }}</p>
+                
+                    <p><strong>Promedio de Valoración:</strong> {{ estacionamiento?.promedioValoracion }}</p>
+                    <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }}</p>
+                    <p><strong>Fecha de Registro:</strong> {{ estacionamiento?.fechaRegistro | date }}</p>
+                    <p><strong>Precio:</strong> {{ estacionamiento?.precio }}</p>
+                    <p><strong>Anfitrión:</strong> {{ estacionamiento?.usuario?.nombre }}</p>
+                
+                    <!-- Ajusta según la estructura de tus datos y preferencias -->
+                    <div class="valoracion-container">
+                         <!-- Utiliza el ícono de estrella de Angular Material -->
+                        <p><strong>Valoración:</strong> {{ estacionamiento?.promedioValoracion }} <mat-icon class="icono-estrella">star</mat-icon></p>
+                    </div>
+                </div>
+                <!-- Div a la derecha -->
+                <div class="info-derecha">
+                    <div class="reserva">
+                        <h1>S/. {{ estacionamiento?.precio }}</h1>
+                        <div class="horario">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha" readonly="true" />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                            </mat-form-field>
+                        
+                            <div class="hora-container">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Hora de apertura</mat-label>
+                                    <input matInput [ngxTimepicker]="apertura" placeholder="Hora de apertura" formControlName="horaApertura" readonly />
+                                    <ngx-material-timepicker #apertura></ngx-material-timepicker>
+                                </mat-form-field>
+                        
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Hora de cierre</mat-label>
+                                    <input matInput [ngxTimepicker]="cierre" placeholder="Hora de cierre" formControlName="horaCierre" readonly />
+                                    <ngx-material-timepicker #cierre></ngx-material-timepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+
+                        <button [routerLink]="['/components/reservaestacionamiento/registrar_reservas_estacionamientos']" class="boton-reserva">Reserva</button>
+                        <p><strong>Precio:</strong> S/.{{ estacionamiento?.precio }}.00</p>
+                        <p><strong>Impuestos:</strong> S/.{{ estacionamiento?.precio }}.00</p>
+                        <hr>
+                        <!-- Otros detalles de reserva -->
+                        <p><strong>Precio total:</strong> S/.{{ estacionamiento?.precio }}.00</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="texto-descripcion">
+                <br>
+                <p>Bienvenido a nuestro exclusivo servicio de estacionamiento en reserva, diseñado para ofrecerte
+                    una experiencia única y sin preocupaciones en el corazón de la ciudad. Imagina disfrutar de la
+                    comodidad de tener tu espacio de estacionamiento asegurado en un lugar de primera categoría.
+
+                    Situado estratégicamente en una ubicación privilegiada, nuestro estacionamiento en reserva te
+                    brinda la tranquilidad de contar con un lugar seguro para tu vehículo, a solo minutos de los
+                    destinos más populares y las principales avenidas de la ciudad.
+
+                    Nuestro moderno estacionamiento, con vigilancia las 24 horas, se integra perfectamente en el
+                    tejido urbano, ofreciendo no solo seguridad sino también acceso rápido a lugares de interés. Con
+                    la facilidad de reserva en línea, puedes explorar una variedad de opciones, desde espacios
+                    cubiertos hasta ubicaciones premium cerca de las zonas de interés.
+                </p>
+                <br>
+            </div>
+
+            <hr>
+            <h2>A donde irás</h2>
+            <div id="map" class="map-container">
+            </div>
+            <br>
+            <hr>
+            <div class="anfitrion-info">
+                <h2>Conoce a tu anfitrión:</h2>
+                <p><strong>Nombre:</strong> {{ estacionamiento?.usuario?.nombre }} {{ estacionamiento?.usuario?.apellido
+                    }}</p>
+                <p><strong>Correo:</strong> {{ estacionamiento?.usuario?.correo }}</p>
+                <p><strong>Username:</strong> {{ estacionamiento?.usuario?.username }}</p>
+                <!-- Otros detalles del anfitrión -->
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

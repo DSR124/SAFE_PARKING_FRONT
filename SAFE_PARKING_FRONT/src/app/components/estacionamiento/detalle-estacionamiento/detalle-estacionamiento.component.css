@@ -1,0 +1,187 @@
+body {
+    margin-left: 280px;
+    /*Tomar en cuenta esto*/
+    /*background: linear-gradient(to right, #11998e, #38ef7d); */
+    background-color: #fff;
+}
+
+/*Estilos de la fuente - Titulos y textos*/
+h1 {
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+p {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+strong {
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+/* detalle-estacionamiento.component.css */
+
+.detalle-estacionamiento-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+}
+
+.detalle-estacionamiento-container .titulo {
+    padding: 30px;
+}
+
+.imagen-container {
+    margin-top: 20px;
+
+}
+
+.imagen-estacionamiento {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+}
+
+.boton-regresar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.boton-regresar:hover {
+    background-color: #0056b3;
+}
+
+/* detalle-estacionamiento.component.css */
+/* ... (tus estilos actuales) */
+.info-container h2 {
+    text-align: left;
+}
+
+.info-container .izq-der {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.izq-der {
+    margin-bottom: 30px;
+}
+
+.info-izquierda {
+    width: 60%;
+    text-align: left;
+}
+
+.info-derecha {
+    width: 45%;
+    text-align: left;
+}
+
+.info-derecha .reserva {
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+
+.reserva p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reserva strong {
+    text-align: left;
+}
+
+.reserva span {
+    text-align: right;
+}
+
+.valoracion-container {
+    display: flex;
+    align-items: center;
+}
+
+.mat-icon {
+    font-size: 20px;
+    color: gold;
+    /* O el color que desees para las estrellas */
+}
+
+.boton-reserva {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #11998e;
+    /* Color verde para el botón de reserva */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.boton-reserva:hover {
+    background-color: black;
+    /* Cambia el color al pasar el ratón sobre el botón */
+}
+
+.map-container {
+    height: 400px;
+    /* Ajusta la altura según tus necesidades */
+    width: 100%;
+}
+
+.anfitrion-info {
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.texto-descripcion {
+    text-align: justify;
+}
+
+.horario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.hora-container {
+    display: flex;
+    gap: 10px;
+}
+
+.icono-estrella {
+    vertical-align: middle;
+    margin-bottom: 5px;
+    /* Ajusta según sea necesario */
+}
