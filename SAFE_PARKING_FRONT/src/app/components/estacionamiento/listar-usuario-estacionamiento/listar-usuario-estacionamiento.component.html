@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-<app-navbar-administrador></app-navbar-administrador>
-<div *ngIf="verificar() && validarRol()">
-    <div class="search-container">
-      <!-- Agrega un campo de búsqueda si es necesario -->
-      <input matInput (keyup)="filter($event)" placeholder="Buscar estacionamiento" />
+  <app-navbar-administrador></app-navbar-administrador>
+  <div *ngIf="verificar() && validarRol()">
+
+    <div class="encabezado">
+      <div class="search-container">
+        <h2>Elije el estacionamiento de tu preferencia</h2>
+        <!-- Agrega un campo de búsqueda con estilos -->
+        <input matInput (keyup)="filter($event)" placeholder="Buscar estacionamiento" class="rounded-input" />
+      </div>
     </div>
-  
+
     <div class="estacionamientos-container">
       <!-- Itera sobre los estacionamientos y muestra cada uno como una tarjeta -->
-      <mat-card *ngFor="let estacionamiento of dataSource.data" class="estacionamiento-card">
+      <mat-card *ngFor="let estacionamiento of dataSource.data" class="estacionamiento-card"
+        [routerLink]="['/detalle-estacionamiento', estacionamiento.idEstacionamiento]">
         <button mat-icon-button class="favorite-button">
-            <mat-icon>favorite</mat-icon>
-          </button>
-        
-        <img mat-card-image src="{{ estacionamiento.foto }}" alt="Foto del estacionamiento" />
+          <mat-icon>favorite</mat-icon>
+        </button>
+
+        <!-- Utiliza la directiva [src] para asignar la URL de la imagen -->
+        <img mat-card-image [src]="getImagenUrl(estacionamiento)" (error)="imagenNoCargada($event)"
+          alt="Foto del estacionamiento" class="imagen-por-defecto" />
 
         <mat-card-header>
-        <mat-card-title> <p>{{ estacionamiento.localizacion.distrito}}, {{ estacionamiento.localizacion.region}}</p></mat-card-title>
+          <mat-card-title>
+            <p>{{ estacionamiento.localizacion.distrito}}, {{ estacionamiento.localizacion.region}}</p>
+          </mat-card-title>
           <mat-card-subtitle>{{ estacionamiento.tipoEstacionamiento }}</mat-card-subtitle>
           <mat-card-subtitle>{{ estacionamiento.disponibilidad ? 'Disponible' : 'No disponible' }}</mat-card-subtitle>
         </mat-card-header>
-  
+
         <mat-card-content>
           <p>S/. {{ estacionamiento.precio }} /hora</p>
-          
         </mat-card-content>
-
       </mat-card>
+
     </div>
+    <button class="mostrar-mapa-button"
+      [routerLink]="['/components/localizaciones/listar_usuario_localizaciones']">Mostrar Mapa<mat-icon>
+        map</mat-icon></button>
+
   </div>
 </body>
+
 </html>

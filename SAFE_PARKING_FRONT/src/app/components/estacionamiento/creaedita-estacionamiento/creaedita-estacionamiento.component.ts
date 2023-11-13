@@ -157,7 +157,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       });
     }
   }
-
+  
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -165,15 +165,13 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSelected = reader.result;
-
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('foto')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
+          // Obtener solo el contenido base64 sin la información adicional
+          const base64Content = reader.result?.toString().split(',')[1];
+  
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
           } else {
-            console.log('Image has not loaded as a string');
+            console.log('Error extracting base64 content from the image.');
           }
         };
         reader.readAsDataURL(file);
@@ -182,4 +180,5 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       }
     }
   }
+  
 }
