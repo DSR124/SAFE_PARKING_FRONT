@@ -9,7 +9,12 @@
     <app-navbar-administrador></app-navbar-administrador>
 
     <div class="container" style="text-align: center">
-      <form [formGroup]="form" (submit)="registrar()" class="example-form" enctype="multipart/form-data">
+      <form
+        [formGroup]="form"
+        (submit)="registrar()"
+        class="example-form"
+        enctype="multipart/form-data"
+      >
         <h2>Registro de Estacionamiento</h2>
 
         <div class="formularios">
@@ -52,13 +57,12 @@
                 [matDatepicker]="picker"
                 formControlName="fechaRegistro"
                 [max]="maxFecha"
-                readonly="true"
               />
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <!--<mat-datepicker-toggle
+              <mat-datepicker-toggle
                 matIconSuffix
                 [for]="picker"
-              ></mat-datepicker-toggle>-->
+              ></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <mat-error
                 *ngIf="obtenerControlCampo('fechaRegistro')?.errors?.['required']"
@@ -108,7 +112,6 @@
                 matInput
                 placeholder="promedioValoracion"
                 formControlName="promedioValoracion"
-                readonly="true"
               />
               <mat-error
                 *ngIf="obtenerControlCampo('promedioValoracion')?.errors?.['required']"
@@ -138,7 +141,7 @@
                   *ngFor="let p of listaLocalizaciones"
                   [value]="p.idLocalizacion"
                 >
-                  {{ p.direccion }}
+                  {{ p.idLocalizacion }}
                 </mat-option>
               </mat-select>
               <mat-error
@@ -153,12 +156,7 @@
 
             <mat-form-field class="example-full-width">
               <mat-label>Foto</mat-label>
-              <input
-                matInput
-                placeholder="foto"
-                formControlName="foto"
-                readonly="true"
-              />
+              <input matInput placeholder="foto" formControlName="foto" />
               <mat-error
                 *ngIf="obtenerControlCampo('foto')?.errors?.['required']"
               >
@@ -170,10 +168,10 @@
                 class="example-full-width"
                 type="file"
                 (change)="onFileSelected($event)"
-                type="file" 
-                alife-file-to-base64  
+                type="file"
+                alife-file-to-base64
                 accept="image/*"
-                formControlName="foto"
+                formControlName="imagenVehiculo"
               />
               <img
                 *ngIf="imageSelected"

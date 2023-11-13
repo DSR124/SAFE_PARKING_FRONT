@@ -76,9 +76,9 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       tipoEstacionamiento: ['', Validators.required],
       disponibilidad: [this.disponibilidad, Validators.required],
       foto: ['', Validators.required],
-      promedioValoracion: [5, Validators.required],
+      promedioValoracion: ['', Validators.required],
       capacidad: ['', [Validators.required, Validators.pattern('^[^.]*$')]],
-      fechaRegistro: [new Date(), Validators.required],
+      fechaRegistro: ['', Validators.required],
       precio: ['', Validators.required],
       usuario: ['', Validators.required],
       localizacion: ['', Validators.required],
@@ -157,7 +157,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       });
     }
   }
-  
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -167,7 +167,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
         reader.onload = () => {
           // Obtener solo el contenido base64 sin la información adicional
           const base64Content = reader.result?.toString().split(',')[1];
-  
+
           if (base64Content) {
             this.form.get('foto')?.setValue(base64Content);
           } else {
@@ -180,5 +180,4 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       }
     }
   }
-  
 }
