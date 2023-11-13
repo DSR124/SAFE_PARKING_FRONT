@@ -17,7 +17,6 @@
         <!-- Agrega un campo de búsqueda con estilos -->
         <input matInput (keyup)="filter($event)" placeholder="Buscar estacionamiento" class="rounded-input" />
       </div>
-
     </div>
 
     <div class="estacionamientos-container">
@@ -26,9 +25,10 @@
         <button mat-icon-button class="favorite-button">
           <mat-icon>favorite</mat-icon>
         </button>
-
-        <img mat-card-image [src]="estacionamiento.foto || 'ruta_imagen_por_defecto'" (error)="imagenNoCargada($event)"
-          alt="Foto del estacionamiento" class="imagen-por-defecto" />
+      
+        <!-- Utiliza la directiva [src] para asignar la URL de la imagen -->
+        <img mat-card-image [src]="getImagenUrl(estacionamiento)" (error)="imagenNoCargada($event)" alt="Foto del estacionamiento" class="imagen-por-defecto" />
+        
         <mat-card-header>
           <mat-card-title>
             <p>{{ estacionamiento.localizacion.distrito}}, {{ estacionamiento.localizacion.region}}</p>
@@ -36,13 +36,12 @@
           <mat-card-subtitle>{{ estacionamiento.tipoEstacionamiento }}</mat-card-subtitle>
           <mat-card-subtitle>{{ estacionamiento.disponibilidad ? 'Disponible' : 'No disponible' }}</mat-card-subtitle>
         </mat-card-header>
-
+      
         <mat-card-content>
           <p>S/. {{ estacionamiento.precio }} /hora</p>
-
         </mat-card-content>
-
       </mat-card>
+      
     </div>
   </div>
 </body>

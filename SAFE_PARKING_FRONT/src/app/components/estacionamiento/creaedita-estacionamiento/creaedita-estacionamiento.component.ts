@@ -157,26 +157,27 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       });
     }
   }
-
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
   
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const base64Data = (e.target?.result as string)?.split(',')[1];
-        this.imageSelected = base64Data;
-        this.form.patchValue({
-          foto: this.imageSelected,
-        });
-      };
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      if (file.type.startsWith('image')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // Obtener solo el contenido base64 sin la información adicional
+          const base64Content = reader.result?.toString().split(',')[1];
   
-      reader.readAsDataURL(file);
-    } else {
-      this.imageSelected = null;
-      this.form.patchValue({
-        foto: null,
-      });
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
+          } else {
+            console.log('Error extracting base64 content from the image.');
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        console.log('The selected file is not an image.');
+      }
     }
   }
   
