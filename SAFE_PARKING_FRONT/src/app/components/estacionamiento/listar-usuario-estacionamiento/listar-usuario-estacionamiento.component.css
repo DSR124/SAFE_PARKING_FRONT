@@ -22,8 +22,10 @@ h2 {
     margin: 16px;
     position: relative;
     border-radius: 13px;
-    overflow: hidden; /* Para evitar que los bordes redondeados afecten la imagen */
-    transition: transform 0.3s; /* Agrega transición al efecto hover */
+    overflow: hidden;
+    /* Para evitar que los bordes redondeados afecten la imagen */
+    transition: transform 0.3s;
+    /* Agrega transición al efecto hover */
 }
 
 .estacionamiento-card img {
@@ -32,12 +34,15 @@ h2 {
     object-fit: cover;
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
-    max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
-    max-height: 100%; /* Asegura que la imagen no sea más alta que su contenedor */
+    max-width: 100%;
+    /* Asegura que la imagen no sea más ancha que su contenedor */
+    max-height: 100%;
+    /* Asegura que la imagen no sea más alta que su contenedor */
 }
 
 .estacionamiento-card:hover {
-    transform: scale(1.05); /* Ajusta el tamaño en el hover según tus preferencias */
+    transform: scale(1.05);
+    /* Ajusta el tamaño en el hover según tus preferencias */
     cursor: pointer;
 }
 
@@ -78,4 +83,31 @@ h2 {
 
 .encabezado {
     background-color: white;
+}
+
+.mostrar-mapa-button {
+    display: inline-flex !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    margin: 0px !important;
+    padding: 14px 19px !important;
+    touch-action: manipulation !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    background: rgb(34, 34, 34) !important;
+    color: white;
+    position: fixed;
+    left: 53%;
+    bottom: 20px;
+}
+
+.mostrar-mapa-button mat-icon {
+    margin-left: 8px;
+}
+
+.mostrar-mapa-button:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    cursor: pointer;
 }
