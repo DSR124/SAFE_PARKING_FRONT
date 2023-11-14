@@ -71,4 +71,13 @@ export class UsuarioService {
   getList() {
     return this.listaCambio.asObservable();
   }
+  getByUsername(username: string) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Usuario>(`${this.url}/ListarporUsername/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
+  }
 }

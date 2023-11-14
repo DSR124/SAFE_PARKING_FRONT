@@ -63,6 +63,7 @@ import { NgModule } from '@angular/core';
 import { NavbarAdministradorComponent } from './navbar-administrador/navbar-administrador.component';
 import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
 import { ListarUsuarioEstacionamientoComponent } from './estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   // localizaciones
@@ -413,6 +414,10 @@ const routes: Routes = [
   {
     path: 'navbar_admin',
     component: NavbarAdministradorComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 @NgModule({

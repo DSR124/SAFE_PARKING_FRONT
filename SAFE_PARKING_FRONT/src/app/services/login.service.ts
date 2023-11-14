@@ -26,4 +26,22 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
+  obtenerPerfil(): { nombreUsuario: string; rol: string } | null {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      console.error('Token no encontrado en el sessionStorage');
+      return null;
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    if (!decodedToken) {
+      console.error('Error al decodificar el token');
+      return null;
+    }
+    console.log('Token decodificado:', decodedToken);
+    return {
+      nombreUsuario: decodedToken ? decodedToken.sub || '' : '',
+      rol: decodedToken ? decodedToken.role || '' : '',
+    };
+  }
 }

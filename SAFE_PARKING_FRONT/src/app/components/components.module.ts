@@ -91,6 +91,7 @@ import { ColorMaterialModule } from 'ngx-color/material';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -190,6 +191,7 @@ import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por
     BuscarEstacionamientoComponent,
     BuscarReservaEstacionamientoComponent,
     CantPrecioTotalPorMesComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

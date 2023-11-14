@@ -1,0 +1,42 @@
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+    </head>
+
+    <body *ngIf="verificar()">
+      <app-navbar-administrador></app-navbar-administrador>
+      <section>
+        <div class="profile-picture">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
+            alt="Profile Picture"
+          />
+        </div>
+
+        <div class="user-info" *ngIf="validarRol()">
+          <h1>
+            {{ usuario.nombre }} {{ usuario.apellido }}
+            <p class="logo" *ngIf="role === 'administrador'">Administrador</p>
+            <p class="logo" *ngIf="role === 'conductor'">Conductor</p>
+            <p class="logo" *ngIf="role === 'arrendador'">Arrendador</p>
+          </h1>
+
+          <p>Correo electrónico: {{ usuario.correo }}</p>
+          <p>Nombre de usuario: {{ usuario.username }}</p>
+          <p>Género: {{ usuario.genero }}</p>
+          <p>DNI: {{ usuario.dni }}</p>
+          <p>
+            Fecha de Nacimiento:
+            {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
+          </p>
+          <p>Teléfono: {{ usuario.telefono }}</p>
+        </div>
+      </section>
+    </body>
+  </html>
+</div>

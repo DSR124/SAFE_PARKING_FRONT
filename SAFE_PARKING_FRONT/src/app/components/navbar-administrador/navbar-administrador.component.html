@@ -17,6 +17,15 @@
         </p>
         <p class="logo" *ngIf="role === 'conductor'">Portal Conductor</p>
         <p class="logo" *ngIf="role === 'arrendador'">Portal Arrendador</p>
+        <label
+          for="menu16"
+          class="menu"
+          routerLink="/components/profile"
+          *ngIf="role === 'administrador'"
+        >
+          <i class="material-icons">person</i>
+          PERFIL
+        </label>
 
         <input
           type="checkbox"
@@ -387,16 +396,16 @@
             >
           </li>
           <li
-          *ngIf="
-            role === 'administrador' ||
-            role === 'conductor' ||
-            role === 'arrendador'
-          "
-        >
-          <a href="components/estacionamiento/listar_usuario_estacionamientos"
-            >Listar estacionamientos (usuario)</a
+            *ngIf="
+              role === 'administrador' ||
+              role === 'conductor' ||
+              role === 'arrendador'
+            "
           >
-        </li>
+            <a href="components/estacionamiento/listar_usuario_estacionamientos"
+              >Listar estacionamientos (usuario)</a
+            >
+          </li>
           <li *ngIf="role == 'administrador' || role === 'conductor'">
             <a href="components/estacionamiento/buscar-estacionamiento"
               >Buscar estacionamiento</a
