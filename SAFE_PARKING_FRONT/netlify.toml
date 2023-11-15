@@ -2,8 +2,5 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
   
-  [build]
-  command = "npm ci && npm run build"
-  publish = "/opt/build/repo/dist/safe-parking-front"
-  node_version = "14.17.6"
