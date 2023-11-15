@@ -5,38 +5,64 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>User ID Card</title>
     </head>
-
-    <body *ngIf="verificar()">
+    <body>
       <app-navbar-administrador></app-navbar-administrador>
-      <section>
-        <div class="profile-picture">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
-            alt="Profile Picture"
-          />
-        </div>
+      <div class="container" section *ngIf="verificar()">
+        <div class="card" *ngIf="validarRol()">
+          <div class="card-header">
+            <h3>
+              TARJETA DE IDENTIFICACION DEL
+              <h3 *ngIf="role === 'administrador'">ADMINISTRADOR</h3>
+              <h3 *ngIf="role === 'conductor'">CONDUCTOR</h3>
+              <h3 *ngIf="role === 'arrendador'">ARRENDADOR</h3>
+            </h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <img
+                  *ngIf="role === 'administrador'"
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
+                  alt="Profile Picture"
+                  class="responsive-img"
+                />
+              </div>
+              <div class="col-md-6">
+                <img
+                  *ngIf="role === 'conductor' || role === 'arrendador'"
+                  mat-card-image
+                  [src]="getImagenUrl()"
+                  (error)="imagenNoCargada($event)"
+                  alt="Foto del estacionamiento"
+                  class="responsive-img"
+                />
+              </div>
 
-        <div class="user-info" *ngIf="validarRol()">
-          <h1>
-            {{ usuario.nombre }} {{ usuario.apellido }}
-            <p class="logo" *ngIf="role === 'administrador'">Administrador</p>
-            <p class="logo" *ngIf="role === 'conductor'">Conductor</p>
-            <p class="logo" *ngIf="role === 'arrendador'">Arrendador</p>
-          </h1>
-
-          <p>Correo electrónico: {{ usuario.correo }}</p>
-          <p>Nombre de usuario: {{ usuario.username }}</p>
-          <p>Género: {{ usuario.genero }}</p>
-          <p>DNI: {{ usuario.dni }}</p>
-          <p>
-            Fecha de Nacimiento:
-            {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
-          </p>
-          <p>Teléfono: {{ usuario.telefono }}</p>
+              <div class="col-md-6">
+                <ul>
+                  <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
+                  <li><strong>Apellido:</strong>{{ usuario.apellido }}</li>
+                  <li>
+                    <strong>Fecha de Nacimiento:</strong>
+                    {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
+                  </li>
+                  <li><strong>Email:</strong> {{ usuario.correo }}</li>
+                  <li><strong>Telefono:</strong> {{ usuario.telefono }}</li>
+                  <li><strong>DNI:</strong>{{ usuario.dni }}</li>
+                  <li><strong>Genero:</strong>{{ usuario.genero }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <small
+              >Fecha de Vencimiento : {{ usuario.membresia.fechaFin }}</small
+            >
+          </div>
         </div>
-      </section>
+      </div>
     </body>
   </html>
 </div>

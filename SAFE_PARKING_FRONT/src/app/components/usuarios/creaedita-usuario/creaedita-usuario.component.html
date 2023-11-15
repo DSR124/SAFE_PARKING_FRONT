@@ -189,32 +189,33 @@
               </mat-form-field>
             </div>
             <div class="secciones">
+              <h2>IMAGEN</h2>
+
               <mat-form-field class="example-full-width">
-                <mat-label>imagen</mat-label>
-                <input
-                  matInput
-                  placeholder="imagen"
-                  formControlName="imagen"
-                  readonly="true"
-                />
+                <mat-label>Foto</mat-label>
+                <input matInput placeholder="foto" formControlName="foto" />
                 <mat-error
-                  *ngIf="obtenerControlCampo('imagen')?.errors?.['required']"
+                  *ngIf="obtenerControlCampo('foto')?.errors?.['required']"
                 >
-                  El imagen es obligatorio.
+                  La foto es obligatoria.
                 </mat-error>
               </mat-form-field>
-              <input
-                class="example-full-width"
-                type="file"
-                (change)="onFileSelected($event)"
-                accept="image/*"
-                formControlName="imagenVehiculo"
-              />
-              <img
-                *ngIf="imageSelected"
-                [src]="imageSelected"
-                alt="Imagen del Vehículo"
-              />
+              <div class="image-upload">
+                <input
+                  class="example-full-width"
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  type="file"
+                  alife-file-to-base64
+                  accept="image/*"
+                  formControlName="imagenVehiculo"
+                />
+                <img
+                  *ngIf="imageSelected"
+                  [src]="imageSelected"
+                  alt="Imagen del Vehículo"
+                />
+              </div>
             </div>
           </div>
           <div class="botones">

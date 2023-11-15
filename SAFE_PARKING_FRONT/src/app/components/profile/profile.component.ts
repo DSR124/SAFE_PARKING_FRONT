@@ -54,6 +54,20 @@ export class ProfileComponent implements OnInit {
     this.role = this.perfilService.showRole();
     return this.perfilService.verificar();
   }
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    // Verifica si la propiedad 'foto' está presente y no es nula
+    if (this.usuario.imagen) {
+      // Construye y retorna la URL de la imagen
+      return 'data:image/jpeg;base64,' + this.usuario.imagen;
+    } else {
+      // Si no hay imagen, retorna la ruta de la imagen por defecto
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
   validarRol() {
     if (
       this.role == 'administrador' ||

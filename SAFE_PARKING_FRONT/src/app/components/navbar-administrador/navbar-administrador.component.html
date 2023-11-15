@@ -21,17 +21,17 @@
           for="menu16"
           class="menu"
           routerLink="/components/profile"
-          *ngIf="role === 'administrador'"
+          *ngIf="
+            role === 'administrador' ||
+            role === 'conductor' ||
+            role === 'arrendador'
+          "
         >
           <i class="material-icons">person</i>
           PERFIL
         </label>
 
-        <input
-          type="checkbox"
-          class="menu-toggle"
-          *ngIf="role === 'administrador'"
-        />
+        <input type="checkbox" class="menu-toggle" />
         <label
           for="menu16"
           class="menu"
@@ -42,11 +42,7 @@
           HOME
         </label>
 
-        <input
-          type="checkbox"
-          class="menu-toggle"
-          *ngIf="role === 'conductor'"
-        />
+        <input type="checkbox" class="menu-toggle" />
         <label
           for="menu16"
           class="menu"
@@ -57,11 +53,7 @@
           HOME
         </label>
 
-        <input
-          type="checkbox"
-          class="menu-toggle"
-          *ngIf="role === 'arrendador'"
-        />
+        <input type="checkbox" class="menu-toggle" />
         <label
           for="menu16"
           class="menu"

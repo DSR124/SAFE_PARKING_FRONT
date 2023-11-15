@@ -409,7 +409,7 @@ const routes: Routes = [
 
   { path: 'home_arrendador', component: HomeArrendadorComponent },
   {
-    path: 'home_condutor',
+    path: 'home_conductor',
     component: HomeConductorComponent,
   },
   {
