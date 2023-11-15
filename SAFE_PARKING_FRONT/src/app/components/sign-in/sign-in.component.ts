@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
           this.router.navigate(['components/home_arrendador']);
         }
         if (this.role == 'conductor') {
-          this.router.navigate(['components/home_condutor']);
+          this.router.navigate(['components/home_conductor']);
         }
       },
       (error) => {

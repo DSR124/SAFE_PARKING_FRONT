@@ -12,32 +12,15 @@
       <h2 style="text-align: center">LISTA DE PRECIO POR MES</h2>
     </div>
     <div class="container">
-      <mat-form-field>
-        <mat-icon matPrefix class="search-icon">search</mat-icon>
-        <input
-          class="custom-search-input"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="Bucar por Mes"
-        />
-      </mat-form-field>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Columna Precio Total -->
-        <ng-container matColumnDef="precioTotal">
-          <th mat-header-cell *matHeaderCellDef>Precio Total</th>
-          <td mat-cell *matCellDef="let element">{{ element.precioTotal }}</td>
-        </ng-container>
-
-        <!-- Columna Mes -->
-        <ng-container matColumnDef="mes">
-          <th mat-header-cell *matHeaderCellDef>Mes</th>
-          <td mat-cell *matCellDef="let element">{{ element.mes }}</td>
-        </ng-container>
-
-        <!-- Definir las columnas -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+      >
+      </canvas>
     </div>
   </body>
 </html>

@@ -76,9 +76,9 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       tipoEstacionamiento: ['', Validators.required],
       disponibilidad: [this.disponibilidad, Validators.required],
       foto: ['', Validators.required],
-      promedioValoracion: [5, Validators.required],
+      promedioValoracion: ['', Validators.required],
       capacidad: ['', [Validators.required, Validators.pattern('^[^.]*$')]],
-      fechaRegistro: [new Date(), Validators.required],
+      fechaRegistro: ['', Validators.required],
       precio: ['', Validators.required],
       usuario: ['', Validators.required],
       localizacion: ['', Validators.required],
@@ -165,15 +165,13 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSelected = reader.result;
+          // Obtener solo el contenido base64 sin la información adicional
+          const base64Content = reader.result?.toString().split(',')[1];
 
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('foto')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
           } else {
-            console.log('Image has not loaded as a string');
+            console.log('Error extracting base64 content from the image.');
           }
         };
         reader.readAsDataURL(file);

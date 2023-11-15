@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { CantidadReservasPorTipoPago } from 'src/app/models/cantidadReservasPorTipoPago';
-import { CantidadReservasPorTipoPagoService } from '../../../services/cantidad-reservas-por-tipo-pago.service';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { CantidadReservasPorTipoPagoService } from 'src/app/services/cantidad-reservas-por-tipo-pago.service';
 
 @Component({
   selector: 'app-cant-reservas-por-tipo-pago',
@@ -9,10 +8,13 @@ import { CantidadReservasPorTipoPagoService } from '../../../services/cantidad-r
   styleUrls: ['./cant-reservas-por-tipo-pago.component.css'],
 })
 export class CantReservasPorTipoPagoComponent implements OnInit {
-  dataSource: MatTableDataSource<CantidadReservasPorTipoPago> =
-    new MatTableDataSource();
-  displayedColumns: string[] = ['tipoPgo', 'reservation_quantity'];
-
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: string[] = [];
+  barChartType: ChartType = 'polarArea';
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
   constructor(
     private cantidadReservasService: CantidadReservasPorTipoPagoService
   ) {}
@@ -21,10 +23,26 @@ export class CantReservasPorTipoPagoComponent implements OnInit {
     this.cantidadReservasService
       .CantidadReservasPorTipoPago()
       .subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
+        this.barChartLabels = data.map((item) => item.tipoPgo);
+        const randomColors = this.generateRandomColors(data.length);
+
+        this.barChartData = [
+          {
+            data: data.map((item) => item.reservation_quantity),
+            label: 'cantidad de reservas',
+            backgroundColor: randomColors,
+          },
+        ];
       });
   }
-  filter(en: any) {
-    this.dataSource.filter = en.target.value.trim();
+  private generateRandomColors(count: number): string[] {
+    const colors: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)}, 0.3)`;
+      colors.push(color);
+    }
+    return colors;
   }
 }

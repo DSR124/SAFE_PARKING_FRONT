@@ -26,7 +26,7 @@ export class ListarAdminVehiculosComponent implements OnInit {
     'marca',
     'tamanio',
     'tarjeta de propiedad',
-    'imagen',
+
     'accion01',
     'accion02',
   ];

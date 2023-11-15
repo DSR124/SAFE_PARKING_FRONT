@@ -63,6 +63,8 @@ import { NgModule } from '@angular/core';
 import { NavbarAdministradorComponent } from './navbar-administrador/navbar-administrador.component';
 import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
 import { ListarUsuarioEstacionamientoComponent } from './estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
+import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estacionamiento/detalle-estacionamiento.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   // localizaciones
@@ -392,6 +394,10 @@ const routes: Routes = [
         component: CreaeditaEstacionamientoComponent,
       },
       {
+        path: 'detalle_estacionamiento/:id',
+        component: DetalleEstacionamientoComponent,
+      },
+      {
         path: 'buscar-estacionamiento',
         component: BuscarEstacionamientoComponent,
       },
@@ -403,7 +409,7 @@ const routes: Routes = [
 
   { path: 'home_arrendador', component: HomeArrendadorComponent },
   {
-    path: 'home_condutor',
+    path: 'home_conductor',
     component: HomeConductorComponent,
   },
   {
@@ -413,6 +419,10 @@ const routes: Routes = [
   {
     path: 'navbar_admin',
     component: NavbarAdministradorComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 @NgModule({

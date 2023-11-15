@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { CantidadIncidentesPorRol } from 'src/app/models/cantidadIncidentesPorRol';
 import { CantidadIncidentesPorRolService } from '../../../services/cantidad-incidentes-por-rol.service';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-cant-incidentes-por-rol',
@@ -9,22 +8,42 @@ import { CantidadIncidentesPorRolService } from '../../../services/cantidad-inci
   styleUrls: ['./cant-incidentes-por-rol.component.css'],
 })
 export class CantIncidentesPorRolComponent implements OnInit {
-  dataSource: MatTableDataSource<CantidadIncidentesPorRol> =
-    new MatTableDataSource();
-  displayedColumns: string[] = ['nombreRol', 'cantIncidentes'];
-
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: string[] = [];
+  barChartType: ChartType = 'pie';
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
   constructor(
     private cantidadReservasService: CantidadIncidentesPorRolService
   ) {}
 
   ngOnInit(): void {
     this.cantidadReservasService
+
       .CantidadIncidentesPorRol()
       .subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
+        this.barChartLabels = data.map((item) => item.nombreRol);
+        const randomColors = this.generateRandomColors(data.length);
+
+        this.barChartData = [
+          {
+            data: data.map((item) => item.cantIncidentes),
+            label: 'Cantidad de Incidentes',
+            backgroundColor: randomColors,
+          },
+        ];
       });
   }
-  filter(en: any) {
-    this.dataSource.filter = en.target.value.trim();
+  private generateRandomColors(count: number): string[] {
+    const colors: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)}, 0.3)`;
+      colors.push(color);
+    }
+    return colors;
   }
 }

@@ -9,7 +9,12 @@
   <body>
     <app-navbar-administrador></app-navbar-administrador>
     <div class="container">
-      <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
+      <form
+        [formGroup]="form"
+        (submit)="registrar()"
+        class="example-form"
+        enctype="multipart/form-data"
+      >
         <h2>REGISTRO DE VEHICULOS</h2>
 
         <div class="informacion">
@@ -126,28 +131,28 @@
           </div>
           <div class="secciones">
             <h2>IMAGEN</h2>
-            <!-- IMAGEN sección -->
+
             <mat-form-field class="example-full-width">
-              <mat-label>Imagen del vehículo</mat-label>
+              <mat-label>Foto</mat-label>
               <input
                 matInput
-                placeholder="Imagen del vehículo"
-                formControlName="imagenVehiculo"
+                placeholder="foto"
+                formControlName="foto"
                 readonly="true"
               />
               <mat-error
-                *ngIf="obtenerControlCampo('imagenVehiculo')?.errors?.['required']"
+                *ngIf="obtenerControlCampo('foto')?.errors?.['required']"
               >
-                la Imagen es obligatorio.
+                La foto es obligatoria.
               </mat-error>
             </mat-form-field>
-            <!-- Sección para manejo de imágenes -->
-
             <div class="image-upload">
               <input
                 class="example-full-width"
                 type="file"
                 (change)="onFileSelected($event)"
+                type="file"
+                alife-file-to-base64
                 accept="image/*"
                 formControlName="imagenVehiculo"
               />

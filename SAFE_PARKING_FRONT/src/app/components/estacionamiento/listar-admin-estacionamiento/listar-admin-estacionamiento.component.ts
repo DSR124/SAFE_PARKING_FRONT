@@ -20,7 +20,6 @@ export class ListarAdminEstacionamientoComponent implements OnInit {
     'idEstacionamiento',
     'tipoEstacionamiento',
     'disponibilidad',
-    'foto',
     'promedioValoracion',
     'capacidad',
     'fechaRegistro',

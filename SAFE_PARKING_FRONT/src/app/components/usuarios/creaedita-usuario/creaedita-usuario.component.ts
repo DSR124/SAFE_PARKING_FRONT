@@ -87,7 +87,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
       password: ['', [Validators.required, Validators.maxLength(200)]],
       genero: ['', Validators.required],
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
-      imagen: ['', Validators.required],
+      foto: [''],
       fechaNacimiento: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       membresia: ['', Validators.required],
@@ -121,7 +121,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
 
             this.usuario.genero = this.form.value.genero;
             this.usuario.dni = this.form.value.dni;
-            this.usuario.imagen = this.form.value.imagen;
+            this.usuario.imagen = this.form.value.foto;
             this.usuario.fechaNacimiento = this.form.value.fechaNacimiento;
             this.usuario.telefono = this.form.value.telefono;
             this.usuario.membresia.idMembresia = this.form.value.membresia;
@@ -166,15 +166,13 @@ export class CreaeditaUsuarioComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSelected = reader.result;
+          // Obtener solo el contenido base64 sin la información adicional
+          const base64Content = reader.result?.toString().split(',')[1];
 
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('imagen')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
           } else {
-            console.log('Image has not loaded as a string');
+            console.log('Error extracting base64 content from the image.');
           }
         };
         reader.readAsDataURL(file);

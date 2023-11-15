@@ -17,6 +17,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class ListarUsuarioEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<Estacionamiento> = new MatTableDataSource();
   role: string = '';
+  imageToShow: string | null = null; // Nueva propiedad para mostrar la imagen guardada
 
   displayedColumns: string[] = [
     'idEstacionamiento',
@@ -98,6 +99,21 @@ export class ListarUsuarioEstacionamientoComponent implements OnInit {
       return false;
     }
   }
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(estacionamiento: Estacionamiento): string {
+    // Verifica si la propiedad 'foto' está presente y no es nula
+    if (estacionamiento.foto) {
+      // Construye y retorna la URL de la imagen
+      return 'data:image/jpeg;base64,' + estacionamiento.foto;
+    } else {
+      // Si no hay imagen, retorna la ruta de la imagen por defecto
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
+  
 /*
   // Agrega este método para manejar el botón de favoritos
   toggleFavorito(estacionamiento: Estacionamiento) {

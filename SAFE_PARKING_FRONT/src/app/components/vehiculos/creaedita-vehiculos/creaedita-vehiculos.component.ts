@@ -64,7 +64,6 @@ export class CreaeditaVehiculosComponent implements OnInit {
   ];
 
   imageSelected: string | ArrayBuffer | null = null;
-  imagenCortada: string = '';
 
   constructor(
     private vS: VehiculoService,
@@ -97,7 +96,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
         '',
         [Validators.required, tarjetaPropiedadValidator()],
       ],
-      imagenVehiculo: ['', Validators.required],
+      foto: ['', Validators.required],
     });
   }
 
@@ -111,7 +110,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.vehiculo.tamanioVehiculo = this.form.value.tamanioVehiculo;
       this.vehiculo.tarjetaPropiedadVehiculo =
         this.form.value.tarjetaPropiedadVehiculo;
-      this.vehiculo.imagenVehiculo = this.imagenCortada; // Guardar la imagen en el objeto vehículo
+      this.vehiculo.imagenVehiculo = this.form.value.foto;
 
       if (this.edicion) {
         this.vS.update(this.vehiculo).subscribe(() => {
@@ -133,7 +132,6 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.mensaje = '¡Completa todos los campos!';
     }
   }
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -141,15 +139,13 @@ export class CreaeditaVehiculosComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSelected = reader.result;
+          // Obtener solo el contenido base64 sin la información adicional
+          const base64Content = reader.result?.toString().split(',')[1];
 
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('imagenVehiculo')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
           } else {
-            console.log('Image has not loaded as a string');
+            console.log('Error extracting base64 content from the image.');
           }
         };
         reader.readAsDataURL(file);

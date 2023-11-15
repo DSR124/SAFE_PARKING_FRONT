@@ -91,7 +91,9 @@ import { ColorMaterialModule } from 'ngx-color/material';
 import { ComponentsRoutingModule } from './components-routing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por-mes/cant-precio-total-por-mes.component';
-
+import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estacionamiento/detalle-estacionamiento.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     //Nav Bars
@@ -190,6 +192,8 @@ import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por
     BuscarEstacionamientoComponent,
     BuscarReservaEstacionamientoComponent,
     CantPrecioTotalPorMesComponent,
+    DetalleEstacionamientoComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -213,6 +217,7 @@ import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por
     ColorSketchModule,
     ColorMaterialModule,
     MatDialogModule,
+    NgChartsModule,
   ],
 })
 export class ComponentsModule {}
