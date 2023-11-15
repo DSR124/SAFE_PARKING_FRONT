@@ -210,6 +210,9 @@ strong {
     left: 50px;
 }
 
+.imagen-usuario {
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     /* Evita la distorsión manteniendo la relación de aspecto */
     border-radius: 50%;
