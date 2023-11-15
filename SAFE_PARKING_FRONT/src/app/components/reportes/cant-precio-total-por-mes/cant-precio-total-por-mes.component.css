@@ -1,39 +1,29 @@
-/*Estilos del form*/
 
-table {
-  background-color: rgb(255, 255, 255);
-}
 
 body{
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
   padding: 30px;
+  height: 100%;
 
 }
 .container {
-  width: 800px;
-  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
   background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 100px auto;
-  /* Centra horizontalmente */
-  margin-top: 50px;
 }
 
 h2 {
+  text-align: center;
   color: #333;
 }
 
-.botoncito1{
-  background-color: #11998e;
-  color: #fff;
+/* Estilo para darle bordes suaves al lienzo */
+canvas {
   border-radius: 8px;
-  padding-right: 5px;
-}
-.botoncito2{
-  background-color: #000000;
-  color: #fff;
-  border-radius: 8px;
-  padding-right: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

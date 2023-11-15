@@ -1,5 +1,4 @@
 export class CantidadReservasPorUsuario {
-  nameUser?: number;
-  nameRole?: string;
-  quantityReservation?: number;
+  nameUser: string = '';
+  quantityReservation: number = 0;
 }
