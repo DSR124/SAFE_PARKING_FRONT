@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { CantidadReservasPorFecha } from 'src/app/models/cantidadReservasPorFecha';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { CantidadReservasPorFechaService } from 'src/app/services/cantidad-reservas-por-fecha.service';
 
 @Component({
@@ -9,10 +8,13 @@ import { CantidadReservasPorFechaService } from 'src/app/services/cantidad-reser
   styleUrls: ['./cant-reservas-por-fecha.component.css'],
 })
 export class CantReservasPorFechaComponent implements OnInit {
-  dataSource: MatTableDataSource<CantidadReservasPorFecha> =
-    new MatTableDataSource();
-  displayedColumns: string[] = ['date_reservation', 'reservation_quantity'];
-
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Date[] = [];
+  barChartType: ChartType = 'doughnut';
+  barChartLegend = true;
+  barChartData: ChartDataset[] = [];
   constructor(
     private cantidadReservasService: CantidadReservasPorFechaService
   ) {}
@@ -21,10 +23,26 @@ export class CantReservasPorFechaComponent implements OnInit {
     this.cantidadReservasService
       .CantidadReservasPorFecha()
       .subscribe((data) => {
-        this.dataSource = new MatTableDataSource(data);
+        this.barChartLabels = data.map((item) => item.date_reservation);
+        const randomColors = this.generateRandomColors(data.length);
+
+        this.barChartData = [
+          {
+            data: data.map((item) => item.reservation_quantity),
+            label: 'cantidad de reservas',
+            backgroundColor: randomColors,
+          },
+        ];
       });
   }
-  filter(en: any) {
-    this.dataSource.filter = en.target.value.trim();
+  private generateRandomColors(count: number): string[] {
+    const colors: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)}, 0.3)`;
+      colors.push(color);
+    }
+    return colors;
   }
 }

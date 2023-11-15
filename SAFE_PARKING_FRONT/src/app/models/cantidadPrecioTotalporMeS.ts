@@ -1,4 +1,4 @@
 export class PrecioTotalporMes {
-  PrecioTotal?: number;
-  Mes?: string;
+  mes: string = '';
+  precioTotal: number = 0;
 }

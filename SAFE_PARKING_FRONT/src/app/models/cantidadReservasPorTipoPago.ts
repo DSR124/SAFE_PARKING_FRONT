@@ -1,4 +1,4 @@
 export class CantidadReservasPorTipoPago {
-  tipoPgo?: string;
-  reservation_quantity?: number;
+  tipoPgo: string = '';
+  reservation_quantity: number = 0;
 }
