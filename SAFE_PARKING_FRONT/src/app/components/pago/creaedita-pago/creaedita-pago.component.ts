@@ -81,7 +81,7 @@ export class CreaeditaPagoComponent implements OnInit {
       this.pago.idPago = this.form.value.idPago;
       this.pago.fechaEmision = this.form.value.fechaEmision;
       this.pago.precioTotal = this.form.value.precioTotal;
-      this.pago.tipoPago = this.form.value.tipoPago;
+      this.pago.precioTotal += this.pago.precioTotal * 0.18;      
       this.pago.reservaEstacionamiento.idReservaEstacionamiento =
         this.form.value.reservaEstacionamiento; //dessert.idDessert -> Se utiliza el ID por que desde la BD se maneja con ello
       if (this.edicion) {

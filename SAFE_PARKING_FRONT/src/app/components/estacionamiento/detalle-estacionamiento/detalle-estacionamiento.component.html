@@ -11,7 +11,7 @@
     <app-navbar-administrador></app-navbar-administrador>
 
     <div class="detalle-estacionamiento-container">
-        <h1 class = "titulo">Detalle del Estacionamiento</h1>
+        <h1 class="titulo">Detalle del Estacionamiento</h1>
         <div class="imagen-container">
             <img [src]="getImagenUrl(estacionamiento)" alt="Imagen del estacionamiento"
                 class="imagen-estacionamiento" />
@@ -23,17 +23,18 @@
                     <p><strong>ID del Estacionamiento:</strong> {{ estacionamiento?.idEstacionamiento }}</p>
                     <p><strong>Tipo de Estacionamiento:</strong> {{ estacionamiento?.tipoEstacionamiento }}</p>
                     <p><strong>Disponibilidad:</strong> {{ estacionamiento?.disponibilidad }}</p>
-                
+
                     <p><strong>Promedio de Valoración:</strong> {{ estacionamiento?.promedioValoracion }}</p>
                     <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }}</p>
                     <p><strong>Fecha de Registro:</strong> {{ estacionamiento?.fechaRegistro | date }}</p>
                     <p><strong>Precio:</strong> {{ estacionamiento?.precio }}</p>
                     <p><strong>Anfitrión:</strong> {{ estacionamiento?.usuario?.nombre }}</p>
-                
+
                     <!-- Ajusta según la estructura de tus datos y preferencias -->
                     <div class="valoracion-container">
-                         <!-- Utiliza el ícono de estrella de Angular Material -->
-                        <p><strong>Valoración:</strong> {{ estacionamiento?.promedioValoracion }} <mat-icon class="icono-estrella">star</mat-icon></p>
+                        <!-- Utiliza el ícono de estrella de Angular Material -->
+                        <p><strong>Valoración:</strong> {{ estacionamiento?.promedioValoracion }} <mat-icon
+                                class="icono-estrella">star</mat-icon></p>
                     </div>
                 </div>
                 <!-- Div a la derecha -->
@@ -42,34 +43,43 @@
                         <h1>S/. {{ estacionamiento?.precio }}</h1>
                         <div class="horario">
                             <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha" readonly="true" />
+                                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker"
+                                    formControlName="fecha" readonly="true" />
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                                 <mat-hint>MM/DD/YYYY</mat-hint>
                             </mat-form-field>
-                        
+
                             <div class="hora-container">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Hora de apertura</mat-label>
-                                    <input matInput [ngxTimepicker]="apertura" placeholder="Hora de apertura" formControlName="horaApertura" readonly />
+                                    <input matInput [ngxTimepicker]="apertura" placeholder="Hora de apertura"
+                                        formControlName="horaApertura" readonly />
                                     <ngx-material-timepicker #apertura></ngx-material-timepicker>
                                 </mat-form-field>
-                        
+
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Hora de cierre</mat-label>
-                                    <input matInput [ngxTimepicker]="cierre" placeholder="Hora de cierre" formControlName="horaCierre" readonly />
+                                    <input matInput [ngxTimepicker]="cierre" placeholder="Hora de cierre"
+                                        formControlName="horaCierre" readonly />
                                     <ngx-material-timepicker #cierre></ngx-material-timepicker>
                                 </mat-form-field>
                             </div>
                         </div>
-                        
 
-                        <button [routerLink]="['/components/reservaestacionamiento/registrar_reservas_estacionamientos']" class="boton-reserva">Reserva</button>
-                        <p><strong>Precio:</strong> S/.{{ estacionamiento?.precio }}.00</p>
-                        <p><strong>Impuestos:</strong> S/.{{ estacionamiento?.precio }}.00</p>
+
+                        <button
+                            [routerLink]="['/components/reservaestacionamiento/registrar_reservas_estacionamientos']"
+                            class="boton-reserva">Reserva</button>
+                        <p><strong>Precio:</strong> S/.{{ (estacionamiento?.precio ? estacionamiento.precio -
+                            (estacionamiento.precio * 0.18) : 0).toFixed(2) }}</p>
+                        <p><strong>Impuestos:</strong> S/.{{ (estacionamiento?.precio ? estacionamiento.precio * 0.18 :
+                            0).toFixed(2) }}</p>
                         <hr>
                         <!-- Otros detalles de reserva -->
                         <p><strong>Precio total:</strong> S/.{{ estacionamiento?.precio }}.00</p>
+
+
                     </div>
                 </div>
 
@@ -102,23 +112,27 @@
             <hr>
             <div class="anfitrion-info">
                 <h2>Conoce a tu anfitrión:</h2>
-                <p><strong>Nombre:</strong> {{ estacionamiento?.usuario?.nombre }} {{ estacionamiento?.usuario?.apellido
-                    }}</p>
-                <p><strong>Correo:</strong> {{ estacionamiento?.usuario?.correo }}</p>
-                <p><strong>Username:</strong> {{ estacionamiento?.usuario?.username }}</p>
-                <!-- Otros detalles del anfitrión -->
+                <div class="contenedor-persona">
+                    <div class="div1">
+                        <!-- Utiliza la directiva [src] para asignar la URL de la imagen del usuario -->
+                        <img [src]="estacionamiento?.usuario?.imagen ? 'data:image/jpeg;base64,' + estacionamiento.usuario.imagen : 'assets/image/Perfil1.jpg'"
+                            alt="Foto del usuario" class="imagen-usuario" />
+                    </div>
+
+                    <div class="div2">
+                        <p><strong>Nombre:</strong> {{ estacionamiento?.usuario?.nombre }} {{
+                            estacionamiento?.usuario?.apellido
+                            }}</p>
+                        <p><strong>Correo:</strong> {{ estacionamiento?.usuario?.correo }}</p>
+                        <p><strong>Username:</strong> {{ estacionamiento?.usuario?.username }}</p>
+                        <!-- Otros detalles del anfitrión -->
+                    </div>
+
+                </div>
+
             </div>
-
-
-
-
-
-
         </div>
-
     </div>
-
-
 </body>
 
 </html>
