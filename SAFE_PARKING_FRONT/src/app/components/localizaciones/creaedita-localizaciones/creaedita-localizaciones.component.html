@@ -121,7 +121,16 @@
 
         <div id="map" style="height: 400px"></div>
         <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
+          <button class="boton_registro" mat-raised-button>Registrar</button>
+
+          <button
+            mat-raised-button
+            [routerLink]="[
+              '/components/localizaciones/listar_admin_localizaciones'
+            ]"
+          >
+            Cancelar
+          </button>
         </div>
       </form>
     </div>

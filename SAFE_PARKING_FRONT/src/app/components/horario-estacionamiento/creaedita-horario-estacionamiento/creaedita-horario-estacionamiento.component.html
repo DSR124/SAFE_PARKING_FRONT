@@ -44,7 +44,17 @@
         </mat-form-field>
 
         <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
+          <button class="boton_registro" mat-raised-button color="primary">
+            Registrar
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="[
+              '/components/horarios_estacionamiento/listar_admin_horarios_estacionamiento'
+            ]"
+          >
+            Cancelar
+          </button>
         </div>
         <p>{{ mensaje }}</p>
       </form>

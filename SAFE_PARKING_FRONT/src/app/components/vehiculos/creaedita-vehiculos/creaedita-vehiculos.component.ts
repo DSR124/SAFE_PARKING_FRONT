@@ -11,7 +11,7 @@ import { Params, Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
-import { ColorEvent } from 'ngx-color';
+import { ChangeDetectorRef } from '@angular/core';
 
 export function tarjetaPropiedadValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -69,7 +69,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
     private vS: VehiculoService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private cdr: ChangeDetectorRef // Add this line
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +80,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
+      idVehiculo: [''], // ¡Este campo debería inicializarse con el valor correcto!
+
       placaVehiculo: [
         '',
         [
@@ -111,13 +114,13 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.vehiculo.tarjetaPropiedadVehiculo =
         this.form.value.tarjetaPropiedadVehiculo;
       this.vehiculo.imagenVehiculo = this.form.value.foto;
-
       if (this.edicion) {
         this.vS.update(this.vehiculo).subscribe(() => {
           this.vS.list().subscribe((data) => {
             this.vS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.vS.insert(this.vehiculo).subscribe((data) => {
           this.vS.list().subscribe((data) => {
@@ -139,11 +142,12 @@ export class CreaeditaVehiculosComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          // Obtener solo el contenido base64 sin la información adicional
           const base64Content = reader.result?.toString().split(',')[1];
 
           if (base64Content) {
             this.form.get('foto')?.setValue(base64Content);
+            this.imageSelected = base64Content;
+            this.cdr.detectChanges(); // Trigger change detection
           } else {
             console.log('Error extracting base64 content from the image.');
           }
@@ -170,20 +174,32 @@ export class CreaeditaVehiculosComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.vS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idVehiculo: new FormControl(data.idVehiculo),
-          placaVehiculo: new FormControl(data.placaVehiculo),
-          categoriaVehiculo: new FormControl(data.categoriaVehiculo),
-          colorVehiculo: new FormControl(data.colorVehiculo),
-          marcaVehiculo: new FormControl(data.marcaVehiculo),
-          tamanioVehiculo: new FormControl(data.tamanioVehiculo),
-          tarjetaPropiedadVehiculo: new FormControl(
-            data.tarjetaPropiedadVehiculo
-          ),
-          imagenVehiculo: new FormControl(data.imagenVehiculo),
+        this.form.setValue({
+          idVehiculo: data.idVehiculo, // Asigna el valor correcto aquí
+          placaVehiculo: data.placaVehiculo,
+          categoriaVehiculo: data.categoriaVehiculo,
+          colorVehiculo: data.colorVehiculo,
+          marcaVehiculo: data.marcaVehiculo,
+          tamanioVehiculo: data.tamanioVehiculo,
+          tarjetaPropiedadVehiculo: data.tarjetaPropiedadVehiculo,
+          foto: data.imagenVehiculo,
         });
+
         this.imageSelected = data.imagenVehiculo; // Guarda la URL de la imagen
       });
+    }
+  }
+
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    console.log('imageSelected:', this.imageSelected);
+    if (this.imageSelected) {
+      return 'data:image/jpeg;base64,' + this.imageSelected;
+    } else {
+      return 'assets/image/EstacionamientoDefault.jpg';
     }
   }
 }

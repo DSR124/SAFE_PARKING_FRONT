@@ -13,12 +13,6 @@
     <div class="container" style="text-align: center">
       <h2>Registro de Pagos</h2>
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <!--*ngIf="edicion" es para que se meustre en la edicion-->
-          <mat-label>idPago</mat-label>
-          <input matInput placeholder="idPago" formControlName="idPago" />
-        </mat-form-field>
-
         <mat-form-field appearance="fill" class="example-full-width">
           <mat-label>Fecha de emisión</mat-label>
           <input
@@ -86,7 +80,15 @@
         </mat-form-field>
         <br />
         <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
+          <button class="boton_registro" mat-raised-button color="primary">
+            Registrar
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="['/components/pagos/listar-admin-pagos']"
+          >
+            Cancelar
+          </button>
         </div>
         <p>{{ mensaje }}</p>
       </form>

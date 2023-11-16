@@ -15,16 +15,6 @@
         </div>
         <br />
 
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <!--*ngIf="edicion" es para que se meustre en la edicion-->
-          <mat-label>id Incidente</mat-label>
-          <input
-            matInput
-            placeholder="idIncidente"
-            formControlName="idIncidente"
-          />
-        </mat-form-field>
-
         <mat-form-field class="example-full-width">
           <mat-label>Descripcion </mat-label>
           <input
@@ -72,9 +62,17 @@
         </mat-form-field>
 
         <br />
-        <button class="botonRegistro" mat-raised-button color="primary">
-          Registrar
-        </button>
+        <div class="btn-container">
+          <button class="botonRegistro" mat-raised-button color="primary">
+            Registrar
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="['/components/incidentes/listar_admin_incidentes']"
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     </div>
   </body>

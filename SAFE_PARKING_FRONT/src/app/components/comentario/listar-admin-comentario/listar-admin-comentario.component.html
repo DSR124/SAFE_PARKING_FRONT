@@ -72,7 +72,7 @@
               class="botoncito1"
               *ngIf="role === 'administrador'"
               mat-raised-button
-              [routerLink]="['/comentarios/ediciones/', element.idComentario]"
+              [routerLink]="['ediciones', element.idComentario]"
             >
               <mat-icon>edit</mat-icon>
             </button>

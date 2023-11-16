@@ -21,14 +21,11 @@ import { ListarusuarioLocalizacionesComponent } from './localizaciones/listar-us
 import { BuscarMembresiaComponent } from './membresia/buscar-membresia/buscar-membresia.component';
 import { MembresiaComponent } from './membresia/membresia.component';
 import { CreaeditaMembresiaComponent } from './membresia/creaedita-membresia/creaedita-membresia.component';
-import { ListarUsuarioMembresiaComponent } from './membresia/listar-usuario-membresia/listar-usuario-membresia.component';
 import { ListarAdminMembresiaComponent } from './membresia/listar-admin-membresia/listar-admin-membresia.component';
 import { RolComponent } from './rol/rol.component';
-import { CreaeditaRolComponent } from './rol/creaedita-rol/creaedita-rol.component';
 import { ListarAdminRolComponent } from './rol/listar-admin-rol/listar-admin-rol.component';
 import { BuscarRolComponent } from './rol/buscar-rol/buscar-rol.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { CreaeditaUsuarioComponent } from './usuarios/creaedita-usuario/creaedita-usuario.component';
 import { listarAdminUsuarioComponent } from './usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { BuscarUsuariosComponent } from './usuarios/buscar-usuarios/buscar-usuarios.component';
 import { VehiculosComponent } from './vehiculos/vehiculos.component';
@@ -94,6 +91,7 @@ import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por
 import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estacionamiento/detalle-estacionamiento.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modificar-usuario.component';
 @NgModule({
   declarations: [
     //Nav Bars
@@ -135,6 +133,7 @@ import { NgChartsModule } from 'ng2-charts';
     UsuariosComponent,
     listarAdminUsuarioComponent,
     BuscarUsuariosComponent,
+    ModificarUsuarioComponent,
 
     //Vehiculos
     VehiculosComponent,
@@ -194,6 +193,7 @@ import { NgChartsModule } from 'ng2-charts';
     CantPrecioTotalPorMesComponent,
     DetalleEstacionamientoComponent,
     ProfileComponent,
+    ModificarUsuarioComponent,
   ],
   imports: [
     CommonModule,

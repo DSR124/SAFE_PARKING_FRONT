@@ -45,6 +45,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
+      idHorarioEstacionamiento: [''],
       estacionamiento: ['', Validators.required],
       horario: ['', Validators.required],
     });
@@ -67,6 +68,9 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
+      this.hro_est.idHorarioEstacionamiento =
+        this.form.value.idHorarioEstacionamiento;
+
       this.hro_est.estacionamiento.idEstacionamiento =
         this.form.value.estacionamiento;
       this.hro_est.horario.idHorario = this.form.value.horario;
@@ -77,12 +81,14 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
             this.heS.setList(data);
           });
         });
+        alert('La modificación se hizo correctamente');
       } else {
         this.heS.insert(this.hro_est).subscribe((data) => {
           this.heS.list().subscribe((data) => {
             this.heS.setList(data);
           });
         });
+        alert('el registro se hizo correctamente');
       }
       this.router.navigate([
         'components/horarios_estacionamiento/listar_admin_horarios_estacionamiento',
@@ -96,6 +102,10 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
     if (this.edicion) {
       this.heS.getById(this.id).subscribe((data) => {
         this.form = new FormGroup({
+          idHorarioEstacionamiento: new FormControl(
+            data.idHorarioEstacionamiento
+          ),
+
           estacionamiento: new FormControl(
             data.estacionamiento.idEstacionamiento
           ),

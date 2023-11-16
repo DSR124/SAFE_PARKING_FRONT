@@ -136,12 +136,14 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
             this.lS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.lS.insert(this.localizacion).subscribe((data) => {
           this.lS.list().subscribe((data) => {
             this.lS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate([
         'components/localizaciones/listar_admin_localizaciones',

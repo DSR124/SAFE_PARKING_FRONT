@@ -25,9 +25,7 @@ export class BuscarVehiculosComponent implements OnInit {
     private vehiculoService: VehiculoService,
     public route: ActivatedRoute
   ) {}
-  ngOnInit(): void {
-    this.buscar();
-  }
+  ngOnInit(): void {}
 
   buscar() {
     this.vehiculoService.getById(this.idVehiculo).subscribe(
@@ -38,5 +36,19 @@ export class BuscarVehiculosComponent implements OnInit {
         console.error('Error al obtener el vehículo por ID:', error);
       }
     );
+  }
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    // Verifica si la propiedad 'foto' está presente y no es nula
+    if (this.vehiculo.imagenVehiculo) {
+      // Construye y retorna la URL de la imagen
+      return 'data:image/jpeg;base64,' + this.vehiculo.imagenVehiculo;
+    } else {
+      // Si no hay imagen, retorna la ruta de la imagen por defecto
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
   }
 }

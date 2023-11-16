@@ -148,18 +148,17 @@
             </mat-form-field>
             <div class="image-upload">
               <input
-                class="example-full-width"
                 type="file"
                 (change)="onFileSelected($event)"
-                type="file"
-                alife-file-to-base64
                 accept="image/*"
-                formControlName="imagenVehiculo"
               />
+
               <img
-                *ngIf="imageSelected"
-                [src]="imageSelected"
-                alt="Imagen del Vehículo"
+                [src]="
+                  getImagenUrl() || 'assets/image/EstacionamientoDefault.jpg'
+                "
+                alt="Selected Image"
+                (error)="imagenNoCargada($event)"
               />
             </div>
           </div>
@@ -168,6 +167,12 @@
         <div class="btn-container">
           <button class="botonRegistro" mat-raised-button color="primary">
             Registrar
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="['/components/vehiculos/listar_admin_vehiculos']"
+          >
+            Cancelar
           </button>
         </div>
       </form>

@@ -65,6 +65,7 @@ import { CantPrecioTotalPorMesComponent } from './reportes/cant-precio-total-por
 import { ListarUsuarioEstacionamientoComponent } from './estacionamiento/listar-usuario-estacionamiento/listar-usuario-estacionamiento.component';
 import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estacionamiento/detalle-estacionamiento.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modificar-usuario.component';
 
 const routes: Routes = [
   // localizaciones
@@ -111,7 +112,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'ediciones/:id',
+        path: 'listar_comentarios_admin/ediciones/:id',
         component: CreaeditaComentarioComponent,
       },
 
@@ -256,15 +257,15 @@ const routes: Routes = [
     children: [
       {
         path: 'registrar_usuarios',
-        component: CreaeditaUsuarioComponent,
+        component: ModificarUsuarioComponent,
       },
       {
         path: 'listar_admin_usuarios',
         component: listarAdminUsuarioComponent,
       },
       {
-        path: 'modificar_usuarios/:id',
-        component: CreaeditaUsuarioComponent,
+        path: 'listar_admin_usuarios/ediciones/:id',
+        component: ModificarUsuarioComponent,
       },
 
       {
@@ -273,6 +274,7 @@ const routes: Routes = [
       },
     ],
   },
+
   //roles
   {
     path: 'roles',
@@ -404,8 +406,6 @@ const routes: Routes = [
     ],
   },
   // apartados
-
-  { path: 'vehiculos', component: VehiculosComponent },
 
   { path: 'home_arrendador', component: HomeArrendadorComponent },
   {

@@ -76,7 +76,11 @@ button.boton_registro:hover {
   background-color: #080808;
    color: #fff;
 }
+.btn-container {
+  justify-content: center;
+  text-align: center;
 
+}
 mat-error {
   color: #e74c3c;
 }

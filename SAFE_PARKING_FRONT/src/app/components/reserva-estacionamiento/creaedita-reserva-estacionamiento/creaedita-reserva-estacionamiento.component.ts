@@ -26,7 +26,7 @@ export class CreaeditaReservaEstacionamientoComponent {
   form: FormGroup = new FormGroup({});
   reservaestacionamiento: ReservaEstacionamiento = new ReservaEstacionamiento();
   mensaje: string = '';
-  minFecha: Date = moment().add(-0, 'days').toDate();
+  maxFecha: Date = moment().add(-1, 'days').toDate();
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
@@ -98,12 +98,14 @@ export class CreaeditaReservaEstacionamientoComponent {
             this.reS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.reS.insert(this.reservaestacionamiento).subscribe((data) => {
           this.reS.list().subscribe((data) => {
             this.reS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate([
         'components/reservaestacionamiento/listar_admin_reserva_estacionamientos',
@@ -123,16 +125,14 @@ export class CreaeditaReservaEstacionamientoComponent {
   init() {
     if (this.edicion) {
       this.reS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idReservaEstacionamiento: new FormControl(
-            data.idReservaEstacionamiento
-          ),
-          estado: new FormControl(data.estado),
-          favorito: new FormControl(data.favorito),
-          fecha: new FormControl(data.fecha),
-          users: new FormControl(data.users),
-          vehiculo: new FormControl(data.vehiculo),
-          horarioEstacionamiento: new FormControl(data.horarioEstacionamiento),
+        this.form.patchValue({
+          idReservaEstacionamiento: data.idReservaEstacionamiento,
+          estado: data.estado,
+          favorito: data.favorito,
+          fecha: data.fecha,
+          users: data.users,
+          vehiculo: data.vehiculo,
+          horarioEstacionamiento: data.horarioEstacionamiento,
         });
       });
     }

@@ -74,12 +74,14 @@ export class CreaeditaComentarioComponent implements OnInit {
             this.cS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.cS.insert(this.com).subscribe((data) => {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
 
       this.router.navigate(['components/comentarios/listar_comentarios_admin']);

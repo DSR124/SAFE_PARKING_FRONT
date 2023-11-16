@@ -43,7 +43,15 @@
         </div>
         <div class="generic-box">
           <h1>Imagen</h1>
-          <p>{{ vehiculo.imagenVehiculo }}</p>
+          <div class="col-md-6">
+            <img
+              mat-card-image
+              [src]="getImagenUrl()"
+              (error)="imagenNoCargada($event)"
+              alt="Foto del estacionamiento"
+              class="responsive-img"
+            />
+          </div>
         </div>
       </div>
     </div>
