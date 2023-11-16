@@ -101,6 +101,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/safe-parking-front",
+            "netlifyToken": "nfp_dY6XowamYTrEKRzmrec1vimuCxZiPcV6041c",
+            "siteId": "0a2287c6-6e45-4026-9d59-47707db70c21"
+          }
         }
       }
     }
