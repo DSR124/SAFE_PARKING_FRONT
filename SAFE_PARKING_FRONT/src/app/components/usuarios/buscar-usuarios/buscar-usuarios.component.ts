@@ -7,18 +7,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-buscar-usuarios',
   templateUrl: './buscar-usuarios.component.html',
-  styleUrls: ['./buscar-usuarios.component.css']
+  styleUrls: ['./buscar-usuarios.component.css'],
 })
 export class BuscarUsuariosComponent implements OnInit {
-
   form: FormGroup = new FormGroup({});
-  usu:Usuario  = new Usuario();
+  usu: Usuario = new Usuario();
   idUsuario: number = 0;
 
-  constructor(
-    private uS: UsuarioService,
-    public route: ActivatedRoute,
-  ) {}
+  constructor(private uS: UsuarioService, public route: ActivatedRoute) {}
   ngOnInit(): void {
     this.buscar();
   }
@@ -33,5 +29,18 @@ export class BuscarUsuariosComponent implements OnInit {
       }
     );
   }
-
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    // Verifica si la propiedad 'foto' está presente y no es nula
+    if (this.usu.imagen) {
+      // Construye y retorna la URL de la imagen
+      return 'data:image/jpeg;base64,' + this.usu.imagen;
+    } else {
+      // Si no hay imagen, retorna la ruta de la imagen por defecto
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
 }

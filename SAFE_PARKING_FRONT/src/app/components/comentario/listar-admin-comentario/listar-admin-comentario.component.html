@@ -6,8 +6,15 @@
     <title>Document</title>
   </head>
   <body *ngIf="verificar()">
-    <app-navbar-administrador></app-navbar-administrador>
-
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <h2 style="text-align: center">LISTA DE COMENTARIOS</h2>
     <div class="example-container">
       <mat-form-field>
@@ -72,7 +79,7 @@
               class="botoncito1"
               *ngIf="role === 'administrador'"
               mat-raised-button
-              [routerLink]="['/comentarios/ediciones/', element.idComentario]"
+              [routerLink]="['ediciones', element.idComentario]"
             >
               <mat-icon>edit</mat-icon>
             </button>

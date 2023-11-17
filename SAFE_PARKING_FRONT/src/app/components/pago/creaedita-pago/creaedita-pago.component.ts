@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
+import { LoginService } from 'src/app/services/login.service';
 import { PagoService } from 'src/app/services/pago.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
@@ -46,15 +47,31 @@ export class CreaeditaPagoComponent implements OnInit {
     { value: 'Yape', viewValue: 'Yape' },
     { value: 'Otros', viewValue: 'Otros' },
   ];
+  role: string = '';
 
   constructor(
     private pS: PagoService,
     private r_eS: ReservaEstacionamientoService,
     private router: Router, //Para Navegar
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
-    public route: ActivatedRoute //Para editar
+    public route: ActivatedRoute, //Para editar
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     //Nuevo Para Editar
     this.route.params.subscribe((data: Params) => {

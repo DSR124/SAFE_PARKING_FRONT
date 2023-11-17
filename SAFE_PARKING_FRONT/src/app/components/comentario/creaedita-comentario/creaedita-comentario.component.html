@@ -6,21 +6,20 @@
     <title>Document</title>
   </head>
 
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
 
     <div class="container" style="text-align: center">
       <h2>Registro de Comentario</h2>
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>codigo</mat-label>
-          <input
-            matInput
-            placeholder="Id"
-            formControlName="idComentario"
-            readonly="true"
-          />
-        </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width">
@@ -74,7 +73,6 @@
             placeholder="Ingrese fecha"
             [matDatepicker]="picker"
             formControlName="fechaCreacion"
-            [min]="minFecha"
             readonly="true"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
@@ -90,11 +88,24 @@
 
         <br />
         <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
+          <button class="boton_registro" mat-raised-button color="primary">
+            Registrar
+          </button>
+          <button
+            *ngIf="role === 'conductor'"
+            mat-raised-button
+            [routerLink]="['/components/comentarios/listar_comentarios_user']"
+          >
+            Cancelar
+          </button>
+          <button
+            *ngIf="role === 'administrador'"
+            mat-raised-button
+            [routerLink]="['/components/comentarios/listar_comentarios_admin']"
+          >
+            Cancelar
+          </button>
         </div>
-        <!--<button mat-raised-button color="warn" routerLink="/comentarios">
-                Cancelar
-            </button>-->
         <p>{{ mensaje }}</p>
       </form>
     </div>

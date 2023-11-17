@@ -50,4 +50,5 @@ mat-error {
 .boton{
   background-color: #11998e;
   color: aliceblue;
+  margin-bottom: 10px;
 }

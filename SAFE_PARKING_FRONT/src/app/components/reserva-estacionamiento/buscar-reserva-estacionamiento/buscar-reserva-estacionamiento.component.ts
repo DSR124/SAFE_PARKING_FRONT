@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
 @Component({
@@ -15,13 +16,30 @@ export class BuscarReservaEstacionamientoComponent {
     new ReservaEstacionamiento();
   idReserva_Estacionamiento: number = 0;
   idNoEncontrado: boolean = false; // Variable para controlar si el ID no se encuentra
+  role: string = '';
 
   constructor(
     private r_eS: ReservaEstacionamientoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.buscar();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
   buscar() {
     this.idNoEncontrado = false; // Reiniciamos la variable de validación

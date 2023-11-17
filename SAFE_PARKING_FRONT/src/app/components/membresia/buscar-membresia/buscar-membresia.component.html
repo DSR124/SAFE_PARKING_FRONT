@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
+
     <div class="form">
-      <app-navbar-administrador></app-navbar-administrador>
       <div class="generic-group">
         <label for="inputId">Ingrese el ID:</label>
         <input id="inputId" type="number" [(ngModel)]="id" />

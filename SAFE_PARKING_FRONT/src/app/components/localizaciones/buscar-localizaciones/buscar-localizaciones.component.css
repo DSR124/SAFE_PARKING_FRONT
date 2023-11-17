@@ -11,7 +11,7 @@ body {
   color: #333;
   padding: 30px;
   margin-left: 250px;
-  height: auto;
+  height: 100hv;
 
 }
 
@@ -65,7 +65,7 @@ button:hover {
 /* Mapa */
 .map-container {
   width: 50%;
-  height: 400px;
+  height: 300px;
   border-radius: 5px;
   margin: 40px auto; /* Centrar horizontalmente */
   flex-direction: column;

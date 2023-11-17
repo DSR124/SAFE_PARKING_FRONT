@@ -64,8 +64,23 @@ input[type="file"] {
   background-color: rgb(173, 173, 182);
 }
 
-.btn-container button {
+button.boton_registro:hover {
+  background-color: #080808;
+   color: #fff;
+}
+
+.btn-container {
+  justify-content: center;
+  text-align: center;
+  margin: 5px;
+}
+mat-error {
+  color: #e74c3c;
+}
+
+.boton_registro{
   background-color: #11998e;
   color: #fff;
+  margin-right: 10px;
 }
 

@@ -14,6 +14,7 @@ const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
 import 'leaflet-control-geocoder'; // Importar el plugin de geocodificación
+import { LoginService } from 'src/app/services/login.service';
 
 declare var google: any;
 
@@ -30,7 +31,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   marker: L.Marker | null = null;
   id: number = 0;
   edicion: boolean = false;
-
+  role: string = '';
   lugarABuscar: string = '';
   resultados: Localizacion[] = [];
 
@@ -100,9 +101,24 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     private lS: LocalizacionService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -136,12 +152,14 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
             this.lS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.lS.insert(this.localizacion).subscribe((data) => {
           this.lS.list().subscribe((data) => {
             this.lS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate([
         'components/localizaciones/listar_admin_localizaciones',

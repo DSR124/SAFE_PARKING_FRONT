@@ -1,14 +1,16 @@
 /*Barra de navegacion Lateral-----------------*/
 .logo {
-  margin: 0px;
   font-weight: bold;
   color: white;
   font-size: large;
   /* Utilizamos display: flex */
   text-align: center;
-  margin: 15px;
 }
 
+img {
+  max-width: 100px;
+  margin-left: 50px;
+}
 /* Estilos del sidenav */
 .sidenav {
   width: 250px;
@@ -21,7 +23,6 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow: auto
-
 }
 
 .sidenav label:hover {
@@ -108,7 +109,7 @@
 .icon-up {
   display: none;
 
-  align-items: cnter;
+  align-items: center;
   margin-left: auto;
   /* Mueve el contenedor de flechas hacia la derecha */
 }
@@ -124,3 +125,12 @@
 }
 
 /*Fin de Flechas de despliegue en el menu*/
+
+
+/* Agrega un borde al lado derecho para indicar que es redimensionable */
+.sidenav {
+  /* Estilos existentes de tu menú */
+  border-right: 5px solid #333; /* Borde para redimensionar */
+  cursor: col-resize; /* Cambio de cursor al colocar el mouse en el borde derecho */
+  /* ... Otros estilos ... */
+}
