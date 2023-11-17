@@ -7,11 +7,12 @@ import * as L from 'leaflet';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 import { Usuario } from 'src/app/models/usuario';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-detalle-estacionamiento',
   templateUrl: './detalle-estacionamiento.component.html',
-  styleUrls: ['./detalle-estacionamiento.component.css']
+  styleUrls: ['./detalle-estacionamiento.component.css'],
 })
 export class DetalleEstacionamientoComponent implements OnInit {
   formularioReserva: FormGroup;
@@ -21,21 +22,38 @@ export class DetalleEstacionamientoComponent implements OnInit {
   edicion: boolean = false;
   map!: L.Map;
   marker: L.Marker | null = null;
+  role: string = '';
 
   constructor(
     private fb: FormBuilder,
     private eS: EstacionamientoService,
     private reservaService: ReservaEstacionamientoService,
+    private loginService: LoginService,
+
     private route: ActivatedRoute
   ) {
     this.formularioReserva = this.fb.group({
-      fecha: [''],  // Agrega más campos según tus necesidades
+      fecha: [''], // Agrega más campos según tus necesidades
       horaApertura: [''],
       horaCierre: [''],
       // Otros campos del formulario
     });
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id']; // Utiliza el operador '+' para convertir el parámetro 'id' a número
@@ -46,7 +64,7 @@ export class DetalleEstacionamientoComponent implements OnInit {
         this.estacionamiento = data;
       });
     });
-    this.inicializarMapa()
+    this.inicializarMapa();
   }
   inicializarMapa() {
     // Obtén el ID del estacionamiento de la URL
@@ -55,11 +73,22 @@ export class DetalleEstacionamientoComponent implements OnInit {
       this.estacionamiento = data;
 
       // Inicializa el mapa
-      this.map = L.map('map').setView([this.estacionamiento.localizacion.latitud, this.estacionamiento.localizacion.longitud], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+      this.map = L.map('map').setView(
+        [
+          this.estacionamiento.localizacion.latitud,
+          this.estacionamiento.localizacion.longitud,
+        ],
+        13
+      );
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(
+        this.map
+      );
 
       // Asigna el marcador a la ubicación del estacionamiento
-      this.marker = L.marker([this.estacionamiento.localizacion.latitud, this.estacionamiento.localizacion.longitud]);
+      this.marker = L.marker([
+        this.estacionamiento.localizacion.latitud,
+        this.estacionamiento.localizacion.longitud,
+      ]);
       this.marker.addTo(this.map);
       this.marker.bindPopup(`
           ID del Estacionamiento: ${this.estacionamiento.idEstacionamiento}
@@ -91,6 +120,4 @@ export class DetalleEstacionamientoComponent implements OnInit {
     // Si estacionamiento es nulo o no tiene 'foto', retorna la ruta de la imagen por defecto
     return 'assets/image/EstacionamientoDefault.jpg';
   }
-
-
 }

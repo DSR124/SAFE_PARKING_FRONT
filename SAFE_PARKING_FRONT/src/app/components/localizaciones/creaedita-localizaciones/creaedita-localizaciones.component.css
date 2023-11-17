@@ -46,18 +46,6 @@ mat-error {
   margin-top: 10px;
 }
 
-button {
-  font-size: 16px;
-  padding: 10px;
-
-  margin-top: 20px;
-
-}
-
-button[color="warn"] {
-  background-color: #f44336;
-}
-
 #map {
   width: 100%;
   border: 1px solid #ccc;
@@ -67,7 +55,22 @@ button[color="warn"] {
 }
 
 
-.btn-container button {
+button.boton_registro:hover {
+  background-color: #080808;
+   color: #fff;
+}
+
+.btn-container {
+  justify-content: center;
+  text-align: center;
+  margin: 5px;
+}
+mat-error {
+  color: #e74c3c;
+}
+
+.boton_registro{
   background-color: #11998e;
   color: #fff;
+  margin-right: 10px;
 }

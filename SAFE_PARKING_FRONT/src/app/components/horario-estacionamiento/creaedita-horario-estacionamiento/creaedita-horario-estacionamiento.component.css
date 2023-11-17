@@ -32,10 +32,23 @@ mat-form-field {
 
 /*Estilos para los botones*/
 
-button {
-  margin: 10px;
+
+button.boton_registro:hover {
+  background-color: #080808;
+   color: #fff;
 }
-.btn-container button {
+
+.btn-container {
+  justify-content: center;
+  text-align: center;
+  margin: 5px;
+}
+mat-error {
+  color: #e74c3c;
+}
+
+.boton_registro{
   background-color: #11998e;
   color: #fff;
+  margin-right: 10px;
 }

@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
-
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <div class="container" style="text-align: center">
       <form
         [formGroup]="form"
@@ -56,13 +63,13 @@
                 placeholder="Ingrese fecha de Registro"
                 [matDatepicker]="picker"
                 formControlName="fechaRegistro"
-                [max]="maxFecha"
+                readonly="true"
               />
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle
+              <!--<mat-datepicker-toggle
                 matIconSuffix
                 [for]="picker"
-              ></mat-datepicker-toggle>
+              ></mat-datepicker-toggle>-->
               <mat-datepicker #picker></mat-datepicker>
               <mat-error
                 *ngIf="obtenerControlCampo('fechaRegistro')?.errors?.['required']"
@@ -112,6 +119,7 @@
                 matInput
                 placeholder="promedioValoracion"
                 formControlName="promedioValoracion"
+                readonly="true"
               />
               <mat-error
                 *ngIf="obtenerControlCampo('promedioValoracion')?.errors?.['required']"
@@ -141,7 +149,7 @@
                   *ngFor="let p of listaLocalizaciones"
                   [value]="p.idLocalizacion"
                 >
-                  {{ p.idLocalizacion }}
+                  {{ p.direccion }}
                 </mat-option>
               </mat-select>
               <mat-error
@@ -165,24 +173,33 @@
             </mat-form-field>
             <div class="image-upload">
               <input
-                class="example-full-width"
                 type="file"
                 (change)="onFileSelected($event)"
-                type="file"
-                alife-file-to-base64
                 accept="image/*"
-                formControlName="imagenVehiculo"
               />
+
               <img
-                *ngIf="imageSelected"
-                [src]="imageSelected"
-                alt="Imagen del Vehículo"
+                [src]="
+                  getImagenUrl() || 'assets/image/EstacionamientoDefault.jpg'
+                "
+                alt="Selected Image"
+                (error)="imagenNoCargada($event)"
               />
             </div>
           </div>
         </div>
         <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
+          <button class="boton_registro" mat-raised-button color="primary">
+            Registrar
+          </button>
+          <button
+            mat-raised-button
+            [routerLink]="[
+              '/components/estacionamiento/listar_admin_estacionamientos'
+            ]"
+          >
+            Cancelar
+          </button>
         </div>
       </form>
     </div>

@@ -1,40 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<div id="mySidenav" class="sidenav">
-    <p class="logo">Portal Arrendador</p>
-    <input type="checkbox" class="menu-toggle" id="menu1">
-    <label for="menu1" class="menu">
-      <i class="material-icons">dashboard</i> Dashboard
-    </label>
-    <input type="checkbox" class="menu-toggle" id="menu2">
-    <label for="menu2" class="menu">
-      <i class="material-icons">attach_money</i> Localizaciones
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="membresia/registrar_membresias">Registrar localizaciones</a></li>
-      <li><a href="membresia/listar_membresias">Listar localizaciones</a></li>
-      <li><a href="membresia/buscar_membresias">Buscar localizaciones</a></li>
-    </ul>
-    <input type="checkbox" class="menu-toggle" id="menu3">
-    <label for="menu3" class="menu">
-      <i class="material-icons">directions_car</i> Horarios
-      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-    </label>
-    <ul class="sub-menu">
-      <li><a href="listar_horario/registrar_vehiculos">Registrar horarios</a></li>
-      <li><a href="listar_horario">Listar horarios</a></li>
-    </ul>
-  </div>
- 
-</body>
-</html>
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-96UDeCUqZonT4qxUnPXNzVA7qR4cyF5qma2wRK8DKAJtbG4D2a46pZyLVXVq35b9BvR4qfr54rz3oUK1s31YKg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+    </head>
+    <body>
+      <div id="mySidenav" class="sidenav">
+        <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
+
+        <p class="logo">Portal Arrendador</p>
+        <label for="menu16" class="menu" routerLink="/components/profile">
+          <i class="material-icons">person</i>
+          PERFIL
+        </label>
+
+        <input type="checkbox" class="menu-toggle" />
+        <label
+          for="menu16"
+          class="menu"
+          routerLink="/components/home_arrendador"
+        >
+          <i class="material-icons">dashboard</i>
+          HOME
+        </label>
+
+        <input type="checkbox" class="menu-toggle" id="menu11" />
+        <label for="menu11" class="menu">
+          <i class="material-icons">add_location</i> Localizaciones
+          <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+          <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+        </label>
+        <ul class="sub-menu">
+          <li>
+            <a href="components/localizaciones/registrar_localizaciones"
+              >Registrar localizaciones</a
+            >
+          </li>
+          <li>
+            <a href="components/localizaciones/listar_admin_localizaciones"
+              >Listar localizaciones (admin)</a
+            >
+          </li>
+          <li>
+            <a href="components/localizaciones/buscar_localizaciones"
+              >Buscar localizaciones</a
+            >
+          </li>
+        </ul>
+        <input type="checkbox" class="menu-toggle" id="menu12" />
+        <label for="menu12" class="menu">
+          <i class="material-icons">local_parking</i> Estacionamiento
+          <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+          <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+        </label>
+        <ul class="sub-menu">
+          <li>
+            <a href="components/estacionamiento/registrar_estacionamientos"
+              >Registrar estacionamientos</a
+            >
+          </li>
+          <li>
+            <a href="components/estacionamiento/listar_admin_estacionamientos"
+              >Listar estacionamientos (admin)</a
+            >
+          </li>
+          <li>
+            <a href="components/estacionamiento/buscar-estacionamiento"
+              >Buscar estacionamiento</a
+            >
+          </li>
+        </ul>
+
+        <input type="checkbox" class="menu-toggle" id="menu7" />
+        <label for="menu7" class="menu">
+          <i class="material-icons">calendar_today</i> Horarios
+          <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+          <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+        </label>
+        <ul class="sub-menu">
+          <li>
+            <a href="components/horarios/registrar_horarios"
+              >Registrar horarios</a
+            >
+          </li>
+          <li>
+            <a href="components/horarios/listar_usuario_horarios"
+              >Listar horarios (user)</a
+            >
+          </li>
+        </ul>
+
+        <input type="checkbox" class="menu-toggle" id="menu8" />
+        <label for="menu8" class="menu">
+          <i class="material-icons">calendar_today</i> Hrs. Estacionamientos
+          <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+          <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+        </label>
+        <ul class="sub-menu">
+          <li>
+            <a
+              href="components/horarios_estacionamiento/registrar_horarios_estacionamiento"
+              >Registrar hrs.Estacionamiento</a
+            >
+          </li>
+          <li>
+            <a
+              href="components/horarios_estacionamiento/buscar_horarios_estacionamiento"
+              >Buscar hrs.Estacionamiento</a
+            >
+          </li>
+          <li>
+            <a
+              href="components/horarios_estacionamiento/listar_admin_horarios_estacionamiento"
+              >Listar hrs.Estacionamiento (admin)</a
+            >
+          </li>
+        </ul>
+
+        <input type="checkbox" class="menu-toggle" />
+        <label for="menu16" class="menu" (click)="confirmarSalir()">
+          <i class="material-icons">logout</i>
+          Salir
+        </label>
+      </div>
+    </body>
+  </html>
+</div>

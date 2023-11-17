@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import * as moment from 'moment';
@@ -16,11 +16,13 @@ import * as bcrypt from 'bcryptjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-creaedita-usuario',
-  templateUrl: './creaedita-usuario.component.html',
-  styleUrls: ['./creaedita-usuario.component.css'],
+  selector: 'app-modificar-usuario',
+  templateUrl: './modificar-usuario.component.html',
+  styleUrls: ['./modificar-usuario.component.css'],
 })
-export class CreaeditaUsuarioComponent implements OnInit {
+export class ModificarUsuarioComponent implements OnInit {
+  hide: boolean = true; // Declaración de la propiedad 'hide'
+
   form: FormGroup = new FormGroup({});
   usuario: Usuario = new Usuario();
   estado: boolean = true;
@@ -31,23 +33,22 @@ export class CreaeditaUsuarioComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   imageSelected: string | ArrayBuffer | null = null;
-  imagenCortada: string = '';
   listaMembresia: Membresia[] = [];
-  hide: boolean = true; // or initialize it as per your requirement
 
   generos: { value: string; viewValue: string }[] = [
     { value: 'Hombre', viewValue: 'Hombre' },
     { value: 'Mujer', viewValue: 'Mujer' },
     { value: 'Otros', viewValue: 'Otros' },
   ];
+
   constructor(
     private uS: UsuarioService,
-    private mS: MembresiaService, // Asumiendo que tienes un servicio para Membresia
+    private mS: MembresiaService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
-    private cdr: ChangeDetectorRef // Add this line
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -85,10 +86,10 @@ export class CreaeditaUsuarioComponent implements OnInit {
         ],
       ],
       username: ['', [Validators.required, Validators.maxLength(50)]],
-      password: ['', [Validators.required, Validators.maxLength(200)]],
+      password: [''],
       genero: ['', Validators.required],
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
-      foto: [''],
+      foto: ['', Validators.required],
       fechaNacimiento: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       membresia: ['', Validators.required],
@@ -97,6 +98,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
       this.listaMembresia = data;
     });
   }
+
   obtenerControlCampo(nombreCampo: string): AbstractControl {
     const control = this.form.get(nombreCampo);
     if (!control) {
@@ -107,57 +109,31 @@ export class CreaeditaUsuarioComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
-      this.usuario.nombre = this.form.value.nombre;
-      this.usuario.apellido = this.form.value.apellido;
-      this.usuario.correo = this.form.value.correo;
-      this.usuario.username = this.form.value.username;
-      const plainPassword = this.form.value.password; // Obtén la contraseña ingresada por el usuario desde el formulario
+      if (this.edicion) {
+        this.usuario.idUsuario = this.form.value.idUsuario;
+        this.usuario.nombre = this.form.value.nombre;
+        this.usuario.apellido = this.form.value.apellido;
+        this.usuario.correo = this.form.value.correo;
+        this.usuario.username = this.form.value.username;
+        this.usuario.genero = this.form.value.genero;
+        this.usuario.dni = this.form.value.dni;
+        this.usuario.imagen = this.form.value.foto;
+        this.usuario.fechaNacimiento = this.form.value.fechaNacimiento;
+        this.usuario.telefono = this.form.value.telefono;
+        this.usuario.membresia.idMembresia = this.form.value.membresia;
+        this.usuario.enabled = this.estado;
+        this.usuario.password = this.form.value.password;
+        // Hash de la contraseña
+        this.uS.update(this.usuario).subscribe(() => {
+          this.uS.list().subscribe((data) => {
+            this.uS.setList(data);
+          });
 
-      // Hash de la contraseña
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(plainPassword, salt, (err, hash) => {
-          if (!err) {
-            // Aquí 'hash' contendrá la contraseña hasheada, guárdala en tu objeto 'usuario'
-            this.usuario.password = hash;
+          // Navegar después de la actualización
 
-            this.usuario.genero = this.form.value.genero;
-            this.usuario.dni = this.form.value.dni;
-            this.usuario.imagen = this.form.value.foto;
-            this.usuario.fechaNacimiento = this.form.value.fechaNacimiento;
-            this.usuario.telefono = this.form.value.telefono;
-            this.usuario.membresia.idMembresia = this.form.value.membresia;
-            this.usuario.enabled = this.estado;
-
-            if (this.edicion) {
-              this.uS.update(this.usuario).subscribe(() => {
-                this.uS.list().subscribe((data) => {
-                  this.uS.setList(data);
-                });
-              });
-              this.router.navigate([
-                'components/usuarios/listar_admin_usuarios',
-              ]);
-            } else {
-              this.uS.insert(this.usuario).subscribe((data) => {
-                this.uS.list().subscribe((data) => {
-                  this.uS.setList(data);
-                });
-              });
-              this._snackBar.open('Registro exitoso', 'Cerrar', {
-                duration: 5000, // Duración en milisegundos
-                horizontalPosition: 'center',
-                verticalPosition: 'top',
-              });
-              this.ngOnInit();
-            }
-          } else {
-            // Manejo de error
-            console.error(err);
-          }
+          this.router.navigate(['components/usuarios/listar_admin_usuarios']);
         });
-      });
-    } else {
-      this.mensaje = 'Por favor complete todos los campos obligatorios.';
+      }
     }
   }
   onFileSelected(event: Event): void {
@@ -172,7 +148,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
           if (base64Content) {
             this.form.get('foto')?.setValue(base64Content);
             this.imageSelected = base64Content;
-            this.cdr.detectChanges(); // Trigger change detection
+            this.cdr.detectChanges();
           } else {
             console.log('Error extracting base64 content from the image.');
           }
@@ -187,30 +163,31 @@ export class CreaeditaUsuarioComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.uS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idUsuario: new FormControl(data.idUsuario),
-          nombre: new FormControl(data.nombre),
-          apellido: new FormControl(data.apellido),
-          correo: new FormControl(data.correo),
-          username: new FormControl(data.username),
-          password: new FormControl(data.password),
-          genero: new FormControl(data.genero),
-          dni: new FormControl(data.dni),
-          imagen: new FormControl(data.imagen),
-          fechaNacimiento: new FormControl(data.fechaNacimiento),
-          telefono: new FormControl(data.telefono),
-          membresia: new FormControl(data.membresia.idMembresia),
-          enabled: new FormControl(data.enabled),
+        this.form.patchValue({
+          idUsuario: data.idUsuario,
+          nombre: data.nombre,
+          apellido: data.apellido,
+          correo: data.correo,
+          username: data.username,
+          genero: data.genero,
+          dni: data.dni,
+          foto: data.imagen,
+          password: data.password,
+          fechaNacimiento: data.fechaNacimiento,
+          telefono: data.telefono,
+          membresia: data.membresia.idMembresia,
         });
+        this.imageSelected = data.imagen;
       });
     }
   }
+
   imagenNoCargada(event: Event) {
     const imagen = event.target as HTMLImageElement;
-    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg';
   }
+
   getImagenUrl(): string {
-    console.log('imageSelected:', this.imageSelected);
     if (this.imageSelected) {
       return 'data:image/jpeg;base64,' + this.imageSelected;
     } else {

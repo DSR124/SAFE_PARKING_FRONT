@@ -5,25 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
-
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <div class="container">
       <form [formGroup]="form" (submit)="registrar()" class="example-form">
         <div class="titulo">
           <h2>Registrar Incidente</h2>
         </div>
         <br />
-
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <!--*ngIf="edicion" es para que se meustre en la edicion-->
-          <mat-label>id Incidente</mat-label>
-          <input
-            matInput
-            placeholder="idIncidente"
-            formControlName="idIncidente"
-          />
-        </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Descripcion </mat-label>
@@ -72,9 +69,26 @@
         </mat-form-field>
 
         <br />
-        <button class="botonRegistro" mat-raised-button color="primary">
-          Registrar
-        </button>
+        <div class="btn-container">
+          <button class="botonRegistro" mat-raised-button color="primary">
+            Registrar
+          </button>
+
+          <button
+            *ngIf="role === 'conductor'"
+            mat-raised-button
+            [routerLink]="['/components/home_conductor']"
+          >
+            Cancelar
+          </button>
+          <button
+            *ngIf="role === 'arrendador'"
+            mat-raised-button
+            [routerLink]="['/components/home_arrendador']"
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     </div>
   </body>

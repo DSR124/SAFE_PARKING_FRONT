@@ -37,7 +37,6 @@ h2 {
 .map-container {
   width: 97.5%;
   height: 100%;
-  margin: 40px auto; /* Centrar horizontalmente */
   flex-direction: column;
   justify-content: center; /* Centrar verticalmente */
   align-items: center; /* Centrar horizontalmente */

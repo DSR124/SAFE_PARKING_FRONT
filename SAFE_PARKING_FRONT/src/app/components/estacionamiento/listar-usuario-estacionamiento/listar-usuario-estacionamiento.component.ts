@@ -1,5 +1,3 @@
-
-
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,7 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-listar-usuario-estacionamiento',
   templateUrl: './listar-usuario-estacionamiento.component.html',
-  styleUrls: ['./listar-usuario-estacionamiento.component.css']
+  styleUrls: ['./listar-usuario-estacionamiento.component.css'],
 })
 export class ListarUsuarioEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<Estacionamiento> = new MatTableDataSource();
@@ -113,12 +111,4 @@ export class ListarUsuarioEstacionamientoComponent implements OnInit {
       return 'assets/image/EstacionamientoDefault.jpg';
     }
   }
-  
-/*
-  // Agrega este método para manejar el botón de favoritos
-  toggleFavorito(estacionamiento: Estacionamiento) {
-    estacionamiento.favorito = !estacionamiento.favorito;
-    // Llama a tu servicio para actualizar el estado de favorito en la base de datos
-  }
-  */
 }

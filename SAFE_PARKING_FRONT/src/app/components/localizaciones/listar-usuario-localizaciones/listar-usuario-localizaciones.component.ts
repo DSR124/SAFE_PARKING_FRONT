@@ -4,6 +4,7 @@ import { LocalizacionService } from 'src/app/services/localizacion.service';
 import { Localizacion } from 'src/app/models/localizacion';
 import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
+import { LoginService } from 'src/app/services/login.service';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -17,8 +18,12 @@ const shadowUrl = 'assets/marker-shadow.png';
 export class ListarusuarioLocalizacionesComponent implements OnInit {
   map!: L.Map;
   markers: L.Marker[] = [];
+  role: string = '';
 
-  constructor(private estacionamientoService: EstacionamientoService) { }
+  constructor(
+    private estacionamientoService: EstacionamientoService,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     this.initializeMap();
@@ -38,7 +43,7 @@ export class ListarusuarioLocalizacionesComponent implements OnInit {
       attribution:
         '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
-    
+
     const searchControl = (L.Control as any).geocoder(); // Crear el control de búsqueda
     searchControl.addTo(this.map); // Agregar el control al mapa
   }
@@ -55,7 +60,21 @@ export class ListarusuarioLocalizacionesComponent implements OnInit {
       }
     );
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   agregarMarcador(estacionamiento: Estacionamiento): void {
     //iconos personalizados
     const iconDefault = L.icon({
@@ -78,7 +97,9 @@ export class ListarusuarioLocalizacionesComponent implements OnInit {
 
     // Construir el contenido del Popup con la imagen
     const popupContent = `
-      <img src="${this.getImagenUrl(estacionamiento)}" alt="Imagen del estacionamiento" style="max-width: 100%; height: auto;">
+      <img src="${this.getImagenUrl(
+        estacionamiento
+      )}" alt="Imagen del estacionamiento" style="max-width: 100%; height: auto;">
       <br>
       ID Estacionamiento: ${estacionamiento.idEstacionamiento}
       <br>

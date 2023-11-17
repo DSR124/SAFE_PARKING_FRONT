@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Membresia } from 'src/app/models/membresia';
+import { LoginService } from 'src/app/services/login.service';
 import { MembresiaService } from 'src/app/services/membresia.service';
 
 @Component({
@@ -22,11 +23,17 @@ export class ListarAdminMembresiaComponent {
     'accion01',
     'accion02',
   ];
+  role: string = '';
+
   editarMembresia: Membresia | null = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private mS: MembresiaService, public route: ActivatedRoute) {}
+  constructor(
+    private mS: MembresiaService,
+    private loginService: LoginService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     //Para que muestre la lista completa
     this.mS.list().subscribe((data) => {
@@ -38,6 +45,21 @@ export class ListarAdminMembresiaComponent {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
   eliminar(idMembresia: number) {
     this.mS.delete(idMembresia).subscribe(() => {
