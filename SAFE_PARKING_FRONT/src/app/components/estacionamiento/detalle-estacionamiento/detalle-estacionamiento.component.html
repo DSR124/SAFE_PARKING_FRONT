@@ -6,15 +6,19 @@
     <title>Document</title>
   </head>
 
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
+  <body>
+    <div class="header" *ngIf="verificar()">
+      <div class="encabezados" *ngIf="validarRol()">
+        <app-navbar-administrador
+          *ngIf="role === 'administrador'"
+        ></app-navbar-administrador>
+        <app-navbar-conductor
+          *ngIf="role === 'conductor'"
+        ></app-navbar-conductor>
+        <app-navbar-arrendador
+          *ngIf="role === 'arrendador'"
+        ></app-navbar-arrendador>
+      </div>
     </div>
 
     <div class="detalle-estacionamiento-container">

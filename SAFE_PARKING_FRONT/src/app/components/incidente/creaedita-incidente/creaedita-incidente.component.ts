@@ -96,14 +96,16 @@ export class CreaeditaIncidenteComponent {
             this.iS.setList(data);
           });
         });
+        alert('la modificacion se hizo correctamente');
       } else {
         this.iS.insert(this.incidente).subscribe((data) => {
           this.iS.list().subscribe((data) => {
             this.iS.setList(data);
           });
         });
+        alert('El registro se hizo correctamente');
+        this.ngOnInit();
       }
-      this.router.navigate(['components/incidentes/listar_admin_incidentes']);
     } else {
       this.mensaje = 'Complete todos los campos!!!';
     }
