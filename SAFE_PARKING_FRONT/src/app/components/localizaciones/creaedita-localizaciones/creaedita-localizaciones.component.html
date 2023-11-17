@@ -17,7 +17,19 @@
     <title>Registrar Localización</title>
   </head>
   <body>
-    <app-navbar-administrador></app-navbar-administrador>
+    <div class="header" *ngIf="verificar()">
+      <div class="encabezados" *ngIf="validarRol()">
+        <app-navbar-administrador
+          *ngIf="role === 'administrador'"
+        ></app-navbar-administrador>
+        <app-navbar-conductor
+          *ngIf="role === 'conductor'"
+        ></app-navbar-conductor>
+        <app-navbar-arrendador
+          *ngIf="role === 'arrendador'"
+        ></app-navbar-arrendador>
+      </div>
+    </div>
 
     <div class="container" style="text-align: center">
       <h1>REGISTRO DE LOCALIZACION</h1>

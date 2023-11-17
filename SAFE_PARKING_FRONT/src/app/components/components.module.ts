@@ -92,6 +92,9 @@ import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estac
 import { ProfileComponent } from './profile/profile.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modificar-usuario.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehiculos/listar-usuario-vehiculos.component';
 @NgModule({
   declarations: [
     //Nav Bars
@@ -140,6 +143,7 @@ import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modifica
     BuscarVehiculosComponent,
     CreaeditaVehiculosComponent,
     ListarAdminVehiculosComponent,
+    ListarUsuarioVehiculosComponent,
 
     //Reportes
     ReportesComponent,
@@ -218,6 +222,8 @@ import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modifica
     ColorMaterialModule,
     MatDialogModule,
     NgChartsModule,
+    MatStepperModule,
+    MatTabsModule,
   ],
 })
 export class ComponentsModule {}

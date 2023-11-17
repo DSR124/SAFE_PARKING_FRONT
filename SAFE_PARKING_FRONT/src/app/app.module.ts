@@ -20,42 +20,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MatCardModule } from '@angular/material/card';
-import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
-
-import { LoginService } from './services/login.service';
-import { VehiculosComponent } from './components/vehiculos/vehiculos.component';
-import { HomeConductorComponent } from './components/home-conductor/home-conductor.component';
-import { HomeArrendadorComponent } from './components/home-arrendador/home-arrendador.component';
-
-import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CreaeditaVehiculosComponent } from './components/vehiculos/creaedita-vehiculos/creaedita-vehiculos.component';
-import { BuscarVehiculosComponent } from './components/vehiculos/buscar-vehiculos/buscar-vehiculos.component';
-import { LocalizacionesComponent } from './components/localizaciones/localizaciones.component';
-import { CreaeditaLocalizacionesComponent } from './components/localizaciones/creaedita-localizaciones/creaedita-localizaciones.component';
-import { BuscarLocalizacionesComponent } from './components/localizaciones/buscar-localizaciones/buscar-localizaciones.component';
-import { MembresiaComponent } from './components/membresia/membresia.component';
-import { CreaeditaMembresiaComponent } from './components/membresia/creaedita-membresia/creaedita-membresia.component';
-import { BuscarMembresiaComponent } from './components/membresia/buscar-membresia/buscar-membresia.component';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
+
 import { CreaeditaUsuarioComponent } from './components/usuarios/creaedita-usuario/creaedita-usuario.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HorarioComponent } from './components/horario/horario.component';
-import { CreaeditaHorarioComponent } from './components/horario/creaedita-horario/creaedita-horario.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker'; //Necesario en el CMD ->   npm install  --save ngx-material-timepicker
-import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
-import { NavbarAdministradorComponent } from './components/navbar-administrador/navbar-administrador.component';
-import { NavbarArrendadorComponent } from './components/navbar-arrendador/navbar-arrendador.component';
-import { NavbarConductorComponent } from './components/navbar-conductor/navbar-conductor.component';
-import { ReportesComponent } from './components/reportes/reportes.component';
-import { CantReservasPorFechaComponent } from './components/reportes/cant-reservas-por-fecha/cant-reservas-por-fecha.component';
-import { CantReservasPorTipoPagoComponent } from './components/reportes/cant-reservas-por-tipo-pago/cant-reservas-por-tipo-pago.component';
-import { CantReservasPorUsuarioComponent } from './components/reportes/cant-reservas-por-usuario/cant-reservas-por-usuario.component';
-import { CantIncidentesPorRolComponent } from './components/reportes/cant-incidentes-por-rol/cant-incidentes-por-rol.component';
-import { ListarAdminVehiculosComponent } from './components/vehiculos/listar-admin-vehiculos/listar-admin-vehiculos.component';
-import { ListarAdminLocalizacionesComponent } from './components/localizaciones/listar-admin-localizaciones/listar-admin-localizaciones.component';
 import { ListarUsuarioMembresiaComponent } from './components/membresia/listar-usuario-membresia/listar-usuario-membresia.component';
 import { listarAdminUsuarioComponent } from './components/usuarios/listar-admin-usuario/listar-admin-usuario.component';
 import { ListarUsuarioHorarioComponent } from './components/horario/listar-usuario-horario/listar-usuario-usuario-horario.component';
@@ -147,7 +118,6 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
-
     HttpClientModule,
     RouterModule,
     NgxMaterialTimepickerModule,

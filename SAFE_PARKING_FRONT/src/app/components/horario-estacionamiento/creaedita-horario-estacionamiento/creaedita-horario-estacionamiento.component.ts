@@ -13,6 +13,7 @@ import { HorarioEstacionamiento } from 'src/app/models/horarioEstacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
 import { HorarioEstacionamientoService } from 'src/app/services/horario-estacionamiento.service';
 import { HorarioService } from 'src/app/services/horario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-horario-estacionamiento',
@@ -27,12 +28,13 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
   listaEstacionamiento: Estacionamiento[] = [];
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
 
   constructor(
     private hS: HorarioService,
     private eS: EstacionamientoService,
     private heS: HorarioEstacionamientoService,
-
+    private loginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router,
     public route: ActivatedRoute
@@ -57,7 +59,21 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
       this.listaEstacionamiento = data;
     });
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   obtenerControlCampo(nombreCampo: string): AbstractControl {
     const control = this.form.get(nombreCampo);
     if (!control) {

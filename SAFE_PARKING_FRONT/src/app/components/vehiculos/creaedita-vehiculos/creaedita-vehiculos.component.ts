@@ -12,6 +12,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 export function tarjetaPropiedadValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -64,15 +65,33 @@ export class CreaeditaVehiculosComponent implements OnInit {
   ];
 
   imageSelected: string | ArrayBuffer | null = null;
+  role: string = '';
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   constructor(
     private vS: VehiculoService,
     private router: Router,
     private formBuilder: FormBuilder,
     public route: ActivatedRoute,
+    private loginService: LoginService,
+
     private cdr: ChangeDetectorRef // Add this line
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -128,8 +147,8 @@ export class CreaeditaVehiculosComponent implements OnInit {
           });
         });
         alert('Se registro correctamente');
+        this.ngOnInit();
       }
-      this.router.navigate(['components/vehiculos/listar_admin_vehiculos']);
     } else {
       // Handle incomplete form
       this.mensaje = '¡Completa todos los campos!';

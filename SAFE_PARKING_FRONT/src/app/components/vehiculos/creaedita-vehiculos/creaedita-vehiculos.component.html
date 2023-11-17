@@ -6,8 +6,16 @@
     <title>Document</title>
   </head>
 
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <div class="container">
       <form
         [formGroup]="form"
@@ -108,7 +116,7 @@
             <h2>COLOR</h2>
 
             <!-- Color sección -->
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
               <mat-label>Color del vehículo</mat-label>
               <input
                 matInput
@@ -132,7 +140,7 @@
           <div class="secciones">
             <h2>IMAGEN</h2>
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
               <mat-label>Foto</mat-label>
               <input
                 matInput
@@ -169,6 +177,14 @@
             Registrar
           </button>
           <button
+            *ngIf="role === 'conductor'"
+            mat-raised-button
+            [routerLink]="['/components/vehiculos/listar_usuario_vehiculos']"
+          >
+            Cancelar
+          </button>
+          <button
+            *ngIf="role === 'administrador'"
             mat-raised-button
             [routerLink]="['/components/vehiculos/listar_admin_vehiculos']"
           >

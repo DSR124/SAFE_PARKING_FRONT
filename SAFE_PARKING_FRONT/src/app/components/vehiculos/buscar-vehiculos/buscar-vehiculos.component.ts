@@ -10,6 +10,7 @@ import {
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-buscar-vehiculos',
@@ -20,10 +21,12 @@ export class BuscarVehiculosComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   vehiculo: Vehiculo = new Vehiculo();
   idVehiculo: number = 0;
+  role: string = '';
 
   constructor(
     private vehiculoService: VehiculoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {}
 
@@ -36,6 +39,21 @@ export class BuscarVehiculosComponent implements OnInit {
         console.error('Error al obtener el vehículo por ID:', error);
       }
     );
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
   imagenNoCargada(event: Event) {
     const imagen = event.target as HTMLImageElement;

@@ -22,7 +22,6 @@ export class listarAdminUsuarioComponent implements OnInit {
     'password',
     'genero',
     'dni',
-
     'fechaNacimiento',
     'telefono',
     'membresia',

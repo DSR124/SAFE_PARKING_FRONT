@@ -13,6 +13,7 @@ import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
 import { Usuario } from 'src/app/models/usuario';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { HorarioEstacionamientoService } from 'src/app/services/horario-estacionamiento.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
@@ -31,7 +32,7 @@ export class CreaeditaReservaEstacionamientoComponent {
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
   estadoregistro: string = 'En Proceso';
-
+  role: string = '';
   id: number = 0;
   edicion: boolean = false;
 
@@ -50,9 +51,24 @@ export class CreaeditaReservaEstacionamientoComponent {
     private heS: HorarioEstacionamientoService,
     private formBuilder: FormBuilder,
     private router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];

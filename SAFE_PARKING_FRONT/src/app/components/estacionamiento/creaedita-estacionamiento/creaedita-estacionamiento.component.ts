@@ -14,6 +14,7 @@ import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { LocalizacionService } from 'src/app/services/localizacion.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-estacionamiento',
@@ -25,6 +26,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   estacionamiento: Estacionamiento = new Estacionamiento();
   mensaje: string = '';
   maxFecha: Date = moment().add(-1, 'days').toDate();
+  role: string = '';
 
   id: number = 0; //Añadir
   edicion: boolean = false; //Añadir
@@ -59,6 +61,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
     private eS: EstacionamientoService,
     private uS: UsuarioService, //Servides dependientes - añadir
     private lS: LocalizacionService, //Servides dependientes - añadir
+    private loginService: LoginService,
 
     private router: Router,
     private formBuilder: FormBuilder,
@@ -196,6 +199,21 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       return 'data:image/jpeg;base64,' + this.imageSelected;
     } else {
       return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

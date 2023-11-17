@@ -15,7 +15,6 @@ body {
 }
 
 .container {
-
 background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -71,7 +70,6 @@ button.boton_registro {
   cursor: pointer;
   margin-top: 10px;
 }
-
 button.boton_registro:hover {
   background-color: #080808;
    color: #fff;
@@ -79,7 +77,6 @@ button.boton_registro:hover {
 .btn-container {
   justify-content: center;
   text-align: center;
-
 }
 mat-error {
   color: #e74c3c;

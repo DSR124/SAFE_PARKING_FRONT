@@ -66,6 +66,8 @@ import { ListarUsuarioEstacionamientoComponent } from './estacionamiento/listar-
 import { DetalleEstacionamientoComponent } from './estacionamiento/detalle-estacionamiento/detalle-estacionamiento.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modificar-usuario.component';
+import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehiculos/listar-usuario-vehiculos.component';
+import { ListarUsuarioComentarioComponent } from './comentario/listar-usuario-comentario/listar-usuario-comentario.component';
 
 const routes: Routes = [
   // localizaciones
@@ -105,10 +107,13 @@ const routes: Routes = [
         path: 'registrar_comentarios',
         component: CreaeditaComentarioComponent,
       },
-
       {
         path: 'listar_comentarios_admin',
         component: ListarAdminComentarioComponent,
+      },
+      {
+        path: 'listar_comentarios_user',
+        component: ListarUsuarioComentarioComponent,
       },
 
       {
@@ -138,7 +143,11 @@ const routes: Routes = [
       },
       {
         path: 'listar_admin_vehiculos',
-        component: ListarAdminVehiculosComponent,
+        component: listarAdminUsuarioComponent,
+      },
+      {
+        path: 'listar_usuario_vehiculos',
+        component: ListarUsuarioVehiculosComponent,
       },
       {
         path: 'listar_admin_vehiculos/ediciones/:id',

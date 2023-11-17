@@ -3,12 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha384-wgq8j96aIjgkt0l/5kV+jLmEnCw5oq6pOB0vURBXQZ40zQM8sB+Koy5XezjNXCi2"
+      crossorigin="anonymous"
+    />
+
     <title>Document</title>
   </head>
   <body>
-    <app-navbar-administrador></app-navbar-administrador>
-
-    <div class="container" style="text-align: center">
+    <div class="header" *ngIf="verificar()">
+      <div class="encabezados" *ngIf="validarRol()">
+        <app-navbar-administrador
+          *ngIf="role === 'administrador'"
+        ></app-navbar-administrador>
+        <app-navbar-conductor
+          *ngIf="role === 'conductor'"
+        ></app-navbar-conductor>
+        <app-navbar-arrendador
+          *ngIf="role === 'arrendador'"
+        ></app-navbar-arrendador>
+      </div>
+    </div>
+    <div class="container" style="text-align: center" *ngIf="validarRol()">
       <h1>Registro de Horario</h1>
       <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
         <!-- Categoria dia -->
@@ -74,8 +92,16 @@
         <div class="btn-container">
           <button class="boton_registro" mat-raised-button>Registrar</button>
           <button
+            *ngIf="role === 'administrador'"
             mat-raised-button
             [routerLink]="['/components/horarios/listar_admin_horarios']"
+          >
+            Cancelar
+          </button>
+          <button
+            *ngIf="role === 'arrendador'"
+            mat-raised-button
+            [routerLink]="['/components/horarios/listar_usuario_horarios']"
           >
             Cancelar
           </button>

@@ -10,6 +10,7 @@ import * as moment from 'moment';
 import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 function precioPositivo(
   control: AbstractControl
@@ -36,6 +37,7 @@ export class CreaeditaMembresiaComponent implements OnInit {
   minFecha: Date = moment().add(-0, 'days').toDate();
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
 
   tiposMembresia: { value: string; viewValue: string }[] = [
     { value: 'freeconductor', viewValue: 'Free Conductor' },
@@ -47,7 +49,8 @@ export class CreaeditaMembresiaComponent implements OnInit {
     private mS: MembresiaService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -62,7 +65,21 @@ export class CreaeditaMembresiaComponent implements OnInit {
       precio: ['', Validators.required, precioPositivo],
     });
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   registrar() {
     if (this.form.valid) {
       this.membresia.idMembresia = this.form.value.idMembresia;
