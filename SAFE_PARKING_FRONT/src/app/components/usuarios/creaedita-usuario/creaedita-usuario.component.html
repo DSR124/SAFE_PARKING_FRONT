@@ -30,9 +30,11 @@
                     (form.get('nombre')!.errors?.['maxlength'] ? 'El campo no puede tener más de 50 caracteres' : '')
                   }}
                 </mat-error>
+
+                
               </mat-form-field>
 
-              <div class="sub-seccion">
+                <div class="sub-seccion">
                 <mat-form-field class="example-full-width">
                   <mat-label>correo</mat-label>
                   <input
@@ -40,11 +42,6 @@
                     placeholder="correo"
                     formControlName="correo"
                   />
-                  <!--<mat-error
-                    *ngIf="obtenerControlCampo('correo')?.errors?.['required']"
-                  >
-                    El correo es obligatorio.
-                  </mat-error>-->
                   <mat-error *ngIf="form.get('correo')?.invalid">
                     {{
                       form.get('correo')!.errors?.['required'] ? 'El correo es obligatorio' :
