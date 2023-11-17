@@ -32,7 +32,22 @@
                   }}
                 </mat-error>
               </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>apellido</mat-label>
+                <input
+                  matInput
+                  placeholder="apellido"
+                  formControlName="apellido"
+                />
+                <mat-error *ngIf="form.get('apellido')?.invalid">
+                  {{
+                    form.get('apellido')!.errors?.['required'] ? 'El apellido es obligatorio' :
+                    (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' :
 
+                    (form.get('apellido')!.errors?.['maxlength'] ? 'El apellido no puede tener más de 50 caracteres' : ''))
+                  }}
+                </mat-error>
+              </mat-form-field>
               <div class="sub-seccion">
                 <mat-form-field class="example-full-width">
                   <mat-label>correo</mat-label>
@@ -81,40 +96,9 @@
                   El tipo es obligatorio.
                 </mat-error>
               </mat-form-field>
-
-              <mat-form-field class="example-full-width">
-                <mat-label>username</mat-label>
-                <input
-                  matInput
-                  placeholder="username"
-                  formControlName="username"
-                />
-                <mat-error *ngIf="form.get('username')?.invalid">
-                  {{
-                    form.get('username')!.errors?.['required'] ? 'El username es obligatorio' :
-                    (form.get('username')!.errors?.['maxlength'] ? 'El username no puede tener más de 50 caracteres' : '')
-                  }}
-                </mat-error>
-              </mat-form-field>
             </div>
 
             <div class="secciones">
-              <mat-form-field class="example-full-width">
-                <mat-label>apellido</mat-label>
-                <input
-                  matInput
-                  placeholder="apellido"
-                  formControlName="apellido"
-                />
-                <mat-error *ngIf="form.get('apellido')?.invalid">
-                  {{
-                    form.get('apellido')!.errors?.['required'] ? 'El apellido es obligatorio' :
-                    (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' :
-
-                    (form.get('apellido')!.errors?.['maxlength'] ? 'El apellido no puede tener más de 50 caracteres' : ''))
-                  }}
-                </mat-error>
-              </mat-form-field>
               <div class="sub-seccion">
                 <mat-form-field class="example-full-width">
                   <mat-label>dni</mat-label>
@@ -159,6 +143,20 @@
                   *ngIf="obtenerControlCampo('fechaNacimiento')?.errors?.['required']"
                 >
                   La fecha de nacimiento es obligatoria.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>username</mat-label>
+                <input
+                  matInput
+                  placeholder="username"
+                  formControlName="username"
+                />
+                <mat-error *ngIf="form.get('username')?.invalid">
+                  {{
+                    form.get('username')!.errors?.['required'] ? 'El username es obligatorio' :
+                    (form.get('username')!.errors?.['maxlength'] ? 'El username no puede tener más de 50 caracteres' : '')
+                  }}
                 </mat-error>
               </mat-form-field>
             </div>

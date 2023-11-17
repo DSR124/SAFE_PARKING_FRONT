@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 260px;
-  padding:50px;
+  padding: 50px;
   height: 100vh;
 }
 .container {
@@ -16,14 +16,14 @@ body {
   padding: 20px;
 }
 
-.example-form{
+.example-form {
   max-height: 600px;
   max-width: 100%;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
-.informacion{
+.informacion {
   display: flex;
 }
 
@@ -40,8 +40,7 @@ h2 {
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
+  border-radius: 8px;
 }
 
 .paleta {
@@ -62,17 +61,15 @@ h2 {
   margin: 0 20px;
 }
 
-
 /* Style the buttons */
 .btn-container {
   justify-content: center;
   text-align: center;
-
 }
-button{
+button {
   margin: 10px;
 }
-.botonRegistro{
+.botonRegistro {
   background-color: #11998e;
   color: #fff;
 }
@@ -107,7 +104,6 @@ img {
   max-width: 40%;
   max-height: 40%;
   margin-top: 10px;
-
 }
 input[type="file"] {
   background-color: rgb(173, 173, 182);
