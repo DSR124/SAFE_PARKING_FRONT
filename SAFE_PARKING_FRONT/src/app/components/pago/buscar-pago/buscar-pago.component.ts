@@ -3,26 +3,42 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
-
-
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-buscar-pago',
   templateUrl: './buscar-pago.component.html',
-  styleUrls: ['./buscar-pago.component.css']
+  styleUrls: ['./buscar-pago.component.css'],
 })
 export class BuscarPagoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   pago: Pago = new Pago();
   id: number = 0; //Para  el buscar - será añadido en el HTML
   idNoEncontrado: boolean = false; // Variable para controlar si el ID no se encuentra
+  role: string = '';
 
   constructor(
     private pS: PagoService,
-    public route: ActivatedRoute
-    ) { }
+    public route: ActivatedRoute,
+    private loginService: LoginService
+  ) {}
   ngOnInit(): void {
     this.buscar();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   buscar() {
@@ -38,5 +54,4 @@ export class BuscarPagoComponent implements OnInit {
       }
     );
   }
-
 }

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
 import { Rol } from 'src/app/models/rol';
+import { LoginService } from 'src/app/services/login.service';
 import { PagoService } from 'src/app/services/pago.service';
 
 @Component({
@@ -24,12 +25,32 @@ export class ListarAdminPagoComponent {
     'accion01',
     'accion02',
   ];
+  role: string = '';
 
   editarPago: Pago | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private pS: PagoService, public route: ActivatedRoute) {}
+  constructor(
+    private pS: PagoService,
+    private loginService: LoginService,
+    public route: ActivatedRoute
+  ) {}
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.pS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);

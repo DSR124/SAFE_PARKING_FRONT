@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Imports para los iconos del mapa -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-  <!-- Imports para los iconos del mapa -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <title>Buscar Localización</title>
+    <link rel="stylesheet" href="listar-usuario-localizaciones.component.css" />
+  </head>
 
-  <title>Buscar Localización</title>
-  <link rel="stylesheet" href="listar-usuario-localizaciones.component.css" />
-</head>
-
-<body>
-  <app-navbar-administrador></app-navbar-administrador>
-
-
-  <div id="map" class="map-container"></div>
-  <button class="mostrar-mapa-button"
-  [routerLink]="['/components/estacionamiento/listar_usuario_estacionamientos']">Volver a Lista<mat-icon>list</mat-icon>
-</button>
-  
-</body>
-
+  <body>
+    <div class="header" *ngIf="verificar()">
+      <div class="encabezados" *ngIf="validarRol()">
+        <app-navbar-administrador
+          *ngIf="role === 'administrador'"
+        ></app-navbar-administrador>
+        <app-navbar-conductor
+          *ngIf="role === 'conductor'"
+        ></app-navbar-conductor>
+        <app-navbar-arrendador
+          *ngIf="role === 'arrendador'"
+        ></app-navbar-arrendador>
+      </div>
+    </div>
+    <div id="map" class="map-container"></div>
+    <button
+      class="mostrar-mapa-button"
+      [routerLink]="[
+        '/components/estacionamiento/listar_usuario_estacionamientos'
+      ]"
+    >
+      Volver a Lista<mat-icon>list</mat-icon>
+    </button>
+  </body>
 </html>

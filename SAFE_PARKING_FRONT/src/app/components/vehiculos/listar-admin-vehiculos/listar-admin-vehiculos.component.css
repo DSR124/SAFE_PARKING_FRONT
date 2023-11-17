@@ -3,23 +3,11 @@ body {
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
   padding: 30px;
+  height: 100vh;
 }
 
 h2 {
   color: #333;
-  padding-top:30px;
-}
-.container {
-  width: 90%;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  /* Centra horizontalmente */
-  margin-top: 50px;
-
-  overflow: auto;
 }
 
 table {
@@ -34,8 +22,7 @@ table {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   /* Centra horizontalmente */
-  margin-top: 50px;
-
+  padding: 20px;
   overflow: auto;
 }
 td.mat-column-star {

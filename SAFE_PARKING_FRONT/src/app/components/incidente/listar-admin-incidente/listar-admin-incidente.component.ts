@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Incidente } from 'src/app/models/incidente';
 import { IncidenteService } from 'src/app/services/incidente.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-incidente',
@@ -21,11 +22,17 @@ export class ListarAdminIncidenteComponent {
     'accion01',
     'accion02',
   ];
+  role: string = '';
+
   editarIncidente: Incidente | null = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private iS: IncidenteService, public route: ActivatedRoute) {}
+  constructor(
+    private iS: IncidenteService,
+    private loginService: LoginService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     //Para que muestre la lista completa
     this.iS.list().subscribe((data) => {
@@ -47,5 +54,20 @@ export class ListarAdminIncidenteComponent {
   }
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -7,7 +7,15 @@ body {
 
 }
 
-
+.boton_registro {
+  background-color: #38ecd4;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 .container {
   max-width: 600px;
   padding: 20px;
@@ -17,6 +25,15 @@ body {
   margin: 0 auto;
   /* Centra horizontalmente */
   margin-top: 50px;
+}
+.boton_registro {
+  background-color: #38ecd4;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 h1 {
@@ -35,7 +52,3 @@ button {
   margin: 10px;
 }
 
-.btn-container button {
-  background-color: #11998e;
-  color: #fff;
-}

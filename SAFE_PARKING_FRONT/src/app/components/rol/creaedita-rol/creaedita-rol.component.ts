@@ -59,6 +59,9 @@ export class CreaeditaRolComponent implements OnInit {
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
     });
+    this.uS.getList().subscribe((data) => {
+      this.listaUsuarios = data;
+    });
   }
 
   aceptar(): void {

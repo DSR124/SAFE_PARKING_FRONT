@@ -1,66 +1,63 @@
-
 /* Estilos para los campos de formulario */
 .container {
   margin-bottom: 50px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  /* Centra horizontalmente */
-  margin-top: 50px;
-  max-width: 98%;
+  max-width: 1000px;
 }
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
-  height: 100%;
-  padding: 20px;
-
+  margin: 0;
+  padding: 60px;
+  margin-left: 250px; /* Aplica margen izquierdo de 250px */
 }
-/*Estilos para los botones*/
 
+/* Estilos para los botones */
 button {
-    margin: 10px;
+  margin: 10px;
 }
-.botonRegistro{
-    background-color: #11998e;
-    color: #fff;
-  }
-.example-form{
+
+.botonRegistro {
+  background-color: #11998e;
+  color: #fff;
+}
+
+.example-form {
   max-height: 600px;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
-
 }
-.formularios{
+
+.formularios {
   display: flex;
   border-radius: 8px;
   height: 90%;
-
 }
-.example-full-width{
+
+.example-full-width {
   margin: 5px;
   width: 90%;
-
 }
-.secciones{
-    margin: 15px;
-    width: auto; /* Expand to full width */
+
+.secciones {
+  margin: 15px;
+  width: 300px; /* Expand to full width */
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-
+  border-radius: 8px;
 }
-.sub-seccion{
+
+.sub-seccion {
   display: flex;
   width: 92.5%;
   margin: 0 auto;
-
 }
+
 .image-upload {
   max-width: 90%;
   max-height: 90%;
@@ -72,9 +69,8 @@ img {
   max-width: 40%;
   max-height: 40%;
   margin-top: 10px;
-
 }
+
 input[type="file"] {
   background-color: rgb(173, 173, 182);
 }
-

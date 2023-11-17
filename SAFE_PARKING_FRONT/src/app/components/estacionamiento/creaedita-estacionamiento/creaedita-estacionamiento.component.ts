@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 import {
@@ -14,6 +14,7 @@ import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { LocalizacionService } from 'src/app/services/localizacion.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-estacionamiento',
@@ -25,6 +26,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   estacionamiento: Estacionamiento = new Estacionamiento();
   mensaje: string = '';
   maxFecha: Date = moment().add(-1, 'days').toDate();
+  role: string = '';
 
   id: number = 0; //Añadir
   edicion: boolean = false; //Añadir
@@ -59,10 +61,12 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
     private eS: EstacionamientoService,
     private uS: UsuarioService, //Servides dependientes - añadir
     private lS: LocalizacionService, //Servides dependientes - añadir
+    private loginService: LoginService,
 
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private cdr: ChangeDetectorRef // Add this line
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -76,9 +80,9 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       tipoEstacionamiento: ['', Validators.required],
       disponibilidad: [this.disponibilidad, Validators.required],
       foto: ['', Validators.required],
-      promedioValoracion: ['', Validators.required],
+      promedioValoracion: [5, Validators.required],
       capacidad: ['', [Validators.required, Validators.pattern('^[^.]*$')]],
-      fechaRegistro: ['', Validators.required],
+      fechaRegistro: [new Date(), Validators.required],
       precio: ['', Validators.required],
       usuario: ['', Validators.required],
       localizacion: ['', Validators.required],
@@ -116,12 +120,14 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
             this.eS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.eS.insert(this.estacionamiento).subscribe((data) => {
           this.eS.list().subscribe((data) => {
             this.eS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate([
         'components/estacionamiento/listar_admin_estacionamientos',
@@ -154,6 +160,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
           usuario: new FormControl(data.usuario.idUsuario),
           localizacion: new FormControl(data.localizacion.idLocalizacion), //Tienes que referenciar al ID (en el segundo)
         });
+        this.imageSelected = data.foto; // Guarda la URL de la imagen
       });
     }
   }
@@ -165,11 +172,12 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          // Obtener solo el contenido base64 sin la información adicional
           const base64Content = reader.result?.toString().split(',')[1];
 
           if (base64Content) {
             this.form.get('foto')?.setValue(base64Content);
+            this.imageSelected = base64Content;
+            this.cdr.detectChanges(); // Trigger change detection
           } else {
             console.log('Error extracting base64 content from the image.');
           }
@@ -178,6 +186,34 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       } else {
         console.log('The selected file is not an image.');
       }
+    }
+  }
+
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    console.log('imageSelected:', this.imageSelected);
+    if (this.imageSelected) {
+      return 'data:image/jpeg;base64,' + this.imageSelected;
+    } else {
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

@@ -7,8 +7,15 @@
   </head>
 
   <body *ngIf="verificar()">
-    <app-navbar-administrador></app-navbar-administrador>
-
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <div class="litle">
       <h2 style="text-align: center">LISTA DE ESTACIONAMIENTOS</h2>
     </div>

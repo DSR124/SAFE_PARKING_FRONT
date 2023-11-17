@@ -7,6 +7,8 @@
     <title>Document</title>
   </head>
   <body>
+    <app-navbar-administrador></app-navbar-administrador>
+
     <div class="container" style="text-align: center">
       <div class="contenido">
         <div class="titulo">
@@ -159,41 +161,18 @@
                   La fecha de nacimiento es obligatoria.
                 </mat-error>
               </mat-form-field>
-              <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input
-                  matInput
-                  [type]="hide ? 'password' : 'text'"
-                  type="password"
-                  matInput
-                  placeholder="Password"
-                  formControlName="password"
-                />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  (click)="hide = !hide"
-                  [attr.aria-label]="'Hide password'"
-                  [attr.aria-pressed]="hide"
-                >
-                  <mat-icon>{{
-                    hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-                </button>
-                <mat-error *ngIf="form.get('password')?.invalid">
-                  {{
-                    form.get('password')!.errors?.['required'] ? 'El password es obligatorio' :
-                    (form.get('password')!.errors?.['maxlength'] ? 'El password debe ser menos de 200 dígitos' : '')
-                  }}
-                </mat-error>
-              </mat-form-field>
             </div>
             <div class="secciones">
               <h2>IMAGEN</h2>
 
               <mat-form-field class="example-full-width">
                 <mat-label>Foto</mat-label>
-                <input matInput placeholder="foto" formControlName="foto" />
+                <input
+                  matInput
+                  placeholder="foto"
+                  formControlName="foto"
+                  readonly="true"
+                />
                 <mat-error
                   *ngIf="obtenerControlCampo('foto')?.errors?.['required']"
                 >
@@ -203,7 +182,6 @@
               <div class="image-upload">
                 <input
                   type="file"
-                  class="example-full-width"
                   (change)="onFileSelected($event)"
                   accept="image/*"
                 />

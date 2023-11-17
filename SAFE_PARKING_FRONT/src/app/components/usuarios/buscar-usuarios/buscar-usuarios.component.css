@@ -80,3 +80,15 @@ body {
   font-size: 1em;
   color: #000000;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px;
+}
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 200px; /* Set a maximum height if needed */
+}

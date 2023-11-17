@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <app-navbar-administrador></app-navbar-administrador>
-
+  <body *ngIf="verificar()">
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador
+        *ngIf="role === 'administrador'"
+      ></app-navbar-administrador>
+      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador
+        *ngIf="role === 'arrendador'"
+      ></app-navbar-arrendador>
+    </div>
     <div class="form">
       <div class="generic-group">
         <label for="inputId">Ingrese el ID:</label>
@@ -22,12 +29,17 @@
       <div class="generic-details" *ngIf="hrs_estacionamiento">
         <h2 class="generic-heading">Detalles del Horario Estacionamiento</h2>
         <div class="generic-box">
-          <h1>Id de estacionamiento</h1>
-          <p>{{ hrs_estacionamiento.estacionamiento.idEstacionamiento }}</p>
+          <h1>Direccion estacionamiento</h1>
+          <p>
+            {{ hrs_estacionamiento.estacionamiento.localizacion.direccion }}
+          </p>
         </div>
         <div class="generic-box">
-          <h1>Id de horario</h1>
-          <p>{{ hrs_estacionamiento.horario.idHorario }}</p>
+          <h1>Horario</h1>
+          <p>
+            {{ hrs_estacionamiento.horario.horaApertura }} {{ "-" }}
+            {{ hrs_estacionamiento.horario.horaCierre }}
+          </p>
         </div>
       </div>
     </div>

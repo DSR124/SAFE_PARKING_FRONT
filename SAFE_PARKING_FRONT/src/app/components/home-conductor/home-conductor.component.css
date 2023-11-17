@@ -69,3 +69,53 @@ img {
   border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
+.boton-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #0a0a0a;
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.boton-flotante:hover {
+  background-color: #48494b;
+}
+
+.boton-flotante a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.boton-flotante i {
+  font-size: 24px;
+  margin-top: 13px;
+}
+
+.texto-flotante {
+  position: absolute;
+  bottom: 30%;
+  right: 40%;
+  transform: translateX(-50%);
+  background-color: #090909;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.boton-flotante:hover .texto-flotante {
+  opacity: 1;
+}
