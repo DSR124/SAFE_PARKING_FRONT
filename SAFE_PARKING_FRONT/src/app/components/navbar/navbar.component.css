@@ -20,3 +20,6 @@
   transition: background-color 250ms ease; /* Agrega una transición suave */
   border-radius: 20px; /* Bordes redondeados */
 }
+.mat-toolbar{
+  min-width: 475px;
+}
