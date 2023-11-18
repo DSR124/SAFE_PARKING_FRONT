@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+    />
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Leaflet Routing Machine JavaScript -->
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <title>Document</title>
   </head>
 
@@ -35,21 +49,12 @@
           <!-- Div a la izquierda -->
           <div class="info-izquierda">
             <p>
-              <strong>ID del Estacionamiento:</strong>
-              {{ estacionamiento?.idEstacionamiento }}
-            </p>
-            <p>
               <strong>Tipo de Estacionamiento:</strong>
               {{ estacionamiento?.tipoEstacionamiento }}
             </p>
             <p>
               <strong>Disponibilidad:</strong>
               {{ estacionamiento?.disponibilidad }}
-            </p>
-
-            <p>
-              <strong>Promedio de Valoración:</strong>
-              {{ estacionamiento?.promedioValoracion }}
             </p>
             <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }}</p>
             <p>
@@ -64,10 +69,13 @@
             <!-- Ajusta según la estructura de tus datos y preferencias -->
             <div class="valoracion-container">
               <!-- Utiliza el ícono de estrella de Angular Material -->
-              <p>
+              <p class="valoracion">
                 <strong>Valoración:</strong>
-                {{ estacionamiento?.promedioValoracion }}
-                <mat-icon class="icono-estrella">star</mat-icon>
+                <span
+                  [innerHTML]="
+                    generarEstrellas(estacionamiento.promedioValoracion)
+                  "
+                ></span>
               </p>
             </div>
           </div>
@@ -75,51 +83,6 @@
           <div class="info-derecha">
             <div class="reserva">
               <h1>S/. {{ estacionamiento?.precio }}</h1>
-              <div class="horario">
-                <mat-form-field class="example-full-width">
-                  <input
-                    matInput
-                    placeholder="Ingrese fecha"
-                    [matDatepicker]="picker"
-                    formControlName="fecha"
-                    readonly="true"
-                  />
-                  <mat-datepicker-toggle
-                    matSuffix
-                    [for]="picker"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-hint>MM/DD/YYYY</mat-hint>
-                </mat-form-field>
-
-                <div class="hora-container">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Hora de apertura</mat-label>
-                    <input
-                      matInput
-                      [ngxTimepicker]="apertura"
-                      placeholder="Hora de apertura"
-                      formControlName="horaApertura"
-                      readonly
-                    />
-                    <ngx-material-timepicker
-                      #apertura
-                    ></ngx-material-timepicker>
-                  </mat-form-field>
-
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Hora de cierre</mat-label>
-                    <input
-                      matInput
-                      [ngxTimepicker]="cierre"
-                      placeholder="Hora de cierre"
-                      formControlName="horaCierre"
-                      readonly
-                    />
-                    <ngx-material-timepicker #cierre></ngx-material-timepicker>
-                  </mat-form-field>
-                </div>
-              </div>
 
               <button
                 [routerLink]="[
