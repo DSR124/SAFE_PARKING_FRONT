@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+
+  <div class="encabezados" *ngIf="validarRol()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="form">
+    <div class="generic-group">
+      <label for="inputId">Ingrese el ID del Estacionamiento:</label>
+      <input id="inputId" type="number" [(ngModel)]="idEstacionamiento" />
+      <mat-error *ngIf="idNoEncontrado">El ID ingresado no existe. Por favor, intente con otro ID.</mat-error>
+      <br />
+      <button (click)="buscar()">Buscar</button>
     </div>
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID del Estacionamiento:</label>
-        <input id="inputId" type="number" [(ngModel)]="idEstacionamiento" />
-        <mat-error *ngIf="idNoEncontrado"
-          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
-        >
-        <br />
-        <button (click)="buscar()">Buscar</button>
+    <hr />
+    <div class="generic-details" *ngIf="estacionamiento">
+      <h2 class="generic-heading">Detalles del Estacionamiento</h2>
+      <div class="generic-box">
+        <h1>Tipo de estacionamiento</h1>
+        <p>{{ estacionamiento.tipoEstacionamiento }}</p>
       </div>
-      <hr />
-      <div class="generic-details" *ngIf="estacionamiento">
-        <h2 class="generic-heading">Detalles del Estacionamiento</h2>
-        <div class="generic-box">
-          <h1>Tipo de estacionamiento</h1>
-          <p>{{ estacionamiento.tipoEstacionamiento }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Disponibilidad</h1>
-          <p>{{ estacionamiento.disponibilidad }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Foto</h1>
-          <p>{{ estacionamiento.foto }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Promedio de valoracion</h1>
-          <p>{{ estacionamiento.promedioValoracion }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Capacidad</h1>
-          <p>{{ estacionamiento.capacidad }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Fecha de registro</h1>
-          <p>{{ estacionamiento.fechaRegistro }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Precio</h1>
-          <p>{{ estacionamiento.precio }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Usuario</h1>
-          <p>{{ estacionamiento.usuario.nombre }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Localizacion</h1>
-          <p>{{ estacionamiento.localizacion.idLocalizacion }}</p>
-        </div>
+      <div class="generic-box">
+        <h1>Disponibilidad</h1>
+        <p>{{ estacionamiento.disponibilidad }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Foto</h1>
+        <p>{{ estacionamiento.foto }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Promedio de valoracion</h1>
+        <p>{{ estacionamiento.promedioValoracion }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Capacidad</h1>
+        <p>{{ estacionamiento.capacidad }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Fecha de registro</h1>
+        <p>{{ estacionamiento.fechaRegistro }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Precio</h1>
+        <p>{{ estacionamiento.precio }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Usuario</h1>
+        <p>{{ estacionamiento.usuario.nombre }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Localizacion</h1>
+        <p>{{ estacionamiento.localizacion.idLocalizacion }}</p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
