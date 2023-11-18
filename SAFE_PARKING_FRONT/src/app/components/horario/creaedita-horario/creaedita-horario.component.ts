@@ -79,6 +79,7 @@ export class CreaeditaHorarioComponent implements OnInit {
           });
         });
         alert('La modificación se hizo correctamente');
+        this.router.navigate(['components/horarios/listar_admin_horarios']);
       } else {
         this.hS.insert(this.horario).subscribe((data) => {
           this.hS.list().subscribe((data) => {
@@ -104,11 +105,8 @@ export class CreaeditaHorarioComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.hS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idHorario: new FormControl(data.idHorario),
-          horaApertura: new FormControl(data.horaApertura),
-          horaCierre: new FormControl(data.horaCierre),
-          fecha: new FormControl(data.fecha),
+        this.form.patchValue({
+          idHorario: data.idHorario,
         });
       });
     }

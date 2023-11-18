@@ -134,14 +134,13 @@ export class CreaeditaPagoComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.pS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idPago: new FormControl(data.idPago),
-          fechaEmision: new FormControl(data.fechaEmision),
-          precioTotal: new FormControl(data.precioTotal),
-          tipoPago: new FormControl(data.tipoPago),
-          reservaEstacionamiento: new FormControl(
-            data.reservaEstacionamiento.idReservaEstacionamiento
-          ), //Siempre es ID
+        this.form.patchValue({
+          idPago: data.idPago,
+          fechaEmision: data.fechaEmision,
+          precioTotal: data.precioTotal,
+          tipoPago: data.tipoPago,
+          reservaEstacionamiento:
+            data.reservaEstacionamiento.idReservaEstacionamiento,
         });
       });
     }

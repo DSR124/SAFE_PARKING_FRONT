@@ -79,6 +79,9 @@ export class CreaeditaComentarioComponent implements OnInit {
           });
         });
         alert('Se modificó correctamente');
+        this.router.navigate([
+          'components/comentarios/listar_comentarios_admin',
+        ]);
       } else {
         this.cS.insert(this.com).subscribe((data) => {
           this.cS.list().subscribe((data) => {
@@ -102,14 +105,13 @@ export class CreaeditaComentarioComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.cS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idComentario: new FormControl(data.idComentario),
-          contenido: new FormControl(data.contenido),
-          valoracion: new FormControl(data.valoracion),
-          fechaCreacion: new FormControl(data.fechaCreacion),
-          reservaEstacionamiento: new FormControl(
-            data.reservaEstacionamiento.idReservaEstacionamiento
-          ),
+        this.form.patchValue({
+          idComentario: data.idComentario,
+          contenido: data.contenido,
+          valoracion: data.valoracion,
+          fechaCreacion: data.fechaCreacion,
+          reservaEstacionamiento:
+            data.reservaEstacionamiento.idReservaEstacionamiento,
         });
       });
     }

@@ -140,9 +140,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
           });
         });
         alert('Se modificó correctamente');
-        this.router.navigate([
-          'components/vehiculos/listar_admin_vehiculos',
-        ]);
+        this.router.navigate(['components/vehiculos/listar_admin_vehiculos']);
       } else {
         this.vS.insert(this.vehiculo).subscribe((data) => {
           this.vS.list().subscribe((data) => {
@@ -196,7 +194,7 @@ export class CreaeditaVehiculosComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.vS.getById(this.id).subscribe((data) => {
-        this.form.setValue({
+        this.form.patchValue({
           idVehiculo: data.idVehiculo, // Asigna el valor correcto aquí
           placaVehiculo: data.placaVehiculo,
           categoriaVehiculo: data.categoriaVehiculo,

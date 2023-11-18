@@ -118,14 +118,15 @@ export class CreaeditaIncidenteComponent {
     }
     return control;
   }
+
   init() {
     if (this.edicion) {
       this.iS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idIncidente: new FormControl(data.idIncidente),
-          descripcion: new FormControl(data.descripcion),
-          tipoIncidente: new FormControl(data.tipoIncidente),
-          usuario: new FormControl(data.usuario.idUsuario),
+        this.form.patchValue({
+          idIncidente: data.idIncidente,
+          descripcion: data.descripcion,
+          tipoIncidente: data.tipoIncidente,
+          usuario: data.usuario.idUsuario,
         });
       });
     }
