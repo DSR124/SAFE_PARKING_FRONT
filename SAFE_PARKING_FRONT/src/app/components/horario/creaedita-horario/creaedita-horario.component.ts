@@ -87,8 +87,8 @@ export class CreaeditaHorarioComponent implements OnInit {
           });
         });
         alert('El registro se hizo correctamente');
+        this.ngOnInit();
       }
-      this.ngOnInit();
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

@@ -104,6 +104,8 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
             this.heS.setList(data);
           });
         });
+        this.ngOnInit();
+
         alert('el registro se hizo correctamente');
       }
       this.router.navigate([

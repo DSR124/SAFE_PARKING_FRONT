@@ -89,6 +89,7 @@ export class CreaeditaComentarioComponent implements OnInit {
           });
         });
         alert('Se registró correctamente');
+        this.ngOnInit();
       }
     } else {
       this.mensaje = 'Ingrese todos los campos!!';

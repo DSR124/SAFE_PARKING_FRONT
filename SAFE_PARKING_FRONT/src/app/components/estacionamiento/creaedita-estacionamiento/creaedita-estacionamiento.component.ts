@@ -146,6 +146,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
           });
         });
         alert('Se registró correctamente');
+        this.ngOnInit();
       }
       this.router.navigate([
         'components/estacionamiento/listar_admin_estacionamientos',
