@@ -76,3 +76,124 @@ body {
       font-size: 1em;
       color: #000000;
     }
+
+    /*Responsive y boton lateral..........*/
+.toggle-button {
+  display: none;
+  /* Oculta el botón por defecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+
+  /* Estilos del botón para pantallas pequeñas */
+  .toggle-button {
+    display: block;
+    /* Muestra el botón solo en pantallas pequeñas */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    /* Color del icono */
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    /* Ajusta el z-index según sea necesario */
+  }
+
+  body {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    /* Agrega una transición para suavizar el cambio */
+  }
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-administrador {
+    transition: transform 0.3s ease;
+    /* Agrega una transición */
+  }
+
+  app-navbar-administrador[hidden] {
+    transform: translateX(-100%);
+    /* Mueve la barra fuera del viewport */
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+    /* Restablece la posición */
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-conductor {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-conductor[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-arrendador {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-arrendador[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: contents;
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
+}
