@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
-  margin-left: 250px;
+  margin-left: 280px;
   padding: 30px;
 
 }
@@ -38,7 +38,8 @@ table {
   /* Centra horizontalmente */
   margin-top: 50px;
 
-  overflow: auto;
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+
 }
 
 td.mat-column-star {

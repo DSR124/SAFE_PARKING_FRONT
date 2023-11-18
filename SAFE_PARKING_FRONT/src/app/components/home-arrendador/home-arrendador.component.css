@@ -1,76 +1,77 @@
 body {
-    background-color: #f2f2f2;
-    margin-left: 250px;
-    /*Tomar en cuenta esto*/
-    height: 100vh;
-    background: linear-gradient(to right, #11998e, #38ef7d);
-  }
+  background-color: #f2f2f2;
+  margin-left: 250px;
+  /*Tomar en cuenta esto*/
+  height: auto;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+}
 
 /*Estilos de la fuente - Titulos y textos*/
 h1 {
-    font-size: 24px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    padding-top: 30px;
-  }
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  padding-top: 30px;
+}
 
-  h2 {
-    font-size: 20px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-  }
+h2 {
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
 
-  h3 {
-    font-size: 18px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-  }
+h3 {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
 
-  p {
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-  }
+p {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
 
 /*Contenido principal*/
 
 
 .contenido-principal {
-    margin: 0;
-    text-align: center;
-    height: 100%;
-    background: linear-gradient(to right, #11998e, #38ef7d);
-    padding: 20px;
+  margin: 0;
+  text-align: center;
+  height: 100%;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 20px;
 
 }
 
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 img {
-    max-width: 300px;
-    height: auto;
+  max-width: 300px;
+  height: auto;
 }
 
 .intro {
-    text-align: center;
+  text-align: center;
 }
 
 .features {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .feature {
-    text-align: center;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
 }
+
 .boton-flotante {
   position: fixed;
   bottom: 20px;

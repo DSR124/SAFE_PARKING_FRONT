@@ -1,7 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
-  margin-left: 250px;
+  margin-left: 280px;
   padding: 30px;
 
 }
@@ -11,20 +10,20 @@ h2 {
 }
 
 table {
-  width: 800px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+
 }
 .example-container {
   width: 90%;
-  overflow: auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
   /* Centra horizontalmente */
-  margin-top: 50px;
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
 
-  overflow: auto;
 }
 td.mat-column-star {
   width: 20px;
@@ -43,15 +42,13 @@ th.mat-column-position, td.mat-column-position {
   border-left: 1px solid #696969;
 }
 
-.botoncito1{
+.botoncito1,
+.botoncito2 {
   background-color: #11998e;
   color: #fff;
   border-radius: 8px;
   padding-right: 5px;
 }
-.botoncito2{
+.botoncito2 {
   background-color: #000000;
-  color: #fff;
-  border-radius: 8px;
-  padding-right: 5px;
 }
