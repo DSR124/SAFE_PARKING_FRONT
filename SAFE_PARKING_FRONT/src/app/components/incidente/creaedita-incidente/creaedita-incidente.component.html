@@ -1,102 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="container">
-      <form [formGroup]="form" (submit)="registrar()" class="example-form">
-        <div class="titulo">
-          <h2>Registrar Incidente</h2>
-        </div>
-        <br />
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Descripcion </mat-label>
-          <input
-            matInput
-            placeholder="Descripcion"
-            formControlName="descripcion"
-          />
-          <mat-error *ngIf="form.get('descripcion')?.invalid">
-            {{
-                form.get('descripcion')!.errors?.['required'] ? 'La descripcion es obligatorio' :
-                (form.get('descripcion')!.errors?.['maxlength'] ? 'No puede tener más de 100 caracteres' :'')
-            }}
-          </mat-error>
-        </mat-form-field>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo de Incidente</mat-label>
-          <mat-select
-            placeholder="Tipo de Incidente"
-            formControlName="tipoIncidente"
-          >
-            <mat-option *ngFor="let t of tiposIncidentes" [value]="t.value">{{
-              t.viewValue
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" (submit)="registrar()" class="example-form">
+      <div class="titulo">
+        <h2>Registrar Incidente</h2>
+      </div>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion </mat-label>
+        <input matInput placeholder="Descripcion" formControlName="descripcion" />
+        <mat-error *ngIf="form.get('descripcion')?.invalid">
+          {{
+          form.get('descripcion')!.errors?.['required'] ? 'La descripcion es obligatorio' :
+          (form.get('descripcion')!.errors?.['maxlength'] ? 'No puede tener más de 100 caracteres' :'')
+          }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo de Incidente</mat-label>
+        <mat-select placeholder="Tipo de Incidente" formControlName="tipoIncidente">
+          <mat-option *ngFor="let t of tiposIncidentes" [value]="t.value">{{
+            t.viewValue
             }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']"
-          >
-            El tipo de incidente es obligatorio.
-          </mat-error>
-        </mat-form-field>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('tipoIncidente')?.errors?.['required']">
+          El tipo de incidente es obligatorio.
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>usuarios</mat-label>
-          <mat-select formControlName="usuario">
-            <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
-              {{ p.nombre }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('usuario')?.errors?.['required']"
-          >
-            El nombre de usuario es obligatorio.
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>usuarios</mat-label>
+        <mat-select formControlName="usuario">
+          <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
+            {{ p.nombre }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('usuario')?.errors?.['required']">
+          El nombre de usuario es obligatorio.
+        </mat-error>
+      </mat-form-field>
 
-        <br />
-        <div class="btn-container">
-          <button class="botonRegistro" mat-raised-button color="primary">
-            Registrar
-          </button>
+      <br />
+      <div class="btn-container">
+        <button class="botonRegistro" mat-raised-button color="primary">
+          Registrar
+        </button>
 
-          <button
-            *ngIf="role === 'conductor'"
-            mat-raised-button
-            [routerLink]="['/components/home_conductor']"
-          >
-            Cancelar
-          </button>
-          <button
-            *ngIf="role === 'arrendador'"
-            mat-raised-button
-            [routerLink]="['/components/home_arrendador']"
-          >
-            Cancelar
-          </button>
-          <button
-            *ngIf="role === 'administrador'"
-            mat-raised-button
-            [routerLink]="['/components/incidentes/listar_admin_incidentes']"
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
-  </body>
+        <button *ngIf="role === 'conductor'" mat-raised-button [routerLink]="['/components/home_conductor']">
+          Cancelar
+        </button>
+        <button *ngIf="role === 'arrendador'" mat-raised-button [routerLink]="['/components/home_arrendador']">
+          Cancelar
+        </button>
+        <button *ngIf="role === 'administrador'" mat-raised-button
+          [routerLink]="['/components/incidentes/listar_admin_incidentes']">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>

@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID del incidente:</label>
-        <input id="inputId" type="number" [(ngModel)]="idIncidente" />
-        <button (click)="buscar()">Buscar</button>
-      </div>
-      <hr />
-      <div class="generic-details" *ngIf="incidente">
-        <h2 class="generic-heading">Detalles del Incidente</h2>
-        <div class="generic-box">
-          <h1>Descripcion</h1>
-          <p>{{ incidente.descripcion }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Tipo de Incidente</h1>
-          <p>{{ incidente.tipoIncidente }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Usuario</h1>
-          <p>{{ incidente.usuario.nombre }}</p>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-        <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
-      </div>
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="form">
+    <div class="generic-group">
+      <label for="inputId">Ingrese el ID del incidente:</label>
+      <input id="inputId" type="number" [(ngModel)]="idIncidente" />
+      <button (click)="buscar()">Buscar</button>
     </div>
-  </body>
+    <hr />
+    <div class="generic-details" *ngIf="incidente">
+      <h2 class="generic-heading">Detalles del Incidente</h2>
+      <div class="generic-box">
+        <h1>Descripcion</h1>
+        <p>{{ incidente.descripcion }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Tipo de Incidente</h1>
+        <p>{{ incidente.tipoIncidente }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>Usuario</h1>
+        <p>{{ incidente.usuario.nombre }}</p>
+      </div>
+
+      <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+    </div>
+  </div>
+</body>
+
 </html>
