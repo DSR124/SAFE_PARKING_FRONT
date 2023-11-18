@@ -25,4 +25,5 @@ export class HomeAdministradorComponent {
       return false;
     }
   }
+  
 }

@@ -182,7 +182,7 @@ button {
     background-position: center center;
     height: auto;
     color: white;
-    min-width: 475px;
+    /* min-width: 475px;*/
     width: 100%;
     background: rgb(30, 209, 155);
     background: -webkit-linear-gradient(to right, #07181f69, #34e89d86), url("/assets/image/Fondo2.png");
@@ -263,7 +263,7 @@ button {
     text-align: center;
     background-position: center;
     width: 100%;
-    min-width: 475px;
+    /* min-width: 475px;*/
 
 }
 
@@ -369,7 +369,7 @@ button {
     background-color: #000000;
     margin: auto;
     height: auto;
-    min-width: 475px;
+    /* min-width: 475px;*/
 }
 
 #Segmentos .container {
@@ -551,7 +551,7 @@ button {
     background: linear-gradient(to bottom, rgb(0, 214, 125), rgb(30, 209, 155));
     margin: auto;
     background-size: cover;
-    min-width: 475px;
+    /* min-width: 475px;*/
 }
 
 #thirdsection-1 .container {

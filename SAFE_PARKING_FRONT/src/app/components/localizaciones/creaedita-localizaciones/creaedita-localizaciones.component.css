@@ -4,7 +4,7 @@ h2{
   text-align: center;
 }
 .container {
-  max-width: 600px;
+  width: 60%;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -18,7 +18,7 @@ body {
   background: linear-gradient(to right, #11998e, #38ef7d);
   padding: 20px;
   margin-left: 250px;
-  height: auto;
+  height: 100vh;
 
 }
 .longitudes{
@@ -73,4 +73,7 @@ mat-error {
   background-color: #11998e;
   color: #fff;
   margin-right: 10px;
+}
+button{
+  margin: 10px;
 }

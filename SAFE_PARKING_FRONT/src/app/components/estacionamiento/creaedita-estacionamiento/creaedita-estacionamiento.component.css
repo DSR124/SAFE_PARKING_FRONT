@@ -1,52 +1,57 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #11998e, #38ef7d);
-    padding: 30px;
-    margin-left: 250px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 30px;
+  margin-left: 250px;
+  height: 100vh;
 
 }
 
 .container {
-    max-width: 90%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.example-form{
-  max-height: 600px;
+  margin-bottom: 50px;
+  background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Centra horizontalmente */
+  max-width: 100%;
+  margin: 60px;
+}
 
+
+.example-form {
+  max-width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: auto;
 
 }
-.formularios{
+
+.formularios {
   display: flex;
-  border-radius: 8px;
-  height: 90%;
+  justify-content: center;
+  flex-wrap: wrap;
 
 }
-.example-full-width{
+
+.example-full-width {
   margin: 5px;
   width: 90%;
 
 }
-.secciones{
-  margin: 5px;
-  width: 70%; /* Expand to full width */
+
+.secciones {
+  margin: 15px;
+  width: 380px;
+  height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-
+  border-radius: 8px;
+  padding: 25px;
 }
+
 .image-upload {
   max-width: 90%;
   max-height: 90%;
@@ -60,13 +65,14 @@ img {
   margin-top: 10px;
 
 }
+
 input[type="file"] {
   background-color: rgb(173, 173, 182);
 }
 
 button.boton_registro:hover {
   background-color: #080808;
-   color: #fff;
+  color: #fff;
 }
 
 .btn-container {
@@ -74,13 +80,17 @@ button.boton_registro:hover {
   text-align: center;
   margin: 5px;
 }
+
 mat-error {
   color: #e74c3c;
 }
 
-.boton_registro{
+.boton_registro {
   background-color: #11998e;
   color: #fff;
   margin-right: 10px;
 }
 
+button {
+  margin: 10px;
+}

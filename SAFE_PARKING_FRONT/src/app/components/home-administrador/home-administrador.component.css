@@ -1,8 +1,8 @@
 body {
   margin-left: 280px;
   /*Tomar en cuenta esto*/
-  background: linear-gradient(to right, #11998e, #38ef7d); 
-
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  height: 100vh;
 }
 
 /*Estilos de la fuente - Titulos y textos*/
@@ -68,3 +68,5 @@ img {
   border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
+
+/*Responsive barra lateral*/

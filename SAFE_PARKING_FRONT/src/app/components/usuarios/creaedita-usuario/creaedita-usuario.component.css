@@ -1,20 +1,21 @@
 /* Estilos para los campos de formulario */
 .container {
   margin-bottom: 50px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
   /* Centra horizontalmente */
   margin-top: 50px;
-  max-width: 98%;
+  padding: 25px;
+  margin: 60px;
 }
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
-  margin-left: 260px;
-  padding: 50px;
   height: 100vh;
+
+  /*margin-left: 260px;*/
+  padding: 50px;
 }
 /*Estilos para los botones*/
 
@@ -25,16 +26,19 @@ button {
   background-color: #11998e;
   color: #fff;
 }
+
 .example-form {
-  max-height: 600px;
+  
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  margin: 20px;
 }
 .formularios {
   display: flex;
   border-radius: 8px;
-  height: 90%;
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra los elementos horizontalmente */
 }
 .example-full-width {
   margin: 5px;
@@ -42,11 +46,13 @@ button {
 }
 .secciones {
   margin: 15px;
-  width: 70%; /* Expand to full width */
+  width: 380px; /* Expand to full width */
+  height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  padding: 25px;
 }
 .sub-seccion {
   display: flex;

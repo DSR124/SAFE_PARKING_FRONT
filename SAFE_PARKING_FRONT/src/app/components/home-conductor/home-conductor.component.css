@@ -1,6 +1,7 @@
 body {
   margin-left: 250px;
   /*Tomar en cuenta esto*/
+  height: 100vh;
   background: linear-gradient(to right, #11998e, #38ef7d);
 }
 

@@ -42,4 +42,5 @@ export class NavbarAdministradorComponent {
     // Redirigir al componente de inicio de sesión
     this.router.navigate(['/login']);
   }
+  
 }

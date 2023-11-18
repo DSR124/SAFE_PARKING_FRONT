@@ -6,6 +6,7 @@ body {
   padding: 50px;
   height: 100vh;
 }
+
 .container {
   margin-bottom: 50px;
   background-color: #fff;
@@ -14,33 +15,40 @@ body {
   /* Centra horizontalmente */
   max-width: 100%;
   padding: 20px;
+  margin: 60px;
 }
 
 .example-form {
-  max-height: 600px;
   max-width: 100%;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  height: auto;
 }
+
 .informacion {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 h1 {
   text-align: center;
 }
+
 h2 {
   text-align: center;
 }
 
 .secciones {
   margin: 15px;
-  width: 70%; /* Expand to full width */
+  width: 380px;
+  height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  padding: 25px;
 }
 
 .paleta {
@@ -66,9 +74,11 @@ h2 {
   justify-content: center;
   text-align: center;
 }
+
 button {
   margin: 10px;
 }
+
 .botonRegistro {
   background-color: #11998e;
   color: #fff;
@@ -105,6 +115,7 @@ img {
   max-height: 40%;
   margin-top: 10px;
 }
+
 input[type="file"] {
   background-color: rgb(173, 173, 182);
 }

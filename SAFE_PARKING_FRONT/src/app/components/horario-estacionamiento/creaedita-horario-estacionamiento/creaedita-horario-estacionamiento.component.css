@@ -1,7 +1,7 @@
 
 
 .container {
-  max-width: 600px;
+  width: 60%;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -51,4 +51,8 @@ mat-error {
   background-color: #11998e;
   color: #fff;
   margin-right: 10px;
+}
+
+button{
+  margin: 10px;
 }

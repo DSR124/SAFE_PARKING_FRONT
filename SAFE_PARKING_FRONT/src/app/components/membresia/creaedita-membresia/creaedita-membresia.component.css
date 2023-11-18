@@ -46,9 +46,21 @@ mat-label {
 mat-error {
   color: #e74c3c;
 }
-
-.boton{
+button{
+ width: 100px; 
+ margin: 10px;
+ 
+}
+.botones{
+  justify-content: center;
+  text-align: center;
+}
+.boton1{
   background-color: #11998e;
   color: aliceblue;
-  margin-bottom: 10px;
 }
+.boton2{
+  background-color: #000000;
+  color: aliceblue;
+}
+
