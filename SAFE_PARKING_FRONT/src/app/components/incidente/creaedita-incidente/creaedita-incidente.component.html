@@ -88,6 +88,13 @@
           >
             Cancelar
           </button>
+          <button
+            *ngIf="role === 'administrador'"
+            mat-raised-button
+            [routerLink]="['/components/incidentes/listar_admin_incidentes']"
+          >
+            Cancelar
+          </button>
         </div>
       </form>
     </div>

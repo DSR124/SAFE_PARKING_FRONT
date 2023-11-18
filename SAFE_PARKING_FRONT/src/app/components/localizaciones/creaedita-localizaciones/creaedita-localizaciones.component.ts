@@ -126,6 +126,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
+      idLocalizacion: [''],
       direccion: ['', [Validators.required, Validators.maxLength(50)]],
       distrito: ['', Validators.required],
       region: ['', Validators.required],
@@ -236,13 +237,14 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.lS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          direccion: new FormControl(data.direccion),
-          distrito: new FormControl(data.distrito),
-          region: new FormControl(data.region),
-          referencia: new FormControl(data.referencia),
-          latitud: new FormControl(data.latitud),
-          longitud: new FormControl(data.longitud),
+        this.form.patchValue({
+          idLocalizacion: data.idLocalizacion,
+          direccion: data.direccion,
+          distrito: data.distrito,
+          region: data.region,
+          referencia: data.referencia,
+          latitud: data.latitud,
+          longitud: data.longitud,
         });
       });
     }

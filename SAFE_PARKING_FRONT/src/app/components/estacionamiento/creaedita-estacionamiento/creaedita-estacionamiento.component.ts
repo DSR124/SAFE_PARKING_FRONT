@@ -32,16 +32,34 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   edicion: boolean = false; //Añadir
 
   tipos: { value: string; viewValue: string }[] = [
-    { value: 'Estacionamiento Público Tradicional', viewValue: 'Estacionamiento Público Tradicional' },
-    { value: 'Estacionamiento Privado Compartido', viewValue: 'Estacionamiento Privado Compartido' },
+    {
+      value: 'Estacionamiento Público Tradicional',
+      viewValue: 'Estacionamiento Público Tradicional',
+    },
+    {
+      value: 'Estacionamiento Privado Compartido',
+      viewValue: 'Estacionamiento Privado Compartido',
+    },
     {
       value: 'Estacionamiento Privado Domicilio',
       viewValue: 'Estacionamiento Privado Domicilio',
     },
-    { value: 'Estacionamiento Temporal', viewValue: 'Estacionamiento Temporal' },
-    { value: 'Estacionamiento Comunitario', viewValue: 'Estacionamiento Comunitario' },
-    { value: 'Estacionamiento Accesible', viewValue: 'Estacionamiento Accesible' },
-    { value: 'Estacionamiento Inteligente', viewValue: 'Estacionamiento Inteligente' },
+    {
+      value: 'Estacionamiento Temporal',
+      viewValue: 'Estacionamiento Temporal',
+    },
+    {
+      value: 'Estacionamiento Comunitario',
+      viewValue: 'Estacionamiento Comunitario',
+    },
+    {
+      value: 'Estacionamiento Accesible',
+      viewValue: 'Estacionamiento Accesible',
+    },
+    {
+      value: 'Estacionamiento Inteligente',
+      viewValue: 'Estacionamiento Inteligente',
+    },
     {
       value: 'Almacenamiento',
       viewValue: 'Estacionamiento para Almacenamiento a Largo Plazo',
@@ -128,6 +146,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
           });
         });
         alert('Se registró correctamente');
+        this.ngOnInit();
       }
       this.router.navigate([
         'components/estacionamiento/listar_admin_estacionamientos',
@@ -148,19 +167,18 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.eS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idEstacionamiento: new FormControl(data.idEstacionamiento),
-          tipoEstacionamiento: new FormControl(data.tipoEstacionamiento),
-          disponibilidad: new FormControl(data.disponibilidad),
-          foto: new FormControl(data.foto),
-          promedioValoracion: new FormControl(data.promedioValoracion),
-          capacidad: new FormControl(data.capacidad),
-          fechaRegistro: new FormControl(data.fechaRegistro),
-          precio: new FormControl(data.precio),
-          usuario: new FormControl(data.usuario.idUsuario),
-          localizacion: new FormControl(data.localizacion.idLocalizacion), //Tienes que referenciar al ID (en el segundo)
+        this.form.patchValue({
+          idEstacionamiento: data.idEstacionamiento,
+          tipoEstacionamiento: data.tipoEstacionamiento,
+          disponibilidad: data.disponibilidad,
+          foto: data.foto,
+          promedioValoracion: data.promedioValoracion,
+          capacidad: data.capacidad,
+          fechaRegistro: data.fechaRegistro,
+          precio: data.precio,
+          usuario: data.usuario.idUsuario,
+          localizacion: data.localizacion.idLocalizacion,
         });
-        this.imageSelected = data.foto; // Guarda la URL de la imagen
       });
     }
   }

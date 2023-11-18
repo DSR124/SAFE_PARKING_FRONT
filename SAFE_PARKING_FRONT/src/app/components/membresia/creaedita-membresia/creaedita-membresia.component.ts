@@ -59,6 +59,7 @@ export class CreaeditaMembresiaComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
+      idMembresia: [''],
       tipoMembresia: ['', Validators.required],
       fechaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
@@ -118,16 +119,15 @@ export class CreaeditaMembresiaComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.mS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          tipoMembresia: new FormControl(data.tipoMembresia),
-          fechaInicio: new FormControl(data.fechaInicio),
-          fechaFin: new FormControl(data.fechaFin),
-          precio: new FormControl(data.precio),
+        this.form.patchValue({
+          idMembresia: data.idMembresia,
+          tipoMembresia: data.tipoMembresia,
+
+          precio: data.precio,
         });
       });
     }
   }
-
   validateDates(formControl: FormControl): { [key: string]: any } | null {
     const startDate = formControl.get('fechaInicio')?.value;
     const endDate = formControl.value;
