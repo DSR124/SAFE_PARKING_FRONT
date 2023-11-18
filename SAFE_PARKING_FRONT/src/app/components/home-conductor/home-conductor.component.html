@@ -19,7 +19,12 @@
     </head>
 
     <body>
-      <app-navbar-conductor></app-navbar-conductor>
+          <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+      <app-navbar-conductor [hidden]="!mostrarNavbar" ></app-navbar-conductor>
 
       <div class="contenido-principal">
         <div class="textoPrincipal">

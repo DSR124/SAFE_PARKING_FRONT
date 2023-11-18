@@ -1,106 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body *ngIf="verificar()">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
     <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
     </div>
-    <div class="litle">
-      <h2 style="text-align: center">LISTA DE MEMBRESIAS</h2>
-    </div>
-    <div class="container">
-      <mat-form-field>
-        <input
-          style="text-align: left"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="buscar"
-        />
-      </mat-form-field>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!--- Note that these columns can be defined in any order.
+  <div class="litle">
+    <h2 style="text-align: center">LISTA DE MEMBRESIAS</h2>
+  </div>
+  <div class="container">
+    <mat-form-field>
+      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="buscar" />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- idMembresia Column -->
-        <ng-container matColumnDef="idMembresia">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.idMembresia }}
-          </td>
-        </ng-container>
+      <!-- idMembresia Column -->
+      <ng-container matColumnDef="idMembresia">
+        <th mat-header-cell *matHeaderCellDef>Codigo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idMembresia }}
+        </td>
+      </ng-container>
 
-        <!-- tipoMembresia Column -->
-        <ng-container matColumnDef="tipoMembresia">
-          <th mat-header-cell *matHeaderCellDef>Tipo</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.tipoMembresia }}
-          </td>
-        </ng-container>
+      <!-- tipoMembresia Column -->
+      <ng-container matColumnDef="tipoMembresia">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tipoMembresia }}
+        </td>
+      </ng-container>
 
-        <!-- fechaInicio Column -->
-        <ng-container matColumnDef="fechaInicio">
-          <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.fechaInicio }}
-          </td>
-        </ng-container>
+      <!-- fechaInicio Column -->
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fechaInicio }}
+        </td>
+      </ng-container>
 
-        <!-- fechaFin Column -->
-        <ng-container matColumnDef="fechaFin">
-          <th mat-header-cell *matHeaderCellDef>Fecha de Fin</th>
-          <td mat-cell *matCellDef="let element">{{ element.fechaFin }}</td>
-        </ng-container>
+      <!-- fechaFin Column -->
+      <ng-container matColumnDef="fechaFin">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Fin</th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaFin }}</td>
+      </ng-container>
 
-        <!-- precio Column -->
-        <ng-container matColumnDef="precio">
-          <th mat-header-cell *matHeaderCellDef>Precio</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.precio }}
-          </td></ng-container
-        >
+      <!-- precio Column -->
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.precio }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>Editar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito1"
-              mat-raised-button
-              [routerLink]="['ediciones', element.idMembresia]"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td></ng-container
-        >
-        <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito2"
-              mat-raised-button
-              (click)="eliminar(element.idMembresia)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td></ng-container
-        >
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <br />
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </body>
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito1" mat-raised-button [routerLink]="['ediciones', element.idMembresia]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito2" mat-raised-button (click)="eliminar(element.idMembresia)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br />
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
 </html>
