@@ -21,7 +21,7 @@ export class BuscarHorarioComponent {
     private hS: HorarioService,
     private loginService: LoginService,
     public route: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.buscar();
   }
@@ -53,4 +53,13 @@ export class BuscarHorarioComponent {
       return false;
     }
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

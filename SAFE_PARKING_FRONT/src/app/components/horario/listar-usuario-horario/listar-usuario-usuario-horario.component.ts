@@ -120,4 +120,13 @@ export class ListarUsuarioHorarioComponent implements OnInit {
     // Verificar si la hora seleccionada está dentro del rango de horarios
     return horaSeleccionada >= horaInicio && horaSeleccionada < horaCierre;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

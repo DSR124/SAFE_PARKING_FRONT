@@ -136,4 +136,13 @@ export class CreaeditaHorarioComponent implements OnInit {
     const hora24h = horaNum.toString().padStart(2, '0');
     return `${hora24h}:${minutos}`;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

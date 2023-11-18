@@ -1,104 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <h2 style="text-align: center">LISTA DE HORARIOS</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    <div class="example-container mat-elevation-z8">
-      <mat-form-field>
-        <input
-          style="text-align: left"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="Bucar por.."
-        />
-      </mat-form-field>
-      <br />
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <h2 style="text-align: center">LISTA DE HORARIOS</h2>
 
-      <table
-        mat-table
-        [dataSource]="dataSource"
-        class="mat-elevation-z8"
-        *ngIf="validarRol()"
-      >
-        <!-- ID -->
-        <ng-container matColumnDef="idHorario">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let element">{{ element.idHorario }}</td>
-        </ng-container>
+  <div class="example-container mat-elevation-z8">
+    <mat-form-field>
+      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
+    </mat-form-field>
+    <br />
 
-        <!-- fecha -->
-        <ng-container matColumnDef="fecha">
-          <th mat-header-cell *matHeaderCellDef>Fecha</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.fecha }}
-          </td>
-        </ng-container>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="validarRol()">
+      <!-- ID -->
+      <ng-container matColumnDef="idHorario">
+        <th mat-header-cell *matHeaderCellDef>Codigo</th>
+        <td mat-cell *matCellDef="let element">{{ element.idHorario }}</td>
+      </ng-container>
 
-        <!-- hora apertura -->
-        <ng-container matColumnDef="horaApertura">
-          <th mat-header-cell *matHeaderCellDef>Hora de apertura</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.horaApertura }}
-          </td>
-        </ng-container>
+      <!-- fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fecha }}
+        </td>
+      </ng-container>
 
-        <!-- hora cierre -->
-        <ng-container matColumnDef="horaCierre">
-          <th mat-header-cell *matHeaderCellDef>Hora de cierre</th>
-          <td mat-cell *matCellDef="let element">{{ element.horaCierre }}</td>
-        </ng-container>
+      <!-- hora apertura -->
+      <ng-container matColumnDef="horaApertura">
+        <th mat-header-cell *matHeaderCellDef>Hora de apertura</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.horaApertura }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>editar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito1"
-              *ngIf="role === 'administrador'"
-              mat-raised-button
-              [routerLink]="['ediciones', element.idHorario]"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <!-- hora cierre -->
+      <ng-container matColumnDef="horaCierre">
+        <th mat-header-cell *matHeaderCellDef>Hora de cierre</th>
+        <td mat-cell *matCellDef="let element">{{ element.horaCierre }}</td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito2"
-              *ngIf="role === 'administrador'"
-              mat-raised-button
-              (click)="eliminar(element.idHorario)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito1" *ngIf="role === 'administrador'" mat-raised-button
+            [routerLink]="['ediciones', element.idHorario]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <br />
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 15]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </body>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito2" *ngIf="role === 'administrador'" mat-raised-button
+            (click)="eliminar(element.idHorario)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br />
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
 </html>

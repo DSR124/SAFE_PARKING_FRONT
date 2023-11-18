@@ -1,112 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      integrity="sha384-wgq8j96aIjgkt0l/5kV+jLmEnCw5oq6pOB0vURBXQZ40zQM8sB+Koy5XezjNXCi2"
-      crossorigin="anonymous"
-    />
 
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="header" *ngIf="verificar()">
-      <div class="encabezados" *ngIf="validarRol()">
-        <app-navbar-administrador
-          *ngIf="role === 'administrador'"
-        ></app-navbar-administrador>
-        <app-navbar-conductor
-          *ngIf="role === 'conductor'"
-        ></app-navbar-conductor>
-        <app-navbar-arrendador
-          *ngIf="role === 'arrendador'"
-        ></app-navbar-arrendador>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha384-wgq8j96aIjgkt0l/5kV+jLmEnCw5oq6pOB0vURBXQZ40zQM8sB+Koy5XezjNXCi2" crossorigin="anonymous" />
+
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header" *ngIf="verificar()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+    </div>
+  </div>
+  <div class="container" style="text-align: center" *ngIf="validarRol()">
+    <h1>Registro de Horario</h1>
+    <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
+      <!-- Categoria dia -->
+      <mat-form-field appearance="fill" class="example-full-width" color="accent">
+        <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha" [min]="minFecha"
+          readonly="true" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="obtenerControlCampo('fecha')?.errors?.['required']">
+          La fecha de creacion es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Hora de apertura</mat-label>
+        <input matInput [ngxTimepicker]="apertura" placeholder="Hora de apertura" formControlName="horaApertura"
+          readonly />
+        <ngx-material-timepicker #apertura></ngx-material-timepicker>
+        <mat-error *ngIf="obtenerControlCampo('horaApertura')?.errors?.['required']">
+          La hora de apertura es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Hora de cierre</mat-label>
+        <input matInput [ngxTimepicker]="cierre" placeholder="Hora de cierre" formControlName="horaCierre" readonly />
+        <ngx-material-timepicker #cierre></ngx-material-timepicker>
+        <mat-error *ngIf="obtenerControlCampo('horaCierre')?.errors?.['required']">
+          La hora de cierre es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+      <div class="btn-container">
+        <button class="boton_registro" mat-raised-button>Registrar</button>
+        <button *ngIf="role === 'administrador'" mat-raised-button
+          [routerLink]="['/components/horarios/listar_admin_horarios']">
+          Cancelar
+        </button>
+        <button *ngIf="role === 'arrendador'" mat-raised-button
+          [routerLink]="['/components/horarios/listar_usuario_horarios']">
+          Cancelar
+        </button>
       </div>
-    </div>
-    <div class="container" style="text-align: center" *ngIf="validarRol()">
-      <h1>Registro de Horario</h1>
-      <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
-        <!-- Categoria dia -->
-        <mat-form-field
-          appearance="fill"
-          class="example-full-width"
-          color="accent"
-        >
-          <input
-            matInput
-            placeholder="Ingrese fecha"
-            [matDatepicker]="picker"
-            formControlName="fecha"
-            [min]="minFecha"
-            readonly="true"
-          />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error *ngIf="obtenerControlCampo('fecha')?.errors?.['required']">
-            La fecha de creacion es obligatoria.
-          </mat-error>
-        </mat-form-field>
+    </form>
+  </div>
+</body>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora de apertura</mat-label>
-          <input
-            matInput
-            [ngxTimepicker]="apertura"
-            placeholder="Hora de apertura"
-            formControlName="horaApertura"
-            readonly
-          />
-          <ngx-material-timepicker #apertura></ngx-material-timepicker>
-          <mat-error
-            *ngIf="obtenerControlCampo('horaApertura')?.errors?.['required']"
-          >
-            La hora de apertura es obligatoria.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Hora de cierre</mat-label>
-          <input
-            matInput
-            [ngxTimepicker]="cierre"
-            placeholder="Hora de cierre"
-            formControlName="horaCierre"
-            readonly
-          />
-          <ngx-material-timepicker #cierre></ngx-material-timepicker>
-          <mat-error
-            *ngIf="obtenerControlCampo('horaCierre')?.errors?.['required']"
-          >
-            La hora de cierre es obligatoria.
-          </mat-error>
-        </mat-form-field>
-
-        <br />
-        <div class="btn-container">
-          <button class="boton_registro" mat-raised-button>Registrar</button>
-          <button
-            *ngIf="role === 'administrador'"
-            mat-raised-button
-            [routerLink]="['/components/horarios/listar_admin_horarios']"
-          >
-            Cancelar
-          </button>
-          <button
-            *ngIf="role === 'arrendador'"
-            mat-raised-button
-            [routerLink]="['/components/horarios/listar_usuario_horarios']"
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
-  </body>
 </html>
