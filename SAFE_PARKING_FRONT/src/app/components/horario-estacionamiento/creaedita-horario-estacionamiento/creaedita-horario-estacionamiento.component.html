@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="container" style="text-align: center">
-      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <h2>Registro de Horarios - Estacionamientos</h2>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>estacionamiento</mat-label>
-          <mat-select formControlName="estacionamiento">
-            <mat-option
-              *ngFor="let p of listaEstacionamiento"
-              [value]="p.idEstacionamiento"
-            >
-              {{ p.tipoEstacionamiento }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']"
-          >
-            El postre es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>horario</mat-label>
-          <mat-select formControlName="horario">
-            <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
-              {{ p.fecha }} {{ p.horaApertura }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('horario')?.errors?.['required']"
-          >
-            El postre es obligatorio.
-          </mat-error>
-        </mat-form-field>
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="container" style="text-align: center">
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      <h2>Registro de Horarios - Estacionamientos</h2>
 
-        <div class="btn-container">
-          <button class="boton_registro" mat-raised-button color="primary">
-            Registrar
-          </button>
-          <button
-            mat-raised-button
-            [routerLink]="[
+      <mat-form-field class="example-full-width">
+        <mat-label>estacionamiento</mat-label>
+        <mat-select formControlName="estacionamiento">
+          <mat-option *ngFor="let p of listaEstacionamiento" [value]="p.idEstacionamiento">
+            {{ p.tipoEstacionamiento }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']">
+          El postre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>horario</mat-label>
+        <mat-select formControlName="horario">
+          <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
+            {{ p.fecha }} {{ p.horaApertura }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('horario')?.errors?.['required']">
+          El postre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="btn-container">
+        <button class="boton_registro" mat-raised-button color="primary">
+          Registrar
+        </button>
+        <button mat-raised-button [routerLink]="[
               '/components/horarios_estacionamiento/listar_admin_horarios_estacionamiento'
-            ]"
-          >
-            Cancelar
-          </button>
-        </div>
-        <p>{{ mensaje }}</p>
-      </form>
-    </div>
-  </body>
+            ]">
+          Cancelar
+        </button>
+      </div>
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+</body>
+
 </html>

@@ -1,113 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="litle">
-      <h2 style="text-align: center">LISTA DE HORARIO - ESTACIONAMIENTO</h2>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    <div class="example-container">
-      <mat-form-field>
-        <input
-          style="text-align: left"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="Bucar por.."
-        />
-      </mat-form-field>
-      <table
-        mat-table
-        [dataSource]="dataSource"
-        class="mat-elevation-z8"
-        *ngIf="validarRol()"
-      >
-        <!--- Note that these columns can be defined in any order.
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="litle">
+    <h2 style="text-align: center">LISTA DE HORARIO - ESTACIONAMIENTO</h2>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field>
+      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="Bucar por.." />
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="validarRol()">
+      <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- idLocalizacion Column -->
-        <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.idHorarioEstacionamiento }}
-          </td>
-        </ng-container>
+      <!-- idLocalizacion Column -->
+      <ng-container matColumnDef="codigo">
+        <th mat-header-cell *matHeaderCellDef>Codigo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idHorarioEstacionamiento }}
+        </td>
+      </ng-container>
 
-        <!-- direccion del estacionamiento Column -->
-        <ng-container matColumnDef="Estacionamiento">
-          <th mat-header-cell *matHeaderCellDef>
-            Direccion de Estacionamiento
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.estacionamiento.localizacion.direccion }}
-          </td>
-        </ng-container>
+      <!-- direccion del estacionamiento Column -->
+      <ng-container matColumnDef="Estacionamiento">
+        <th mat-header-cell *matHeaderCellDef>
+          Direccion de Estacionamiento
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.estacionamiento.localizacion.direccion }}
+        </td>
+      </ng-container>
 
-        <!-- distrito Column -->
-        <ng-container matColumnDef="horario">
-          <th mat-header-cell *matHeaderCellDef>Horario</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.horario.horaApertura }} {{ "-" }}
-            {{ element.horario.horaCierre }}
-          </td>
-        </ng-container>
+      <!-- distrito Column -->
+      <ng-container matColumnDef="horario">
+        <th mat-header-cell *matHeaderCellDef>Horario</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.horario.horaApertura }} {{ "-" }}
+          {{ element.horario.horaCierre }}
+        </td>
+      </ng-container>
 
-        <!-- dueño  -->
-        <ng-container matColumnDef="duenio">
-          <th mat-header-cell *matHeaderCellDef>Dueño</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.estacionamiento.usuario.nombre }}
-          </td>
-        </ng-container>
+      <!-- dueño  -->
+      <ng-container matColumnDef="duenio">
+        <th mat-header-cell *matHeaderCellDef>Dueño</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.estacionamiento.usuario.nombre }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>Editar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito1"
-              *ngIf="role === 'administrador'"
-              mat-raised-button
-              [routerLink]="['ediciones', element.idHorarioEstacionamiento]"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito2"
-              *ngIf="role === 'administrador'"
-              mat-raised-button
-              (click)="eliminar(element.idHorarioEstacionamiento)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito1" *ngIf="role === 'administrador'" mat-raised-button
+            [routerLink]="['ediciones', element.idHorarioEstacionamiento]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito2" *ngIf="role === 'administrador'" mat-raised-button
+            (click)="eliminar(element.idHorarioEstacionamiento)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <br />
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </body>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br />
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
 </html>
