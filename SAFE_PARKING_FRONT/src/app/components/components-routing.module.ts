@@ -143,7 +143,7 @@ const routes: Routes = [
       },
       {
         path: 'listar_admin_vehiculos',
-        component: listarAdminUsuarioComponent,
+        component: ListarAdminVehiculosComponent,
       },
       {
         path: 'listar_usuario_vehiculos',

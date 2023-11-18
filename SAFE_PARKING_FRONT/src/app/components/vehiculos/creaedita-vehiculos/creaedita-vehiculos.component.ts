@@ -140,6 +140,9 @@ export class CreaeditaVehiculosComponent implements OnInit {
           });
         });
         alert('Se modificó correctamente');
+        this.router.navigate([
+          'components/vehiculos/listar_admin_vehiculos',
+        ]);
       } else {
         this.vS.insert(this.vehiculo).subscribe((data) => {
           this.vS.list().subscribe((data) => {
