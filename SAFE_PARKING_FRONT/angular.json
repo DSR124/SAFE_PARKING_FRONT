@@ -23,6 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/_redirects",
               {
                 "glob": "**/*",
                 "input": "node_modules/leaflet/dist/images/",
@@ -43,12 +44,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "10mb"
                 }
               ],
               "outputHashing": "all"
@@ -99,6 +100,14 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/safe-parking-front",
+            "netlifyToken": "nfp_dY6XowamYTrEKRzmrec1vimuCxZiPcV6041c",
+            "siteId": "0a2287c6-6e45-4026-9d59-47707db70c21"
           }
         }
       }

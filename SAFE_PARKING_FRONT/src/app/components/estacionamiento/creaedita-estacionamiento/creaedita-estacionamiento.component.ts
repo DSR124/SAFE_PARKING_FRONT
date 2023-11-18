@@ -32,16 +32,16 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
   edicion: boolean = false; //Añadir
 
   tipos: { value: string; viewValue: string }[] = [
-    { value: 'Publico', viewValue: 'Estacionamiento Público Tradicional' },
-    { value: 'Privado', viewValue: 'Estacionamiento Privado Compartido' },
+    { value: 'Estacionamiento Público Tradicional', viewValue: 'Estacionamiento Público Tradicional' },
+    { value: 'Estacionamiento Privado Compartido', viewValue: 'Estacionamiento Privado Compartido' },
     {
-      value: 'Privado-Domicilio',
+      value: 'Estacionamiento Privado Domicilio',
       viewValue: 'Estacionamiento Privado Domicilio',
     },
-    { value: 'Temporal', viewValue: 'Estacionamiento Temporal' },
-    { value: 'Comunitario', viewValue: 'Estacionamiento Comunitario' },
-    { value: 'Accesible', viewValue: 'Estacionamiento Accesible' },
-    { value: 'Inteligente', viewValue: 'Estacionamiento Inteligente' },
+    { value: 'Estacionamiento Temporal', viewValue: 'Estacionamiento Temporal' },
+    { value: 'Estacionamiento Comunitario', viewValue: 'Estacionamiento Comunitario' },
+    { value: 'Estacionamiento Accesible', viewValue: 'Estacionamiento Accesible' },
+    { value: 'Estacionamiento Inteligente', viewValue: 'Estacionamiento Inteligente' },
     {
       value: 'Almacenamiento',
       viewValue: 'Estacionamiento para Almacenamiento a Largo Plazo',
