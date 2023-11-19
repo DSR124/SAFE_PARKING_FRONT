@@ -1,110 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="litle">
-      <h2 style="text-align: center">LISTA DE PAGOS</h2>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    <div class="example-container">
-      <mat-form-field>
-        <input
-          style="text-align: left"
-          matInput
-          (keyup)="filter($event)"
-          placeholder="buscar"
-        />
-      </mat-form-field>
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="litle">
+    <h2 style="text-align: center">LISTA DE PAGOS</h2>
+  </div>
 
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="idPago">
-          <th mat-header-cell *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.idPago }}
-          </td>
-        </ng-container>
+  <div class="example-container">
+    <mat-form-field>
+      <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="buscar" />
+    </mat-form-field>
 
-        <ng-container matColumnDef="fechaEmision">
-          <th mat-header-cell *matHeaderCellDef>Fecha de emisión</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.fechaEmision }}
-          </td>
-        </ng-container>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="idPago">
+        <th mat-header-cell *matHeaderCellDef>Codigo</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idPago }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="precioTotal">
-          <th mat-header-cell *matHeaderCellDef>Precio Total</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.precioTotal }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="fechaEmision">
+        <th mat-header-cell *matHeaderCellDef>Fecha de emisión</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fechaEmision }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="tipoPago">
-          <th mat-header-cell *matHeaderCellDef>Metodo de Pago</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.tipoPago }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="precioTotal">
+        <th mat-header-cell *matHeaderCellDef>Precio Total</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.precioTotal }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="reservaEstacionamiento">
-          <th mat-header-cell *matHeaderCellDef>Codigo de Reserva</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.reservaEstacionamiento.idReservaEstacionamiento }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="tipoPago">
+        <th mat-header-cell *matHeaderCellDef>Metodo de Pago</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tipoPago }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="conductor">
-          <th mat-header-cell *matHeaderCellDef>Conductor</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.reservaEstacionamiento.usuario.username }}
-          </td>
-        </ng-container>
+      <ng-container matColumnDef="reservaEstacionamiento">
+        <th mat-header-cell *matHeaderCellDef>Codigo de Reserva</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.reservaEstacionamiento.idReservaEstacionamiento }}
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="accion01">
-          <th mat-header-cell *matHeaderCellDef>editar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito1"
-              mat-raised-button
-              [routerLink]="['ediciones', element.idPago]"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="accion02">
-          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="botoncito2"
-              mat-raised-button
-              (click)="eliminar(element.idPago)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <br />
-      <mat-paginator
-        [pageSizeOptions]="[5, 10, 25]"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </body>
+      <ng-container matColumnDef="conductor">
+        <th mat-header-cell *matHeaderCellDef>Conductor</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.reservaEstacionamiento.usuario.username }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito1" mat-raised-button [routerLink]="['ediciones', element.idPago]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="botoncito2" mat-raised-button (click)="eliminar(element.idPago)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <br />
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </div>
+</body>
+
 </html>
