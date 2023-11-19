@@ -43,6 +43,7 @@ strong {
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
+    padding: 30px;
 }
 
 .detalle-estacionamiento-container .titulo {
@@ -76,8 +77,6 @@ strong {
     background-color: #0056b3;
 }
 
-/* detalle-estacionamiento.component.css */
-/* ... (tus estilos actuales) */
 .info-container h2 {
     text-align: left;
 }
@@ -90,11 +89,13 @@ strong {
 
 .izq-der {
     margin-bottom: 30px;
+    
 }
 
 .info-izquierda {
     width: 60%;
     text-align: left;
+    margin-top: 30px;
 }
 
 .info-derecha {

@@ -49,16 +49,12 @@
             <strong>Disponibilidad:</strong>
             {{ estacionamiento?.disponibilidad }}
           </p>
-          <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }}</p>
+          <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }} vehículos</p>
           <p>
             <strong>Fecha de Registro:</strong>
             {{ estacionamiento?.fechaRegistro | date }}
           </p>
-          <p><strong>Precio:</strong> {{ estacionamiento?.precio }}</p>
-          <p>
-            <strong>Anfitrión:</strong> {{ estacionamiento?.usuario?.nombre }}
-          </p>
-
+        
           <!-- Ajusta según la estructura de tus datos y preferencias -->
           <div class="valoracion-container">
             <!-- Utiliza el ícono de estrella de Angular Material -->
