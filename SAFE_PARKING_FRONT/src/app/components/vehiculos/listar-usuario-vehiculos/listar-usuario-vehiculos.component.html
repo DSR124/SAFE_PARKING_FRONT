@@ -1,64 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body *ngIf="verificar()">
-    <div class="encabezados" *ngIf="validarRol()">
-      <app-navbar-administrador
-        *ngIf="role === 'administrador'"
-      ></app-navbar-administrador>
-      <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-      <app-navbar-arrendador
-        *ngIf="role === 'arrendador'"
-      ></app-navbar-arrendador>
-    </div>
-    <div class="container">
-      <div class="litle">
-        <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
-      </div>
-      <div
-        class="estacionamientos-container"
-        *ngIf="verificar() && validarRol()"
-      >
-        <!-- Itera sobre los vehículos y muestra cada uno como una tarjeta -->
-        <mat-card
-          *ngFor="let vehiculo of dataSource.data"
-          class="estacionamiento-card"
-          [style.background-color]="'white'"
-        >
-          <!-- Utiliza la directiva [src] para asignar la URL de la imagen -->
-          <img
-            mat-card-image
-            [src]="getImagenUrl(vehiculo)"
-            (error)="imagenNoCargada($event)"
-            alt="Foto del estacionamiento"
-            class="imagen-por-defecto"
-          />
-          <mat-card-header>
-            <mat-card-title>
-              <p>
-                {{ vehiculo.marcaVehiculo }} - {{ vehiculo.categoriaVehiculo }}
-              </p>
-            </mat-card-title>
-            <mat-card-subtitle>
-              {{ "detalle de vehiculo" }}
-            </mat-card-subtitle>
-          </mat-card-header>
 
-          <mat-card-content>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="container">
+    <div class="litle">
+      <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
+    </div>
+    <div class="estacionamientos-container" *ngIf="verificar() && validarRol()">
+      <!-- Itera sobre los vehículos y muestra cada uno como una tarjeta -->
+      <mat-card *ngFor="let vehiculo of dataSource.data" class="estacionamiento-card"
+        [style.background-color]="'white'">
+        <!-- Utiliza la directiva [src] para asignar la URL de la imagen -->
+        <img mat-card-image [src]="getImagenUrl(vehiculo)" (error)="imagenNoCargada($event)"
+          alt="Foto del estacionamiento" class="imagen-por-defecto" />
+        <mat-card-header>
+          <mat-card-title>
             <p>
-              <strong>Placa:</strong> {{ vehiculo.placaVehiculo }} <br />
-
-              <strong>Tamaño:</strong> {{ vehiculo.tamanioVehiculo }} <br />
-              <strong>Tarjeta de Propiedad:</strong>
-              {{ vehiculo.tarjetaPropiedadVehiculo }}
+              {{ vehiculo.marcaVehiculo }} - {{ vehiculo.categoriaVehiculo }}
             </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{ "detalle de vehiculo" }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>
+            <strong>Placa:</strong> {{ vehiculo.placaVehiculo }} <br />
+
+            <strong>Tamaño:</strong> {{ vehiculo.tamanioVehiculo }} <br />
+            <strong>Tarjeta de Propiedad:</strong>
+            {{ vehiculo.tarjetaPropiedadVehiculo }}
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

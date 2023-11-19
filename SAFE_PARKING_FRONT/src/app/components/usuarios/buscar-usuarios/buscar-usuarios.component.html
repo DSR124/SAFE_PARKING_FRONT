@@ -2,58 +2,56 @@
 <div [hidden]="route.children.length !== 0">
   <!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      <app-navbar-administrador></app-navbar-administrador>
 
-      <div class="search-form">
-        <div class="form-group">
-          <label for="incidenteIdInput">Ingrese el ID del usuario:</label>
-          <input id="incidenteIdInput" type="number" [(ngModel)]="idUsuario" />
-          <button (click)="buscar()">Buscar</button>
-        </div>
-        <hr />
-        <div class="incidente-details" *ngIf="usu">
-          <h2 class="details-heading">Detalles del Usuario</h2>
-          <div class="info-box">
-            <h1>Nombre del usuario</h1>
-            <p>{{ usu.nombre }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Apellido del usuario</h1>
-            <p>{{ usu.apellido }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Correo del usuario</h1>
-            <p>{{ usu.correo }}</p>
-          </div>
-          <div class="info-box">
-            <h1>DNI del usuario</h1>
-            <p>{{ usu.dni }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Membresia del usuario</h1>
-            <p>{{ usu.membresia.tipoMembresia }}</p>
-          </div>
-          <div class="info-box">
-            <h1>Imagen</h1>
-            <div class="col-md-6">
-              <img
-                mat-card-image
-                [src]="getImagenUrl()"
-                (error)="imagenNoCargada($event)"
-                alt="Foto del estacionamiento"
-                class="responsive-img"
-              />
-            </div>
-          </div>
-          <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <app-navbar-administrador></app-navbar-administrador>
+
+    <div class="search-form">
+      <div class="form-group">
+        <label for="incidenteIdInput">Ingrese el ID del usuario:</label>
+        <input id="incidenteIdInput" type="number" [(ngModel)]="idUsuario" />
+        <button (click)="buscar()">Buscar</button>
       </div>
-    </body>
+      <hr />
+      <div class="incidente-details" *ngIf="usu">
+        <h2 class="details-heading">Detalles del Usuario</h2>
+        <div class="info-box">
+          <h1>Nombre del usuario</h1>
+          <p>{{ usu.nombre }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Apellido del usuario</h1>
+          <p>{{ usu.apellido }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Correo del usuario</h1>
+          <p>{{ usu.correo }}</p>
+        </div>
+        <div class="info-box">
+          <h1>DNI del usuario</h1>
+          <p>{{ usu.dni }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Membresia del usuario</h1>
+          <p>{{ usu.membresia.tipoMembresia }}</p>
+        </div>
+        <div class="info-box">
+          <h1>Imagen</h1>
+          <div class="col-md-6">
+            <img mat-card-image [src]="getImagenUrl()" (error)="imagenNoCargada($event)" alt="Foto del estacionamiento"
+              class="responsive-img" />
+          </div>
+        </div>
+        <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
+      </div>
+    </div>
+  </body>
+
   </html>
 </div>

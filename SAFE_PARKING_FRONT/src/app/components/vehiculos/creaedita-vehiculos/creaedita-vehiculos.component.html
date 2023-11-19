@@ -8,10 +8,15 @@
 </head>
 
 <body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
   <div class="encabezados" *ngIf="validarRol()">
-    <app-navbar-administrador *ngIf="role === 'administrador'"></app-navbar-administrador>
-    <app-navbar-conductor *ngIf="role === 'conductor'"></app-navbar-conductor>
-    <app-navbar-arrendador *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
   </div>
   <div class="container">
     <form [formGroup]="form" (submit)="registrar()" class="example-form" enctype="multipart/form-data">

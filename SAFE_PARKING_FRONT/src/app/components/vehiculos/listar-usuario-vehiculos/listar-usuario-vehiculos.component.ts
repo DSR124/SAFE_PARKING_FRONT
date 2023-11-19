@@ -81,4 +81,13 @@ export class ListarUsuarioVehiculosComponent {
   getColor(vehiculo: Vehiculo): string {
     return vehiculo.colorVehiculo || 'white'; // Puedes establecer un color predeterminado si colorVehiculo es null o undefined
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }
