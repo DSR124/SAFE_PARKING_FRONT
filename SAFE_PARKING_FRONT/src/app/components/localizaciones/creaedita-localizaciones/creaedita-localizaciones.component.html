@@ -1,150 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
-    />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <title>Registrar Localización</title>
-  </head>
-  <body>
-    <div class="header" *ngIf="verificar()">
-      <div class="encabezados" *ngIf="validarRol()">
-        <app-navbar-administrador
-          *ngIf="role === 'administrador'"
-        ></app-navbar-administrador>
-        <app-navbar-conductor
-          *ngIf="role === 'conductor'"
-        ></app-navbar-conductor>
-        <app-navbar-arrendador
-          *ngIf="role === 'arrendador'"
-        ></app-navbar-arrendador>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <title>Registrar Localización</title>
+</head>
+
+<body>
+  <div class="header" *ngIf="verificar()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+    </div>
+  </div>
+
+  <div class="container" style="text-align: center">
+    <h1>REGISTRO DE LOCALIZACION</h1>
+    <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
+      <!-- Región sección -->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Región</mat-label>
+        <mat-select matInput placeholder="Región" formControlName="region">
+          <mat-option *ngFor="let p of provinciasLima" [value]="p.value">
+            {{ p.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('region')?.errors?.['required']">
+          La region/provincia es obligatoria.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Distrito sección -->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Distrito</mat-label>
+        <mat-select matInput placeholder="Distrito" formControlName="distrito">
+          <mat-option *ngFor="let p of distritosLima" [value]="p.value">
+            {{ p.viewValue }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('distrito')?.errors?.['required']">
+          La disponibilidad es obligatoria.
+        </mat-error>
+      </mat-form-field>
+      <!-- Dirección sección -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Dirección</mat-label>
+        <input matInput placeholder="Dirección" formControlName="direccion" />
+        <mat-error *ngIf="form.get('direccion')?.invalid">
+          {{
+          form.get('direccion')!.errors?.['required'] ? 'La dirección es obligatorio' :
+          (form.get('direccion')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
+          }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Referencia sección -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Referencia</mat-label>
+        <input matInput placeholder="Referencia" formControlName="referencia" />
+        <mat-error *ngIf="form.get('referencia')?.invalid">
+          {{
+          form.get('referencia')!.errors?.['required'] ? 'La referencia es obligatorio' :
+          (form.get('referencia')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
+          }}
+        </mat-error>
+      </mat-form-field>
+      <h2>SELECCIONE TU UBICACION EN EL MAPA</h2>
+
+      <div class="longitudes">
+        <!-- Latitud sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Latitud</mat-label>
+          <input matInput placeholder="Latitud" formControlName="latitud" readonly="true" />
+          <mat-error *ngIf="obtenerControlCampo('latitud')?.errors?.['required']">
+            El campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <!-- Longitud sección -->
+        <mat-form-field class="example-full-width">
+          <mat-label>Longitud</mat-label>
+          <input matInput placeholder="Longitud" formControlName="longitud" readonly="true" />
+          <mat-error *ngIf="obtenerControlCampo('longitud')?.errors?.['required']">
+            El campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
       </div>
-    </div>
 
-    <div class="container" style="text-align: center">
-      <h1>REGISTRO DE LOCALIZACION</h1>
-      <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
-        <!-- Región sección -->
+      <div id="map" style="height: 400px"></div>
+      <div class="btn-container">
+        <button class="boton_registro" mat-raised-button>Registrar</button>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Región</mat-label>
-          <mat-select matInput placeholder="Región" formControlName="region">
-            <mat-option *ngFor="let p of provinciasLima" [value]="p.value">
-              {{ p.viewValue }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('region')?.errors?.['required']"
-          >
-            La region/provincia es obligatoria.
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Distrito sección -->
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Distrito</mat-label>
-          <mat-select
-            matInput
-            placeholder="Distrito"
-            formControlName="distrito"
-          >
-            <mat-option *ngFor="let p of distritosLima" [value]="p.value">
-              {{ p.viewValue }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('distrito')?.errors?.['required']"
-          >
-            La disponibilidad es obligatoria.
-          </mat-error>
-        </mat-form-field>
-        <!-- Dirección sección -->
-        <mat-form-field class="example-full-width">
-          <mat-label>Dirección</mat-label>
-          <input matInput placeholder="Dirección" formControlName="direccion" />
-          <mat-error *ngIf="form.get('direccion')?.invalid">
-            {{
-              form.get('direccion')!.errors?.['required'] ? 'La dirección es obligatorio' :
-              (form.get('direccion')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
-            }}
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Referencia sección -->
-        <mat-form-field class="example-full-width">
-          <mat-label>Referencia</mat-label>
-          <input
-            matInput
-            placeholder="Referencia"
-            formControlName="referencia"
-          />
-          <mat-error *ngIf="form.get('referencia')?.invalid">
-            {{
-              form.get('referencia')!.errors?.['required'] ? 'La referencia es obligatorio' :
-              (form.get('referencia')!.errors?.['maxlength'] ? 'No puede tener más de 50 caracteres' :'')
-            }}
-          </mat-error>
-        </mat-form-field>
-        <h2>SELECCIONE TU UBICACION EN EL MAPA</h2>
-
-        <div class="longitudes">
-          <!-- Latitud sección -->
-          <mat-form-field class="example-full-width">
-            <mat-label>Latitud</mat-label>
-            <input
-              matInput
-              placeholder="Latitud"
-              formControlName="latitud"
-              readonly="true"
-            />
-            <mat-error
-              *ngIf="obtenerControlCampo('latitud')?.errors?.['required']"
-            >
-              El campo es obligatorio.
-            </mat-error>
-          </mat-form-field>
-          <!-- Longitud sección -->
-          <mat-form-field class="example-full-width">
-            <mat-label>Longitud</mat-label>
-            <input
-              matInput
-              placeholder="Longitud"
-              formControlName="longitud"
-              readonly="true"
-            />
-            <mat-error
-              *ngIf="obtenerControlCampo('longitud')?.errors?.['required']"
-            >
-              El campo es obligatorio.
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div id="map" style="height: 400px"></div>
-        <div class="btn-container">
-          <button class="boton_registro" mat-raised-button>Registrar</button>
-
-          <button
-            mat-raised-button
-            [routerLink]="[
+        <button mat-raised-button [routerLink]="[
               '/components/localizaciones/listar_admin_localizaciones'
-            ]"
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
-  </body>
+            ]">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>
