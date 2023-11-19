@@ -26,11 +26,11 @@
         <mat-label>estacionamiento</mat-label>
         <mat-select formControlName="estacionamiento">
           <mat-option *ngFor="let p of listaEstacionamiento" [value]="p.idEstacionamiento">
-            {{ p.tipoEstacionamiento }}
+            {{ p.tipoEstacionamiento }} - {{ p.localizacion.direccion }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="obtenerControlCampo('estacionamiento')?.errors?.['required']">
-          El postre es obligatorio.
+          El estacionamiento es obligatorio.
         </mat-error>
       </mat-form-field>
       <br />
@@ -39,7 +39,7 @@
         <mat-label>horario</mat-label>
         <mat-select formControlName="horario">
           <mat-option *ngFor="let p of listaHorario" [value]="p.idHorario">
-            {{ p.fecha }} {{ p.horaApertura }}
+            {{ p.fecha }} - {{ p.horaApertura }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="obtenerControlCampo('horario')?.errors?.['required']">
