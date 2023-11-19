@@ -11,14 +11,17 @@ import { Params, Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { ActivatedRoute } from '@angular/router';
-import { ColorEvent } from 'ngx-color';
+import { ChangeDetectorRef } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 export function tarjetaPropiedadValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value = control.value;
     const isValid = /^[0-9]{12}$/.test(value);
 
-    return isValid ? null : { 'invalidTarjetaPropiedad': { value: control.value } };
+    return isValid
+      ? null
+      : { invalidTarjetaPropiedad: { value: control.value } };
   };
 }
 
@@ -58,19 +61,37 @@ export class CreaeditaVehiculosComponent implements OnInit {
     { value: 'Pequeño', viewValue: 'Pequeño' },
     { value: 'Mediano', viewValue: 'Mediano' },
     { value: 'Grande', viewValue: 'Grande' },
-    { value: 'Otros', viewValue: 'Otros' }
+    { value: 'Otros', viewValue: 'Otros' },
   ];
 
   imageSelected: string | ArrayBuffer | null = null;
-  imagenCortada: string = '';
+  role: string = '';
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   constructor(
     private vS: VehiculoService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
-  ) { }
+    public route: ActivatedRoute,
+    private loginService: LoginService,
 
+    private cdr: ChangeDetectorRef // Add this line
+  ) {}
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -78,13 +99,26 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
-      placaVehiculo: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(/^[A-Z]{2}[0-9]{4}$/)]],
+      idVehiculo: [''], // ¡Este campo debería inicializarse con el valor correcto!
+
+      placaVehiculo: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(6),
+          Validators.pattern(/^[A-Z]{2}[0-9]{4}$/),
+        ],
+      ],
       categoriaVehiculo: ['', Validators.required],
       colorVehiculo: [this.colorSeleccionado, Validators.required],
       marcaVehiculo: ['', Validators.required],
       tamanioVehiculo: ['', Validators.required],
-      tarjetaPropiedadVehiculo: ['', [Validators.required, tarjetaPropiedadValidator()]],
-      imagenVehiculo: ['', Validators.required],
+      tarjetaPropiedadVehiculo: [
+        '',
+        [Validators.required, tarjetaPropiedadValidator()],
+      ],
+      foto: ['', Validators.required],
     });
   }
 
@@ -96,30 +130,31 @@ export class CreaeditaVehiculosComponent implements OnInit {
       this.vehiculo.colorVehiculo = this.form.value.colorVehiculo;
       this.vehiculo.marcaVehiculo = this.form.value.marcaVehiculo;
       this.vehiculo.tamanioVehiculo = this.form.value.tamanioVehiculo;
-      this.vehiculo.tarjetaPropiedadVehiculo = this.form.value.tarjetaPropiedadVehiculo;
-      this.vehiculo.imagenVehiculo = this.imagenCortada; // Guardar la imagen en el objeto vehículo
-
+      this.vehiculo.tarjetaPropiedadVehiculo =
+        this.form.value.tarjetaPropiedadVehiculo;
+      this.vehiculo.imagenVehiculo = this.form.value.foto;
       if (this.edicion) {
         this.vS.update(this.vehiculo).subscribe(() => {
           this.vS.list().subscribe((data) => {
             this.vS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
+        this.router.navigate(['components/vehiculos/listar_admin_vehiculos']);
       } else {
         this.vS.insert(this.vehiculo).subscribe((data) => {
           this.vS.list().subscribe((data) => {
             this.vS.setList(data);
           });
         });
-        alert("Se registro correctamente");
+        alert('Se registro correctamente');
+        this.ngOnInit();
       }
-      this.router.navigate(['vehiculos/listar_admin_vehiculos']);
     } else {
       // Handle incomplete form
       this.mensaje = '¡Completa todos los campos!';
     }
   }
-
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -127,15 +162,14 @@ export class CreaeditaVehiculosComponent implements OnInit {
       if (file.type.startsWith('image')) {
         const reader = new FileReader();
         reader.onload = () => {
-          this.imageSelected = reader.result;
+          const base64Content = reader.result?.toString().split(',')[1];
 
-          if (typeof this.imageSelected === 'string') {
-            this.imagenCortada = this.imageSelected.substring(0, 50);
-            this.form.get('imagenVehiculo')?.setValue(this.imagenCortada); // Actualiza el valor en el formulario
-
-            console.log('Partial image data:', this.imagenCortada);
+          if (base64Content) {
+            this.form.get('foto')?.setValue(base64Content);
+            this.imageSelected = base64Content;
+            this.cdr.detectChanges(); // Trigger change detection
           } else {
-            console.log('Image has not loaded as a string');
+            console.log('Error extracting base64 content from the image.');
           }
         };
         reader.readAsDataURL(file);
@@ -160,18 +194,41 @@ export class CreaeditaVehiculosComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.vS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idVehiculo: new FormControl(data.idVehiculo),
-          placaVehiculo: new FormControl(data.placaVehiculo),
-          categoriaVehiculo: new FormControl(data.categoriaVehiculo),
-          colorVehiculo: new FormControl(data.colorVehiculo),
-          marcaVehiculo: new FormControl(data.marcaVehiculo),
-          tamanioVehiculo: new FormControl(data.tamanioVehiculo),
-          tarjetaPropiedadVehiculo: new FormControl(data.tarjetaPropiedadVehiculo),
-          imagenVehiculo: new FormControl(data.imagenVehiculo),
+        this.form.patchValue({
+          idVehiculo: data.idVehiculo, // Asigna el valor correcto aquí
+          placaVehiculo: data.placaVehiculo,
+          categoriaVehiculo: data.categoriaVehiculo,
+          colorVehiculo: data.colorVehiculo,
+          marcaVehiculo: data.marcaVehiculo,
+          tamanioVehiculo: data.tamanioVehiculo,
+          tarjetaPropiedadVehiculo: data.tarjetaPropiedadVehiculo,
+          foto: data.imagenVehiculo,
         });
+
         this.imageSelected = data.imagenVehiculo; // Guarda la URL de la imagen
       });
     }
   }
+
+  imagenNoCargada(event: Event) {
+    const imagen = event.target as HTMLImageElement;
+    imagen.src = 'assets/image/EstacionamientoDefault.jpg'; // Ruta de otra imagen predeterminada o un mensaje de error
+  }
+  getImagenUrl(): string {
+    console.log('imageSelected:', this.imageSelected);
+    if (this.imageSelected) {
+      return 'data:image/jpeg;base64,' + this.imageSelected;
+    } else {
+      return 'assets/image/EstacionamientoDefault.jpg';
+    }
+  }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

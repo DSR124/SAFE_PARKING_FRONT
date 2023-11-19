@@ -1,15 +1,51 @@
+h1 {
+  font-size: 96px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  line-height: normal;
+}
+
+h2 {
+  font-size: 48px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: normal;
+  color: white;
+
+}
+
+h3 {
+  font-size: 23px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: normal;
+}
+
+p {
+  font-size: 1.25em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: normal;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  align-items: center;
+  height: 100vh;
+
 }
 
 .titulo {
-  text-align: center; /* Center the text horizontally */
-  background-color: #56ffcc; /* Change the background color to your preference */
-  color: #050505; /* Text color */
+  text-align: center;
+  /* Center the text horizontally */
+  color: #050505;
+  /* Text color */
   padding: 10px;
-  font-size: 24px; /* Adjust the font size as needed */
-  margin-bottom: 20px; /* Add spacing below the title */
+  font-size: 24px;
+  /* Adjust the font size as needed */
+  margin-bottom: 20px;
+  /* Add spacing below the title */
 }
 
 
@@ -17,50 +53,48 @@ body {
 .membership-list {
   list-style: none;
   padding: 0;
-  width: 500px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   align-items: center;
+  justify-content: center;
+  /* Centra los elementos horizontalmente */
+  cursor: pointer;
 }
 
 .membership-item {
   background: linear-gradient(135deg, #1d1d1d, #9e9e9e);
   margin: 10px;
   padding: 10px;
-  height: 300px;
-  width: 200px;
+  height: 350px;
+  width: 240px;
   border-radius: 5px;
   align-items: center;
+  position: relative;
+
+}
+.membership-item .informacion{
+ align-items: center;
+ text-align: center;
+ margin-top: 60px;
 }
 /* Style the membership details */
 .tipo_membresia {
   flex: 1;
-  padding: 30px 30px 0px 30px;
   flex-wrap: wrap;
   margin: 0 auto;
 
 }
+
 .tipo_membresia h3 {
   font-size: 30px;
   color: #5cffa5;
 
 }
-.precio {
-  flex: 1;
-  padding: 10px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  margin-left: 30px;
 
-}
 
 .precio p {
   font-size: 20px;
   color: #eee6e6;
+  margin: 25px;
 }
 
 .contenido p {
@@ -69,12 +103,14 @@ body {
   margin: 10px;
   margin-bottom: 20px;
 }
+
 .botoncito {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
+
 /* Style the "Editar" button */
 .btn-primary {
   background-color: #41ffd6;

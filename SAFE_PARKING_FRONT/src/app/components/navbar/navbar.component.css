@@ -1,22 +1,144 @@
-.spacer{
+/* Estilos generales */
+.spacer {
   flex: 1 1 auto;
+  height: auto;
 }
+
 .boton-verde-esmeralda {
-  background-color: #164b31; /* Código de color para verde esmeralda */
-  color: rgb(31, 65, 20); /* Color del texto */
-  border-radius: 20px; /* Bordes redondeados */
+  background-color: #164b31;
+  color: rgb(31, 65, 20);
+  border-radius: 20px;
 }
-.logo{
+
+.logo {
   width: 50px;
   height: 50px;
 }
+
 .mat-toolbar button {
-  margin-right: 10px; /* Añade margen a la derecha de cada botón */
+  margin-right: 10px;
 }
 
-/* Estilo para el hover en los botones */
 .mat-toolbar button:hover {
-  background-color: #5e5e5e; /* Cambia el color de fondo al pasar el mouse */
-  transition: background-color 250ms ease; /* Agrega una transición suave */
-  border-radius: 20px; /* Bordes redondeados */
+  background-color: #5e5e5e;
+  transition: background-color 250ms ease;
+  border-radius: 20px;
+}
+
+
+/* ... Estilos para botones y toolbar ... */
+
+.menu-button {
+  display: none; /* Inicialmente oculto en pantallas grandes */
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  cursor: pointer;
+  font-size: 24px; /* Tamaño del ícono */
+  color: #fff; /* Color del ícono */
+}
+
+.menu-button:hover {
+  color: #aaa; /* Cambia el color del ícono al pasar el mouse */
+}
+
+
+/* Estilos para el botón y la barra de navegación */
+.boton-verde-esmeralda {
+  background-color: #164b31;
+  color: rgb(31, 65, 20);
+  border-radius: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.mat-toolbar button {
+  margin-right: 10px;
+}
+
+.mat-toolbar button:hover {
+  background-color: #5e5e5e;
+  transition: background-color 250ms ease;
+  border-radius: 20px;
+}
+
+.mat-toolbar {
+  /* min-width: 475px; */
+}
+
+/* Estilos para el botón de menú en pantallas pequeñas */
+.menu-button {
+  display: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+}
+
+.menu-button:hover {
+  color: #aaa;
+}
+
+/* Estilos para la barra lateral del menú */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #000000;
+  padding-top: 20px;
+  transition: 0.5s;
+  z-index: 2;
+}
+
+
+.sidebar.open {
+  left: 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ddd;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: #555;
+}
+
+/* Estilos para el botón de cerrar */
+
+/* Media query para pantallas pequeñas */
+@media screen and (max-width: 767px) {
+  .mat-toolbar button {
+    display: none; /* Oculta los botones en la barra de navegación */
+  }
+  
+  .mat-toolbar .menu-button {
+    display: contents; /* Muestra el botón en pantallas pequeñas */
+  }
+}
+@media screen and (min-width: 767px) {
+ 
+  .sidebar{
+    display: none;
+  }
 }

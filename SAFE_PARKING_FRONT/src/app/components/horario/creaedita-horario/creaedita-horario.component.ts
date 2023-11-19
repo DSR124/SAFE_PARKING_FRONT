@@ -13,6 +13,7 @@ import {
   FormBuilder,
   AbstractControl,
 } from '@angular/forms';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-horario',
@@ -27,12 +28,14 @@ export class CreaeditaHorarioComponent implements OnInit {
   //minFecha: Date = moment().add(-0, 'days').toDate();
   id: number = 0; //Añadir
   edicion: boolean = false; //Añadir
+  role: string = '';
 
   constructor(
     private hS: HorarioService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -48,7 +51,21 @@ export class CreaeditaHorarioComponent implements OnInit {
       fecha: ['', Validators.required],
     });
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   registrar(): void {
     if (this.form.valid) {
       this.horario.idHorario = this.form.value.idHorario;
@@ -60,18 +77,18 @@ export class CreaeditaHorarioComponent implements OnInit {
           this.hS.list().subscribe((data) => {
             this.hS.setList(data);
           });
-
         });
-        alert("La modificación se hizo correctamente");
+        alert('La modificación se hizo correctamente');
+        this.router.navigate(['components/horarios/listar_admin_horarios']);
       } else {
         this.hS.insert(this.horario).subscribe((data) => {
           this.hS.list().subscribe((data) => {
             this.hS.setList(data);
           });
         });
-        alert("El registro se hizo correctamente");
+        alert('El registro se hizo correctamente');
+        this.ngOnInit();
       }
-      this.router.navigate(['horarios/listar_admin_horarios']);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
@@ -87,12 +104,9 @@ export class CreaeditaHorarioComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.hS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idHorario: new FormControl(data.idHorario),
-          horaApertura: new FormControl(data.horaApertura),
-          horaCierre: new FormControl(data.horaCierre),
-          fecha: new FormControl(data.fecha),
+      this.hS.getById(this.id).subscribe((data) => {
+        this.form.patchValue({
+          idHorario: data.idHorario,
         });
       });
     }
@@ -122,4 +136,13 @@ export class CreaeditaHorarioComponent implements OnInit {
     const hora24h = horaNum.toString().padStart(2, '0');
     return `${hora24h}:${minutos}`;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

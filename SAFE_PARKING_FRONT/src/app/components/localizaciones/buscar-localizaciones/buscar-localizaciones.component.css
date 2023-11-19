@@ -9,6 +9,11 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
   color: #333;
+  padding: 30px;
+  margin-left: 280px;
+  height: 100hv;
+  justify-content: center; /* Centrar verticalmente */
+
 }
 
 /* Contenedor principal */
@@ -51,20 +56,136 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  left: 310px;
 }
 
-button:hover {
-  background-color: #333;
-  color: #4ff5cb;
-}
 
 /* Mapa */
 .map-container {
-  width: 500px;
-  height: 400px;
+  max-width: 500px;
+  height: 300px;
   border-radius: 5px;
   margin: 40px auto; /* Centrar horizontalmente */
-  flex-direction: column;
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center; /* Centrar horizontalmente */
+  z-index: 0;
+}
+
+/*Responsive y boton lateral..........*/
+.toggle-button {
+  display: none;
+  /* Oculta el botón por defecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+
+  /* Estilos del botón para pantallas pequeñas */
+  .toggle-button {
+    display: block;
+    /* Muestra el botón solo en pantallas pequeñas */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    /* Color del icono */
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    /* Ajusta el z-index según sea necesario */
+  }
+
+  body {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    /* Agrega una transición para suavizar el cambio */
+  }
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-administrador {
+    transition: transform 0.3s ease;
+    /* Agrega una transición */
+  }
+
+  app-navbar-administrador[hidden] {
+    transform: translateX(-100%);
+    /* Mueve la barra fuera del viewport */
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+    /* Restablece la posición */
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-conductor {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-conductor[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-arrendador {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-arrendador[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: contents;
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
 }

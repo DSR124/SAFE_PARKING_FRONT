@@ -24,4 +24,13 @@ export class ListarUsuarioMembresiaComponent implements OnInit {
     // Redireccionar al usuario al apartado de registro de usuario, pasando el ID de la membresía como parámetro.
     this.router.navigate([`registrar_usuario`]);
   }
+  
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

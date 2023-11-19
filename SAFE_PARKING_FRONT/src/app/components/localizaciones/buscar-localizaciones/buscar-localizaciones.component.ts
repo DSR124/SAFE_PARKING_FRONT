@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
 import { Localizacion } from 'src/app/models/localizacion';
 import { LocalizacionService } from 'src/app/services/localizacion.service';
+import { LoginService } from 'src/app/services/login.service';
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -18,12 +19,28 @@ export class BuscarLocalizacionesComponent implements OnInit {
   marker: L.Marker | null = null;
   form: FormGroup = new FormGroup({});
   localizacion: Localizacion = new Localizacion();
+  role: string = '';
 
   constructor(
     private busquedaService: LocalizacionService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.map = L.map('map').setView([-9.189967, -75.015152], 5);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(
@@ -91,4 +108,13 @@ export class BuscarLocalizacionesComponent implements OnInit {
     }
     return control;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

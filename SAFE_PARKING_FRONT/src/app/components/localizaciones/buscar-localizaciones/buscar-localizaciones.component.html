@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Buscar Localización</title>
-    <link rel="stylesheet" href="buscar-localizaciones.component.css" />
-  </head>
-  <body>
-    <app-navbar></app-navbar>
 
-    <div class="container">
-      <h2>Buscar Localización</h2>
-      <input
-        type="text"
-        [(ngModel)]="idLocalizacion"
-        placeholder="Ingrese el ID de la localización"
-      />
-      <button (click)="buscar()">Buscar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscar Localización</title>
+  <link rel="stylesheet" href="buscar-localizaciones.component.css" />
+</head>
+
+<body>
+  <div class="header" *ngIf="verificar()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
     </div>
-    <div id="map" class="map-container"></div>
-  </body>
+  </div>
+  <div class="container">
+    <h2>Buscar Localización</h2>
+    <input type="text" [(ngModel)]="idLocalizacion" placeholder="Ingrese el ID de la localización" />
+    <button (click)="buscar()">Buscar</button>
+  </div>
+  <div id="map" class="map-container"></div>
+</body>
+
 </html>

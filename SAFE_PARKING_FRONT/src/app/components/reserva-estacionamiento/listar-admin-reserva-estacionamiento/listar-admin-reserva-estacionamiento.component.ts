@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
 @Component({
@@ -14,6 +15,8 @@ import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacion
 export class ListarAdminReservaEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<ReservaEstacionamiento> =
     new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'idReservaEstacionamiento',
     'estado',
@@ -32,7 +35,8 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
 
   constructor(
     private reS: ReservaEstacionamientoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.reS.list().subscribe((data) => {
@@ -70,4 +74,29 @@ export class ListarAdminReservaEstacionamientoComponent implements OnInit {
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
+
 }

@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<router-outlet></router-outlet>
+<div [hidden]="route.children.length !== 0">
+  <!DOCTYPE html>
+  <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
-    <app-navbar></app-navbar>
+    <app-navbar-administrador></app-navbar-administrador>
 
     <div class="search-form">
       <div class="form-group">
@@ -37,9 +41,17 @@
           <h1>Membresia del usuario</h1>
           <p>{{ usu.membresia.tipoMembresia }}</p>
         </div>
-
+        <div class="info-box">
+          <h1>Imagen</h1>
+          <div class="col-md-6">
+            <img mat-card-image [src]="getImagenUrl()" (error)="imagenNoCargada($event)" alt="Foto del estacionamiento"
+              class="responsive-img" />
+          </div>
+        </div>
         <!-- Agrega más campos según la estructura de tu objeto Vehiculo -->
       </div>
     </div>
   </body>
-</html>
+
+  </html>
+</div>

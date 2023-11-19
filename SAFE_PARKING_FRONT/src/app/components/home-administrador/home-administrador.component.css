@@ -1,8 +1,8 @@
 body {
   margin-left: 280px;
   /*Tomar en cuenta esto*/
-  background: linear-gradient(to right, #11998e, #38ef7d); 
-
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  height: auto;
 }
 
 /*Estilos de la fuente - Titulos y textos*/
@@ -68,3 +68,63 @@ img {
   border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
+/*Responsive y boton lateral..........*/
+.toggle-button {
+  display: none; /* Oculta el botón por defecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+  /* Estilos del botón para pantallas pequeñas */
+  .toggle-button {
+    display: block; /* Muestra el botón solo en pantallas pequeñas */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333; /* Color del icono */
+    cursor: pointer;
+    outline: none;
+    z-index: 999; /* Ajusta el z-index según sea necesario */
+  }
+
+  /* Estilos para ocultar la barra lateral en pantallas pequeñas */
+  body {
+    margin-left: 0;
+    transition: margin-left 0.3s ease; /* Agrega una transición para suavizar el cambio */
+  }
+
+  /* Estilos para ocultar el app-navbar-administrador en pantallas pequeñas */
+  app-navbar-administrador[hidden] {
+    display: none;
+    
+  }
+  app-navbar-administrador {
+    transition: transform 0.3s ease; /* Agrega una transición */
+  }
+
+  /* Estilos para ocultar el app-navbar-administrador en pantallas pequeñas */
+  app-navbar-administrador[hidden] {
+    transform: translateX(-100%); /* Mueve la barra fuera del viewport */
+  }
+
+  /* Estilo para mostrar el app-navbar-administrador cuando no está oculto */
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0); /* Restablece la posición */
+  }
+
+  
+}
+@media only screen and (min-width: 768px) {
+
+  /* Estilos para ocultar el app-navbar-administrador en pantallas pequeñas */
+  app-navbar-administrador[hidden] {
+    display: contents;
+  }
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0); /* Restablece la posición */
+  }
+}
+/*FIN de Responsive y boton lateral..........*/

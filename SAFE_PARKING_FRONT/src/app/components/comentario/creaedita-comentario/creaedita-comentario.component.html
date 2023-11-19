@@ -1,102 +1,94 @@
-<app-navbar></app-navbar>
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="container" style="text-align: center">
-      <h2>Registro de Comentario</h2>
-      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <mat-label>codigo</mat-label>
-          <input
-            matInput
-            placeholder="Id"
-            formControlName="idComentario"
-            readonly="true"
-          />
-        </mat-form-field>
-        <br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Comentario</mat-label>
-          <input matInput placeholder="contenido" formControlName="contenido" />
-          <mat-error *ngIf="form.get('contenido')?.invalid">
-            {{
-              form.get('contenido')!.errors?.['required'] ? 'El contenido es obligatorio' :
-              (form.get('contenido')!.errors?.['maxlength'] ? 'El contenido no puede tener más de 50 caracteres' :'')
-            }}
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+
+  <div class="container" style="text-align: center">
+    <h2>Registro de Comentario</h2>
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Comentario</mat-label>
+        <input matInput placeholder="contenido" formControlName="contenido" />
+        <mat-error *ngIf="form.get('contenido')?.invalid">
+          {{
+          form.get('contenido')!.errors?.['required'] ? 'El contenido es obligatorio' :
+          (form.get('contenido')!.errors?.['maxlength'] ? 'El contenido no puede tener más de 50 caracteres' :'')
+          }}
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Valoracion</mat-label>
+        <input matInput placeholder="valoracion del comentario (1 al 5)" formControlName="valoracion" />
+        <mat-error *ngIf="form.get('valoracion')?.invalid">
+          {{
+          form.get('valoracion')!.errors?.['required'] ? 'La valoracion es obligatorio' :
+          (form.get('valoracion')!.errors?.['pattern'] ? 'Solo puede ser un número entero del 1 al 5' :'')
+          }}
+        </mat-error>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>codigo de la reserva</mat-label>
+        <mat-select formControlName="reservaEstacionamiento">
+          <mat-option *ngFor="let p of listaReservaEstacionamiento" [value]="p.idReservaEstacionamiento">
+            {{ p.idReservaEstacionamiento }}
+          </mat-option>
+          <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
+            El codigo es obligatorio.
           </mat-error>
-        </mat-form-field>
-        <br />
-        <mat-form-field class="example-full-width">
-          <mat-label>Valoracion</mat-label>
-          <input
-            matInput
-            placeholder="valoracion del comentario (1 al 5)"
-            formControlName="valoracion"
-          />
-          <mat-error *ngIf="form.get('valoracion')?.invalid">
-            {{
-              form.get('valoracion')!.errors?.['required'] ? 'La valoracion es obligatorio' :
-              (form.get('valoracion')!.errors?.['pattern'] ? 'Solo puede ser un número entero del 1 al 5' :'')
-            }}
-          </mat-error>
-        </mat-form-field>
-        <br />
+        </mat-select>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>codigo de la reserva</mat-label>
-          <mat-select formControlName="reservaEstacionamiento">
-            <mat-option
-              *ngFor="let p of listaReservaEstacionamiento"
-              [value]="p.idReservaEstacionamiento"
-            >
-              {{ p.idReservaEstacionamiento }}
-            </mat-option>
-            <mat-error
-              *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']"
-            >
-              El codigo es obligatorio.
-            </mat-error>
-          </mat-select>
-        </mat-form-field>
+      <br />
+      <mat-form-field appearance="fill" class="example-full-width">
+        <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaCreacion"
+          readonly="true" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <!--<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="obtenerControlCampo('fechaCreacion')?.errors?.['required']">
+          La fecha de creación es obligatoria.
+        </mat-error>
+      </mat-form-field>
+      <br />
 
-        <br />
-        <mat-form-field appearance="fill" class="example-full-width">
-          <input
-            matInput
-            placeholder="Ingrese fecha"
-            [matDatepicker]="picker"
-            formControlName="fechaCreacion"
-            [min]="minFecha"
-            readonly="true"
-          />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <!--<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error
-            *ngIf="obtenerControlCampo('fechaCreacion')?.errors?.['required']"
-          >
-            La fecha de creación es obligatoria.
-          </mat-error>
-        </mat-form-field>
-        <br />
+      <br />
+      <div class="btn-container">
+        <button class="boton_registro" mat-raised-button color="primary">
+          Registrar
+        </button>
+        <button *ngIf="role === 'conductor'" mat-raised-button
+          [routerLink]="['/components/comentarios/listar_comentarios_user']">
+          Cancelar
+        </button>
+        <button *ngIf="role === 'administrador'" mat-raised-button
+          [routerLink]="['/components/comentarios/listar_comentarios_admin']">
+          Cancelar
+        </button>
+      </div>
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+</body>
 
-        <br />
-        <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
-        </div>
-        <!--<button mat-raised-button color="warn" routerLink="/comentarios">
-                Cancelar
-            </button>-->
-        <p>{{ mensaje }}</p>
-      </form>
-    </div>
-  </body>
 </html>

@@ -12,6 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Incidente } from 'src/app/models/incidente';
 import { IncidenteService } from 'src/app/services/incidente.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-incidente',
@@ -25,6 +26,7 @@ export class CreaeditaIncidenteComponent {
   listaUsuarios: Usuario[] = [];
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
 
   tiposIncidentes: { value: string; viewValue: string }[] = [
     { value: 'Daño al vehículo', viewValue: 'Daño al vehículo' },
@@ -49,9 +51,24 @@ export class CreaeditaIncidenteComponent {
     private uS: UsuarioService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -79,14 +96,16 @@ export class CreaeditaIncidenteComponent {
             this.iS.setList(data);
           });
         });
+        alert('la modificacion se hizo correctamente');
       } else {
         this.iS.insert(this.incidente).subscribe((data) => {
           this.iS.list().subscribe((data) => {
             this.iS.setList(data);
           });
         });
+        alert('El registro se hizo correctamente');
+        this.ngOnInit();
       }
-      this.router.navigate(['incidentes/listar_admin_incidentes']);
     } else {
       this.mensaje = 'Complete todos los campos!!!';
     }
@@ -99,16 +118,26 @@ export class CreaeditaIncidenteComponent {
     }
     return control;
   }
+
   init() {
     if (this.edicion) {
       this.iS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idIncidente: new FormControl(data.idIncidente),
-          descripcion: new FormControl(data.descripcion),
-          tipoIncidente: new FormControl(data.tipoIncidente),
-          usuario: new FormControl(data.usuario.idUsuario),
+        this.form.patchValue({
+          idIncidente: data.idIncidente,
+          descripcion: data.descripcion,
+          tipoIncidente: data.tipoIncidente,
+          usuario: data.usuario.idUsuario,
         });
       });
     }
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

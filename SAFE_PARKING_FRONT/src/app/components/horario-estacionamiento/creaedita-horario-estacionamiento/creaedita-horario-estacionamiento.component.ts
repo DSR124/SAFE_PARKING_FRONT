@@ -13,6 +13,7 @@ import { HorarioEstacionamiento } from 'src/app/models/horarioEstacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
 import { HorarioEstacionamientoService } from 'src/app/services/horario-estacionamiento.service';
 import { HorarioService } from 'src/app/services/horario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-creaedita-horario-estacionamiento',
@@ -27,15 +28,16 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
   listaEstacionamiento: Estacionamiento[] = [];
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
 
   constructor(
     private hS: HorarioService,
     private eS: EstacionamientoService,
     private heS: HorarioEstacionamientoService,
-
+    private loginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
@@ -45,6 +47,7 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
+      idHorarioEstacionamiento: [''],
       estacionamiento: ['', Validators.required],
       horario: ['', Validators.required],
     });
@@ -56,7 +59,21 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
       this.listaEstacionamiento = data;
     });
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   obtenerControlCampo(nombreCampo: string): AbstractControl {
     const control = this.form.get(nombreCampo);
     if (!control) {
@@ -67,6 +84,9 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
   aceptar(): void {
     if (this.form.valid) {
+      this.hro_est.idHorarioEstacionamiento =
+        this.form.value.idHorarioEstacionamiento;
+
       this.hro_est.estacionamiento.idEstacionamiento =
         this.form.value.estacionamiento;
       this.hro_est.horario.idHorario = this.form.value.horario;
@@ -77,15 +97,19 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
             this.heS.setList(data);
           });
         });
+        alert('La modificación se hizo correctamente');
       } else {
         this.heS.insert(this.hro_est).subscribe((data) => {
           this.heS.list().subscribe((data) => {
             this.heS.setList(data);
           });
         });
+        this.ngOnInit();
+
+        alert('el registro se hizo correctamente');
       }
       this.router.navigate([
-        'horarios_estacionamiento/listar_admin_horarios_estacionamiento',
+        'components/horarios_estacionamiento/listar_admin_horarios_estacionamiento',
       ]); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
@@ -94,14 +118,22 @@ export class CreaeditaHorarioEstacionamientoComponent implements OnInit {
 
   init() {
     if (this.edicion) {
-      this.heS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          estacionamiento: new FormControl(
-            data.estacionamiento.idEstacionamiento
-          ),
-          horario: new FormControl(data.horario.idHorario),
+      this.heS.getById(this.id).subscribe((data) => {
+        this.form.patchValue({
+          idHorarioEstacionamiento: data.idHorarioEstacionamiento,
+          estacionamiento: data.estacionamiento.idEstacionamiento,
+          horario: data.horario.idHorario,
         });
       });
     }
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

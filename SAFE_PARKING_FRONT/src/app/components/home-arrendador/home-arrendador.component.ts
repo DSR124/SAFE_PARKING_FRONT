@@ -8,5 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeArrendadorComponent {
   constructor(public route: ActivatedRoute) {}
-  ngOnInit() {}
+
+    //Para ocultar la barra
+
+  mostrarNavbar = true; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
+
 }

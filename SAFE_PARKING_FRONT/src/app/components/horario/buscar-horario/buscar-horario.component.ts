@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Horario } from 'src/app/models/horario';
 import { HorarioService } from 'src/app/services/horario.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-buscar-horario',
@@ -14,8 +15,13 @@ export class BuscarHorarioComponent {
   horario: Horario = new Horario();
   idHorario: number = 0;
   idNoEncontrado: boolean = false; // Variable para controlar si el ID no se encuentra
+  role: string = '';
 
-  constructor(private hS: HorarioService, public route: ActivatedRoute) {}
+  constructor(
+    private hS: HorarioService,
+    private loginService: LoginService,
+    public route: ActivatedRoute
+  ) { }
   ngOnInit(): void {
     this.buscar();
   }
@@ -32,4 +38,28 @@ export class BuscarHorarioComponent {
       }
     );
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

@@ -1,72 +1,245 @@
 body {
-    background-color: #f2f2f2;
-    margin-left: 250px;
-    /*Tomar en cuenta esto*/
-    background: linear-gradient(to right, #11998e, #38ef7d); 
-  }
+  background-color: #f2f2f2;
+  margin-left: 250px;
+  /*Tomar en cuenta esto*/
+  height: auto;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+}
 
 /*Estilos de la fuente - Titulos y textos*/
 h1 {
-    font-size: 24px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    padding-top: 30px;
-  }
-  
-  h2 {
-    font-size: 20px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-  }
-  
-  h3 {
-    font-size: 18px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-  }
-  
-  p {
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-  }
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  padding-top: 30px;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
 
 /*Contenido principal*/
 
 
 .contenido-principal {
-    margin: 0;
-    text-align: center;
-    height: 100%;
-    background: linear-gradient(to right, #11998e, #38ef7d); 
-    padding: 20px;
+  margin: 0;
+  text-align: center;
+  height: 100%;
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 20px;
 
 }
 
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 img {
-    max-width: 300px;
-    height: auto;
+  max-width: 300px;
+  height: auto;
 }
 
 .intro {
-    text-align: center;
+  text-align: center;
 }
 
 .features {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .feature {
-    text-align: center;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.boton-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #0a0a0a;
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.boton-flotante:hover {
+  background-color: #48494b;
+}
+
+.boton-flotante a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.boton-flotante i {
+  font-size: 24px;
+  margin-top: 13px;
+}
+
+.texto-flotante {
+  position: absolute;
+  bottom: 30%;
+  right: 40%;
+  transform: translateX(-50%);
+  background-color: #090909;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.boton-flotante:hover .texto-flotante {
+  opacity: 1;
+}
+
+/*Responsive y boton lateral..........*/
+.toggle-button {
+  display: none;
+  /* Oculta el botón por defecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+
+  /* Estilos del botón para pantallas pequeñas */
+  .toggle-button {
+    display: block;
+    /* Muestra el botón solo en pantallas pequeñas */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    /* Color del icono */
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    /* Ajusta el z-index según sea necesario */
+  }
+
+  body {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    /* Agrega una transición para suavizar el cambio */
+  }
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-administrador {
+    transition: transform 0.3s ease;
+    /* Agrega una transición */
+  }
+
+  app-navbar-administrador[hidden] {
+    transform: translateX(-100%);
+    /* Mueve la barra fuera del viewport */
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+    /* Restablece la posición */
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-conductor {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-conductor[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-arrendador {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-arrendador[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: contents;
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
 }

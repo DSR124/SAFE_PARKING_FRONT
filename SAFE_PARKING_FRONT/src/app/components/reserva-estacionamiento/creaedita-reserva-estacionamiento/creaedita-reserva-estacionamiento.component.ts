@@ -13,6 +13,7 @@ import { ReservaEstacionamiento } from 'src/app/models/reservaEstacionamiento';
 import { Usuario } from 'src/app/models/usuario';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { HorarioEstacionamientoService } from 'src/app/services/horario-estacionamiento.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
@@ -26,11 +27,12 @@ export class CreaeditaReservaEstacionamientoComponent {
   form: FormGroup = new FormGroup({});
   reservaestacionamiento: ReservaEstacionamiento = new ReservaEstacionamiento();
   mensaje: string = '';
-  minFecha: Date = moment().add(-0, 'days').toDate();
+  maxFecha: Date = moment().add(-1, 'days').toDate();
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
-
+  estadoregistro: string = 'En Proceso';
+  role: string = '';
   id: number = 0;
   edicion: boolean = false;
 
@@ -49,9 +51,24 @@ export class CreaeditaReservaEstacionamientoComponent {
     private heS: HorarioEstacionamientoService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -61,7 +78,7 @@ export class CreaeditaReservaEstacionamientoComponent {
 
     this.form = this.formBuilder.group({
       idReservaEstacionamiento: [''],
-      estado: ['', Validators.required],
+      estado: [this.estadoregistro, Validators.required],
       favorito: ['', Validators.required],
       fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
@@ -97,15 +114,17 @@ export class CreaeditaReservaEstacionamientoComponent {
             this.reS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.reS.insert(this.reservaestacionamiento).subscribe((data) => {
           this.reS.list().subscribe((data) => {
             this.reS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate([
-        'reservaestacionamiento/listar_admin_reserva_estacionamientos',
+        'components/reservaestacionamiento/listar_admin_reserva_estacionamientos',
       ]);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
@@ -122,18 +141,25 @@ export class CreaeditaReservaEstacionamientoComponent {
   init() {
     if (this.edicion) {
       this.reS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idReservaEstacionamiento: new FormControl(
-            data.idReservaEstacionamiento
-          ),
-          estado: new FormControl(data.estado),
-          favorito: new FormControl(data.favorito),
-          fecha: new FormControl(data.fecha),
-          users: new FormControl(data.users),
-          vehiculo: new FormControl(data.vehiculo),
-          horarioEstacionamiento: new FormControl(data.horarioEstacionamiento),
+        this.form.patchValue({
+          idReservaEstacionamiento: data.idReservaEstacionamiento,
+          estado: data.estado,
+          favorito: data.favorito,
+          fecha: data.fecha,
+          users: data.users,
+          vehiculo: data.vehiculo,
+          horarioEstacionamiento: data.horarioEstacionamiento,
         });
       });
     }
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

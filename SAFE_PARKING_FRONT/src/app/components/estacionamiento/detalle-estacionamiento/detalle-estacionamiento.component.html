@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Leaflet Routing Machine CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Leaflet Routing Machine JavaScript -->
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="header" *ngIf="verificar()">
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+    </div>
+  </div>
+
+  <div class="detalle-estacionamiento-container">
+    <h1 class="titulo">Detalle del Estacionamiento</h1>
+    <div class="imagen-container">
+      <img [src]="getImagenUrl(estacionamiento)" alt="Imagen del estacionamiento" class="imagen-estacionamiento" />
+    </div>
+    <div class="info-container">
+      <div class="izq-der">
+        <!-- Div a la izquierda -->
+        <div class="info-izquierda">
+          <p>
+            <strong>Tipo de Estacionamiento:</strong>
+            {{ estacionamiento?.tipoEstacionamiento }}
+          </p>
+          <p>
+            <strong>Disponibilidad:</strong>
+            {{ estacionamiento?.disponibilidad }}
+          </p>
+          <p><strong>Capacidad:</strong> {{ estacionamiento?.capacidad }} vehículos</p>
+          <p>
+            <strong>Fecha de Registro:</strong>
+            {{ estacionamiento?.fechaRegistro | date }}
+          </p>
+        
+          <!-- Ajusta según la estructura de tus datos y preferencias -->
+          <div class="valoracion-container">
+            <!-- Utiliza el ícono de estrella de Angular Material -->
+            <p class="valoracion">
+              <strong>Valoración:</strong>
+              <span [innerHTML]="
+                    generarEstrellas(estacionamiento.promedioValoracion)
+                  "></span>
+            </p>
+          </div>
+        </div>
+        <!-- Div a la derecha -->
+        <div class="info-derecha">
+          <div class="reserva">
+            <h1>S/. {{ estacionamiento?.precio }}</h1>
+
+            <button [routerLink]="[
+                  '/components/reservaestacionamiento/registrar_reservas_estacionamientos'
+                ]" class="boton-reserva">
+              Reserva
+            </button>
+            <p>
+              <strong>Precio:</strong> S/.{{
+              (estacionamiento?.precio
+              ? estacionamiento.precio - estacionamiento.precio * 0.18
+              : 0
+              ).toFixed(2)
+              }}
+            </p>
+            <p>
+              <strong>Impuestos:</strong> S/.{{
+              (estacionamiento?.precio
+              ? estacionamiento.precio * 0.18
+              : 0
+              ).toFixed(2)
+              }}
+            </p>
+            <hr />
+            <!-- Otros detalles de reserva -->
+            <p>
+              <strong>Precio total:</strong> S/.{{
+              estacionamiento?.precio
+              }}.00
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="texto-descripcion">
+        <br />
+        <p>
+          Bienvenido a nuestro exclusivo servicio de estacionamiento en
+          reserva, diseñado para ofrecerte una experiencia única y sin
+          preocupaciones en el corazón de la ciudad. Imagina disfrutar de la
+          comodidad de tener tu espacio de estacionamiento asegurado en un
+          lugar de primera categoría. Situado estratégicamente en una
+          ubicación privilegiada, nuestro estacionamiento en reserva te brinda
+          la tranquilidad de contar con un lugar seguro para tu vehículo, a
+          solo minutos de los destinos más populares y las principales
+          avenidas de la ciudad. Nuestro moderno estacionamiento, con
+          vigilancia las 24 horas, se integra perfectamente en el tejido
+          urbano, ofreciendo no solo seguridad sino también acceso rápido a
+          lugares de interés. Con la facilidad de reserva en línea, puedes
+          explorar una variedad de opciones, desde espacios cubiertos hasta
+          ubicaciones premium cerca de las zonas de interés.
+        </p>
+        <br />
+      </div>
+
+      <hr />
+      <h2>A donde irás</h2>
+      <div id="map" class="map-container"></div>
+      <br />
+      <hr />
+      <div class="anfitrion-info">
+        <h2>Conoce a tu anfitrión:</h2>
+        <div class="contenedor-persona">
+          <div class="div1">
+            <!-- Utiliza la directiva [src] para asignar la URL de la imagen del usuario -->
+            <img [src]="
+                  estacionamiento?.usuario?.imagen
+                    ? 'data:image/jpeg;base64,' + estacionamiento.usuario.imagen
+                    : 'assets/image/Perfil1.jpg'
+                " alt="Foto del usuario" class="imagen-usuario" />
+          </div>
+
+          <div class="div2">
+            <p>
+              <strong>Nombre:</strong> {{ estacionamiento?.usuario?.nombre }}
+              {{ estacionamiento?.usuario?.apellido }}
+            </p>
+            <p>
+              <strong>Correo:</strong> {{ estacionamiento?.usuario?.correo }}
+            </p>
+            <p>
+              <strong>Username:</strong>
+              {{ estacionamiento?.usuario?.username }}
+            </p>
+            <!-- Otros detalles del anfitrión -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

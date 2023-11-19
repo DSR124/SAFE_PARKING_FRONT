@@ -6,21 +6,29 @@
   font-size: large;
   /* Utilizamos display: flex */
   text-align: center;
-  margin: 15px;
+  margin-bottom: 15px;
 }
-
+.logoprincipal{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+img {
+  max-width: 100px;
+  justify-content: center;
+}
 /* Estilos del sidenav */
 .sidenav {
   width: 250px;
-  height: 100%;
+  height: 100vh;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   background-color: #1f1f1f;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  overflow: auto
+  overflow: auto;
 }
 
 .sidenav label:hover {

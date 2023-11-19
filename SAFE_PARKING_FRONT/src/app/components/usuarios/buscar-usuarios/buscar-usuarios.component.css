@@ -1,6 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to right, #11998e, #38ef7d);
+  padding: 30px;
+  margin-left: 250px;
 }
 
 
@@ -10,8 +12,8 @@ body {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 800px;
-  margin: 100px auto;
+  width: 80%;
+  margin:  auto;
   /* Centrar horizontalmente */
   flex-direction: column;
   justify-content: center;
@@ -51,7 +53,7 @@ body {
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 600px;
+  width: 80%;
   margin: 0 auto;
   /* Centrar horizontalmente */
 }
@@ -77,4 +79,16 @@ body {
 .info-box p {
   font-size: 1em;
   color: #000000;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 10px;
+}
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 200px; /* Set a maximum height if needed */
 }

@@ -8,4 +8,10 @@ import { ActivatedRoute, Router, RouterEvent } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(public route: ActivatedRoute, private router: Router) {}
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
 }

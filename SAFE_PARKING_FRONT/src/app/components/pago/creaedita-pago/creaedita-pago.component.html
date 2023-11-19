@@ -1,94 +1,85 @@
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="container" style="text-align: center">
-      <h2>Registro de Pagos</h2>
-      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
-          <!--*ngIf="edicion" es para que se meustre en la edicion-->
-          <mat-label>idPago</mat-label>
-          <input matInput placeholder="idPago" formControlName="idPago" />
-        </mat-form-field>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-        <mat-form-field appearance="fill" class="example-full-width">
-          <mat-label>Fecha de emisión</mat-label>
-          <input
-            matInput
-            placeholder="Ingrese fecha"
-            [matDatepicker]="picker"
-            formControlName="fechaEmision"
-            readonly="true"
-          />
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <!--<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
-          <mat-datepicker #picker></mat-datepicker>
-          <mat-error
-            *ngIf="obtenerControlCampo('fechaEmision')?.errors?.['required']"
-          >
-            La fecha es obligatorio.
-          </mat-error>
-        </mat-form-field>
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="container" style="text-align: center">
+    <h2>Registro de Pagos</h2>
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Fecha de emisión</mat-label>
+        <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaEmision"
+          readonly="true" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <!--<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="obtenerControlCampo('fechaEmision')?.errors?.['required']">
+          La fecha es obligatorio.
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Precio total</mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="precioTotal"
-            formControlName="precioTotal"
-          />
-          <mat-error *ngIf="form.get('precioTotal')?.invalid">
-            {{
-              form.get('precioTotal')!.errors?.['required'] ? 'El precio es obligatorio' :
-              (form.get('precioTotal')!.errors?.['precioNoValido'] ? 'No puede ser negativo' : '')
-            }}
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Precio total</mat-label>
+        <input type="number" matInput placeholder="precioTotal" formControlName="precioTotal" />
+        <mat-error *ngIf="form.get('precioTotal')?.invalid">
+          {{
+          form.get('precioTotal')!.errors?.['required'] ? 'El precio es obligatorio' :
+          (form.get('precioTotal')!.errors?.['precioNoValido'] ? 'No puede ser negativo' : '')
+          }}
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>Metodo de Pago</mat-label>
-          <mat-select formControlName="tipoPago">
-            <mat-option *ngFor="let t of tipoPago" [value]="t.value">{{
-              t.viewValue
+      <mat-form-field class="example-full-width">
+        <mat-label>Metodo de Pago</mat-label>
+        <mat-select formControlName="tipoPago">
+          <mat-option *ngFor="let t of tipoPago" [value]="t.value">{{
+            t.viewValue
             }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('tipoPago')?.errors?.['required']"
-          >
-            El tipo de pago es obligatorio.
-          </mat-error>
-        </mat-form-field>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('tipoPago')?.errors?.['required']">
+          El tipo de pago es obligatorio.
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label>ID Reserva</mat-label>
-          <mat-select formControlName="reservaEstacionamiento">
-            <mat-option
-              *ngFor="let p of listaReservaEstacionamientos"
-              [value]="p.idReservaEstacionamiento"
-            >
-              {{ p.idReservaEstacionamiento }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']"
-          >
-            La reserva de estacionamiento es obligatoria.
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <div class="btn-container">
-          <button mat-raised-button color="primary">Registrar</button>
-        </div>
-        <p>{{ mensaje }}</p>
-      </form>
-    </div>
-  </body>
+      <mat-form-field class="example-full-width">
+        <mat-label>ID Reserva</mat-label>
+        <mat-select formControlName="reservaEstacionamiento">
+          <mat-option *ngFor="let p of listaReservaEstacionamientos" [value]="p.idReservaEstacionamiento">
+            {{ p.idReservaEstacionamiento }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
+          La reserva de estacionamiento es obligatoria.
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <div class="btn-container">
+        <button class="boton_registro" mat-raised-button color="primary">
+          Registrar
+        </button>
+        <button mat-raised-button [routerLink]="['/components/pagos/listar-admin-pagos']">
+          Cancelar
+        </button>
+      </div>
+      <p>{{ mensaje }}</p>
+    </form>
+  </div>
+</body>
+
 </html>

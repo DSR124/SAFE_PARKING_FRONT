@@ -1,35 +1,67 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Pago } from '../models/pago';
 const base_url = environment.base_datos; // ruta de la base de datos
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PagoService {
-
-  
   private url = `${base_url}/pagos`;
 
   private listaCambio = new Subject<Pago[]>();
   constructor(private http: HttpClient) {}
 
   list() {
-    return this.http.get<Pago[]>(`${this.url}/Listar`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Pago[]>(`${this.url}/Listar`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
+  // Obtener un Pago por ID
   listId(id: number) {
-    return this.http.get<Pago>(`${this.url}/ListarporID/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Pago>(`${this.url}/ListarporID/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  update(pago: Pago) {
-    return this.http.put(`${this.url}/Modificar`, pago);
+  // Actualizar un Pago
+  update(memb: Pago) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.put(`${this.url}/Modificar`, memb, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
+  // Eliminar un Pago
   delete(id: number) {
-    return this.http.delete(`${this.url}/Eliminar/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.delete(`${this.url}/Eliminar/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  insert(lc: Pago) {
-    return this.http.post(`${this.url}/Registrar`, lc);
+  // Crear un nuevo Pago
+  insert(pg: Pago) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(`${this.url}/Registrar`, pg, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   setList(listaNueva: Pago[]) {
@@ -39,9 +71,4 @@ export class PagoService {
   getList() {
     return this.listaCambio.asObservable();
   }
-
-
-
-  //Falta un query
-
 }

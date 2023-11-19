@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { HorarioEstacionamiento } from 'src/app/models/horarioEstacionamiento';
 import { HorarioEstacionamientoService } from 'src/app/services/horario-estacionamiento.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-horario-estacionamiento',
@@ -14,10 +15,13 @@ import { HorarioEstacionamientoService } from 'src/app/services/horario-estacion
 export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<HorarioEstacionamiento> =
     new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'codigo',
     'horario',
     'Estacionamiento',
+    'duenio',
     'accion01',
     'accion02',
   ];
@@ -26,7 +30,8 @@ export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private heS: HorarioEstacionamientoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.heS.list().subscribe((data) => {
@@ -49,4 +54,29 @@ export class ListarAdminHorarioEstacionamientoComponent implements OnInit {
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
+
 }

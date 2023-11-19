@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <app-navbar></app-navbar>
 
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID del Horario:</label>
-        <input id="inputId" type="number" [(ngModel)]="idHorario" />
-        <mat-error *ngIf="idNoEncontrado"
-          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
-        >
-        <br />
-        <button (click)="buscar()">Buscar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="form">
+    <div class="generic-group">
+      <label for="inputId">Ingrese el ID del Horario:</label>
+      <input id="inputId" type="number" [(ngModel)]="idHorario" />
+      <mat-error *ngIf="idNoEncontrado">El ID ingresado no existe. Por favor, intente con otro ID.</mat-error>
+      <br />
+      <button (click)="buscar()">Buscar</button>
+    </div>
+    <hr />
+    <div class="generic-details" *ngIf="horario">
+      <h2 class="generic-heading">Detalles del Horario</h2>
+      <div class="generic-box">
+        <h1>hora Apertura</h1>
+        <p>{{ horario.horaApertura }}</p>
       </div>
-      <hr />
-      <div class="generic-details" *ngIf="horario">
-        <h2 class="generic-heading">Detalles del Horario</h2>
-        <div class="generic-box">
-          <h1>hora Apertura</h1>
-          <p>{{ horario.horaApertura }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>hora Cierre</h1>
-          <p>{{ horario.horaCierre }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>fecha</h1>
-          <p>{{ horario.fecha }}</p>
-        </div>
+      <div class="generic-box">
+        <h1>hora Cierre</h1>
+        <p>{{ horario.horaCierre }}</p>
+      </div>
+      <div class="generic-box">
+        <h1>fecha</h1>
+        <p>{{ horario.fecha }}</p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

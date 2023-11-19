@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +7,17 @@
   <title>Document</title>
 </head>
 
-<body>
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
   <div class="litle">
     <h2 style="text-align: center">LISTA DE INCIDENTES</h2>
   </div>
@@ -18,57 +27,57 @@
       <input style="text-align: left" matInput (keyup)="filter($event)" placeholder="buscar" />
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
       <!-- idIncidente Column -->
       <ng-container matColumnDef="idIncidente">
-        <th mat-header-cell *matHeaderCellDef>idIncidente</th>
+        <th mat-header-cell *matHeaderCellDef>Codigo</th>
         <td mat-cell *matCellDef="let element">
           {{ element.idIncidente }}
         </td>
       </ng-container>
-
-      <!-- descripcion Column -->
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef>descripcion</th>
-        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-      </ng-container>
-
       <!-- tipoIncidente Column -->
       <ng-container matColumnDef="tipoIncidente">
-        <th mat-header-cell *matHeaderCellDef>tipoIncidente</th>
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
         <td mat-cell *matCellDef="let element">
           {{ element.tipoIncidente }}
         </td>
       </ng-container>
 
+      <!-- descripcion Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.descripcion }}
+        </td>
+      </ng-container>
+
       <!-- usuario Column -->
       <ng-container matColumnDef="usuario">
-        <th mat-header-cell *matHeaderCellDef>usuario</th>
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.usuario.idUsuario }}
+          {{ element.usuario.username }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idIncidente]">
-            <mat-icon>edit</mat-icon> Editar
+          <button class="botoncito1" mat-raised-button [routerLink]="['ediciones', element.idIncidente]">
+            <mat-icon>edit</mat-icon>
           </button>
         </td>
       </ng-container>
       <ng-container matColumnDef="accion02">
-        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-raised-button color="warn" (click)="eliminar(element.idIncidente)">
-            <mat-icon>delete</mat-icon> Eliminar
+          <button class="botoncito2" mat-raised-button (click)="eliminar(element.idIncidente)">
+            <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-    <br>
+    <br />
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
   </div>
 </body>

@@ -2,31 +2,39 @@
 <div [hidden]="route.children.length !== 0">
   <!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
-    </head>
-    <body>
-      <mat-toolbar color="primary" style="background-color: black">
-        <img class="logo" src="/assets/image/Logo_verde.png" alt="logo" />
-        <span>Safe Parking</span>
-        <div class="spacer"></div>
-        <button mat-button routerLink="/navbar/home">Home</button>
-        <button mat-button routerLink="/navbar/home-arrendador">
-          Portal Arrendador
-        </button>
-        <button mat-button routerLink="/navbar/home-condutor">
-          Portal Conductor
-        </button>
-        <button mat-button routerLink="/navbar/home_administrador">
-          Portal Administrador
-        </button>
-        <button mat-button routerLink="/sign-in">Sign In</button>
-        <button mat-button routerLink="/sign-up" class="boton-verde-esmeralda">
-          Sign Up
-        </button>
-      </mat-toolbar>
-    </body>
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <mat-toolbar color="primary" style="background-color: black">
+      <img class="logo" src="/assets/image/Logo_verde.png" alt="logo" />
+      <span>Safe Parking</span>
+      <div class="spacer"></div>
+      <button mat-button routerLink="/home">Home</button>
+      <button mat-button routerLink="/login">Sign In</button>
+      <button mat-button routerLink="/SigUp" class="boton-verde-esmeralda">
+        Sign Up
+      </button>
+      <button class="menu-button" (click)="toggleMenu()">
+        <i class="fas fa-bars"></i> <!-- Usa el icono de barras de FontAwesome como ejemplo -->
+      </button>
+    </mat-toolbar>
+
+    <!-- Código para la barra lateral del menú -->
+    <div class="sidebar" [ngClass]="{'open': isMenuOpen}">
+  
+      <button mat-button routerLink="/home">Home</button>
+      <button mat-button routerLink="/login">Sign In</button>
+      <button mat-button routerLink="/SigUp" class="boton-verde-esmeralda">
+        Sign Up
+      </button>
+    </div>
+
+  </body>
+
   </html>
 </div>

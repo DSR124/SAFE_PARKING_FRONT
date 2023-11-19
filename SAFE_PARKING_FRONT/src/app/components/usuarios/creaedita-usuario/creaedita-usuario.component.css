@@ -1,64 +1,64 @@
-
 /* Estilos para los campos de formulario */
 .container {
   margin-bottom: 50px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
   /* Centra horizontalmente */
-  margin-top: 50px;
-  max-width: 98%;
+  max-width: 100%;
+  padding: 20px;
+  margin: 60px;
 }
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); 
+  background: linear-gradient(to right, #11998e, #38ef7d);
   height: 100%;
-  padding: 20px;
+  justify-content: center;
+
 }
 /*Estilos para los botones*/
 
 button {
-    margin: 10px;
+  margin: 10px;
 }
-.botonRegistro{
-    background-color: #11998e;
-    color: #fff;
-  }
-.example-form{
-  max-height: 600px;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.botonRegistro {
+  background-color: #11998e;
+  color: #fff;
+}
+
+.example-form {
+  max-width: 100%;
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
-
-
+  height: auto;
+ 
 }
-.formularios{
+.formularios {
+  background-color: rgb(255, 255, 255);
   display: flex;
   border-radius: 8px;
-  height: 90%;
-
+  height: auto;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra los elementos horizontalmente */
 }
-.example-full-width{
+.example-full-width {
   margin: 5px;
   width: 90%;
-
 }
-.secciones{
-    margin: 15px;
-    width: 70%; /* Expand to full width */
+.secciones {
+  margin: 15px;
+  width: 420px;
+  height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-
+  border-radius: 8px;
+  padding: 25px;
 }
-.sub-seccion{
+.sub-seccion {
   display: flex;
   width: 92.5%;
   margin: 0 auto;
-
 }
 .image-upload {
   max-width: 90%;
@@ -71,9 +71,7 @@ img {
   max-width: 40%;
   max-height: 40%;
   margin-top: 10px;
-
 }
 input[type="file"] {
   background-color: rgb(173, 173, 182);
 }
-

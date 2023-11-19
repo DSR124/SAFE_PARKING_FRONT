@@ -1,5 +1,4 @@
 <router-outlet></router-outlet>
-<app-navbar></app-navbar>
 <div [hidden]="route.children.length !== 0">
   <html lang="en">
     <head>
@@ -20,7 +19,12 @@
     </head>
 
     <body>
-      <app-navbar-conductor></app-navbar-conductor>
+          <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+      <app-navbar-conductor [hidden]="!mostrarNavbar" ></app-navbar-conductor>
 
       <div class="contenido-principal">
         <div class="textoPrincipal">
@@ -72,6 +76,12 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="boton-flotante">
+        <a href="components/incidentes/registrar_incidentes">
+          <i class="material-icons">notification_important</i>
+          <span class="texto-flotante">Reportar Incidente</span>
+        </a>
       </div>
     </body>
   </html>

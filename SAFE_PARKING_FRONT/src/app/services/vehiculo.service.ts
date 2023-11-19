@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Vehiculo } from '../models/vehiculo';
 import { Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const base_url = environment.base_datos; // ruta de la base de datos
 
@@ -13,25 +13,55 @@ export class VehiculoService {
   private url = `${base_url}/vehiculos`;
   private listaCambio = new Subject<Vehiculo[]>();
   constructor(private http: HttpClient) {}
-  // Obtener todos los vehículos
+  // Obtener todos los Vehiculo
   list() {
-    return this.http.get<Vehiculo[]>(`${this.url}/Listar`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Vehiculo[]>(`${this.url}/Listar`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Obtener un vehículo por ID
+  // Obtener un Vehiculo por ID
   getById(id: number) {
-    return this.http.get<Vehiculo>(`${this.url}/ListarporID/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Vehiculo>(`${this.url}/ListarporID/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Actualizar un vehículo
-  update(vehiculo: Vehiculo) {
-    return this.http.put(`${this.url}/Modificar`, vehiculo);
+  // Actualizar un Vehiculo
+  update(memb: Vehiculo) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.put(`${this.url}/Modificar`, memb, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Eliminar un vehículo
+  // Eliminar un Vehiculo
   delete(id: number) {
-    return this.http.delete(`${this.url}/Eliminar/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.delete(`${this.url}/Eliminar/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Crear un nuevo vehículo
-  insert(ve: Vehiculo) {
-    return this.http.post(`${this.url}/Registrar`, ve);
+  // Crear un nuevo Vehiculo
+  insert(usuario: Vehiculo) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(`${this.url}/Registrar`, usuario, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   setList(listaNueva: Vehiculo[]) {

@@ -11,6 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Comentario } from 'src/app/models/comentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
 @Component({
@@ -26,6 +27,8 @@ export class CreaeditaComentarioComponent implements OnInit {
   fechaCreacion = new FormControl(new Date());
   id: number = 0;
   edicion: boolean = false;
+  role: string = '';
+
   tiposingredientes: { value: string; viewValue: string }[] = [
     { value: 'Vegetal', viewValue: 'Vegetal' },
     { value: 'Proteina', viewValue: 'Proteina' },
@@ -38,7 +41,8 @@ export class CreaeditaComentarioComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private cS: ComentarioService,
-    private route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -74,15 +78,19 @@ export class CreaeditaComentarioComponent implements OnInit {
             this.cS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
+        this.router.navigate([
+          'components/comentarios/listar_comentarios_admin',
+        ]);
       } else {
         this.cS.insert(this.com).subscribe((data) => {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
           });
         });
+        alert('Se registró correctamente');
+        this.ngOnInit();
       }
-
-      this.router.navigate(['comentarios/listar_comentarios_admin']);
     } else {
       this.mensaje = 'Ingrese todos los campos!!';
     }
@@ -98,16 +106,38 @@ export class CreaeditaComentarioComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.cS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idComentario: new FormControl(data.idComentario),
-          contenido: new FormControl(data.contenido),
-          valoracion: new FormControl(data.valoracion),
-          fechaCreacion: new FormControl(data.fechaCreacion),
-          reservaEstacionamiento: new FormControl(
-            data.reservaEstacionamiento.idReservaEstacionamiento
-          ),
+        this.form.patchValue({
+          idComentario: data.idComentario,
+          contenido: data.contenido,
+          valoracion: data.valoracion,
+          fechaCreacion: data.fechaCreacion,
+          reservaEstacionamiento:
+            data.reservaEstacionamiento.idReservaEstacionamiento,
         });
       });
     }
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+   //Para ocultar la barra
+
+   mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+   toggleNavbar() {
+     this.mostrarNavbar = !this.mostrarNavbar;
+   }
+   //Fin de ocultar la barra
 }

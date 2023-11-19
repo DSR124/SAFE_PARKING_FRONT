@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <!-- Para ocultar barra en responsive -->
+      <button (click)="toggleNavbar()" class="toggle-button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <!-- Fin de ocultar barra en responsive -->
+    <app-navbar-administrador [hidden]="!mostrarNavbar"></app-navbar-administrador>
+
+    <div class="litle">
+      <h2 style="text-align: center">INGRESOS TOTALES POR MES</h2>
+    </div>
+    <div class="container">
+      <canvas
+        baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [type]="barChartType"
+      >
+      </canvas>
+    </div>
+  </body>
+</html>

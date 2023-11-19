@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario';
 import { Subject } from 'rxjs';
@@ -15,23 +15,53 @@ export class UsuarioService {
   constructor(private http: HttpClient) {}
   // Obtener todos los vehículos
   list() {
-    return this.http.get<Usuario[]>(`${this.url}/Listar`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Usuario[]>(`${this.url}/Listar`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Obtener un Membresia por ID
+  // Obtener un Usuario por ID
   getById(id: number) {
-    return this.http.get<Usuario>(`${this.url}/ListarporID/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Usuario>(`${this.url}/ListarporID/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Actualizar un Membresia
-  update(usuario: Usuario) {
-    return this.http.put(`${this.url}/Modificar`, usuario);
+  // Actualizar un Usuario
+  update(memb: Usuario) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.put(`${this.url}/Modificar`, memb, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Eliminar un Membresia
+  // Eliminar un Usuario
   delete(id: number) {
-    return this.http.delete(`${this.url}/Eliminar/${id}`);
+    let token = sessionStorage.getItem('token');
+
+    return this.http.delete(`${this.url}/Eliminar/${id}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
-  // Crear un nuevo Membresia
-  insert(me: Usuario) {
-    return this.http.post(`${this.url}/Registrar`, me);
+  // Crear un nuevo Rol
+  insert(usuario: Usuario) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.post(`${this.url}/Registrar`, usuario, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 
   setList(listaNueva: Usuario[]) {
@@ -40,5 +70,14 @@ export class UsuarioService {
 
   getList() {
     return this.listaCambio.asObservable();
+  }
+  getByUsername(username: string) {
+    let token = sessionStorage.getItem('token');
+
+    return this.http.get<Usuario>(`${this.url}/ListarporUsername/${username}`, {
+      headers: new HttpHeaders()
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json'),
+    });
   }
 }

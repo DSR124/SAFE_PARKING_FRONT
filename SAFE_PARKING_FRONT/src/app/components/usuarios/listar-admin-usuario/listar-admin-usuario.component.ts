@@ -19,16 +19,13 @@ export class listarAdminUsuarioComponent implements OnInit {
     'apellido',
     'correo',
     'username',
-    'password',
     'genero',
     'dni',
-    'imagen',
-    'fechaNacimiento',
     'telefono',
     'membresia',
     'activo',
     'modificar',
-    'eliminar'
+    'eliminar',
   ];
 
   editarUsuario: Usuario | null = null; // Variable para realizar un seguimiento de la fila en edición
@@ -69,7 +66,6 @@ export class listarAdminUsuarioComponent implements OnInit {
       });
     });
   }
-
 
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();

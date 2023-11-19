@@ -6,6 +6,7 @@ import {
   AbstractControl,
   FormControl,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Rol } from 'src/app/models/rol';
 import { Usuario } from 'src/app/models/usuario';
@@ -17,32 +18,31 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   templateUrl: './creaedita-rol.component.html',
   styleUrls: ['./creaedita-rol.component.css'],
 })
-export class CreaeditaRolComponent implements OnInit{
+export class CreaeditaRolComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   rol: Rol = new Rol();
   mensaje: string = '';
   listaUsuarios: Usuario[] = [];
 
-    //Para edicion
-    edicion: boolean = false;
-    id: number = 0;
+  //Para edicion
+  edicion: boolean = false;
+  id: number = 0;
 
   tipoRol: { value: string; viewValue: string }[] = [
-    { value: 'administrador', viewValue: 'Administrador' },
     { value: 'conductor', viewValue: 'Conductor' },
-    { value: 'arrendador', viewValue: 'Arrendador' }
+    { value: 'arrendador', viewValue: 'Arrendador' },
   ];
 
   constructor(
     private rS: RolService,
     private uS: UsuarioService,
     private router: Router, //Para Navegar
+    private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
     private route: ActivatedRoute //Para editar
   ) {}
 
   ngOnInit(): void {
-    
     //Nuevo Para Editar
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -57,6 +57,9 @@ export class CreaeditaRolComponent implements OnInit{
     });
 
     this.uS.list().subscribe((data) => {
+      this.listaUsuarios = data;
+    });
+    this.uS.getList().subscribe((data) => {
       this.listaUsuarios = data;
     });
   }
@@ -74,15 +77,19 @@ export class CreaeditaRolComponent implements OnInit{
           });
         });
       } else {
-
-      //Pasamos un objeto del tipo Ingredient por que en el Service fue declarado asi
-      this.rS.insert(this.rol).subscribe((data) => {
-        this.rS.list().subscribe((data) => {
-          this.rS.setList(data);
+        //Pasamos un objeto del tipo Ingredient por que en el Service fue declarado asi
+        this.rS.insert(this.rol).subscribe((data) => {
+          this.rS.list().subscribe((data) => {
+            this.rS.setList(data);
+          });
         });
-      });
-    }
-      this.router.navigate(['roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
+        this._snackBar.open('Registro exitoso', 'Cerrar', {
+          duration: 3000, // Duración en milisegundos
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+        this.router.navigate(['login']); //Esta ruta la sacamos del ROUTING MODULE
+      }
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }

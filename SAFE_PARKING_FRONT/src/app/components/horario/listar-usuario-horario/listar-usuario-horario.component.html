@@ -1,58 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <app-navbar></app-navbar>
-    <div class="containero">
-      <table class="calendar">
-        <thead>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="containero">
+    <table class="calendar">
+      <thead>
+        <tr>
+          <th></th>
+          <ng-container *ngFor="let dia of diasDeLaSemana">
+            <th>{{ dia }}</th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let hora of horasDelDia">
           <tr>
-            <th></th>
+            <td>{{ hora }}</td>
             <ng-container *ngFor="let dia of diasDeLaSemana">
-              <th>{{ dia }}</th>
-            </ng-container>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngFor="let hora of horasDelDia">
-            <tr>
-              <td>{{ hora }}</td>
-              <ng-container *ngFor="let dia of diasDeLaSemana">
-                <td>
-                  <ng-container *ngFor="let fechaHorario of horariosPorFecha">
-                    <ng-container
-                      *ngIf="obtenerNombreDia(fechaHorario.fecha) === dia"
-                    >
-                      <ng-container
-                        *ngFor="let horario of fechaHorario.horarios"
-                      >
-                        <ng-container
-                          *ngIf="compararHorarioConHora(horario, hora)"
-                        >
-                          <div class="horario-item">
-                            <p>Fecha: {{ fechaHorario.fecha }}</p>
-                            <p>Hora inicio: {{ horario.horaApertura }}</p>
-                            <p>Hora cierre: {{ horario.horaCierre }}</p>
-                            <button
-                              (click)="obtenerIdHorario(horario.idHorario)"
-                            >
-                              Obtener ID
-                            </button>
-                          </div>
-                        </ng-container>
+              <td>
+                <ng-container *ngFor="let fechaHorario of horariosPorFecha">
+                  <ng-container *ngIf="obtenerNombreDia(fechaHorario.fecha) === dia">
+                    <ng-container *ngFor="let horario of fechaHorario.horarios">
+                      <ng-container *ngIf="compararHorarioConHora(horario, hora)">
+                        <div class="horario-item">
+                          <p>Fecha: {{ fechaHorario.fecha }}</p>
+                          <p>Hora inicio: {{ horario.horaApertura }}</p>
+                          <p>Hora cierre: {{ horario.horaCierre }}</p>
+                        </div>
                       </ng-container>
                     </ng-container>
                   </ng-container>
-                </td>
-              </ng-container>
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
-    </div>
-  </body>
+                </ng-container>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</body>
+
 </html>

@@ -1,44 +1,58 @@
-
-*{
-     margin: 0;
-     padding: 0;
-     border: 0;
-     vertical-align: baseline;
-     box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
 
 }
-body{
+
+body {
     text-align: center;
 
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
 
-h1{font-size: 96px;
+h1 {
+    font-size: 80px;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-  
-  }
-  h2{font-size: 48px;
+    line-height: normal;
+
+}
+
+h2 {
+    font-size: 35px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-  }
-  h3{font-size: 23px;
+    line-height: normal;
+}
+
+h3 {
+    font-size: 23px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-  }
-  p{font-size: 1.25em;
+    line-height: normal;
+}
+
+p {
+    font-size: 1.25em;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-  }
+    line-height: normal;
+}
 
-ul{list-style: none;}
+ul {
+    list-style: none;
+}
 
 
 /*Encabezado------------*/
 
-.head{
+.head {
 
     width: 100%;
     background-color: rgb(0, 0, 0);
@@ -51,22 +65,25 @@ ul{list-style: none;}
     flex-wrap: wrap;*/
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     float: left;
     line-height: 0px;
 }
-.logo_imagen{
+
+.logo_imagen {
     height: 50px;
     margin: 10px;
 }
-a{
+
+a {
     color: white;
     text-decoration: none;
-    
+
 }
-nav a{
+
+nav a {
     color: white;
     text-decoration: none;
     display: inline-block;
@@ -77,43 +94,49 @@ nav a{
     border-bottom: 4px solid transparent;
 }
 
-nav ul li{
+nav ul li {
     display: inline-block;
 }
 
 
-nav a:hover{
+nav a:hover {
     background: #585858;
     cursor: pointer;
     color: white;
 }
-nav li li a{
-    background-color:#30e298;
+
+nav li li a {
+    background-color: #30e298;
     color: #000000;
     text-decoration: none;
     display: block;
     border-bottom: 4px solid #747474;
     transition: .5s;
 }
-.ul, ol{
+
+.ul,
+ol {
     list-style: none;
 
 }
-nav > li{
+
+nav>li {
     float: left;
 
 }
-nav li ul{
+
+nav li ul {
     display: none;
     position: absolute;
     min-width: 140px;
 }
-nav li:hover > ul{
+
+nav li:hover>ul {
     display: block;
 }
 
 
-.checkbtn{
+.checkbtn {
     color: rgb(255, 255, 255);
     float: right;
     line-height: 80px;
@@ -122,25 +145,27 @@ nav li:hover > ul{
     display: none;
 
 }
-#check{
+
+#check {
     display: none;
 }
 
 /*Index - Slogan inicial*/
 
-button{
+button {
     font-weight: bold;
-    padding:10px 20px;
+    padding: 10px 20px;
     border-radius: 10px;
-    border:2px solid rgba(0,0,0,0.5);
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     color: rgb(0, 0, 0);
     background-color: #30e298;
     margin: 30px;
     cursor: pointer;
+    
 }
 
-.download-app button:hover{
+.download-app button:hover {
     background: #757575;
     cursor: pointer;
     color: white;
@@ -148,7 +173,7 @@ button{
 }
 
 
-#Slogan-Inicial{
+#Slogan-Inicial {
 
     padding-top: 250px;
     /* display: flex; */
@@ -158,9 +183,9 @@ button{
     background-position: center center;
     height: auto;
     color: white;
-    min-width: 475px;
+    /*min-width: 475px;*/
     width: 100%;
-    background:rgb(30, 209, 155);
+    background: rgb(30, 209, 155);
     background: -webkit-linear-gradient(to right, #07181f69, #34e89d86), url("/assets/image/Fondo2.png");
     background: linear-gradient(to right, #091d2577, #34e89d88), url("/assets/image/Fondo2.png");
 
@@ -169,38 +194,42 @@ button{
     position: relative;
 
 }
-#Slogan-Inicial .container{
+
+#Slogan-Inicial .container {
     overflow: hidden;
     margin: 0 auto;
     max-width: 1200px;
-    
+
 }
 
-#Slogan-Inicial .presentation h1{
+#Slogan-Inicial .presentation h1 {
     padding: 25px;
     color: #30e298;
-    
+    justify-content: center;
+    align-items: center;
 }
 
-#Slogan-Inicial .Olas{
+#Slogan-Inicial .Olas {
     position: absolute;
     bottom: 0;
     width: 100%;
 }
 
-#Slogan-Inicial .container .image-download{
+#Slogan-Inicial .container .image-download {
     display: flex;
     justify-content: center;
     padding: 50px;
 
 }
-.img-1{
+
+.img-1 {
     width: 210px;
     height: 60.5px;
     border-radius: 5px;
     margin: 10px;
 }
-.img-2{
+
+.img-2 {
     width: 210px;
     height: 60.5px;
     border-radius: 5px;
@@ -210,12 +239,13 @@ button{
     */
 }
 
-.img-1:hover{
+.img-1:hover {
     transform: scale(1.1);
     transition: .5s;
     cursor: pointer;
 }
-.img-2:hover{
+
+.img-2:hover {
     transform: scale(1.1);
     transition: .5s;
     cursor: pointer;
@@ -224,7 +254,7 @@ button{
 /*Caracteristicas--------------*/
 
 #Caracteristicas {
-    height:auto;
+    height: auto;
     padding-top: 10px;
     background: linear-gradient(to bottom, rgb(0, 214, 125), rgb(30, 209, 155));
     background-size: cover;
@@ -232,29 +262,33 @@ button{
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-position:  center;
+    background-position: center;
+    width: 100%;
+    /* min-width: 475px;*/
+
 }
 
 
-#Caracteristicas .contenido{
+#Caracteristicas .contenido {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     /* flex-wrap: wrap; */
 }
-#Caracteristicas .container .imagenPrincipal img{
-   width: 640px;
-   height: 740px;
-   margin-top: 130px;
+
+#Caracteristicas .container .imagenPrincipal img {
+    width: 640px;
+    height: 740px;
+    margin-top: 130px;
 }
 
-#Caracteristicas .Cuadros:hover{
+#Caracteristicas .Cuadros:hover {
     transform: scale(1.2);
     transition: .5s;
     cursor: pointer;
 }
 
-#Ola_caracteristicas .Olas{
+#Ola_caracteristicas .Olas {
 
     position: static;
     bottom: 1;
@@ -263,11 +297,12 @@ button{
     min-width: 475px;
 }
 
-#Ola_caracteristicas .Olas{
+#Ola_caracteristicas .Olas {
 
     background-color: rgb(30, 209, 155)
 }
-#Caracteristicas .container .Cuadrados .Seccion .Cuadros{
+
+#Caracteristicas .container .Cuadrados .Seccion .Cuadros {
     width: 300px;
     height: 320px;
     margin: 25px;
@@ -279,10 +314,10 @@ button{
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-position: center ;
+    background-position: center;
 }
 
-#Caracteristicas .container .Cuadrados .Seccion .Cuadros h3{
+#Caracteristicas .container .Cuadrados .Seccion .Cuadros h3 {
     font-size: 25px;
     margin-top: 50px;
     color: rgb(0, 0, 0);
@@ -290,7 +325,7 @@ button{
 }
 
 
-#Caracteristicas .container .Cuadrados .Seccion .Cuadros p{
+#Caracteristicas .container .Cuadrados .Seccion .Cuadros p {
 
     margin-top: 25px;
     width: 160px;
@@ -310,18 +345,18 @@ button{
 
 }
 
-#Caracteristicas .container .Cuadrados .Seccion{
+#Caracteristicas .container .Cuadrados .Seccion {
     display: flex;
     margin: auto;
 }
 
-#Caracteristicas h2{
+#Caracteristicas h2 {
     justify-content: center;
     align-items: center;
     color: white;
 }
 
-#Caracteristicas p{
+#Caracteristicas p {
     margin: auto;
     justify-content: center;
     align-items: center;
@@ -335,47 +370,55 @@ button{
     background-color: #000000;
     margin: auto;
     height: auto;
-    min-width: 475px;
+    /* min-width: 475px;*/
 }
-#Segmentos .container{
+
+#Segmentos .container {
     justify-content: center;
     margin-top: -20px;
 }
 
 
-#Segmentos  .titulo h2{
+#Segmentos .titulo h2 {
 
     text-align: center;
-    color: #2ef190;;
+    color: #2ef190;
+    ;
     padding: 15px;
-}
-#Segmentos  .titulo p{
+    margin-bottom: 10px;
 
-    text-align: center;
-    color: #ffffff;;
-    padding: 15px;
 }
 
-
-#Segmentos .Conductor h3{
+#Segmentos .titulo p {
 
     text-align: center;
-    color: #2ef190;;
+    color: #ffffff;
+    ;
+    padding: 15px;
+}
+
+
+#Segmentos .Conductor h3 {
+
+    text-align: center;
+    color: #2ef190;
+    ;
     padding: 15 px;
 }
 
-#Segmentos .arredandor h3{
+#Segmentos .arredandor h3 {
 
     text-align: center;
-    color: #2ef190;;
+    color: #2ef190;
+    ;
 }
 
 
-#Segmentos .contenido{
+#Segmentos .contenido {
     justify-content: center;
 }
 
-#Segmentos  .arredandor {
+#Segmentos .arredandor {
     align-items: center;
     justify-content: center;
     height: auto;
@@ -385,7 +428,8 @@ button{
     flex-wrap: wrap;
 
 }
-#Segmentos  .Conductor {
+
+#Segmentos .Conductor {
     align-items: center;
     justify-content: center;
     display: flex;
@@ -393,7 +437,7 @@ button{
     flex-wrap: wrap;
 }
 
-#Segmentos .arredandor p{
+#Segmentos .arredandor p {
     max-width: 500px;
     color: white;
     text-align: justify;
@@ -401,7 +445,7 @@ button{
     padding-left: 20px;
 }
 
-#Segmentos .Conductor p{
+#Segmentos .Conductor p {
     max-width: 500px;
     color: white;
     text-align: justify;
@@ -410,83 +454,108 @@ button{
 }
 
 
-.Conductor button:hover{
-    background: #757575;
-    cursor: pointer;
-    color: white;
-    transition: .5s;
-}
-.arredandor button:hover{
+.Conductor button:hover {
     background: #757575;
     cursor: pointer;
     color: white;
     transition: .5s;
 }
 
-.Conductor .slider{
+.arredandor button:hover {
+    background: #757575;
+    cursor: pointer;
+    color: white;
+    transition: .5s;
+}
+
+.Conductor .slider {
     order: 0;
 }
+
 .Conductor .texto {
     order: 0;
 }
-.arredandor .slider{
+
+.arredandor .slider {
     order: 0;
 }
+
 .arredandor .texto {
     order: 0;
 }
 
 
-.slider{
+.slider {
     width: 500px;
     height: 300px;
     overflow: hidden;
 }
 
-.slider ul{
+.slider ul {
     padding: 0;
     display: flex;
     width: 500px;
 
     animation: cambio 15s infinite alternate;
 }
-.slider li{
+
+.slider li {
     width: 100%;
     list-style: none;
 }
 
-.slider img{
+.slider img {
     width: 500px;
     height: 300px;
     border-radius: 5%;
 }
 
 @keyframes cambio {
-    0%{margin-left: 0;}
-    20%{margin-left: 0;}
+    0% {
+        margin-left: 0;
+    }
 
-    25%{margin-left: -100%;}
-    45%{margin-left: -100%;}
+    20% {
+        margin-left: 0;
+    }
 
-    50%{margin-left: -200%;}
-    70%{margin-left: -200%;}
+    25% {
+        margin-left: -100%;
+    }
 
-    75%{margin-left: -300%;}
-    100%{margin-left: -300%;}
+    45% {
+        margin-left: -100%;
+    }
+
+    50% {
+        margin-left: -200%;
+    }
+
+    70% {
+        margin-left: -200%;
+    }
+
+    75% {
+        margin-left: -300%;
+    }
+
+    100% {
+        margin-left: -300%;
+    }
 }
 
 
 /*Testimonios-------------*/
 
-#thirdsection-1{
+#thirdsection-1 {
     height: auto;
     background: linear-gradient(to bottom, rgb(0, 214, 125), rgb(30, 209, 155));
     margin: auto;
     background-size: cover;
-    min-width: 475px;
+    /* min-width: 475px;*/
 }
 
-#thirdsection-1 .container{
+#thirdsection-1 .container {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -494,14 +563,15 @@ button{
     flex-wrap: wrap;
 }
 
-#thirdsection-1 .Testimonios_texto .h2{
+#thirdsection-1 .Testimonios_texto .h2 {
     margin: auto;
     margin-top: 0;
     justify-content: center;
     align-items: center;
     color: rgb(0, 0, 0);
 }
-#thirdsection-1 .Testimonios_texto p{
+
+#thirdsection-1 .Testimonios_texto p {
     margin: auto;
     margin-top: 0;
     justify-content: center;
@@ -510,49 +580,55 @@ button{
 }
 
 
-#thirdsection-1 .testimonio{
+#thirdsection-1 .testimonio {
     width: 380px;
     height: 500px;
     margin: 40px;
     padding: 75px;
     text-align: center;
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 15px;
     color: rgb(223, 223, 223);
     margin-bottom: 100px;
 }
 
-#thirdsection-1 .testimonio:hover{
+#thirdsection-1 .testimonio:hover {
     transform: scale(1.1);
     transition: .4s;
 }
 
-#thirdsection-1 .container .testimonio p{
+#thirdsection-1 .container .testimonio p {
     margin-top: -80px;
 }
 
-#thirdsection-1 .container .testimonio h3{
+#thirdsection-1 .container .testimonio h3 {
     margin-top: 25px;
     color: #30e298;
 }
 
-#thirdsection-1 .container .testimonio h4{
+#thirdsection-1 .container .testimonio h4 {
     margin-top: 25px;
 }
 
-#thirdsection-1 .container .testimonio h1{
+#thirdsection-1 .container .testimonio h1 {
     margin-top: 25px;
 }
 
-#thirdsection-1 .container .testimonio .icons{
+#thirdsection-1 .container .testimonio .icons {
     padding: 10px;
     color: #30e298;
     margin-top: 25px;
 }
 
-.foto-perfil1,.foto-perfil2,.foto-perfil3, .foto-perfil4{
+.foto-perfil1,
+.foto-perfil2,
+.foto-perfil3,
+.foto-perfil4 {
     width: 180px;
     height: 180px;
     background-position: center;
@@ -566,25 +642,28 @@ button{
     box-shadow: 0px 0px 30px -5px rgb(255, 255, 255);
     */
 }
-#thirdsection-1 .foto-perfil1{
+
+#thirdsection-1 .foto-perfil1 {
     background-image: url("/assets/image/nayde.jpg");
 }
 
-#thirdsection-1 .foto-perfil2{
+#thirdsection-1 .foto-perfil2 {
     background-image: url("/assets/image/Perfil2.jpg");
 }
 
-#thirdsection-1 .foto-perfil3{
+#thirdsection-1 .foto-perfil3 {
     background-image: url("/assets/image/Perfil1.jpg");
 }
-#thirdsection-1 .foto-perfil4{
+
+#thirdsection-1 .foto-perfil4 {
     background-image: url("/assets/image/Perfil3.jpg");
 }
-.testimonio h1{
+
+.testimonio h1 {
     margin-top: -20px;
 }
 
-#thirdsection-1 .testimonio p{
+#thirdsection-1 .testimonio p {
     margin-top: 10px;
     margin-top: 40px;
 
@@ -593,11 +672,15 @@ button{
 
 /*Waves index*/
 
-.content,.header,.waves {
+.content,
+.header,
+.waves {
     position: relative
 }
 
-.content,.flex,.header {
+.content,
+.flex,
+.header {
     text-align: center
 }
 
@@ -606,9 +689,10 @@ body {
 }
 
 .header {
-    background: linear-gradient(60deg,#543ab7 0,#00acc1 100%);
+    background: linear-gradient(60deg, #543ab7 0, #00acc1 100%);
     color: #fff;
-    height: 500px
+    height: 500px;
+
 }
 
 .inner-header {
@@ -630,6 +714,7 @@ body {
     margin-bottom: -7px;
     min-height: 100px;
     max-height: 150px
+    
 }
 
 .content {
@@ -638,7 +723,7 @@ body {
 }
 
 .parallax>use {
-    animation: 25s cubic-bezier(.55,.5,.45,.5) infinite move-forever
+    animation: 25s cubic-bezier(.55, .5, .45, .5) infinite move-forever
 }
 
 .parallax>use:first-child {
@@ -663,17 +748,17 @@ body {
 
 @keyframes move-forever {
     0% {
-        transform: translate3d(-90px,0,0)
+        transform: translate3d(-90px, 0, 0)
     }
 
     100% {
-        transform: translate3d(85px,0,0)
+        transform: translate3d(85px, 0, 0)
     }
 }
 
 @media (max-width: 768px) {
     .waves {
-        height:40px;
+        height: 40px;
         min-height: 40px
     }
 
@@ -686,7 +771,9 @@ body {
 /*Animaciones*/
 
 @keyframes moving_object {
-    0%,100% {
+
+    0%,
+    100% {
         transform: translateY(0)
     }
 
@@ -696,60 +783,189 @@ body {
 }
 
 
-.contenido .imagenPrincipal{
+.contenido .imagenPrincipal {
     animation: 6s linear infinite moving_object;
 }
 
 
 /*Animacion H1 inicial*/
 /* Definición de la animación */
-@keyframes fadeInUp   {
+@keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
-  }
-  
-  /* Estilo base del h2 */
-  .presentation h3 {
-    animation: fadeInUp  1.5s forwards;
-  }
-  #Slogan-Inicial p{
-    animation: fadeInUp  1.5s forwards;
-  }
-   h2 {
-    animation: fadeInUp  1.5s forwards;
-  }
-  #Caracteristicas .titulo p{
-    animation: fadeInUp  1.5s forwards;
-  }
-  #Segmentos .titulo p{
-    animation: fadeInUp  1.5s forwards;
-  }
-  #thirdsection-1 .Testimonios_texto p{
-        animation: fadeInUp  1.5s forwards;
-    }
-  
+}
 
-  /*Animacion para Play Store y App Store*/
+/* Estilo base del h2 */
+.presentation h3 {
+    animation: fadeInUp 1.5s forwards;
+}
 
-  @keyframes bounceSlow {
-    0%, 100% {
-      transform: translateY(0); /* Estado inicial y final */
+#Slogan-Inicial p {
+    animation: fadeInUp 1.5s forwards;
+}
+
+h2 {
+    animation: fadeInUp 1.5s forwards;
+}
+
+#Caracteristicas .titulo p {
+    animation: fadeInUp 1.5s forwards;
+}
+
+#Segmentos .titulo p {
+    animation: fadeInUp 1.5s forwards;
+}
+
+#thirdsection-1 .Testimonios_texto p {
+    animation: fadeInUp 1.5s forwards;
+}
+
+
+/*Animacion para Play Store y App Store*/
+
+@keyframes bounceSlow {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        /* Estado inicial y final */
     }
+
     50% {
-      transform: translateY(-10px); /* Punto más alto del rebote */
+        transform: translateY(-10px);
+        /* Punto más alto del rebote */
     }
-  }
-  
-  
-  .image-download {
-    animation: bounceSlow 3s infinite ease-in-out; /* Aplicar la animación */
-  }
-  
+}
 
 
+.image-download {
+    animation: bounceSlow 3s infinite ease-in-out;
+    /* Aplicar la animación */
+}
+
+
+
+/*Responsive-------*/
+@media(max-width: 500px) {
+    #Caracteristicas .titulo h1 {
+        font-size: 47px;
+    }
+}
+
+@media(max-width: 1000px) {
+    /*Segmentos*/
+
+    .Conductor .slider {
+        order: 1;
+        width: auto;
+        height: auto;
+        display: none;
+    }
+
+    .arredandor .slider {
+        width: auto;
+        height: auto;
+    }
+
+    .arredandor .slider {
+        display: none;
+    }
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    /*Inicio--------------------*/
+
+    /*Interfaz inicial*/
+
+
+    #Slogan-Inicial .container .image-download {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+    }
+
+    /*Caracteristicas*/
+    #Caracteristicas .container .imagenPrincipal img {
+        display: none;
+        /* O ajusta el tamaño de las imágenes */
+    }
+
+    #Caracteristicas .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #Caracteristicas {
+        height: auto;
+
+    }
+
+    #Caracteristicas .container .Cuadrados {
+        margin: auto;
+        align-items: center;
+        flex-direction: column;
+
+        display: block;
+    }
+
+    #Caracteristicas .container .contenido {
+        margin-top: auto;
+        margin-left: auto;
+    }
+
+    #Caracteristicas .container .Cuadrados .Seccion .Cuadros p {
+
+        /* display: none; */
+
+    }
+
+    #Caracteristicas .container .Cuadrados .Seccion {
+        text-align: center;
+        align-items: center;
+        display: block;
+        margin: auto;
+        /* display: block; */
+        width: auto;
+    }
+
+    #Caracteristicas .container .Cuadrados .Seccion .Cuadros {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        margin-top: 20px;
+        width: auto;
+
+    }
+
+    /*Testimonios*/
+
+    #thirdsection-1 .container {
+        flex-direction: column;
+    }
+
+    #thirdsection-1 {
+        height: auto;
+    }
+
+    #thirdsection-1 .testimonio {
+        width: auto;
+        height: auto;
+        display: block;
+    }
+
+
+
+}

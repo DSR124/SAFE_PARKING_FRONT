@@ -14,6 +14,7 @@ const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
 import 'leaflet-control-geocoder'; // Importar el plugin de geocodificación
+import { LoginService } from 'src/app/services/login.service';
 
 declare var google: any;
 
@@ -30,9 +31,10 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   marker: L.Marker | null = null;
   id: number = 0;
   edicion: boolean = false;
-
+  role: string = '';
   lugarABuscar: string = '';
   resultados: Localizacion[] = [];
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   provinciasLima: { value: string; viewValue: string }[] = [
     { value: 'Lima', viewValue: 'Lima' },
@@ -100,9 +102,24 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     private lS: LocalizacionService,
     private router: Router,
     private formBuilder: FormBuilder,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
@@ -110,6 +127,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
       this.init();
     });
     this.form = this.formBuilder.group({
+      idLocalizacion: [''],
       direccion: ['', [Validators.required, Validators.maxLength(50)]],
       distrito: ['', Validators.required],
       region: ['', Validators.required],
@@ -136,14 +154,18 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
             this.lS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         this.lS.insert(this.localizacion).subscribe((data) => {
           this.lS.list().subscribe((data) => {
             this.lS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
-      this.router.navigate(['localizaciones/listar_admin_localizaciones']);
+      this.router.navigate([
+        'components/localizaciones/listar_admin_localizaciones',
+      ]);
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
@@ -216,13 +238,14 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.lS.getById(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          direccion: new FormControl(data.direccion),
-          distrito: new FormControl(data.distrito),
-          region: new FormControl(data.region),
-          referencia: new FormControl(data.referencia),
-          latitud: new FormControl(data.latitud),
-          longitud: new FormControl(data.longitud),
+        this.form.patchValue({
+          idLocalizacion: data.idLocalizacion,
+          direccion: data.direccion,
+          distrito: data.distrito,
+          region: data.region,
+          referencia: data.referencia,
+          latitud: data.latitud,
+          longitud: data.longitud,
         });
       });
     }
@@ -234,4 +257,14 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
     }
     return control;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Horario } from 'src/app/models/horario';
 import { HorarioService } from 'src/app/services/horario.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-usuario-horario',
@@ -11,9 +12,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ListarUsuarioHorarioComponent implements OnInit {
   horariosPorFecha: { fecha: string; horarios: Horario[] }[] = [];
   horasDelDia: string[] = this.generarHorasDelDia(); // Array de horas del día
+  role: string = '';
 
   constructor(
     private horarioService: HorarioService,
+    private loginService: LoginService,
+
     public route: ActivatedRoute
   ) {}
 
@@ -32,7 +36,21 @@ export class ListarUsuarioHorarioComponent implements OnInit {
     }
     return horas;
   }
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   organizarHorariosPorFecha(horarios: Horario[]) {
     const grouped: { [fecha: string]: Horario[] } = {};
 
@@ -102,4 +120,13 @@ export class ListarUsuarioHorarioComponent implements OnInit {
     // Verificar si la hora seleccionada está dentro del rango de horarios
     return horaSeleccionada >= horaInicio && horaSeleccionada < horaCierre;
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

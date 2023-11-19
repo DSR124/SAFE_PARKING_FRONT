@@ -1,108 +1,87 @@
-<app-navbar></app-navbar>
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <form [formGroup]="form" (submit)="registrar()" class="example-form">
-        <div class="titulo">
-          <h2>REGISTRO DE MEMBRESIAS</h2>
-        </div>
-        <br />
-        <!-- Categoria sección -->
-        <mat-form-field class="example-full-width">
-          <mat-label>Tipo de membresía</mat-label>
-          <mat-select formControlName="tipoMembresia">
-            <mat-option *ngFor="let t of tiposMembresia" [value]="t.value">{{
-              t.viewValue
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+      <!-- Para ocultar barra en responsive -->
+      <button (click)="toggleNavbar()" class="toggle-button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" (submit)="registrar()" class="example-form">
+      <div class="titulo">
+        <h2>REGISTRO DE MEMBRESIAS</h2>
+      </div>
+      <br />
+      <!-- Categoria sección -->
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo de membresía</mat-label>
+        <mat-select formControlName="tipoMembresia">
+          <mat-option *ngFor="let t of tiposMembresia" [value]="t.value">{{
+            t.viewValue
             }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']"
-          >
-            El tipo es obligatorio.
-          </mat-error>
-        </mat-form-field>
-        <!-- Categoria sección -->
-
-        <!--<mat-form-field class="example-full-width">
-        <mat-label> <mat-icon>tab</mat-icon> Tipo de membresia </mat-label>
-        <input matInput placeholder="Tipo de membresia" formControlName="tipoMembresia" />
+        </mat-select>
         <mat-error *ngIf="obtenerControlCampo('tipoMembresia')?.errors?.['required']">
-          El nombre es obligatorio.
+          El tipo es obligatorio.
         </mat-error>
-      </mat-form-field>-->
+      </mat-form-field>
+      <!-- Categoria sección -->
 
-        <div class="seccion _fechas">
-          <mat-form-field class="fecha">
-            <mat-label>Fecha de Inicio</mat-label>
-            <input
-              matInput
-              [matDatepicker]="pickerInicio"
-              placeholder="Fecha de inicio"
-              formControlName="fechaInicio"
-              [min]="minFecha"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerInicio"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerInicio></mat-datepicker>
-            <mat-error
-              *ngIf="obtenerControlCampo('fechaInicio')?.errors?.['required']"
-            >
-              La fecha de inicio es obligatoria.
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="fecha">
-            <mat-label>Fecha de expiración</mat-label>
-            <input
-              matInput
-              [matDatepicker]="pickerExpiracion"
-              placeholder="Fecha de expiración"
-              formControlName="fechaFin"
-              [min]="minFecha"
-              [matDatepickerFilter]="filterDates"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerExpiracion"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerExpiracion></mat-datepicker>
-            <mat-error
-              *ngIf="obtenerControlCampo('fechaFin')?.errors?.['required']"
-            >
-              La fecha de expiración es obligatoria.
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <mat-form-field class="example-full-width">
-          <mat-label> <mat-icon>attach_money</mat-icon> Precio </mat-label>
-          <input
-            type="number"
-            matInput
-            placeholder="Precio"
-            formControlName="precio"
-          />
-
-          <mat-error *ngIf="form.get('precio')?.invalid">
-            {{
-              form.get('precio')!.errors?.['required'] ? 'El precio es obligatorio' :
-              (form.get('precio')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo o igual a cero' : '')
-            }}
+      <div class="seccion _fechas">
+        <mat-form-field class="fecha">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="pickerInicio" placeholder="Fecha de inicio" formControlName="fechaInicio"
+            [min]="minFecha" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInicio></mat-datepicker>
+          <mat-error *ngIf="obtenerControlCampo('fechaInicio')?.errors?.['required']">
+            La fecha de inicio es obligatoria.
           </mat-error>
         </mat-form-field>
+        <mat-form-field class="fecha">
+          <mat-label>Fecha de expiración</mat-label>
+          <input matInput [matDatepicker]="pickerExpiracion" placeholder="Fecha de expiración"
+            formControlName="fechaFin" [min]="minFecha" [matDatepickerFilter]="filterDates" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="pickerExpiracion"></mat-datepicker-toggle>
+          <mat-datepicker #pickerExpiracion></mat-datepicker>
+          <mat-error *ngIf="obtenerControlCampo('fechaFin')?.errors?.['required']">
+            La fecha de expiración es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="example-full-width">
+        <mat-label> <mat-icon>attach_money</mat-icon> Precio </mat-label>
+        <input type="number" matInput placeholder="Precio" formControlName="precio" />
 
-        <button class="boton" mat-raised-button>Registrar</button>
-      </form>
-    </div>
-  </body>
+        <mat-error *ngIf="form.get('precio')?.invalid">
+          {{
+          form.get('precio')!.errors?.['required'] ? 'El precio es obligatorio' :
+          (form.get('precio')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo o igual a cero' : '')
+          }}
+        </mat-error>
+      </mat-form-field>
+      <div class="botones">
+        <button class="boton1" mat-raised-button>Registrar</button>
+        <button class="boton2" mat-raised-button [routerLink]="['/components/membresias/listar_admin_membresias']">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+</body>
+
 </html>

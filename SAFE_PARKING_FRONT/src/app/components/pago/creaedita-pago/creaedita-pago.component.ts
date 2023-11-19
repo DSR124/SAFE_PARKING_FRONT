@@ -9,8 +9,10 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
+import { LoginService } from 'src/app/services/login.service';
 import { PagoService } from 'src/app/services/pago.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
+import { PrecioTotalporMes } from '../../../models/cantidadPrecioTotalporMeS';
 
 function precioTotalPositivo(control: FormControl) {
   const precio = control.value;
@@ -46,15 +48,31 @@ export class CreaeditaPagoComponent implements OnInit {
     { value: 'Yape', viewValue: 'Yape' },
     { value: 'Otros', viewValue: 'Otros' },
   ];
+  role: string = '';
 
   constructor(
     private pS: PagoService,
     private r_eS: ReservaEstacionamientoService,
     private router: Router, //Para Navegar
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
-    private route: ActivatedRoute //Para editar
+    public route: ActivatedRoute, //Para editar
+    private loginService: LoginService
   ) {}
-
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     //Nuevo Para Editar
     this.route.params.subscribe((data: Params) => {
@@ -80,8 +98,10 @@ export class CreaeditaPagoComponent implements OnInit {
     if (this.form.valid) {
       this.pago.idPago = this.form.value.idPago;
       this.pago.fechaEmision = this.form.value.fechaEmision;
-      this.pago.precioTotal = this.form.value.precioTotal;
       this.pago.tipoPago = this.form.value.tipoPago;
+      this.pago.precioTotal =
+        parseInt(this.form.value.precioTotal) +
+        parseInt(this.form.value.precioTotal) * 0.18;
       this.pago.reservaEstacionamiento.idReservaEstacionamiento =
         this.form.value.reservaEstacionamiento; //dessert.idDessert -> Se utiliza el ID por que desde la BD se maneja con ello
       if (this.edicion) {
@@ -98,7 +118,7 @@ export class CreaeditaPagoComponent implements OnInit {
           });
         });
       }
-      this.router.navigate(['pagos/listar-admin-pagos']); //Esta ruta la sacamos del ROUTING MODULE
+      this.router.navigate(['components/pagos/listar-admin-pagos']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
     }
@@ -114,16 +134,24 @@ export class CreaeditaPagoComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.pS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idPago: new FormControl(data.idPago),
-          fechaEmision: new FormControl(data.fechaEmision),
-          precioTotal: new FormControl(data.precioTotal),
-          tipoPago: new FormControl(data.tipoPago),
-          reservaEstacionamiento: new FormControl(
-            data.reservaEstacionamiento.idReservaEstacionamiento
-          ), //Siempre es ID
+        this.form.patchValue({
+          idPago: data.idPago,
+          fechaEmision: data.fechaEmision,
+          precioTotal: data.precioTotal,
+          tipoPago: data.tipoPago,
+          reservaEstacionamiento:
+            data.reservaEstacionamiento.idReservaEstacionamiento,
         });
       });
     }
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

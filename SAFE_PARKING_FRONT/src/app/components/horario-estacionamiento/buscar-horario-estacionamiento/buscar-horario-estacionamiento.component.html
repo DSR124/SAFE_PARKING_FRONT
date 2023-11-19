@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <app-navbar></app-navbar>
 
-    <div class="form">
-      <div class="generic-group">
-        <label for="inputId">Ingrese el ID:</label>
-        <input id="inputId" type="number" [(ngModel)]="id" />
-        <mat-error *ngIf="idNoEncontrado"
-          >El ID ingresado no existe. Por favor, intente con otro ID.</mat-error
-        >
-        <br />
-        <button (click)="buscar()">Buscar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <div class="form">
+    <div class="generic-group">
+      <label for="inputId">Ingrese el ID:</label>
+      <input id="inputId" type="number" [(ngModel)]="id" />
+      <mat-error *ngIf="idNoEncontrado">El ID ingresado no existe. Por favor, intente con otro ID.</mat-error>
+      <br />
+      <button (click)="buscar()">Buscar</button>
+    </div>
+    <hr />
+    <div class="generic-details" *ngIf="hrs_estacionamiento">
+      <h2 class="generic-heading">Detalles del Horario Estacionamiento</h2>
+      <div class="generic-box">
+        <h1>Direccion estacionamiento</h1>
+        <p>
+          {{ hrs_estacionamiento.estacionamiento.localizacion.direccion }}
+        </p>
       </div>
-      <hr />
-      <div class="generic-details" *ngIf="hrs_estacionamiento">
-        <h2 class="generic-heading">Detalles del Horario Estacionamiento</h2>
-        <div class="generic-box">
-          <h1>Id de estacionamiento</h1>
-          <p>{{ hrs_estacionamiento.estacionamiento.idEstacionamiento }}</p>
-        </div>
-        <div class="generic-box">
-          <h1>Id de horario</h1>
-          <p>{{ hrs_estacionamiento.horario.idHorario }}</p>
-        </div>
+      <div class="generic-box">
+        <h1>Horario</h1>
+        <p>
+          {{ hrs_estacionamiento.horario.horaApertura }} {{ "-" }}
+          {{ hrs_estacionamiento.horario.horaCierre }}
+        </p>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

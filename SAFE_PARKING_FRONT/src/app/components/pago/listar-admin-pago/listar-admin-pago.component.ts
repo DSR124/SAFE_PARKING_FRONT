@@ -5,12 +5,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Pago } from 'src/app/models/pago';
 import { Rol } from 'src/app/models/rol';
+import { LoginService } from 'src/app/services/login.service';
 import { PagoService } from 'src/app/services/pago.service';
 
 @Component({
   selector: 'app-listar-admin-pago',
   templateUrl: './listar-admin-pago.component.html',
-  styleUrls: ['./listar-admin-pago.component.css']
+  styleUrls: ['./listar-admin-pago.component.css'],
 })
 export class ListarAdminPagoComponent {
   dataSource: MatTableDataSource<Pago> = new MatTableDataSource();
@@ -19,14 +20,37 @@ export class ListarAdminPagoComponent {
     'fechaEmision',
     'precioTotal',
     'tipoPago',
-    'reservaEstacionamiento', 'accion01','accion02'
+    'reservaEstacionamiento',
+    'conductor',
+    'accion01',
+    'accion02',
   ];
+  role: string = '';
 
   editarPago: Pago | null = null; // Variable para realizar un seguimiento de la fila en edición
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private pS: PagoService, public route: ActivatedRoute) {}
+  constructor(
+    private pS: PagoService,
+    private loginService: LoginService,
+    public route: ActivatedRoute
+  ) {}
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.pS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -47,4 +71,13 @@ export class ListarAdminPagoComponent {
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
   }
+
+   //Para ocultar la barra
+
+   mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+   toggleNavbar() {
+     this.mostrarNavbar = !this.mostrarNavbar;
+   }
+   //Fin de ocultar la barra
 }

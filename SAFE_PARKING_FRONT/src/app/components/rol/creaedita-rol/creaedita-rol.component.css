@@ -1,8 +1,10 @@
 /* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #11998e, #38ef7d); 
+    background: linear-gradient(to right, #11998e, #38ef7d);
     padding: 20px;
+    height: 100vh;
+
 }
 
 .container {
@@ -19,7 +21,6 @@ body {
     margin-top: 80px;
 }
 
-
 h1 {
     color: #333;
 }
@@ -34,10 +35,10 @@ mat-form-field {
 
 button {
     margin: 10px;
-    
+
 }
 
-.botonRegistro{
+.botonRegistro {
     background-color: #11998e;
     color: #fff;
-  }
+}

@@ -1,12 +1,10 @@
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #11998e, #38ef7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  height: 100%;
-  padding: 20px;
-
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin-left: 250px;
+  padding: 10px;
 }
-
 
 .titulo {
   color: #000000;
@@ -17,31 +15,37 @@ body {
 
 .container {
   background-color: #fff;
-    border: 1px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  width: 700px;
+  width: 70%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 10px auto;
+  margin: 100px auto;
 }
+
 .fecha {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 500px;
+  width: 100%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
+
 .example-form {
   display: flex;
   flex-direction: column;
 }
+
 mat-label {
   font-weight: bold;
 }
+
 .seccion._fechas {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .mat-datepicker-toggle {
@@ -52,7 +56,144 @@ mat-error {
   color: #e74c3c;
 }
 
-.boton{
+button {
+  width: 100px;
+  margin: 10px;
+
+}
+
+.botones {
+  justify-content: center;
+  text-align: center;
+}
+
+.boton1 {
   background-color: #11998e;
   color: aliceblue;
+}
+
+.boton2 {
+  background-color: #000000;
+  color: aliceblue;
+}
+
+/*Responsive y boton lateral..........*/
+.toggle-button {
+  display: none;
+  /* Oculta el botón por defecto */
+}
+
+/* Media query para pantallas más pequeñas */
+@media only screen and (max-width: 768px) {
+
+  /* Estilos del botón para pantallas pequeñas */
+  .toggle-button {
+    display: block;
+    /* Muestra el botón solo en pantallas pequeñas */
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    /* Color del icono */
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    /* Ajusta el z-index según sea necesario */
+  }
+
+  body {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    /* Agrega una transición para suavizar el cambio */
+  }
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-administrador {
+    transition: transform 0.3s ease;
+    /* Agrega una transición */
+  }
+
+  app-navbar-administrador[hidden] {
+    transform: translateX(-100%);
+    /* Mueve la barra fuera del viewport */
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+    /* Restablece la posición */
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-conductor {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-conductor[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: none;
+
+  }
+
+  app-navbar-arrendador {
+    transition: transform 0.3s ease;
+  }
+
+  app-navbar-arrendador[hidden] {
+    transform: translateX(-100%);
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /*Nav admin*/
+  app-navbar-administrador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-administrador:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav conductor*/
+  app-navbar-conductor[hidden] {
+    display: contents;
+  }
+
+  app-navbar-conductor:not([hidden]) {
+    transform: translateX(0);
+  }
+
+  /*Nav arrendador*/
+  app-navbar-arrendador[hidden] {
+    display: contents;
+  }
+
+  app-navbar-arrendador:not([hidden]) {
+    transform: translateX(0);
+  }
 }

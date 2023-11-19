@@ -1,1 +1,76 @@
-<p>listar-usuario-comentario works!</p>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Comentarios</title>
+</head>
+
+<body *ngIf="verificar()">
+  <!-- Para ocultar barra en responsive -->
+  <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <div class="encabezados" *ngIf="validarRol()">
+    <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+    <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+    <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+  </div>
+  <h2 style="text-align: center">LISTA DE COMENTARIOS</h2>
+
+  <div class="comment-list">
+    <div *ngFor="let comentario of dataSource.data" class="comment-card">
+      <div class="user-info">
+        <div class="user-avatar">
+          <div class="col-md-6">
+            <img mat-card-image [src]="getImagenUrl(comentario)" (error)="imagenNoCargada($event)"
+              alt="Foto del estacionamiento" class="responsive-img" />
+          </div>
+        </div>
+        <div class="user-details">
+          <p class="user-name">
+            {{ comentario.reservaEstacionamiento.users.nombre }}
+            {{ comentario.reservaEstacionamiento.users.apellido }}
+          </p>
+          <p class="user-title">
+            <strong>Tipo de Estacionamiento:</strong>
+            {{
+            comentario.reservaEstacionamiento.horarioEstacionamiento
+            .estacionamiento.tipoEstacionamiento
+            }}
+          </p>
+          <p class="user-title">
+            <strong>Codigo de Estacionamiento:</strong>
+            {{
+            comentario.reservaEstacionamiento.horarioEstacionamiento
+            .estacionamiento.idEstacionamiento
+            }}
+          </p>
+          <p class="user-title">
+            <strong> Dirección:</strong>
+            {{
+            comentario.reservaEstacionamiento.horarioEstacionamiento
+            .estacionamiento.localizacion.direccion
+            }}
+          </p>
+        </div>
+      </div>
+      <div class="comment-content">
+        <p class="comment-text">
+          <strong>comentario : </strong>{{ comentario.contenido }}
+        </p>
+        <p class="valoracion">
+          <strong>Valoración:</strong>
+          <span [innerHTML]="generarEstrellas(comentario.valoracion)"></span>
+        </p>
+        <p class="valoracion">
+          <strong> Fecha de Publicación: </strong>{{ comentario.fechaCreacion }}
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

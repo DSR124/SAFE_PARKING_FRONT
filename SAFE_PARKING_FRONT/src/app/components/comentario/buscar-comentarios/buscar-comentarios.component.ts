@@ -3,22 +3,26 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Comentario } from 'src/app/models/comentario';
 import { ComentarioService } from 'src/app/services/comentario.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ReservaEstacionamientoService } from 'src/app/services/reserva-estacionamiento.service';
 
 @Component({
   selector: 'app-buscar-comentarios',
   templateUrl: './buscar-comentarios.component.html',
-  styleUrls: ['./buscar-comentarios.component.css']
+  styleUrls: ['./buscar-comentarios.component.css'],
 })
 export class BuscarComentariosComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   com: Comentario = new Comentario();
   idComentario: number = 0;
+  role: string = '';
 
   constructor(
     private cS: ComentarioService,
     private reS: ReservaEstacionamientoService,
-    public route: ActivatedRoute,
+    private loginService: LoginService,
+
+    public route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.buscar();
@@ -34,4 +38,27 @@ export class BuscarComentariosComponent implements OnInit {
       }
     );
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

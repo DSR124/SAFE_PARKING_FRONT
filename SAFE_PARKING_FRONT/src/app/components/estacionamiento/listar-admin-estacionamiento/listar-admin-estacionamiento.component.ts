@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { EstacionamientoService } from 'src/app/services/estacionamiento.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-listar-admin-estacionamiento',
@@ -13,11 +14,12 @@ import { EstacionamientoService } from 'src/app/services/estacionamiento.service
 })
 export class ListarAdminEstacionamientoComponent implements OnInit {
   dataSource: MatTableDataSource<Estacionamiento> = new MatTableDataSource();
+  role: string = '';
+
   displayedColumns: string[] = [
     'idEstacionamiento',
     'tipoEstacionamiento',
     'disponibilidad',
-    'foto',
     'promedioValoracion',
     'capacidad',
     'fechaRegistro',
@@ -34,7 +36,8 @@ export class ListarAdminEstacionamientoComponent implements OnInit {
 
   constructor(
     private eS: EstacionamientoService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private loginService: LoginService
   ) {}
   ngOnInit(): void {
     this.eS.list().subscribe((data) => {
@@ -72,4 +75,28 @@ export class ListarAdminEstacionamientoComponent implements OnInit {
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
   }
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  validarRol() {
+    if (
+      this.role == 'administrador' ||
+      this.role == 'conductor' ||
+      this.role == 'arrendador'
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }
