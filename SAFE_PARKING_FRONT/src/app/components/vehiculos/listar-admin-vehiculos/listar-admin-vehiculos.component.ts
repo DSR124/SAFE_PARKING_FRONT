@@ -22,7 +22,6 @@ export class ListarAdminVehiculosComponent implements OnInit {
     'codigo',
     'placa',
     'categoria',
-    'color',
     'marca',
     'tamanio',
     'tarjeta de propiedad',
