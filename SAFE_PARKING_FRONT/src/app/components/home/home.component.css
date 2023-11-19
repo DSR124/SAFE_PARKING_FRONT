@@ -17,7 +17,7 @@ html {
 }
 
 h1 {
-    font-size: 96px;
+    font-size: 80px;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     line-height: normal;
@@ -25,7 +25,7 @@ h1 {
 }
 
 h2 {
-    font-size: 48px;
+    font-size: 35px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     line-height: normal;
@@ -162,6 +162,7 @@ button {
     background-color: #30e298;
     margin: 30px;
     cursor: pointer;
+    
 }
 
 .download-app button:hover {
@@ -182,7 +183,7 @@ button {
     background-position: center center;
     height: auto;
     color: white;
-    /* min-width: 475px;*/
+    /*min-width: 475px;*/
     width: 100%;
     background: rgb(30, 209, 155);
     background: -webkit-linear-gradient(to right, #07181f69, #34e89d86), url("/assets/image/Fondo2.png");
@@ -690,7 +691,8 @@ body {
 .header {
     background: linear-gradient(60deg, #543ab7 0, #00acc1 100%);
     color: #fff;
-    height: 500px
+    height: 500px;
+
 }
 
 .inner-header {
@@ -712,6 +714,7 @@ body {
     margin-bottom: -7px;
     min-height: 100px;
     max-height: 150px
+    
 }
 
 .content {
@@ -875,16 +878,6 @@ h2 {
         display: none;
     }
 }
-
-@media(max-width: 500px) {
-    /*Segmentos*/
-
-    .slider {
-        max-width: 100%;
-        height: auto;
-    }
-}
-
 
 
 
