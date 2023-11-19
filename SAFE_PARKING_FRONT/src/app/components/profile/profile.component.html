@@ -2,77 +2,69 @@
 <div [hidden]="route.children.length !== 0">
   <!DOCTYPE html>
   <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>User ID Card</title>
-    </head>
-    <body *ngIf="verificar()">
-      <div class="encabezados" *ngIf="validarRol()">
-        <app-navbar-administrador
-          *ngIf="role === 'administrador'"
-        ></app-navbar-administrador>
-        <app-navbar-conductor
-          *ngIf="role === 'conductor'"
-        ></app-navbar-conductor>
-        <app-navbar-arrendador
-          *ngIf="role === 'arrendador'"
-        ></app-navbar-arrendador>
-      </div>
-      <div class="container" section *ngIf="verificar()">
-        <div class="card" *ngIf="validarRol()">
-          <div class="card-header">
-            <h3>
-              TARJETA DE IDENTIFICACION DEL
-              <h3 *ngIf="role === 'administrador'">ADMINISTRADOR</h3>
-              <h3 *ngIf="role === 'conductor'">CONDUCTOR</h3>
-              <h3 *ngIf="role === 'arrendador'">ARRENDADOR</h3>
-            </h3>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <img
-                  *ngIf="role === 'administrador'"
-                  src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
-                  alt="Profile Picture"
-                  class="responsive-img"
-                />
-              </div>
-              <div class="col-md-6">
-                <img
-                  *ngIf="role === 'conductor' || role === 'arrendador'"
-                  mat-card-image
-                  [src]="getImagenUrl()"
-                  (error)="imagenNoCargada($event)"
-                  alt="Foto del estacionamiento"
-                  class="responsive-img"
-                />
-              </div>
 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User ID Card</title>
+  </head>
+
+  <body *ngIf="verificar()">
+     <!-- Para ocultar barra en responsive -->
+     <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+    <div class="encabezados" *ngIf="validarRol()">
+      <app-navbar-administrador [hidden]="!mostrarNavbar" *ngIf="role === 'administrador'"></app-navbar-administrador>
+      <app-navbar-conductor [hidden]="!mostrarNavbar" *ngIf="role === 'conductor'"></app-navbar-conductor>
+      <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
+    </div>
+    <div class="container" section *ngIf="verificar()">
+      <div class="card" *ngIf="validarRol()">
+        <div class="card-header">
+          <h3>
+            TARJETA DE IDENTIFICACION DEL
+            <h3 *ngIf="role === 'administrador'">ADMINISTRADOR</h3>
+            <h3 *ngIf="role === 'conductor'">CONDUCTOR</h3>
+            <h3 *ngIf="role === 'arrendador'">ARRENDADOR</h3>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class = "imagen_perfil">
               <div class="col-md-6">
-                <ul>
-                  <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
-                  <li><strong>Apellido:</strong>{{ usuario.apellido }}</li>
-                  <li>
-                    <strong>Fecha de Nacimiento:</strong>
-                    {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
-                  </li>
-                  <li><strong>Email:</strong> {{ usuario.correo }}</li>
-                  <li><strong>Telefono:</strong> {{ usuario.telefono }}</li>
-                  <li><strong>DNI:</strong>{{ usuario.dni }}</li>
-                  <li><strong>Genero:</strong>{{ usuario.genero }}</li>
-                </ul>
+                <img *ngIf="role === 'administrador'" src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png"
+                  alt="Profile Picture" class="responsive-img" />
+              </div>
+              <div class="col-md-6">
+                <img *ngIf="role === 'conductor' || role === 'arrendador'" mat-card-image [src]="getImagenUrl()"
+                  (error)="imagenNoCargada($event)" alt="Foto del estacionamiento" class="responsive-img" />
               </div>
             </div>
-          </div>
-          <div class="card-footer">
-            <small
-              >Fecha de Vencimiento : {{ usuario.membresia.fechaFin }}</small
-            >
+
+            <div class="col-md-6">
+              <ul>
+                <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
+                <li><strong>Apellido:</strong>{{ usuario.apellido }}</li>
+                <li>
+                  <strong>Fecha de Nacimiento:</strong>
+                  {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
+                </li>
+                <li><strong>Email:</strong> {{ usuario.correo }}</li>
+                <li><strong>Telefono:</strong> {{ usuario.telefono }}</li>
+                <li><strong>DNI:</strong>{{ usuario.dni }}</li>
+                <li><strong>Genero:</strong>{{ usuario.genero }}</li>
+              </ul>
+            </div>
           </div>
         </div>
+        <div class="card-footer">
+          <small>Fecha de Vencimiento : {{ usuario.membresia.fechaFin }}</small>
+        </div>
       </div>
-    </body>
+    </div>
+  </body>
+
   </html>
 </div>

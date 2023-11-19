@@ -26,7 +26,7 @@
   </div>
 
   <div class="container" style="text-align: center">
-    <h1>REGISTRO DE LOCALIZACION</h1>
+    <h2>REGISTRO DE LOCALIZACION</h2>
     <form [formGroup]="form" (ngSubmit)="registrar()" class="example-form">
       <!-- Región sección -->
 
@@ -82,7 +82,7 @@
 
       <div class="longitudes">
         <!-- Latitud sección -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
           <mat-label>Latitud</mat-label>
           <input matInput placeholder="Latitud" formControlName="latitud" readonly="true" />
           <mat-error *ngIf="obtenerControlCampo('latitud')?.errors?.['required']">
@@ -90,7 +90,7 @@
           </mat-error>
         </mat-form-field>
         <!-- Longitud sección -->
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
           <mat-label>Longitud</mat-label>
           <input matInput placeholder="Longitud" formControlName="longitud" readonly="true" />
           <mat-error *ngIf="obtenerControlCampo('longitud')?.errors?.['required']">

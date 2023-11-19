@@ -22,8 +22,6 @@ export class ListarAdminLocalizacionesComponent {
     'distrito',
     'region',
     'referencia',
-    'latitud',
-    'longitud',
     'accion01',
     'accion02',
   ];

@@ -34,6 +34,7 @@ export class ModificarUsuarioComponent implements OnInit {
   edicion: boolean = false;
   imageSelected: string | ArrayBuffer | null = null;
   listaMembresia: Membresia[] = [];
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   generos: { value: string; viewValue: string }[] = [
     { value: 'Hombre', viewValue: 'Hombre' },
@@ -194,4 +195,14 @@ export class ModificarUsuarioComponent implements OnInit {
       return 'assets/image/EstacionamientoDefault.jpg';
     }
   }
+
+  
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

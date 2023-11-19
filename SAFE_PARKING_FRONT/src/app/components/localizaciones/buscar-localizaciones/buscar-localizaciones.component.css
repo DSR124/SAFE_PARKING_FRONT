@@ -56,12 +56,9 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  left: 310px;
 }
 
-button:hover {
-  background-color: #333;
-  color: #4ff5cb;
-}
 
 /* Mapa */
 .map-container {
@@ -69,6 +66,7 @@ button:hover {
   height: 300px;
   border-radius: 5px;
   margin: 40px auto; /* Centrar horizontalmente */
+  z-index: 0;
 }
 
 /*Responsive y boton lateral..........*/

@@ -30,7 +30,18 @@
                 }}
               </mat-error>
             </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>apellido</mat-label>
+              <input matInput placeholder="apellido" formControlName="apellido" />
+              <mat-error *ngIf="form.get('apellido')?.invalid">
+                {{
+                form.get('apellido')!.errors?.['required'] ? 'El apellido es obligatorio' :
+                (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' :
 
+                (form.get('apellido')!.errors?.['maxlength'] ? 'El apellido no puede tener más de 50 caracteres' : ''))
+                }}
+              </mat-error>
+            </mat-form-field>
             <div class="sub-seccion">
               <mat-form-field class="example-full-width">
                 <mat-label>correo</mat-label>
@@ -67,6 +78,10 @@
               </mat-error>
             </mat-form-field>
 
+          </div>
+
+          <div class="secciones">
+       
             <mat-form-field class="example-full-width">
               <mat-label>username</mat-label>
               <input matInput placeholder="username" formControlName="username" />
@@ -77,18 +92,20 @@
                 }}
               </mat-error>
             </mat-form-field>
-          </div>
-
-          <div class="secciones">
             <mat-form-field class="example-full-width">
-              <mat-label>apellido</mat-label>
-              <input matInput placeholder="apellido" formControlName="apellido" />
-              <mat-error *ngIf="form.get('apellido')?.invalid">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" type="password" matInput placeholder="Password"
+                formControlName="password" />
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+              </button>
+              <mat-error *ngIf="form.get('password')?.invalid">
                 {{
-                form.get('apellido')!.errors?.['required'] ? 'El apellido es obligatorio' :
-                (form.get('apellido')!.errors?.['pattern'] ? 'El campo no debe tener números' :
-
-                (form.get('apellido')!.errors?.['maxlength'] ? 'El apellido no puede tener más de 50 caracteres' : ''))
+                form.get('password')!.errors?.['required'] ? 'El password es obligatorio' :
+                (form.get('password')!.errors?.['maxlength'] ? 'El password debe ser menos de 200 dígitos' : '')
                 }}
               </mat-error>
             </mat-form-field>
@@ -125,28 +142,12 @@
                 La fecha de nacimiento es obligatoria.
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Password</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" type="password" matInput placeholder="Password"
-                formControlName="password" />
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{
-                  hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-              </button>
-              <mat-error *ngIf="form.get('password')?.invalid">
-                {{
-                form.get('password')!.errors?.['required'] ? 'El password es obligatorio' :
-                (form.get('password')!.errors?.['maxlength'] ? 'El password debe ser menos de 200 dígitos' : '')
-                }}
-              </mat-error>
-            </mat-form-field>
+
           </div>
           <div class="secciones">
-            <h2>IMAGEN</h2>
+            <h2></h2>
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
               <mat-label>Foto</mat-label>
               <input matInput placeholder="foto" formControlName="foto" />
               <mat-error *ngIf="obtenerControlCampo('foto')?.errors?.['required']">

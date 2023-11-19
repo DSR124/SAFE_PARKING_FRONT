@@ -30,6 +30,7 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
 
   id: number = 0; //Añadir
   edicion: boolean = false; //Añadir
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   tipos: { value: string; viewValue: string }[] = [
     {

@@ -21,28 +21,25 @@ export class CantPrecioTotalPorMesComponent implements OnInit {
   ngOnInit(): void {
     this.precioTotalPorMesService.getPrecioTotalPorMes().subscribe((data) => {
       this.barChartLabels = data.map((item) => item.mes);
-      const randomColors = this.generateRandomColors(data.length);
 
       this.barChartData = [
         {
           data: data.map((item) => item.precioTotal),
           label: 'cantidad de precio total',
-          backgroundColor: randomColors.map((color) => `${color}0.3`), // Add alpha value for background
-          borderColor: randomColors.map((color) => `${color}1`), // Add alpha value for border
-          borderWidth: 1,
+          backgroundColor: ['#11998e', '#38ef7d', '#000000'],
           fill: true,
         },
       ];
     });
   }
-  private generateRandomColors(count: number): string[] {
-    const colors: string[] = [];
-    for (let i = 0; i < count; i++) {
-      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)},`;
-      colors.push(color);
-    }
-    return colors;
+ 
+  
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
   }
+  //Fin de ocultar la barra
 }

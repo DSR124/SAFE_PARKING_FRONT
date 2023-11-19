@@ -107,6 +107,7 @@ button {
   max-width: 90%;
   max-height: 90%;
   margin: 0 20px;
+  justify-content: center;
 }
 
 /* Additional styling for the uploaded image */

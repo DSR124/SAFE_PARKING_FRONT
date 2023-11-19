@@ -9,7 +9,12 @@
 </head>
 
 <body>
-  <app-navbar-administrador></app-navbar-administrador>
+   <!-- Para ocultar barra en responsive -->
+   <button (click)="toggleNavbar()" class="toggle-button">
+    <i class="fa fa-bars"></i>
+  </button>
+  <!-- Fin de ocultar barra en responsive -->
+  <app-navbar-administrador [hidden]="!mostrarNavbar"></app-navbar-administrador>
 
   <div class="container" style="text-align: center">
     <div class="contenido">
@@ -127,9 +132,9 @@
             </mat-form-field>
           </div>
           <div class="secciones">
-            <h2>IMAGEN</h2>
+            <h2></h2>
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
               <mat-label>Foto</mat-label>
               <input matInput placeholder="foto" formControlName="foto" readonly="true" />
               <mat-error *ngIf="obtenerControlCampo('foto')?.errors?.['required']">

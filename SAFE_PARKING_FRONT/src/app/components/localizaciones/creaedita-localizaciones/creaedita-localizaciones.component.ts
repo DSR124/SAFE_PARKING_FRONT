@@ -34,6 +34,7 @@ export class CreaeditaLocalizacionesComponent implements OnInit {
   role: string = '';
   lugarABuscar: string = '';
   resultados: Localizacion[] = [];
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   provinciasLima: { value: string; viewValue: string }[] = [
     { value: 'Lima', viewValue: 'Lima' },

@@ -6,11 +6,16 @@
     <title>Document</title>
   </head>
   <body>
-    <app-navbar-administrador></app-navbar-administrador>
+      <!-- Para ocultar barra en responsive -->
+      <button (click)="toggleNavbar()" class="toggle-button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <!-- Fin de ocultar barra en responsive -->
+    <app-navbar-administrador [hidden]="!mostrarNavbar"></app-navbar-administrador>
 
     <div class="litle">
       <h2 style="text-align: center">
-        LISTA DE CANTIDAD DE RESERVAS POR USUARIO
+        N° DE RESERVAS POR USUARIO
       </h2>
     </div>
     <div class="container">

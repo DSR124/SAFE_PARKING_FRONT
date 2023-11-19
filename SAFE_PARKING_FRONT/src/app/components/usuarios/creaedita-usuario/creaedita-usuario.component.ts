@@ -25,6 +25,7 @@ export class CreaeditaUsuarioComponent implements OnInit {
   usuario: Usuario = new Usuario();
   estado: boolean = true;
   mensaje: string = '';
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   fechaNacimiento = new FormControl(new Date());
   maxFecha: Date = moment().add(-1, 'days').toDate();

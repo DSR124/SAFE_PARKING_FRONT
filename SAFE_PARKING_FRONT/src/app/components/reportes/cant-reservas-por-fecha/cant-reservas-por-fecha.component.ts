@@ -12,7 +12,7 @@ export class CantReservasPorFechaComponent implements OnInit {
     responsive: true,
   };
   barChartLabels: Date[] = [];
-  barChartType: ChartType = 'doughnut';
+  barChartType: ChartType = 'line';
   barChartLegend = true;
   barChartData: ChartDataset[] = [];
   constructor(
@@ -24,25 +24,24 @@ export class CantReservasPorFechaComponent implements OnInit {
       .CantidadReservasPorFecha()
       .subscribe((data) => {
         this.barChartLabels = data.map((item) => item.date_reservation);
-        const randomColors = this.generateRandomColors(data.length);
 
         this.barChartData = [
           {
             data: data.map((item) => item.reservation_quantity),
             label: 'cantidad de reservas',
-            backgroundColor: randomColors,
+            backgroundColor: ['#11998e', '#38ef7d', '#000000'],
           },
         ];
       });
   }
-  private generateRandomColors(count: number): string[] {
-    const colors: string[] = [];
-    for (let i = 0; i < count; i++) {
-      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)}, 0.3)`;
-      colors.push(color);
-    }
-    return colors;
+  
+  
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
   }
+  //Fin de ocultar la barra
 }

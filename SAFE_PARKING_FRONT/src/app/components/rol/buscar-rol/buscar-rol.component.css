@@ -5,7 +5,7 @@
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 50%;
+  width: 80%;
   margin:  auto; /* Centrar horizontalmente */
   flex-direction: column;
   justify-content: center; /* Centrar verticalmente */
@@ -50,7 +50,7 @@ body{
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 50%;
+    width: 80%;
     margin: 0 auto; /* Centrar horizontalmente */
 }
 
