@@ -95,6 +95,7 @@ import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modifica
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehiculos/listar-usuario-vehiculos.component';
+import { ListaMapaEstacionamientoComponent } from './estacionamiento/lista-mapa-estacionamiento/lista-mapa-estacionamiento.component';
 @NgModule({
   declarations: [
     //Nav Bars
@@ -198,6 +199,7 @@ import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehi
     DetalleEstacionamientoComponent,
     ProfileComponent,
     ModificarUsuarioComponent,
+    ListaMapaEstacionamientoComponent,
   ],
   imports: [
     CommonModule,

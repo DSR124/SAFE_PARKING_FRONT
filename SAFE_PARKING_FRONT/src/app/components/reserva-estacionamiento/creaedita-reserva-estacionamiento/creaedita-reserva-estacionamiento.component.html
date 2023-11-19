@@ -35,7 +35,7 @@
         </mat-form-field>
         <br />
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
           <mat-label>Favorito</mat-label>
           <mat-select formControlName="favorito">
             <mat-option *ngFor="let p of favoritos" [value]="p.value">
@@ -48,7 +48,7 @@
         </mat-form-field>
 
         <br />
-        <mat-form-field appearance="fill" class="example-full-width">
+        <mat-form-field appearance="fill" class="example-full-width" *ngIf="mostrarCampo">
           <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fecha"
             readonly="true" />
           <mat-hint>MM/DD/YYYY</mat-hint>

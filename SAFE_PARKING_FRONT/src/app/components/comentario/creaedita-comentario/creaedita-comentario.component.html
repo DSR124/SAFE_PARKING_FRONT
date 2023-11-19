@@ -25,6 +25,19 @@
       <br />
 
       <mat-form-field class="example-full-width">
+        <mat-label>codigo de la reserva</mat-label>
+        <mat-select formControlName="reservaEstacionamiento">
+          <mat-option *ngFor="let p of listaReservaEstacionamiento" [value]="p.idReservaEstacionamiento">
+            {{ p.idReservaEstacionamiento }}
+          </mat-option>
+          <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
+            El codigo es obligatorio.
+          </mat-error>
+        </mat-select>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
         <mat-label>Comentario</mat-label>
         <input matInput placeholder="contenido" formControlName="contenido" />
         <mat-error *ngIf="form.get('contenido')?.invalid">
@@ -47,20 +60,7 @@
       </mat-form-field>
       <br />
 
-      <mat-form-field class="example-full-width">
-        <mat-label>codigo de la reserva</mat-label>
-        <mat-select formControlName="reservaEstacionamiento">
-          <mat-option *ngFor="let p of listaReservaEstacionamiento" [value]="p.idReservaEstacionamiento">
-            {{ p.idReservaEstacionamiento }}
-          </mat-option>
-          <mat-error *ngIf="obtenerControlCampo('reservaEstacionamiento')?.errors?.['required']">
-            El codigo es obligatorio.
-          </mat-error>
-        </mat-select>
-      </mat-form-field>
-
-      <br />
-      <mat-form-field appearance="fill" class="example-full-width">
+      <mat-form-field appearance="fill" class="example-full-width"*ngIf="mostrarCampo">
         <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker" formControlName="fechaCreacion"
           readonly="true" />
         <mat-hint>MM/DD/YYYY</mat-hint>

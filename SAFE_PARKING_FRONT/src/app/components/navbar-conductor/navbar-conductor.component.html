@@ -1,134 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="mySidenav" class="sidenav">
-      <div class ="logoprincipal">
-        <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
-        <p class="logo">Portal Conductor</p>
-  
-      </div>
-      
-      <label for="menu16" class="menu" routerLink="/components/profile">
-        <i class="material-icons">person</i>
-        PERFIL
-      </label>
 
-      <input type="checkbox" class="menu-toggle" />
-      <label for="menu16" class="menu" routerLink="/components/home_conductor">
-        <i class="material-icons">dashboard</i>
-        HOME
-      </label>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-      <input type="checkbox" class="menu-toggle" id="menu13" />
-      <label for="menu13" class="menu">
-        <i class="material-icons">assignment_turned_in</i> Reserva de
-        Estacionamientos
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a
-            href="components/reservaestacionamiento/registrar_reservas_estacionamientos"
-            >Registrar reservas</a
-          >
-        </li>
-        <li>
-          <a
-            href="components/reservaestacionamiento/listar_admin_reserva_estacionamientos"
-            >Listar reservas (admin)</a
-          >
-        </li>
-      </ul>
-      <input type="checkbox" class="menu-toggle" id="menu3" />
-      <label for="menu3" class="menu">
-        <i class="material-icons">directions_car</i> Vehiculos
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a href="components/vehiculos/registrar_vehiculos"
-            >Registrar vehiculos</a
-          >
-        </li>
-        <li>
-          <a href="components/vehiculos/listar_usuario_vehiculos"
-            >Listar vehiculos(user)</a
-          >
-        </li>
-      </ul>
+<body>
+  <div id="mySidenav" class="sidenav">
+    <div class="logoprincipal">
+      <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
+      <p class="logo">Portal Conductor</p>
 
-      <input type="checkbox" class="menu-toggle" id="menu11" />
-      <label for="menu11" class="menu">
-        <i class="material-icons">add_location</i> Localizaciones
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a href="components/localizaciones/listar_usuario_localizaciones"
-            >Listar localizaciones (user)</a
-          >
-        </li>
-      </ul>
-
-      <input type="checkbox" class="menu-toggle" id="menu8" />
-      <label for="menu8" class="menu">
-        <i class="material-icons">calendar_today</i> Hrs. Estacionamientos
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a
-            href="components/horarios_estacionamiento/listar_admin_horarios_estacionamiento"
-            >Listar hrs.Estacionamiento (admin)</a
-          >
-        </li>
-      </ul>
-      <input type="checkbox" class="menu-toggle" id="menu10" />
-      <label for="menu10" class="menu">
-        <i class="material-icons">monetization_on</i> Pagos
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a href="components/pagos/registrar_pagos">Registrar pagos</a>
-        </li>
-        <li>
-          <a href="components/pagos/listar-admin-pagos">Listar pagos (admin)</a>
-        </li>
-      </ul>
-      <input type="checkbox" class="menu-toggle" id="menu9" />
-      <label for="menu9" class="menu">
-        <i class="material-icons">comment</i> Comentarios
-        <mat-icon class="icon-down">arrow_drop_down</mat-icon>
-        <mat-icon class="icon-up">arrow_drop_up</mat-icon>
-      </label>
-      <ul class="sub-menu">
-        <li>
-          <a href="components/comentarios/registrar_comentarios"
-            >Registrar comentarios</a
-          >
-        </li>
-        <li>
-          <a href="components/comentarios/listar_comentarios_user"
-            >Listar comentarios (user)</a
-          >
-        </li>
-      </ul>
-      <input type="checkbox" class="menu-toggle" />
-      <label for="menu16" class="menu" (click)="confirmarSalir()">
-        <i class="material-icons">logout</i>
-        Salir
-      </label>
     </div>
-  </body>
+
+    <label for="menu16" class="menu" routerLink="/components/profile">
+      <i class="material-icons">person</i>
+      PERFIL
+    </label>
+
+    <input type="checkbox" class="menu-toggle" />
+    <label for="menu16" class="menu" routerLink="/components/home_conductor">
+      <i class="material-icons">dashboard</i>
+      HOME
+    </label>
+
+    <input type="checkbox" class="menu-toggle" id="menu11" />
+    <label for="menu11" class="menu">
+      <i class="material-icons">local_parking</i> Estacionamientos
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/estacionamiento/listar-mapa-estacionamiento">Ver estacionamientos en el mapa</a>
+      </li>
+    </ul>
+
+    <input type="checkbox" class="menu-toggle" id="menu13" />
+    <label for="menu13" class="menu">
+      <i class="material-icons">assignment_turned_in</i> Gestiona tus reservas
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/reservaestacionamiento/registrar_reservas_estacionamientos">Reserva un Estacionamiento</a>
+      </li>
+      <li>
+        <a href="components/reservaestacionamiento/listar_admin_reserva_estacionamientos">Historial de reservas</a>
+      </li>
+    </ul>
+    <input type="checkbox" class="menu-toggle" id="menu3" />
+    <label for="menu3" class="menu">
+      <i class="material-icons">directions_car</i> Vehiculos
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/vehiculos/registrar_vehiculos">Registrar un vehiculo</a>
+      </li>
+      <li>
+        <a href="components/vehiculos/listar_usuario_vehiculos">Tus vehículos</a>
+      </li>
+    </ul>
+
+    <input type="checkbox" class="menu-toggle" id="menu8" />
+    <label for="menu8" class="menu">
+      <i class="material-icons">calendar_today</i> Horarios disponibles
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/horarios_estacionamiento/listar_admin_horarios_estacionamiento">Ver horarios por estacionamiento</a>
+      </li>
+    </ul>
+    <input type="checkbox" class="menu-toggle" id="menu10" />
+    <label for="menu10" class="menu">
+      <i class="material-icons">monetization_on</i> Gestiona tus pagos
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/pagos/registrar_pagos">Registrar un pago</a>
+      </li>
+      <li>
+        <a href="components/pagos/listar-admin-pagos">Historial de pagos</a>
+      </li>
+    </ul>
+    <input type="checkbox" class="menu-toggle" id="menu9" />
+    <label for="menu9" class="menu">
+      <i class="material-icons">comment</i> Comentarios
+      <mat-icon class="icon-down">arrow_drop_down</mat-icon>
+      <mat-icon class="icon-up">arrow_drop_up</mat-icon>
+    </label>
+    <ul class="sub-menu">
+      <li>
+        <a href="components/comentarios/registrar_comentarios">Registrar un comentario</a>
+      </li>
+      <li>
+        <a href="components/comentarios/listar_comentarios_user">Ver comentarios</a>
+      </li>
+    </ul>
+    <input type="checkbox" class="menu-toggle" />
+    <label for="menu16" class="menu" (click)="confirmarSalir()">
+      <i class="material-icons">logout</i>
+      Salir
+    </label>
+  </div>
+</body>
+
 </html>

@@ -68,6 +68,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modificar-usuario.component';
 import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehiculos/listar-usuario-vehiculos.component';
 import { ListarUsuarioComentarioComponent } from './comentario/listar-usuario-comentario/listar-usuario-comentario.component';
+import { ListaMapaEstacionamientoComponent } from './estacionamiento/lista-mapa-estacionamiento/lista-mapa-estacionamiento.component';
 
 const routes: Routes = [
   // localizaciones
@@ -411,6 +412,10 @@ const routes: Routes = [
       {
         path: 'buscar-estacionamiento',
         component: BuscarEstacionamientoComponent,
+      },
+      {
+        path: 'listar-mapa-estacionamiento',
+        component: ListaMapaEstacionamientoComponent,
       },
     ],
   },
