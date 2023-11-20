@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(request: JwtRequest) {
-    return this.http.post('https://safe-parking-deployment-2023.onrender.com/authenticate', request);
+    return this.http.post('http://localhost:8080/authenticate', request);
   }
   verificar() {
     let token = sessionStorage.getItem('token');

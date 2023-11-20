@@ -101,8 +101,6 @@ export class ListaMapaEstacionamientoComponent implements OnInit{
       <br>
       ID Estacionamiento: ${estacionamiento.idEstacionamiento}
       <br>
-      ID Localizacion: ${estacionamiento.localizacion.idLocalizacion}
-      <br>
       Region: ${estacionamiento.localizacion.region}
       <br>
       Distrito: ${estacionamiento.localizacion.distrito}

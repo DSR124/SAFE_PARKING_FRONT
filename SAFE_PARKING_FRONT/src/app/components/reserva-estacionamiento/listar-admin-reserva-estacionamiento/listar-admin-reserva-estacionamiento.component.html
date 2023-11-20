@@ -19,7 +19,7 @@
     <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
   </div>
   <div class="litle">
-    <h2 style="text-align: center">LISTA DE RESERVAS - ESTACIONAMIENTO</h2>
+    <h2 style="text-align: center">LISTA DE RESERVAS POR ESTACIONAMIENTO</h2>
   </div>
   <div class="example-container">
     <mat-form-field>
@@ -78,13 +78,15 @@
       <ng-container matColumnDef="horarioEstacionamiento">
         <th mat-header-cell *matHeaderCellDef>Horario-Estacionamiento</th>
         <td mat-cell *matCellDef="let element">
-          {{ "( " }}{{ element.horarioEstacionamiento.horario.horaApertura }}
-          {{ "-" }} {{ element.horarioEstacionamiento.horario.horaCierre
-          }}{{ " )" }} {{ "-" }}
+         
           {{
-          element.horarioEstacionamiento.estacionamiento.localizacion
-          .direccion
+          element.horarioEstacionamiento.estacionamiento.tipoEstacionamiento
+      
           }}
+          {{ "-" }}
+           {{ "( " }}{{ element.horarioEstacionamiento.horario.horaApertura }}
+           {{ "-" }} {{ element.horarioEstacionamiento.horario.horaCierre
+           }}{{ " )" }} 
         </td>
       </ng-container>
       <ng-container matColumnDef="accion01">

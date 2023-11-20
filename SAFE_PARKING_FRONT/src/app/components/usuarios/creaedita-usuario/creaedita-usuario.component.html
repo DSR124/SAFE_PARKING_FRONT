@@ -18,7 +18,7 @@
         <div class="formularios">
           <div class="secciones">
             <mat-form-field class="example-full-width">
-              <mat-label>nombre</mat-label>
+              <mat-label>Nombre</mat-label>
               <input matInput placeholder="nombre" formControlName="nombre" />
               <mat-error *ngIf="obtenerControlCampo('nombre')?.errors?.['required']">
                 El nombre es obligatorio.
@@ -31,7 +31,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <mat-label>apellido</mat-label>
+              <mat-label>Apellido</mat-label>
               <input matInput placeholder="apellido" formControlName="apellido" />
               <mat-error *ngIf="form.get('apellido')?.invalid">
                 {{
@@ -44,7 +44,7 @@
             </mat-form-field>
             <div class="sub-seccion">
               <mat-form-field class="example-full-width">
-                <mat-label>correo</mat-label>
+                <mat-label>Correo electrónico</mat-label>
                 <input matInput placeholder="correo" formControlName="correo" />
                 <mat-error *ngIf="form.get('correo')?.invalid">
                   {{
@@ -56,7 +56,7 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>telefono</mat-label>
+                <mat-label>Telefono</mat-label>
                 <input matInput placeholder="telefono" formControlName="telefono" />
                 <mat-error *ngIf="form.get('telefono')?.invalid">
                   {{
@@ -67,7 +67,7 @@
               </mat-form-field>
             </div>
             <mat-form-field class="example-full-width">
-              <mat-label>membresia</mat-label>
+              <mat-label>Membresia</mat-label>
               <mat-select formControlName="membresia">
                 <mat-option *ngFor="let p of listaMembresia" [value]="p.idMembresia">
                   {{ p.tipoMembresia }}
@@ -77,13 +77,11 @@
                 El tipo es obligatorio.
               </mat-error>
             </mat-form-field>
-
           </div>
 
           <div class="secciones">
-       
             <mat-form-field class="example-full-width">
-              <mat-label>username</mat-label>
+              <mat-label>Username</mat-label>
               <input matInput placeholder="username" formControlName="username" />
               <mat-error *ngIf="form.get('username')?.invalid">
                 {{
@@ -111,7 +109,7 @@
             </mat-form-field>
             <div class="sub-seccion">
               <mat-form-field class="example-full-width">
-                <mat-label>dni</mat-label>
+                <mat-label>DNI</mat-label>
                 <input matInput placeholder="dni" formControlName="dni" />
                 <mat-error *ngIf="form.get('dni')?.invalid">
                   {{
@@ -121,7 +119,7 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>genero</mat-label>
+                <mat-label>Género</mat-label>
                 <mat-select formControlName="genero">
                   <mat-option *ngFor="let p of generos" [value]="p.value">
                     {{ p.viewValue }}

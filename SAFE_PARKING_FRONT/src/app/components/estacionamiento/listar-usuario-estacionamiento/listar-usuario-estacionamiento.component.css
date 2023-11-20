@@ -16,6 +16,7 @@ h2 {
     flex-wrap: wrap;
     height: auto;
     width: auto;
+    justify-content: center;
 }
 
 .estacionamiento-card {

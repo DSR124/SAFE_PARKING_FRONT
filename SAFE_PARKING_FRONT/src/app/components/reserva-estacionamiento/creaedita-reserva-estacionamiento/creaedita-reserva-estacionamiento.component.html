@@ -90,13 +90,13 @@
           <mat-label>Horario Estacionamiento</mat-label>
           <mat-select formControlName="horarioEstacionamiento">
             <mat-option *ngFor="let p of listaHorarioEst" [value]="p.idHorarioEstacionamiento">
-              {{ p.estacionamiento.localizacion.direccion }} {{ " - " }}
+              {{ p.estacionamiento.tipoEstacionamiento	 }} {{ " - " }}
               {{ p.horario.fecha }}{{ " ( " }} {{ p.horario.horaApertura }}
               {{ " - " }}{{ p.horario.horaCierre }}{{ " ) " }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="obtenerControlCampo('horarioEstacionamiento')?.errors?.['required']">
-            El horario es obligatorio.
+            El horario por estacionamiento es obligatorio.
           </mat-error>
         </mat-form-field>
         <br />
@@ -104,7 +104,7 @@
           <button class="boton_registro" mat-raised-button color="primary">
             Registrar
           </button>
-          <button mat-raised-button [routerLink]="[
+          <button  class="boton2" mat-raised-button [routerLink]="[
                 '/components/reservaestacionamiento/listar_admin_reserva_estacionamientos'
               ]">
             Cancelar

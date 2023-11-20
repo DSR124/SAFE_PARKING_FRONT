@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Document</title>
 </head>
 
@@ -129,11 +129,11 @@
         <button class="botonRegistro" mat-raised-button color="primary">
           Registrar
         </button>
-        <button *ngIf="role === 'conductor'" mat-raised-button
+        <button class="boton2"*ngIf="role === 'conductor'" mat-raised-button
           [routerLink]="['/components/vehiculos/listar_usuario_vehiculos']">
           Cancelar
         </button>
-        <button *ngIf="role === 'administrador'" mat-raised-button
+        <button class="boton2" *ngIf="role === 'administrador'" mat-raised-button
           [routerLink]="['/components/vehiculos/listar_admin_vehiculos']">
           Cancelar
         </button>

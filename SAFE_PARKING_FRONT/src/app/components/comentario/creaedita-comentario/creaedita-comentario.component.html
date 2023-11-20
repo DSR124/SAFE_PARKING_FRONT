@@ -77,11 +77,11 @@
         <button class="boton_registro" mat-raised-button color="primary">
           Registrar
         </button>
-        <button *ngIf="role === 'conductor'" mat-raised-button
+        <button  class="boton2"*ngIf="role === 'conductor'" mat-raised-button
           [routerLink]="['/components/comentarios/listar_comentarios_user']">
           Cancelar
         </button>
-        <button *ngIf="role === 'administrador'" mat-raised-button
+        <button  class="boton2"*ngIf="role === 'administrador'" mat-raised-button
           [routerLink]="['/components/comentarios/listar_comentarios_admin']">
           Cancelar
         </button>

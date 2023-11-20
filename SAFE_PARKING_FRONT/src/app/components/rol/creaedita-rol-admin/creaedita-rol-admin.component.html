@@ -40,7 +40,7 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <mat-label>usuario</mat-label>
+        <mat-label>Usuario</mat-label>
         <mat-select formControlName="usuario">
           <mat-option *ngFor="let p of listaUsuarios" [value]="p.idUsuario">
             {{ p.nombre }}
@@ -51,9 +51,15 @@
         </mat-error>
       </mat-form-field>
       <br />
-      <button class="botonRegistro" mat-raised-button color="primary">
-        Registrar
-      </button>
+      <div class="botones">
+        <button class="botonRegistro" mat-raised-button color="primary">
+          Registrar
+        </button>
+        <button class="boton2" mat-raised-button [routerLink]="['/components/roles/listar-admin-roles']">
+          Cancelar
+        </button>
+      </div>
+  
 
       <p>{{ mensaje }}</p>
     </form>

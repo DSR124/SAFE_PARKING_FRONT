@@ -118,6 +118,7 @@ export class CreaeditaReservaEstacionamientoComponent {
         this.form.value.vehiculo;
       this.reservaestacionamiento.horarioEstacionamiento.idHorarioEstacionamiento =
         this.form.value.horarioEstacionamiento;
+        
       if (this.edicion) {
         this.reS.update(this.reservaestacionamiento).subscribe(() => {
           this.reS.list().subscribe((data) => {

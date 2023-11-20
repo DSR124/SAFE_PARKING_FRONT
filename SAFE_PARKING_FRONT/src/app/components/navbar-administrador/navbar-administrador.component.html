@@ -80,7 +80,10 @@
           <a href="components/vehiculos/registrar_vehiculos">Registrar vehiculos</a>
         </li>
         <li *ngIf="role === 'administrador' || role === 'conductor'">
-          <a href="components/vehiculos/listar_admin_vehiculos">Listar vehiculos(admin)</a>
+          <a href="components/vehiculos/listar_admin_vehiculos">Listar vehiculos (admin)</a>
+        </li>
+        <li *ngIf="role === 'administrador' || role === 'conductor'">
+          <a href="components/vehiculos/listar_usuario_vehiculos">Listar vehiculos (user)</a>
         </li>
         <li *ngIf="role === 'administrador'">
           <a href="components/vehiculos/buscar_vehiculos">Buscar vehiculos</a>
@@ -164,7 +167,7 @@
           <a href="components/horarios/listar_usuario_horarios">Listar horarios (user)</a>
         </li>
         <li *ngIf="role === 'administrador' || role === 'arrendador'">
-          <a href="components/horarios/listar_admin_horarios">Listar horarios (adim)</a>
+          <a href="components/horarios/listar_admin_horarios">Listar horarios (admin)</a>
         </li>
       </ul>
 

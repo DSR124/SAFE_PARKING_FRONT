@@ -1,11 +1,15 @@
 /* Estilos para los campos de formulario */
 .container {
-  margin-bottom: 50px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Centra horizontalmente */
-  padding: 20px;
+  width: 100%;
+  margin: 0;
+}
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 body {
@@ -48,13 +52,15 @@ button {
 
 .secciones {
   margin: 15px;
-  width: 380px;
   height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 25px;
+  width: 100%;
+  max-width: 400px; /* Puedes ajustar este valor según sea necesario */
+  margin: 15px auto; /* Centra horizontalmente */
 }
 .sub-seccion {
   display: flex;
@@ -70,15 +76,17 @@ button {
 
 /* Additional styling for the uploaded image */
 img {
-  max-width: 40%;
-  max-height: 40%;
-  margin-top: 10px;
+  max-width: 100%;
+  max-height: auto;
 }
 
 input[type="file"] {
   background-color: rgb(173, 173, 182);
 }
-
+.boton2 {
+  background-color: #000000;
+  color: aliceblue;
+}
 
 /*Responsive y boton lateral..........*/
 .toggle-button {

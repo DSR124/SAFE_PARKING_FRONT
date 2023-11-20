@@ -18,14 +18,17 @@
 
   <div class="container" style="text-align: center">
     <div class="contenido">
-      <div class="titulo">
-        <h2>REGISTRO DE USUARIO</h2>
-      </div>
+
       <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <div class="titulo">
+          <h2>REGISTRO DE USUARIO</h2>
+        </div>
         <div class="formularios">
+         
           <div class="secciones">
+            <h2>INFORMACIÓN PERSONAL</h2>
             <mat-form-field class="example-full-width">
-              <mat-label>nombre</mat-label>
+              <mat-label>Nombre</mat-label>
               <input matInput placeholder="nombre" formControlName="nombre" />
               <mat-error *ngIf="obtenerControlCampo('nombre')?.errors?.['required']">
                 El nombre es obligatorio.
@@ -38,7 +41,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <mat-label>apellido</mat-label>
+              <mat-label>Apellido</mat-label>
               <input matInput placeholder="apellido" formControlName="apellido" />
               <mat-error *ngIf="form.get('apellido')?.invalid">
                 {{
@@ -51,7 +54,7 @@
             </mat-form-field>
             <div class="sub-seccion">
               <mat-form-field class="example-full-width">
-                <mat-label>correo</mat-label>
+                <mat-label>Correo electrónico</mat-label>
                 <input matInput placeholder="correo" formControlName="correo" />
                 <mat-error *ngIf="form.get('correo')?.invalid">
                   {{
@@ -63,7 +66,7 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>telefono</mat-label>
+                <mat-label>Teléfono</mat-label>
                 <input matInput placeholder="telefono" formControlName="telefono" />
                 <mat-error *ngIf="form.get('telefono')?.invalid">
                   {{
@@ -74,7 +77,7 @@
               </mat-form-field>
             </div>
             <mat-form-field class="example-full-width">
-              <mat-label>membresia</mat-label>
+              <mat-label>Membresía</mat-label>
               <mat-select formControlName="membresia">
                 <mat-option *ngFor="let p of listaMembresia" [value]="p.idMembresia">
                   {{ p.tipoMembresia }}
@@ -87,9 +90,10 @@
           </div>
 
           <div class="secciones">
+            <h2>INFORMACIÓN PERSONAL</h2>
             <div class="sub-seccion">
               <mat-form-field class="example-full-width">
-                <mat-label>dni</mat-label>
+                <mat-label>DNI</mat-label>
                 <input matInput placeholder="dni" formControlName="dni" />
                 <mat-error *ngIf="form.get('dni')?.invalid">
                   {{
@@ -99,14 +103,14 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>genero</mat-label>
+                <mat-label>Género</mat-label>
                 <mat-select formControlName="genero">
                   <mat-option *ngFor="let p of generos" [value]="p.value">
                     {{ p.viewValue }}
                   </mat-option>
                 </mat-select>
                 <mat-error *ngIf="obtenerControlCampo('genero')?.errors?.['required']">
-                  El genero es obligatorio.
+                  El género es obligatorio.
                 </mat-error>
               </mat-form-field>
             </div>
@@ -121,7 +125,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-full-width">
-              <mat-label>username</mat-label>
+              <mat-label>Username</mat-label>
               <input matInput placeholder="username" formControlName="username" />
               <mat-error *ngIf="form.get('username')?.invalid">
                 {{
@@ -132,7 +136,7 @@
             </mat-form-field>
           </div>
           <div class="secciones">
-            <h2></h2>
+            <h2>FOTO</h2>
 
             <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
               <mat-label>Foto</mat-label>
@@ -154,6 +158,10 @@
           <button class="botonRegistro" mat-raised-button color="primary">
             Registrar
           </button>
+          <button class="boton2" mat-raised-button
+          [routerLink]="['/components/usuarios/listar_admin_usuarios']">
+          Cancelar
+        </button>
           <p>{{ mensaje }}</p>
         </div>
       </form>

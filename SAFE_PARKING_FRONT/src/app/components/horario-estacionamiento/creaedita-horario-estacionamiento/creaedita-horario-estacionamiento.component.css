@@ -56,7 +56,10 @@ mat-error {
 button{
   margin: 10px;
 }
-
+.boton2 {
+  background-color: #000000;
+  color: aliceblue;
+}
 /*Responsive y boton lateral..........*/
 .toggle-button {
   display: none;

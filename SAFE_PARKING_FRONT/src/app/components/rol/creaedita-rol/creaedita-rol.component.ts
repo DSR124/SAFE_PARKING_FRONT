@@ -41,7 +41,7 @@ export class CreaeditaRolComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
     private route: ActivatedRoute //Para editar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     //Nuevo Para Editar
@@ -77,6 +77,7 @@ export class CreaeditaRolComponent implements OnInit {
             this.rS.setList(data);
           });
         });
+        alert('La modificacion se hizo correctamente');
       } else {
         //Pasamos un objeto del tipo Ingredient por que en el Service fue declarado asi
         this.rS.insert(this.rol).subscribe((data) => {
@@ -106,10 +107,10 @@ export class CreaeditaRolComponent implements OnInit {
   init() {
     if (this.edicion) {
       this.rS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          idRol: new FormControl(data.idRol),
-          nombreRol: new FormControl(data.nombreRol),
-          usuario: new FormControl(data.usuario.idUsuario),
+        this.form.patchValue({
+          idRol: data.idRol,
+          nombreRol: data.nombreRol,
+          usuario: data.usuario.idUsuario,
         });
       });
     }
