@@ -60,8 +60,6 @@ body {
   width: 100%;
   max-height: 150px;
   object-fit: cover;
-  border-top-left-radius: 13px;
-  border-top-right-radius: 13px;
 }
 
 /*Responsive y boton lateral..........*/
