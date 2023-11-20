@@ -69,6 +69,7 @@ import { ModificarUsuarioComponent } from './usuarios/modificar-usuario/modifica
 import { ListarUsuarioVehiculosComponent } from './vehiculos/listar-usuario-vehiculos/listar-usuario-vehiculos.component';
 import { ListarUsuarioComentarioComponent } from './comentario/listar-usuario-comentario/listar-usuario-comentario.component';
 import { ListaMapaEstacionamientoComponent } from './estacionamiento/lista-mapa-estacionamiento/lista-mapa-estacionamiento.component';
+import { CreaeditaRolAdminComponent } from './rol/creaedita-rol-admin/creaedita-rol-admin.component';
 
 const routes: Routes = [
   // localizaciones
@@ -300,11 +301,15 @@ const routes: Routes = [
       },
       {
         path: 'listar-admin-roles/ediciones/:id',
-        component: CreaeditaRolComponent,
+        component: CreaeditaRolAdminComponent,
       },
       {
         path: 'buscar-roles',
         component: BuscarRolComponent,
+      },
+      {
+        path: 'registrar_roles_admin',
+        component: CreaeditaRolAdminComponent,
       },
     ],
   },

@@ -8,7 +8,12 @@
 </head>
 
 <body>
-  <app-navbar-administrador></app-navbar-administrador>
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+    <!-- Fin de ocultar barra en responsive -->
+  <app-navbar-administrador [hidden]="!mostrarNavbar" ></app-navbar-administrador>
 
   <h2 style="text-align: center">Lista de Usuarios</h2>
   <div class="container">

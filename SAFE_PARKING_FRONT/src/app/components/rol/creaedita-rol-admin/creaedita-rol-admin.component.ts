@@ -14,20 +14,20 @@ import { RolService } from 'src/app/services/rol.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-creaedita-rol',
-  templateUrl: './creaedita-rol.component.html',
-  styleUrls: ['./creaedita-rol.component.css'],
+  selector: 'app-creaedita-rol-admin',
+  templateUrl: './creaedita-rol-admin.component.html',
+  styleUrls: ['./creaedita-rol-admin.component.css']
 })
-export class CreaeditaRolComponent implements OnInit {
+export class CreaeditaRolAdminComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   rol: Rol = new Rol();
   mensaje: string = '';
   listaUsuarios: Usuario[] = [];
-  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   //Para edicion
   edicion: boolean = false;
   id: number = 0;
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   tipoRol: { value: string; viewValue: string }[] = [
     { value: 'conductor', viewValue: 'Conductor' },
@@ -89,7 +89,9 @@ export class CreaeditaRolComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
-        this.router.navigate(['login']); //Esta ruta la sacamos del ROUTING MODULE
+        this.router.navigate([
+          'components/roles/listar-admin-roles',
+        ]); //Esta ruta la sacamos del ROUTING MODULE
       }
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
@@ -114,4 +116,14 @@ export class CreaeditaRolComponent implements OnInit {
       });
     }
   }
+
+  
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

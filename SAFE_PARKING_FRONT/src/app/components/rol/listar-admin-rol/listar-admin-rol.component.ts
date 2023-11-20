@@ -11,7 +11,7 @@ import { RolService } from 'src/app/services/rol.service';
   templateUrl: './listar-admin-rol.component.html',
   styleUrls: ['./listar-admin-rol.component.css']
 })
-export class ListarAdminRolComponent implements OnInit{
+export class ListarAdminRolComponent implements OnInit {
   dataSource: MatTableDataSource<Rol> = new MatTableDataSource();
   displayedColumns: string[] = [
     'idRol',
@@ -25,7 +25,7 @@ export class ListarAdminRolComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private rS: RolService, public route: ActivatedRoute) {}
+  constructor(private rS: RolService, public route: ActivatedRoute) { }
   ngOnInit(): void {
     this.rS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -46,4 +46,13 @@ export class ListarAdminRolComponent implements OnInit{
   filter(en: any) {
     this.dataSource.filter = en.target.value.trim();
   }
+
+  //Para ocultar la barra
+
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

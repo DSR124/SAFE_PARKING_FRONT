@@ -43,4 +43,13 @@ export class BuscarUsuariosComponent implements OnInit {
       return 'assets/image/EstacionamientoDefault.jpg';
     }
   }
+
+    //Para ocultar la barra
+
+    mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+
+    toggleNavbar() {
+      this.mostrarNavbar = !this.mostrarNavbar;
+    }
+    //Fin de ocultar la barra
 }

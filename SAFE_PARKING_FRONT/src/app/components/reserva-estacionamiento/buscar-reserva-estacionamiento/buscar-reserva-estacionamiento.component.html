@@ -36,12 +36,9 @@
         <h1>Estado de reserva</h1>
         <p>{{ reserva_estacionamiento.estado }}</p>
       </div>
+      
       <div class="generic-box">
-        <h1>Favorito</h1>
-        <p>{{ reserva_estacionamiento.favorito }}</p>
-      </div>
-      <div class="generic-box">
-        <h1>Fecha registrada</h1>
+        <h1>Fecha de registro</h1>
         <p>{{ reserva_estacionamiento.fecha }}</p>
       </div>
       <div class="generic-box">
@@ -53,11 +50,14 @@
         <p>{{ reserva_estacionamiento.vehiculo.placaVehiculo }}</p>
       </div>
       <div class="generic-box">
-        <h1>Horario de estacionamiento ID</h1>
+        <h1>Horario de estacionamiento</h1>
         <p>
           {{
           reserva_estacionamiento.horarioEstacionamiento
-          .idHorarioEstacionamiento
+          .horario.horaApertura
+          }} - {{
+          reserva_estacionamiento.horarioEstacionamiento
+          .horario.horaCierre
           }}
         </p>
       </div>

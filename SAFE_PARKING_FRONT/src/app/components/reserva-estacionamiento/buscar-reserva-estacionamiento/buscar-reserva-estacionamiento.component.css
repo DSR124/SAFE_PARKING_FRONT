@@ -19,7 +19,7 @@ body {
     background: linear-gradient(to right, #11998e, #38ef7d);
     padding: 30px;
     margin-left: 250px;
-    height: auto;
+    height: 100vh;
 }
 
 .generic-group label {
