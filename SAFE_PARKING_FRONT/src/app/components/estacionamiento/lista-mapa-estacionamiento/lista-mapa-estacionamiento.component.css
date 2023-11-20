@@ -57,7 +57,7 @@
     position: fixed;
     left: 50%;
     bottom: 20px;
-    z-index: 1000; /* Ajusta el valor según sea necesario para que esté por encima del mapa */
+    z-index: 1; /* Ajusta el valor según sea necesario para que esté por encima del mapa */
   }
   
   /* Resto de tus estilos */
