@@ -16,9 +16,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-creaedita-rol-admin',
   templateUrl: './creaedita-rol-admin.component.html',
-  styleUrls: ['./creaedita-rol-admin.component.css']
+  styleUrls: ['./creaedita-rol-admin.component.css'],
 })
-export class CreaeditaRolAdminComponent implements OnInit{
+export class CreaeditaRolAdminComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   rol: Rol = new Rol();
   mensaje: string = '';
@@ -77,6 +77,7 @@ export class CreaeditaRolAdminComponent implements OnInit{
             this.rS.setList(data);
           });
         });
+        this.router.navigate(['components/roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
       } else {
         //Pasamos un objeto del tipo Ingredient por que en el Service fue declarado asi
         this.rS.insert(this.rol).subscribe((data) => {
@@ -89,9 +90,7 @@ export class CreaeditaRolAdminComponent implements OnInit{
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
-        this.router.navigate([
-          'components/roles/listar-admin-roles',
-        ]); //Esta ruta la sacamos del ROUTING MODULE
+        this.router.navigate(['components/roles/listar-admin-roles']); //Esta ruta la sacamos del ROUTING MODULE
       }
     } else {
       this.mensaje = 'Por favor complete todos los campos obligatorios.';
@@ -117,7 +116,6 @@ export class CreaeditaRolAdminComponent implements OnInit{
     }
   }
 
-  
   //Para ocultar la barra
 
   mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra

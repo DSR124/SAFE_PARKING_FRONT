@@ -90,7 +90,19 @@ export class CreaeditaComentarioComponent implements OnInit {
           });
         });
         alert('Se registró correctamente');
-        this.ngOnInit();
+        if (this.role == 'administrador') {
+          this.router.navigate([
+            'components/comentarios/listar_comentarios_admin',
+          ]);
+        } else if (this.role == 'arrendador') {
+          this.router.navigate([
+            'components/comentarios/listar_comentarios_user',
+          ]);
+        } else if (this.role == 'conductor') {
+          this.router.navigate([
+            'components/comentarios/listar_comentarios_user',
+          ]);
+        }
       }
     } else {
       this.mensaje = 'Ingrese todos los campos!!';
@@ -133,12 +145,12 @@ export class CreaeditaComentarioComponent implements OnInit {
       return false;
     }
   }
-   //Para ocultar la barra
+  //Para ocultar la barra
 
-   mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
+  mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra
 
-   toggleNavbar() {
-     this.mostrarNavbar = !this.mostrarNavbar;
-   }
-   //Fin de ocultar la barra
+  toggleNavbar() {
+    this.mostrarNavbar = !this.mostrarNavbar;
+  }
+  //Fin de ocultar la barra
 }

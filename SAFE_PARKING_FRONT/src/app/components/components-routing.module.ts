@@ -297,7 +297,7 @@ const routes: Routes = [
     children: [
       {
         path: 'registrar_roles',
-        component: CreaeditaRolComponent,
+        component: CreaeditaRolAdminComponent,
       },
       {
         path: 'listar-admin-roles',
