@@ -3,7 +3,7 @@ body {
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
   padding: 30px;
-  height: 100%;
+  height: auto;
 }
 .comment-list {
   display: flex;
@@ -84,7 +84,6 @@ body {
 
 /* Media query para pantallas más pequeñas */
 @media only screen and (max-width: 768px) {
-
   /* Estilos del botón para pantallas pequeñas */
   .toggle-button {
     display: block;
@@ -112,7 +111,6 @@ body {
   /*Nav admin*/
   app-navbar-administrador[hidden] {
     display: none;
-
   }
 
   app-navbar-administrador {
@@ -133,7 +131,6 @@ body {
   /*Nav conductor*/
   app-navbar-conductor[hidden] {
     display: none;
-
   }
 
   app-navbar-conductor {
@@ -151,7 +148,6 @@ body {
   /*Nav arrendador*/
   app-navbar-arrendador[hidden] {
     display: none;
-
   }
 
   app-navbar-arrendador {
@@ -168,7 +164,6 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
-
   /*Nav admin*/
   app-navbar-administrador[hidden] {
     display: contents;

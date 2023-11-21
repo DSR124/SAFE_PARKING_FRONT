@@ -95,7 +95,6 @@ input[type="file"] {
 
 /* Media query para pantallas más pequeñas */
 @media only screen and (max-width: 768px) {
-
   /* Estilos del botón para pantallas pequeñas */
   .toggle-button {
     display: block;
@@ -123,7 +122,6 @@ input[type="file"] {
   /*Nav admin*/
   app-navbar-administrador[hidden] {
     display: none;
-
   }
 
   app-navbar-administrador {
@@ -144,7 +142,6 @@ input[type="file"] {
   /*Nav conductor*/
   app-navbar-conductor[hidden] {
     display: none;
-
   }
 
   app-navbar-conductor {
@@ -162,7 +159,6 @@ input[type="file"] {
   /*Nav arrendador*/
   app-navbar-arrendador[hidden] {
     display: none;
-
   }
 
   app-navbar-arrendador {
@@ -179,7 +175,6 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 768px) {
-
   /*Nav admin*/
   app-navbar-administrador[hidden] {
     display: contents;
