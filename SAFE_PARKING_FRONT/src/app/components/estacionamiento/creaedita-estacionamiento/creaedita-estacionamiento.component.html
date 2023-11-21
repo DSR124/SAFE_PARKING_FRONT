@@ -42,8 +42,9 @@
             <input type="number" matInput placeholder="capacidad" formControlName="capacidad" />
             <mat-error *ngIf="form.get('capacidad')?.invalid">
               {{
-              form.get('capacidad')!.errors?.['required'] ? 'La capacidad es obligatorio' :
-              (form.get('capacidad')!.errors?.['pattern'] ? 'No puede ser decimal' :'')
+                form.get('capacidad')!.errors?.['required'] ? 'La capacidad es obligatoria' :
+                (form.get('capacidad')!.errors?.['pattern'] ? 'No puede ser decimal' :
+                (form.get('capacidad')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo o igual a cero' : ''))
               }}
             </mat-error>
           </mat-form-field>
@@ -98,8 +99,11 @@
           <mat-form-field class="example-full-width">
             <mat-label>Precio</mat-label>
             <input type="number" matInput placeholder="precio" formControlName="precio" />
-            <mat-error *ngIf="obtenerControlCampo('precio')?.errors?.['required']">
-              El precio es obligatorio.
+            <mat-error *ngIf="form.get('precio')?.invalid">
+              {{
+              form.get('precio')!.errors?.['required'] ? 'El precio es obligatorio' :
+              (form.get('precio')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo o igual a cero' : '')
+              }}
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="example-full-width">

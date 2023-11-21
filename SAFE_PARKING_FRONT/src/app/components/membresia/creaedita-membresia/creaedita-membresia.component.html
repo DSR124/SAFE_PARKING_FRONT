@@ -69,7 +69,7 @@
         <mat-error *ngIf="form.get('precio')?.invalid">
           {{
           form.get('precio')!.errors?.['required'] ? 'El precio es obligatorio' :
-          (form.get('precio')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo o igual a cero' : '')
+          (form.get('precio')!.errors?.['precioMenorOIgualACero'] ? 'No puede ser negativo' : '')
           }}
         </mat-error>
       </mat-form-field>
