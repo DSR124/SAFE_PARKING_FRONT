@@ -20,15 +20,15 @@
   </div>
   <div class="container">
     <form [formGroup]="form" (submit)="registrar()" class="example-form" enctype="multipart/form-data">
-      <h2>REGISTRO DE VEHICULOS</h2>
+      <h2>REGISTRO DE VEHÍCULOS</h2>
 
       <div class="informacion">
         <div class="secciones">
           <h2>DETALLES DEL VEHÍCULO</h2>
           <!-- Placa sección -->
           <mat-form-field class="example-full-width">
-            <mat-label>Placa del Vehiculo</mat-label>
-            <input matInput placeholder="Placa del Vehiculo" formControlName="placaVehiculo" />
+            <mat-label>Placa del Vehículo</mat-label>
+            <input matInput placeholder="Placa del Vehículo" formControlName="placaVehiculo" />
             <mat-error *ngIf="obtenerControlCampo('placaVehiculo')?.errors?.['required']">
               La categoría es obligatoria.
             </mat-error>
@@ -65,8 +65,8 @@
           <!-- Tamaño sección -->
 
           <mat-form-field class="example-full-width">
-            <mat-label>Tamaño del Vehiculo</mat-label>
-            <mat-select placeholder="Tamaño del Vehiculo" formControlName="tamanioVehiculo">
+            <mat-label>Tamaño del Vehículo</mat-label>
+            <mat-select placeholder="Tamaño del Vehículo" formControlName="tamanioVehiculo">
               <mat-option *ngFor="let t of tamanio" [value]="t.value">{{
                 t.viewValue
                 }}</mat-option>
