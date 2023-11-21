@@ -76,6 +76,7 @@ export class CreaeditaIncidenteComponent {
       this.init();
     });
     this.form = this.formBuilder.group({
+      idIncidente: [],
       descripcion: ['', [Validators.required, Validators.maxLength(100)]],
       tipoIncidente: ['', Validators.required],
       usuario: ['', Validators.required],

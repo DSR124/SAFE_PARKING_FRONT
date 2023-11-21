@@ -196,7 +196,6 @@ export class ModificarUsuarioComponent implements OnInit {
     }
   }
 
-  
   //Para ocultar la barra
 
   mostrarNavbar = false; // Variable de estado para controlar la visibilidad de la barra

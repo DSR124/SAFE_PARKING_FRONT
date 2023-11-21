@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(request: JwtRequest) {
-    return this.http.post('https://safe-parking-deployment.onrender.com/authenticate', request);
+    return this.http.post('http://localhost:8080/authenticate', request);
   }
   verificar() {
     let token = sessionStorage.getItem('token');
@@ -28,7 +28,11 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
-  obtenerPerfil(): { idUsuario: number; nombreUsuario: string; rol: string } | null {
+  obtenerPerfil(): {
+    idUsuario: number;
+    nombreUsuario: string;
+    rol: string;
+  } | null {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('Token no encontrado en el sessionStorage');
@@ -57,5 +61,4 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.userId || null;
   }
-  
 }

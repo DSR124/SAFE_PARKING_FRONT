@@ -31,7 +31,6 @@ export class CreaeditaReservaEstacionamientoComponent {
   listaUsuario: Usuario[] = [];
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
-  estadoregistro: string = 'En Proceso';
   favoritoAux: boolean = false;
   role: string = '';
   id: number = 0;
@@ -80,14 +79,14 @@ export class CreaeditaReservaEstacionamientoComponent {
 
     this.form = this.formBuilder.group({
       idReservaEstacionamiento: [''],
-      estado: [this.estadoregistro, Validators.required],
+      estado: ['En Proceso', Validators.required],
       favorito: [false, Validators.required],
       fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
       vehiculo: ['', Validators.required],
       horarioEstacionamiento: ['', Validators.required],
     });
-   
+
     this.vS.list().subscribe((data) => {
       this.listaVehiculo = data;
     });
@@ -98,7 +97,9 @@ export class CreaeditaReservaEstacionamientoComponent {
       // Filtrar la lista de usuarios para incluir solo al usuario actualmente logeado
       const usuarioLogeado = this.loginService.obtenerPerfil();
       if (usuarioLogeado) {
-        this.listaUsuario = data.filter((usuario) => usuario.idUsuario === usuarioLogeado.idUsuario);
+        this.listaUsuario = data.filter(
+          (usuario) => usuario.idUsuario === usuarioLogeado.idUsuario
+        );
       }
     });
     this.uS.list().subscribe((data) => {
@@ -118,7 +119,7 @@ export class CreaeditaReservaEstacionamientoComponent {
         this.form.value.vehiculo;
       this.reservaestacionamiento.horarioEstacionamiento.idHorarioEstacionamiento =
         this.form.value.horarioEstacionamiento;
-        
+
       if (this.edicion) {
         this.reS.update(this.reservaestacionamiento).subscribe(() => {
           this.reS.list().subscribe((data) => {
@@ -157,9 +158,10 @@ export class CreaeditaReservaEstacionamientoComponent {
           estado: data.estado,
           favorito: data.favorito,
           fecha: data.fecha,
-          users: data.users,
-          vehiculo: data.vehiculo,
-          horarioEstacionamiento: data.horarioEstacionamiento,
+          users: data.users.idUsuario,
+          vehiculo: data.vehiculo.idVehiculo,
+          horarioEstacionamiento:
+            data.horarioEstacionamiento.idHorarioEstacionamiento,
         });
       });
     }
