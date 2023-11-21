@@ -16,6 +16,19 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { LocalizacionService } from 'src/app/services/localizacion.service';
 import { LoginService } from 'src/app/services/login.service';
 
+function precioPositivo(
+  control: AbstractControl
+): Promise<{ [key: string]: any } | null> {
+  return new Promise((resolve) => {
+    const precio = control.value;
+    if (precio <= 0) {
+      resolve({ precioMenorOIgualACero: true });
+    } else {
+      resolve(null);
+    }
+  });
+}
+
 @Component({
   selector: 'app-creaedita-estacionamiento',
   templateUrl: './creaedita-estacionamiento.component.html',
@@ -100,9 +113,9 @@ export class CreaeditaEstacionamientoComponent implements OnInit {
       disponibilidad: [this.disponibilidad, Validators.required],
       foto: ['', Validators.required],
       promedioValoracion: [5, Validators.required],
-      capacidad: ['', [Validators.required, Validators.pattern('^[^.]*$')]],
+      capacidad: ['', [Validators.required, Validators.pattern('^[^.]*$')], precioPositivo],
       fechaRegistro: [new Date(), Validators.required],
-      precio: ['', Validators.required],
+      precio: ['', Validators.required, precioPositivo],
       usuario: ['', Validators.required],
       localizacion: ['', Validators.required],
     });
