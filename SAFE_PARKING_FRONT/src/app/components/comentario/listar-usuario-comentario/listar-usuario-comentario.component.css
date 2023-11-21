@@ -3,6 +3,7 @@ body {
   background: linear-gradient(to right, #11998e, #38ef7d);
   margin-left: 250px;
   padding: 30px;
+  height: 100%;
 }
 .comment-list {
   display: flex;

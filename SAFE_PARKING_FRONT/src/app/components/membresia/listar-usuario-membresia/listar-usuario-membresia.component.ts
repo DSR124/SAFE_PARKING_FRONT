@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Membresia } from 'src/app/models/membresia';
 import { MembresiaService } from 'src/app/services/membresia.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
+import { Observable, Observer } from 'rxjs';
+export interface ExampleTab {
+  label: string;
+  content: string;
+}
+
 @Component({
   selector: 'app-listar-usuario-membresia',
   templateUrl: './listar-usuario-membresia.component.html',
@@ -9,11 +16,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ListarUsuarioMembresiaComponent implements OnInit {
   memberships: Membresia[] = [];
+  asyncTabs: Observable<ExampleTab[]>;
+  tabIndex = 0;
+  @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
+
   constructor(
     private membershipService: MembresiaService,
     private router: Router,
     public route: ActivatedRoute
-  ) {}
+  ) {
+    this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
+      setTimeout(() => {
+        observer.next([
+          { label: 'First', content: 'Content 1' },
+          { label: 'Second', content: 'Content 2' },
+          { label: 'Third', content: 'Content 3' },
+        ]);
+        observer.complete();
+      }, 1000);
+    });
+
+  }
 
   ngOnInit() {
     this.membershipService.list().subscribe((memberships) => {
@@ -33,4 +56,16 @@ export class ListarUsuarioMembresiaComponent implements OnInit {
     this.mostrarNavbar = !this.mostrarNavbar;
   }
   //Fin de ocultar la barra
+  navegarSiguiente(): void {
+    if (this.tabGroup) {
+      this.tabIndex = (this.tabIndex + 1) % this.tabGroup._tabs.length;
+      this.tabGroup.selectedIndex = this.tabIndex;
+    }
+  }
+  onTabChange(event: MatTabChangeEvent): void {
+    // Puedes agregar lógica aquí si es necesario
+    console.log('Cambio de pestaña', event.index);
+  }
+
+
 }

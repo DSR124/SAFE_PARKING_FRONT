@@ -47,7 +47,7 @@
               }}
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill" class="example-full-width">
+          <mat-form-field appearance="fill" class="example-full-width"*ngIf="mostrarCampo">
             <mat-label>Fecha de registro</mat-label>
             <input matInput placeholder="Ingrese fecha de Registro" [matDatepicker]="picker"
               formControlName="fechaRegistro" readonly="true" />
@@ -115,7 +115,7 @@
           </mat-form-field>
         </div>
         <div class="secciones">
-          <h2></h2>
+          <h2>FOTO</h2>
 
           <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
             <mat-label>Foto</mat-label>
@@ -137,7 +137,7 @@
         <button class="boton_registro" mat-raised-button color="primary">
           Registrar
         </button>
-        <button mat-raised-button [routerLink]="[
+        <button  class="boton2" mat-raised-button [routerLink]="[
               '/components/estacionamiento/listar_admin_estacionamientos'
             ]">
           Cancelar

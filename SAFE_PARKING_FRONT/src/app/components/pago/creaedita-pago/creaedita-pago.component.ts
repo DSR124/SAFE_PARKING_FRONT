@@ -57,7 +57,7 @@ export class CreaeditaPagoComponent implements OnInit {
     private formBuilder: FormBuilder, //private route: ActivatedRoute //Para editar
     public route: ActivatedRoute, //Para editar
     private loginService: LoginService
-  ) {}
+  ) { }
   verificar() {
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
@@ -110,6 +110,7 @@ export class CreaeditaPagoComponent implements OnInit {
             this.pS.setList(data);
           });
         });
+        alert('Se modificó correctamente');
       } else {
         //Pasamos un objeto del tipo Ingredient por que en el Service fue declarado asi
         this.pS.insert(this.pago).subscribe((data) => {
@@ -117,6 +118,7 @@ export class CreaeditaPagoComponent implements OnInit {
             this.pS.setList(data);
           });
         });
+        alert('Se registró correctamente');
       }
       this.router.navigate(['components/pagos/listar-admin-pagos']); //Esta ruta la sacamos del ROUTING MODULE
     } else {
@@ -139,8 +141,7 @@ export class CreaeditaPagoComponent implements OnInit {
           fechaEmision: data.fechaEmision,
           precioTotal: data.precioTotal,
           tipoPago: data.tipoPago,
-          reservaEstacionamiento:
-            data.reservaEstacionamiento.idReservaEstacionamiento,
+          reservaEstacionamiento: data.reservaEstacionamiento.idReservaEstacionamiento,
         });
       });
     }

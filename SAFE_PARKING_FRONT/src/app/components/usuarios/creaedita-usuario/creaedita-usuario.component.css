@@ -47,13 +47,14 @@ button {
 }
 .secciones {
   margin: 15px;
-  width: 420px;
   height: 400px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 25px;
+  width: 400px;
+  max-width: 100%;
+  margin: 15px auto; 
 }
 .sub-seccion {
   display: flex;

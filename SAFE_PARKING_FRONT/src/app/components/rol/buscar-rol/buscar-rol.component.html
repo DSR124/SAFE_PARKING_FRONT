@@ -8,7 +8,11 @@
 </head>
 
 <body>
-  <app-navbar-administrador></app-navbar-administrador>
+    <!-- Para ocultar barra en responsive -->
+    <button (click)="toggleNavbar()" class="toggle-button">
+      <i class="fa fa-bars"></i>
+    </button>
+  <app-navbar-administrador [hidden]="!mostrarNavbar"></app-navbar-administrador>
 
   <div class="form">
     <div class="generic-group">

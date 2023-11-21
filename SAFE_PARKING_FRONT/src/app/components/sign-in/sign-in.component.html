@@ -2,48 +2,43 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container" style="text-align: center">
-      <div>
-        <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
-      </div>
-      <h2>INICIAR SESIÓN</h2>
-      <mat-form-field class="example-full-width">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" [(ngModel)]="username" />
-      </mat-form-field>
-      <br />
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Enter your password</mat-label>
-        <input
-          matInput
-          [type]="hide ? 'password' : 'text'"
-          type="password"
-          matInput
-          placeholder="Password"
-          [(ngModel)]="password"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-      <br />
-      <button mat-raised-button class="botoncito" (click)="login()">
-        Ingresar
-      </button>
+<body>
+  <div *ngIf="!loading" class="container" style="text-align: center">
+    <div>
+      <img src="assets/image/Logo_verde.png" alt="Logo de la empresa" />
     </div>
-  </body>
+    <h2>INICIAR SESIÓN</h2>
+    <mat-form-field class="example-full-width">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Username" [(ngModel)]="username" />
+    </mat-form-field>
+    <br />
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" type="password" matInput placeholder="Password"
+        [(ngModel)]="password" />
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <br />
+    <button mat-raised-button class="botoncito" (click)="login()">
+      Ingresar
+    </button>
+  </div>
+  <div *ngIf="loading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <h3>Iniciando sesión...</h3>
+  </div>
+</body>
+
 </html>

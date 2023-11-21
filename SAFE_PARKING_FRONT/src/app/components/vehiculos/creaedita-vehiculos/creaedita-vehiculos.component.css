@@ -8,14 +8,9 @@ body {
 }
 
 .container {
-  margin-bottom: 50px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Centra horizontalmente */
-  max-width: 100%;
-  padding: 20px;
-  margin: 60px;
+ 
+  width: 100%;
+  margin: 0;
 }
 
 .example-form {
@@ -38,17 +33,19 @@ h1 {
 
 h2 {
   text-align: center;
+  font-size: 1.2rem;
 }
 
 .secciones {
   margin: 15px;
-  width: 380px;
-  height: 400px;
+  height: 500px;
   background-color: rgb(221, 221, 221);
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 25px;
+  width: 400px;
+  max-width: 100%;
+  margin: 15px auto; /* Centra horizontalmente */
 }
 
 .paleta {
@@ -83,7 +80,10 @@ button {
   background-color: #11998e;
   color: #fff;
 }
-
+.boton2 {
+  background-color: #000000;
+  color: aliceblue;
+}
 /* You might need to adjust specific classes for Angular Material components */
 /* For example, the form field color and size */
 
@@ -112,9 +112,8 @@ button {
 
 /* Additional styling for the uploaded image */
 img {
-  max-width: 40%;
-  max-height: 40%;
-  margin-top: 10px;
+  max-width: 100%;
+  max-height: auto;
 }
 
 input[type="file"] {

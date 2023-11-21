@@ -32,9 +32,11 @@ export class CreaeditaReservaEstacionamientoComponent {
   listaVehiculo: Vehiculo[] = [];
   listaHorarioEst: HorarioEstacionamiento[] = [];
   estadoregistro: string = 'En Proceso';
+  favoritoAux: boolean = false;
   role: string = '';
   id: number = 0;
   edicion: boolean = false;
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   favoritos: { value: string; viewValue: string }[] = [
     { value: 'true', viewValue: 'true' },
@@ -79,20 +81,28 @@ export class CreaeditaReservaEstacionamientoComponent {
     this.form = this.formBuilder.group({
       idReservaEstacionamiento: [''],
       estado: [this.estadoregistro, Validators.required],
-      favorito: ['', Validators.required],
+      favorito: [false, Validators.required],
       fecha: [new Date(), Validators.required],
       users: ['', Validators.required],
       vehiculo: ['', Validators.required],
       horarioEstacionamiento: ['', Validators.required],
     });
-    this.uS.list().subscribe((data) => {
-      this.listaUsuario = data;
-    });
+   
     this.vS.list().subscribe((data) => {
       this.listaVehiculo = data;
     });
     this.heS.list().subscribe((data) => {
       this.listaHorarioEst = data;
+    });
+    this.uS.list().subscribe((data) => {
+      // Filtrar la lista de usuarios para incluir solo al usuario actualmente logeado
+      const usuarioLogeado = this.loginService.obtenerPerfil();
+      if (usuarioLogeado) {
+        this.listaUsuario = data.filter((usuario) => usuario.idUsuario === usuarioLogeado.idUsuario);
+      }
+    });
+    this.uS.list().subscribe((data) => {
+      this.listaUsuario = data;
     });
   }
 
@@ -108,6 +118,7 @@ export class CreaeditaReservaEstacionamientoComponent {
         this.form.value.vehiculo;
       this.reservaestacionamiento.horarioEstacionamiento.idHorarioEstacionamiento =
         this.form.value.horarioEstacionamiento;
+        
       if (this.edicion) {
         this.reS.update(this.reservaestacionamiento).subscribe(() => {
           this.reS.list().subscribe((data) => {

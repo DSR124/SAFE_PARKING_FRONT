@@ -107,6 +107,9 @@ export class CreaeditaHorarioComponent implements OnInit {
       this.hS.getById(this.id).subscribe((data) => {
         this.form.patchValue({
           idHorario: data.idHorario,
+          horaApertura: data.horaApertura,
+          horaCierre: data.horaCierre,
+          fecha: data.fecha
         });
       });
     }

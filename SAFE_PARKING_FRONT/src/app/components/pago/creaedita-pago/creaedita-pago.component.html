@@ -35,7 +35,7 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <mat-label>Precio total</mat-label>
+        <mat-label>Precio</mat-label>
         <input type="number" matInput placeholder="precioTotal" formControlName="precioTotal" />
         <mat-error *ngIf="form.get('precioTotal')?.invalid">
           {{
@@ -73,7 +73,7 @@
         <button class="boton_registro" mat-raised-button color="primary">
           Registrar
         </button>
-        <button mat-raised-button [routerLink]="['/components/pagos/listar-admin-pagos']">
+        <button  class="boton2" mat-raised-button [routerLink]="['/components/pagos/listar-admin-pagos']">
           Cancelar
         </button>
       </div>

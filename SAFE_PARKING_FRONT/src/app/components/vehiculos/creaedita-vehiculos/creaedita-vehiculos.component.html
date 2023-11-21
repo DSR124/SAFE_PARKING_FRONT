@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Document</title>
 </head>
 
@@ -24,7 +24,7 @@
 
       <div class="informacion">
         <div class="secciones">
-          <h2></h2>
+          <h2>DETALLES DEL VEHÍCULO</h2>
           <!-- Placa sección -->
           <mat-form-field class="example-full-width">
             <mat-label>Placa del Vehiculo</mat-label>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="secciones">
-          <h2></h2>
+          <h2>COLOR</h2>
 
           <!-- Color sección -->
           <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="secciones">
-          <h2></h2>
+          <h2>FOTO</h2>
 
           <mat-form-field class="example-full-width" *ngIf="mostrarCampo">
             <mat-label>Foto</mat-label>
@@ -129,11 +129,11 @@
         <button class="botonRegistro" mat-raised-button color="primary">
           Registrar
         </button>
-        <button *ngIf="role === 'conductor'" mat-raised-button
+        <button class="boton2"*ngIf="role === 'conductor'" mat-raised-button
           [routerLink]="['/components/vehiculos/listar_usuario_vehiculos']">
           Cancelar
         </button>
-        <button *ngIf="role === 'administrador'" mat-raised-button
+        <button class="boton2" *ngIf="role === 'administrador'" mat-raised-button
           [routerLink]="['/components/vehiculos/listar_admin_vehiculos']">
           Cancelar
         </button>

@@ -28,6 +28,7 @@ export class CreaeditaComentarioComponent implements OnInit {
   id: number = 0;
   edicion: boolean = false;
   role: string = '';
+  mostrarCampo: boolean = false; // O ajusta esto según tus necesidades
 
   tiposingredientes: { value: string; viewValue: string }[] = [
     { value: 'Vegetal', viewValue: 'Vegetal' },

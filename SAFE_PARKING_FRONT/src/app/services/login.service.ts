@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(request: JwtRequest) {
-    return this.http.post('https://safe-parking-deployment-2023.onrender.com/authenticate', request);
+    return this.http.post('https://safe-parking-deployment.onrender.com/authenticate', request);
   }
   verificar() {
     let token = sessionStorage.getItem('token');
@@ -28,7 +28,7 @@ export class LoginService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
-  obtenerPerfil(): { nombreUsuario: string; rol: string } | null {
+  obtenerPerfil(): { idUsuario: number; nombreUsuario: string; rol: string } | null {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('Token no encontrado en el sessionStorage');
@@ -42,8 +42,20 @@ export class LoginService {
     }
     console.log('Token decodificado:', decodedToken);
     return {
+      idUsuario: decodedToken ? decodedToken.idUsuario || 0 : 0,
       nombreUsuario: decodedToken ? decodedToken.sub || '' : '',
       rol: decodedToken ? decodedToken.role || '' : '',
     };
   }
+
+  getUserId(): number | null {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.userId || null;
+  }
+  
 }

@@ -122,7 +122,8 @@ export class CreaeditaMembresiaComponent implements OnInit {
         this.form.patchValue({
           idMembresia: data.idMembresia,
           tipoMembresia: data.tipoMembresia,
-
+          fechaInicio: data.fechaInicio,
+          fechaFin: data.fechaFin,
           precio: data.precio,
         });
       });

@@ -96,7 +96,7 @@ export class CreaeditaIncidenteComponent {
             this.iS.setList(data);
           });
         });
-        alert('la modificacion se hizo correctamente');
+        alert('La modificacion se hizo correctamente');
       } else {
         this.iS.insert(this.incidente).subscribe((data) => {
           this.iS.list().subscribe((data) => {

@@ -18,6 +18,7 @@ body {
 .responsive-img {
   max-width: 100%;
   max-height: 200px; /* Set a maximum height if needed */
+
 }
 .imagen_perfil{
   justify-content: center;
@@ -60,6 +61,7 @@ img {
   height: auto;
   border-radius: 8px;
   margin: 10px;
+  
 }
 
 ul {
