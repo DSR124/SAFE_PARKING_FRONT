@@ -19,7 +19,7 @@
     <app-navbar-arrendador [hidden]="!mostrarNavbar" *ngIf="role === 'arrendador'"></app-navbar-arrendador>
   </div>
   <div class="litle">
-    <h2 style="text-align: center">LISTA DE VEHICULOS</h2>
+    <h2 style="text-align: center">LISTA DE VEHÍCULOS</h2>
   </div>
   <div class="example-container mat-elevation-z8">
     <mat-form-field>
@@ -32,7 +32,7 @@
       <!-- idVehiculo Column -->
 
       <ng-container matColumnDef="codigo">
-        <th mat-header-cell *matHeaderCellDef>Codigo</th>
+        <th mat-header-cell *matHeaderCellDef>Código</th>
         <td mat-cell *matCellDef="let element">{{ element.idVehiculo }}</td>
       </ng-container>
 
@@ -46,7 +46,7 @@
 
       <!-- categoriaVehiculo Column -->
       <ng-container matColumnDef="categoria">
-        <th mat-header-cell *matHeaderCellDef>Categoria</th>
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
         <td mat-cell *matCellDef="let element">
           {{ element.categoriaVehiculo }}
         </td>

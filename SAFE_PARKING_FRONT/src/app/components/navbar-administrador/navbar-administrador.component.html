@@ -50,43 +50,43 @@
 
       <input type="checkbox" class="menu-toggle" id="menu2" />
       <label for="menu2" class="menu" *ngIf="role == 'administrador'">
-        <i class="material-icons">attach_money</i> Membresias
+        <i class="material-icons">attach_money</i> Membresías
         <mat-icon class="icon-down">arrow_drop_down</mat-icon>
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu">
         <li *ngIf="role === 'administrador'">
-          <a href="components/membresias/registrar_membresias">Registrar membresias</a>
+          <a href="components/membresias/registrar_membresias">Registrar membresías</a>
         </li>
         <li *ngIf="role === 'administrador'">
-          <a href="components/membresias/listar_usuario_membresias">Listar membresias (user)</a>
+          <a href="components/membresias/listar_usuario_membresias">Listar membresías (user)</a>
         </li>
         <li *ngIf="role === 'administrador'">
-          <a href="components/membresias/buscar_membresias">Buscar membresias</a>
+          <a href="components/membresias/buscar_membresias">Buscar membresías</a>
         </li>
         <li *ngIf="role == 'administrador'">
-          <a href="components/membresias/listar_admin_membresias">Listar membresias (Admin)</a>
+          <a href="components/membresias/listar_admin_membresias">Listar membresías (Admin)</a>
         </li>
       </ul>
 
       <input type="checkbox" class="menu-toggle" id="menu3" />
       <label for="menu3" class="menu" *ngIf="role === 'administrador' || role === 'conductor'">
-        <i class="material-icons">directions_car</i> Vehiculos
+        <i class="material-icons">directions_car</i> Vehículos
         <mat-icon class="icon-down">arrow_drop_down</mat-icon>
         <mat-icon class="icon-up">arrow_drop_up</mat-icon>
       </label>
       <ul class="sub-menu" *ngIf="validarRol()">
         <li *ngIf="role === 'administrador' || role === 'conductor'">
-          <a href="components/vehiculos/registrar_vehiculos">Registrar vehiculos</a>
+          <a href="components/vehiculos/registrar_vehiculos">Registrar vehículos</a>
         </li>
         <li *ngIf="role === 'administrador' || role === 'conductor'">
-          <a href="components/vehiculos/listar_admin_vehiculos">Listar vehiculos (admin)</a>
+          <a href="components/vehiculos/listar_admin_vehiculos">Listar vehículos (admin)</a>
         </li>
         <li *ngIf="role === 'administrador' || role === 'conductor'">
-          <a href="components/vehiculos/listar_usuario_vehiculos">Listar vehiculos (user)</a>
+          <a href="components/vehiculos/listar_usuario_vehiculos">Listar vehículos (user)</a>
         </li>
         <li *ngIf="role === 'administrador'">
-          <a href="components/vehiculos/buscar_vehiculos">Buscar vehiculos</a>
+          <a href="components/vehiculos/buscar_vehiculos">Buscar vehículos</a>
         </li>
       </ul>
 
