@@ -271,6 +271,10 @@ const routes: Routes = [
         component: ModificarUsuarioComponent,
       },
       {
+        path: 'registrar_usuarios_SignUp',
+        component: CreaeditaUsuarioComponent,
+      },
+      {
         path: 'listar_admin_usuarios',
         component: listarAdminUsuarioComponent,
       },
